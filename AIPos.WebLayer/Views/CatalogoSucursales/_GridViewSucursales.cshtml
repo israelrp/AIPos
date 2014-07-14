@@ -1,0 +1,43 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridViewSucursales";
+        settings.CallbackRouteValues = new { Controller = "CatalogoSucursales", Action = "GridViewSucursales" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "CatalogoSucursales", Action = "GridViewSucursalesAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "CatalogoSucursales", Action = "GridViewSucursalesUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "CatalogoSucursales", Action = "GridViewSucursalesDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsPopup.EditForm.Width = 500;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.NewButton.Visible = true;
+        settings.CommandColumn.DeleteButton.Visible = true;
+        settings.CommandColumn.EditButton.Visible = true;
+
+        settings.KeyFieldName = "Id";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.Columns.Add("Nombre");
+        settings.Columns.Add("Calle");
+        settings.Columns.Add("NoExterior");
+        settings.Columns.Add("NoInterior");
+        settings.Columns.Add("Colonia");
+        settings.Columns.Add("CodigoPostal");
+        settings.Columns.Add("Referencia");
+        settings.Columns.Add("Ciudad");
+        settings.Columns.Add("Estado");
+        settings.Columns.Add("Telefono");
+        
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

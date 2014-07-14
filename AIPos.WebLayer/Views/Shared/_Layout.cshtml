@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+
+    @Html.DevExpress().GetStyleSheets(
+        new StyleSheet { ExtensionSuite = ExtensionSuite.All, Theme="SoftOrange" }
+    )
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    <link href="~/Content/Menu.css" rel="stylesheet" type="text/css" />
+    @Html.DevExpress().GetScripts( 
+        new Script { ExtensionSuite = ExtensionSuite.All }
+    )
+    <script type="text/javascript">
+        $(function () {
+            if ($.browser.msie && $.browser.version.substr(0, 1) < 7) {
+                $('li').has('ul').mouseover(function () {
+                    $(this).children('ul').show();
+                }).mouseout(function () {
+                    $(this).children('ul').hide();
+                })
+            }
+        });
+    </script>
+    </head>
+    <body>
+        <header>
+            <div id="header">
+                <div class="content-wrapper">
+                    <div>
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                    <nav>
+                        <ul id="menu">
+	                        <li><a href="~/">Home</a></li>
+	                        <li>
+		                        <a href="#">Catálogos</a>
+		                        <ul>
+			                        <li><a href="~/CatalogoUnidades/">Unidades de medida</a></li>
+			                        <li><a href="~/CatalogoTipos/">Tipos de producto</a></li>
+			                        <li><a href="~/CatalogoSucursales/">Sucursales</a></li>
+			                        <li><a href="~/CatalogoProductos/">Productos</a></li>
+                                    <li><a href="~/CatalogoClientes/">Clientes</a></li>
+                                    <li><a href="~/CatalogoProveedores/">Proveedores</a></li>
+		                        </ul>
+	                        </li>
+                            <li>
+		                        <a href="#">Listas precios</a>
+		                        <ul>
+			                        <li><a href="~/ListasPrecio/">Catalogo listas</a></li>
+                                    <li><a href="~/ListasPrecio/ListaPreciosProductos">Asignar precios a listas</a></li>
+                                    <li><a href="~/ListasPrecio/AsignarListaPrecioSucursal">Asignar sucursales a lista</a></li>
+                                    <li><a href="~/ListasPrecio/AsignarListaPrecioCliente">Asignar clientes a lista</a></li>
+		                        </ul>
+	                        </li>
+	                        <li>
+                                <a href="#">Administrar usuarios</a>
+                                <ul>
+			                        <li><a href="~/AdministracionSeguridad/">Catálogo usuarios</a></li>
+                                    <li><a href="~/AdministracionSeguridad/UsuarioSucursales">Asignar sucursales a uuarios</a></li>
+		                        </ul>
+	                        </li>
+	                        <li>
+		                        <a href="#">Reportes</a>
+		                        <ul>
+			                        <li><a href="~/ReporteCorteCaja/">Corte de caja</a></li>
+                                    <li><a href="~/HistorialCorteCaja/">Historio de cortes de caja</a></li>
+                                    <li><a href="~/RetirosDinero/Reporte">Retiros de dinero</a></li>
+                                    <li><a href="#">Ventas por producto</a></li>
+		                        </ul>
+	                        </li>
+	                        <li><a href="http://serveraplicaciones.cloudapp.net:65/Instalador/publish.htm">Instalador POS</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                </div>
+            </div>
+
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                <div>
+                    @RenderBody()
+                </div>
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - Distribuidora San Agustin</p>
+                </div>
+            </div>
+        </footer>
+
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

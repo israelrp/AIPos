@@ -1,0 +1,77 @@
+﻿<dxr:DXRibbonWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    x:Class="AIPos.DekstopLayer.Principal"
+    Title="AIPos 2.0" Height="550" Width="725" WindowState="Maximized" Closed="DXRibbonWindow_Closed_1" 
+    >
+
+    <Grid>
+        <dxb:BarManager>
+            <dxb:BarManager.Bars>
+                <dxb:Bar IsStatusBar="True">
+                    <dxb:Bar.DockInfo>
+                        <dxb:BarDockInfo ContainerType="Bottom" />
+                    </dxb:Bar.DockInfo>
+                </dxb:Bar>
+            </dxb:BarManager.Bars>
+            <dxb:BarManager.Items>
+                <dxb:BarButtonItem x:Name="barButtonEntradas" Content="Entradas" Glyph="Images/IconosMenu/compras.png" RibbonStyle="All" ItemClick="barButtonEntradas_ItemClick" />
+                <dxb:BarButtonItem x:Name="barButtonVentas" Content="Ventas" Glyph="Images/IconosMenu/ventas.png" RibbonStyle="All" ItemClick="barButtonVentas_ItemClick" />
+                <dxb:BarButtonItem x:Name="barButtonRetiros" Content="Retiros" Glyph="Images/IconosMenu/retiros.png" RibbonStyle="Large" ItemClick="barButtonRetiros_ItemClick" />
+                <dxb:BarButtonItem x:Name="barButtonItem4" Content="Corte de caja" Glyph="Images/IconosMenu/corteCaja.png" RibbonStyle="Large" />
+                <dxb:BarButtonItem x:Name="barButtonCorteCaja" Content="Corte de caja" Glyph="Images/IconosMenu/corteCaja.png" RibbonStyle="Large" ItemClick="barButtonCorteCaja_ItemClick_1" />
+                <dxb:BarButtonItem x:Name="barButtonConfiguracion" Content="Configuración" Glyph="Images/IconosMenu/datosGenerales.png" RibbonStyle="Large" ItemClick="barButtonConfiguracion_ItemClick_1" />
+                <dxb:BarButtonItem x:Name="barButtonItem1" Content="Cancelaciones" Glyph="pack://application:,,,/DevExpress.Images.v13.2;component/Images/Actions/Cancel_32x32.png" RibbonStyle="Large" />
+                <dxb:BarButtonItem x:Name="barButtonInventarios" Content="Inventarios" Glyph="pack://application:,,,/DevExpress.Images.v13.2;component/Images/Data/Database_32x32.png" RibbonStyle="Large" ItemClick="barButtonInventarios_ItemClick" />
+                <dxb:BarButtonItem x:Name="barButtonRequerimientos" Content="Requerimientos" Glyph="pack://application:,,,/DevExpress.Images.v13.2;component/Images/Programming/ShowTestReport_32x32.png" RibbonStyle="Large" ItemClick="barButtonRequerimientos_ItemClick" />
+                <dxb:BarButtonItem x:Name="barButtonConteo" Content="Conteo rápido" Glyph="Images/IconosMenu/conteo.png" RibbonStyle="Large" ItemClick="barButtonConteo_ItemClick" />
+                <dxb:BarButtonItem x:Name="barButtonEntregas" Content="Entregas domicilio" Glyph="Images/IconosMenu/conteo.png" RibbonStyle="Large" ItemClick="barButtonEntragas_ItemClick_1" />
+            </dxb:BarManager.Items>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <dxr:RibbonControl Grid.Row="0" RibbonStyle="Office2010">
+                    <dxr:RibbonDefaultPageCategory>
+                        <dxr:RibbonPage Caption="Movimientos">
+                            <dxr:RibbonPageGroup CaptionButtonCommandParameter="Entradas" Caption="Inventario" ShowCaptionButton="True" Glyph="pack://application:,,,/DevExpress.Images.v13.2;component/Images/Data/Database_32x32.png">
+                                <dxb:BarButtonItemLink BarItemName="barButtonEntradas" />
+                                <dxb:BarButtonItemLink BarItemName="barButtonVentas" />
+                                <dxb:BarButtonItemLink BarItemName="barButtonRetiros" />
+                                
+                                <dxb:BarButtonItemLink BarItemName="barButtonInventarios" />
+                                <dxb:BarButtonItemLink BarItemName="barButtonRequerimientos" />
+                                <dxb:BarButtonItemLink BarItemName="barButtonConteo" />
+                                <dxb:BarButtonItemLink BarItemName="barButtonEntregas" />
+                            </dxr:RibbonPageGroup>
+                        </dxr:RibbonPage>
+                        <dxr:RibbonPage Caption="Reportes">
+                            <dxr:RibbonPageGroup Caption="Reportes">
+                                <dxb:BarButtonItemLink BarItemName="barButtonCorteCaja" />
+                            </dxr:RibbonPageGroup>
+                        </dxr:RibbonPage>
+                        <dxr:RibbonPage Caption="Configuración">
+                            <dxr:RibbonPageGroup Caption="Configuración">
+                                <dxb:BarButtonItemLink BarItemName="barButtonConfiguracion" />
+                            </dxr:RibbonPageGroup>
+                        </dxr:RibbonPage>
+                    </dxr:RibbonDefaultPageCategory>
+                </dxr:RibbonControl>
+                <dx:DXTabControl x:Name="tabControl" Margin="0,155,0.4,0.2" Grid.RowSpan="2">
+                    <dx:DXTabControl.ItemContainerStyle>
+                        <Style TargetType="{x:Type dx:DXTabItem}">
+                            <Setter Property="AllowHide" Value="True" />
+                        </Style>
+                    </dx:DXTabControl.ItemContainerStyle>
+                    <dx:DXTabControl.View>
+                        <dx:TabControlMultiLineView HeaderLocation="Top" AllowHideTabItems="True" RemoveTabItemsOnHiding="True" />
+                    </dx:DXTabControl.View>
+                </dx:DXTabControl>
+            </Grid>
+        </dxb:BarManager>
+    </Grid>
+</dxr:DXRibbonWindow>

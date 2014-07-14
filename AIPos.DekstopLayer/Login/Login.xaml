@@ -1,0 +1,31 @@
+﻿<dx:DXWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    x:Class="AIPos.DekstopLayer.Login.Login"
+    Title="Login" Height="250" Width="325" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+    >
+
+    <Grid>
+        <Label Content="USUARIO:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.343,-1.005" Width="298" HorizontalContentAlignment="Center" FontWeight="SemiBold" FontSize="15" Foreground="#FFFE1111"/>
+
+        <dxe:TextEdit x:Name="txtUserName" Margin="10,36,10,0" VerticalAlignment="Top" NullText="Usuario" FontSize="15" ToolTip="Nombre de usuario que le proporciono su administrador" KeyUp="txtUserName_KeyUp"/>
+        <Label Content="PASSWORD:" HorizontalAlignment="Left" Margin="10,84,0,0" VerticalAlignment="Top" Width="298" HorizontalContentAlignment="Center" FontWeight="SemiBold" FontSize="15" Foreground="Red"/>
+        <dxe:PasswordBoxEdit x:Name="txtPassword" Margin="10,115,10,0" VerticalAlignment="Top" NullText="Password" KeyUp="txtPassword_KeyUp" FontSize="15" ToolTip="Password que le proporciono su administrador"/>
+        <Button x:Name="btnEntrar" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Top" Width="110" Click="btnEntrar_Click" Height="48" UseLayoutRounding="False" ToolTip="Acceder al sistema de punto de venta" Background="{x:Null}" BorderBrush="Black" Cursor="Hand">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="ENTRAR" FontWeight="Bold" Foreground="#FFFA8800" VerticalContentAlignment="Center"></Label>
+                    <Image Source="/AIPos Desk;component/Images/entrar.png"  ></Image>    
+                </Grid>
+                
+            </Button.Content>
+        </Button>
+
+    </Grid>
+</dx:DXWindow>

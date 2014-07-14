@@ -1,0 +1,52 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridViewClienteListaPrecio";
+        settings.CallbackRouteValues = new { Controller = "ListasPrecio", Action = "GridViewPartialClienteListaPrecio" };
+
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "ListasPrecio", Action = "GridViewPartialClienteListaPrecioUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "ListasPrecio", Action = "GridViewPartialClienteListaPrecioDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.DeleteButton.Visible = true;
+        settings.CommandColumn.EditButton.Visible = true;
+
+        settings.KeyFieldName = "ClienteId";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "Cliente";
+            c.EditFormSettings.Visible = DefaultBoolean.False;
+        });
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "ListaPrecio";
+            c.Caption = "Lista de precio";
+            c.EditFormSettings.Visible = DefaultBoolean.False;
+        });
+        settings.Columns.Add(c =>
+        {
+            c.Visible = false;
+            c.FieldName = "ListaPrecioId";
+            c.Caption = "Lista de precio a asignar";
+            c.EditFormSettings.Visible = DefaultBoolean.True;
+            c.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = c.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = new AIPos.BusinessLayer.BOListaPrecio().SelectAll();
+            comboBoxProperties.TextField = "Nombre";
+            comboBoxProperties.ValueField = "Id";
+        });
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

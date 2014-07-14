@@ -1,0 +1,72 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridViewClientes";
+        settings.CallbackRouteValues = new { Controller = "CatalogoClientes", Action = "GridViewPartialClientes" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "CatalogoClientes", Action = "GridViewPartialClientesAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "CatalogoClientes", Action = "GridViewPartialClientesUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "CatalogoClientes", Action = "GridViewPartialClientesDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsPopup.EditForm.Width = 500;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.NewButton.Visible = true;
+        settings.CommandColumn.DeleteButton.Visible = true;
+        settings.CommandColumn.EditButton.Visible = true;
+
+        settings.KeyFieldName = "Id";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "SucursalRegistroId";
+            c.Caption = "Sucursal de registro";
+            c.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = c.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = new AIPos.BusinessLayer.BOSucursal().SelectAll();
+            comboBoxProperties.TextField = "Nombre";
+            comboBoxProperties.ValueField = "Id";
+        });
+        settings.Columns.Add("Nombre");
+        settings.Columns.Add("Rfc");
+        settings.Columns.Add("RazonSocial");
+        settings.Columns.Add("Telefono");
+        settings.Columns.Add("Celular");
+        settings.Columns.Add("Codigo");
+        settings.Columns.Add(c =>
+        {
+            c.ColumnType = MVCxGridViewColumnType.CheckBox;
+            c.FieldName = "Eliminado";
+            var checkBoxProperties = c.PropertiesEdit as CheckBoxProperties;
+            checkBoxProperties.ValueUnchecked = false;
+        });
+        settings.Columns.Add("Descuento");
+
+        settings.CellEditorInitialize = (sender, e) =>
+        {
+            if ((sender as MVCxGridView).IsNewRowEditing)
+            {
+                if (e.Column.FieldName == "Eliminado")
+                {
+                    (e.Editor as ASPxCheckBox).Checked = false;
+                }
+            }
+        };
+        
+	
+        settings.CommandColumn.CustomButtons.Add(new GridViewCommandColumnCustomButton() { ID = "btn", Text = "Direcciones" });
+        settings.ClientSideEvents.CustomButtonClick = "function(s, e) { if(e.buttonID == 'btn') { MostrarDirecciones(s.GetRowKey(e.visibleIndex)); }}";
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

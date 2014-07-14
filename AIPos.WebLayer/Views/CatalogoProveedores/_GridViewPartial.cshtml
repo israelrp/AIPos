@@ -1,0 +1,70 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView";
+        settings.CallbackRouteValues = new { Controller = "CatalogoProveedores", Action = "GridViewPartial" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "CatalogoProveedores", Action = "GridViewPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "CatalogoProveedores", Action = "GridViewPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "CatalogoProveedores", Action = "GridViewPartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.NewButton.Visible = true;
+        settings.CommandColumn.DeleteButton.Visible = true;
+        settings.CommandColumn.EditButton.Visible = true;
+
+        settings.KeyFieldName = "Id";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.Columns.Add("Codigo");
+        settings.Columns.Add("Calle");
+        settings.Columns.Add("NoExterior");
+        settings.Columns.Add("NoInterior");
+        settings.Columns.Add("Colonia");
+        settings.Columns.Add("CodigoPostal");
+        settings.Columns.Add("Referencia");
+        settings.Columns.Add("Ciudad");
+        settings.Columns.Add("Estado");
+        settings.Columns.Add("RazonSocial");
+        settings.Columns.Add("Rfc");
+        settings.Columns.Add("Contacto");
+        settings.Columns.Add("Telefono");
+        settings.Columns.Add("Email");
+        settings.Columns.Add(c =>
+        {
+            c.ColumnType = MVCxGridViewColumnType.CheckBox;
+            c.FieldName = "Eliminado";
+            var checkBoxProperties = c.PropertiesEdit as CheckBoxProperties;
+            checkBoxProperties.ValueUnchecked = false;
+            checkBoxProperties.ValueUncheckedString = "false";
+        });
+        settings.Columns.Add(s =>
+        {
+            s.FieldName = "DireccionId";
+            s.EditFormSettings.Visible = DefaultBoolean.False;
+
+        });
+
+        settings.CellEditorInitialize = (sender, e) =>
+        {
+            if ((sender as MVCxGridView).IsNewRowEditing)
+            {
+                if (e.Column.FieldName == "Eliminado")
+                {
+                    (e.Editor as ASPxCheckBox).Checked = false;
+                }
+            }
+        };
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

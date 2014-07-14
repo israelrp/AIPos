@@ -1,0 +1,33 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" x:Class="AIPos.DekstopLayer.Ventas.RegistroApartadoServicio"
+        Title="Registro de Apartado/Servicio" Height="450" Width="550" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Anticipo: $" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="47" Width="135" FontSize="25"/>
+        <Label Content="Fecha y hora entrega:" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Height="47" Width="245" FontSize="25"/>
+        <Label Content="Especificaciones:" HorizontalAlignment="Left" Margin="10,259,0,0" VerticalAlignment="Top" Height="47" Width="201" FontSize="25"/>
+        <Label Content="Dirección:" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Height="47" Width="135" FontSize="25"/>
+
+        <dxe:ComboBoxEdit x:Name="cmbDireccionEntrega" DisplayMember="Colonia" ValueMember="Id" HorizontalAlignment="Left" Margin="145,124,0,0" VerticalAlignment="Top" Width="308" Height="37" FontSize="22" SelectedIndexChanged="cmbDireccionEntrega_SelectedIndexChanged"/>
+        <Button x:Name="btnNuevaDireccion" Content="Nueva" HorizontalAlignment="Left" Margin="458,117,0,0" VerticalAlignment="Top" Width="75" FontWeight="SemiBold" Click="btnNuevaDireccion_Click"/>
+        <Button x:Name="btnEditarDireccion" Content="Editar" HorizontalAlignment="Left" Margin="458,141,0,0" VerticalAlignment="Top" Width="75" FontWeight="SemiBold" Click="btnEditarDireccion_Click"/>
+        <dxe:TextEdit x:Name="txtEspecificaciones" HorizontalAlignment="Left" Margin="10,305,0,0" VerticalAlignment="Top" Width="523" Height="65" FontSize="22" AcceptsReturn="True" TextWrapping="Wrap" VerticalContentAlignment="Top" HorizontalScrollBarVisibility="Auto" RenderTransformOrigin="0.5,0.5">
+            <dxe:TextEdit.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0.659"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-0.322"/>
+                </TransformGroup>
+            </dxe:TextEdit.RenderTransform>
+        </dxe:TextEdit>
+        <dxe:TextEdit x:Name="txtDireccionEnvio" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="523" Height="98" FontSize="22" IsReadOnly="True" TextWrapping="Wrap" AcceptsTab="True" HorizontalScrollBarVisibility="Auto" VerticalContentAlignment="Top"/>
+        <Button x:Name="btnGuardar" Content="Guardar" HorizontalAlignment="Center" Margin="220,379,219.667,0" VerticalAlignment="Top" Width="105" FontSize="20" FontWeight="Bold" Click="btnGuardar_Click"/>
+        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Right" Margin="0,379,9.667,0" VerticalAlignment="Top" Width="105" FontSize="20" Click="btnCancelar_Click"/>
+        <dxe:TextEdit x:Name="txtAnticipo" HorizontalAlignment="Left" Margin="150,12,0,0" VerticalAlignment="Top" Width="383" Height="35" SnapsToDevicePixels="True" FontSize="22"/>
+        <dxe:DateEdit x:Name="deFechaHoraEntrega" HorizontalAlignment="Left" Margin="260,72,0,0" VerticalAlignment="Top" Width="273" Height="37" FontSize="22" Mask="g"/>
+        <dxe:CheckEdit x:Name="chkEsServicio" HorizontalAlignment="Left" Margin="10,382,0,0" VerticalAlignment="Top" Width="150" Content="Es servicio" FontSize="20" FontWeight="SemiBold"/>
+
+    </Grid>
+</Window>

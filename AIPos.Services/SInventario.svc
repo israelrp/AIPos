@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="AIPos.Services.SInventario" CodeBehind="SInventario.svc.cs" %>

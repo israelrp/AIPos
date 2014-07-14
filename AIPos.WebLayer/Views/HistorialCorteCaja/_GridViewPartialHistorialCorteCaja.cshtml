@@ -1,0 +1,34 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridViewHistorialCorteCaja";
+        settings.CallbackRouteValues = new { Controller = "HistorialCorteCaja", Action = "GridViewPartialHistorialCorteCaja" };
+        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=SucursalId.GetValue(); }";
+
+        settings.KeyFieldName = "Id";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.Columns.Add("Fecha");
+        settings.Columns.Add("TotalMostrador");
+        settings.Columns.Add("TotalDomicilio");
+        settings.Columns.Add("TotalServicios");
+        settings.Columns.Add("TotalApartados");
+        settings.Columns.Add("TotalRetiros");
+        settings.Columns.Add("TotalAbonosServicios");
+        settings.Columns.Add("TotalAbonosApartados");
+        settings.Columns.Add("TotalCancelados");
+        settings.Columns.Add("TotalCaja");
+        settings.Columns.Add("TotalCambio");
+        settings.Columns.Add("QuienRetira");
+        settings.Columns.Add("CorteEntregado");
+        settings.Columns.Add("Diferencia");
+        settings.Columns.Add("TotalTickectsMostrados");
+        settings.Columns.Add("TotalTickectsDomicilio");
+        settings.Columns.Add("TotalTickectsMostrador");
+    });
+}
+@grid.Bind(Model).GetHtml()

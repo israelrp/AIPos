@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="18aeaf3b-e411-460c-941e-b1c31ef687e5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="AIPos.Domain" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/ISRetiroDinero.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ISRetiroDinero.wsdl" MetadataType="Wsdl" ID="b876fca2-a00a-4abd-a530-81642a1a5b10" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISRetiroDinero.svc?wsdl" />
+    <MetadataFile FileName="ISRetiroDinero.xsd" MetadataType="Schema" ID="e6efc3e2-c599-4eeb-af43-8ae2b8a78ff9" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISRetiroDinero.svc?xsd=xsd2" />
+    <MetadataFile FileName="ISRetiroDinero.disco" MetadataType="Disco" ID="ab40991d-0f6c-4717-8819-b41735d75fe5" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISRetiroDinero.svc?disco" />
+    <MetadataFile FileName="ISRetiroDinero1.xsd" MetadataType="Schema" ID="ae92fcef-6479-4214-8323-29d876126b1e" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISRetiroDinero.svc?xsd=xsd1" />
+    <MetadataFile FileName="ISRetiroDinero2.xsd" MetadataType="Schema" ID="1c313ebf-47f0-4a3a-a960-b4fa5072ff69" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISRetiroDinero.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<script>
+    function MostrarDirecciones(ClienteId) {
+        txtClienteId.SetValue(ClienteId);
+        GridViewDirecciones.PerformCallback();
+        PopupControlDirecciones.Show();
+    }
+</script>
+<h5>Catálogo de clientes</h5>
+
+@Html.Action("GridViewPartialClientes")
+
+
+@Html.DevExpress().TextBox(settings =>
+{
+    settings.Name = "txtClienteId";
+    settings.Properties.NullText = "";
+    settings.ClientVisible = false;
+}).GetHtml()
+
+
+
+
+@Html.DevExpress().PopupControl(settings =>
+{
+    settings.Name = "PopupControlDirecciones";
+    settings.ShowHeader = true;
+    settings.AllowDragging = true;
+    settings.AllowResize = true;
+    settings.HeaderText = "Direcciones";
+    settings.Modal = true;
+    settings.Width = 600;
+    settings.Height = 450;
+    settings.SetContent(() =>
+    {
+        Html.RenderPartial("~/Views/CatalogoClientes/_GridViewPartialDirecciones.cshtml");
+    });
+}).GetHtml()

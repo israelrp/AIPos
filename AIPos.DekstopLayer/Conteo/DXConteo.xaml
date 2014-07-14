@@ -1,0 +1,49 @@
+﻿<dx:DXWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    x:Class="AIPos.DekstopLayer.Conteo.DXConteo"
+    Title="DXConteo" Height="450" Width="1025"
+    >
+
+    <Grid>
+
+        <dxg:GridControl FontWeight="SemiBold"  x:Name="gridMonedas" AutoGenerateColumns="None" Margin="10,10,0,0" HorizontalAlignment="Left" Width="329" Height="296" VerticalAlignment="Top">
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="Concepto" Header="MONEDA" AllowEditing="False" AllowFocus="False" Width="80"></dxg:GridColumn>
+                <dxg:GridColumn FieldName="Conteo" Header="CANTIDAD" Width="80"/>
+                <dxg:GridColumn FieldName="Monto" Header="MONTO" AllowEditing="False" AllowFocus="False"/>
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView ShowTotalSummary="True" AllowColumnFiltering="False" AllowColumnMoving="False" AllowFilterEditor="False" AllowGrouping="False" ShowGroupPanel="False" CellValueChanged="TableView_CellValueChanged_2" />
+            </dxg:GridControl.View>
+            
+        </dxg:GridControl>
+        <dxg:GridControl FontWeight="SemiBold"  x:Name="gridBilletes" AutoGenerateColumns="None" Margin="343,10,0,0" HorizontalAlignment="Left" Width="329" Height="296" VerticalAlignment="Top">
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="Concepto" Header="BILLETE"  AllowEditing="False" AllowFocus="False" Width="80"></dxg:GridColumn>
+                <dxg:GridColumn FieldName="Conteo" Header="CANTIDAD" Width="80"></dxg:GridColumn>
+                <dxg:GridColumn FieldName="Monto" Header="MONTO" AllowEditing="False" AllowFocus="False" />
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView ShowTotalSummary="True" AllowColumnFiltering="False" AllowColumnMoving="False" AllowFilterEditor="False" AllowGrouping="False" ShowGroupPanel="False" CellValueChanged="TableView_CellValueChanged_1" />
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+        <Label x:Name="lblMonedas" Content="" HorizontalAlignment="Left" Margin="10,311,0,0" VerticalAlignment="Top" Width="329" FontSize="22" FontWeight="SemiBold" Foreground="#FF1CB700" HorizontalContentAlignment="Right"/>
+        <Label x:Name="lblBilletes" Content="" HorizontalAlignment="Left" Margin="344,311,0,0" VerticalAlignment="Top" Width="328" FontSize="22" FontWeight="SemiBold" Foreground="#FF1CB700" HorizontalContentAlignment="Right"/>
+        <Label x:Name="lblTotal" Content="" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="699" FontSize="40" FontWeight="Bold" Foreground="Red" HorizontalContentAlignment="Center" ForceCursor="False"/>
+        <dxg:GridControl AutoGenerateColumns="None" x:Name="gridGastos"  Margin="677,10,0,0" HorizontalAlignment="Left" Width="329" Height="296" VerticalAlignment="Top" >
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="Concepto" Header="GASTO"/>
+                <dxg:GridColumn FieldName="Importe" Header="IMPORTE"/>
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView NewItemRowPosition="Top" ShowTotalSummary="True" AllowColumnFiltering="False" AllowColumnMoving="False" AllowFilterEditor="False" AllowGrouping="False" ShowGroupPanel="False" CellValueChanged="TableView_CellValueChanged_3" />
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+        <Label x:Name="lblGastos" Content="" HorizontalAlignment="Left" Margin="677,312,0,0" VerticalAlignment="Top" Width="329" FontSize="22" FontWeight="SemiBold" Foreground="#FF1CB700" HorizontalContentAlignment="Right"/>
+        <Label x:Name="lblTotal2" Content="" HorizontalAlignment="Left" Margin="735,361,0,0" VerticalAlignment="Top" Width="271" FontSize="25" FontWeight="Bold" Foreground="Red" HorizontalContentAlignment="Center" ForceCursor="False"/>
+
+    </Grid>
+</dx:DXWindow>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="79921a64-2171-4ff2-99df-b03f5a128cba" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="AIPos.Domain" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/SDireccion.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SDireccion.disco" MetadataType="Disco" ID="dd9227cf-9e2e-4e54-8c08-751468ed86fe" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SDireccion.svc?disco" />
+    <MetadataFile FileName="SDireccion.xsd" MetadataType="Schema" ID="7ff32434-2cac-473c-a80c-409df841ccc2" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SDireccion.svc?xsd=xsd0" />
+    <MetadataFile FileName="SDireccion1.xsd" MetadataType="Schema" ID="2f7faeb5-7b61-4437-b248-c4ec6f2fe8cf" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SDireccion.svc?xsd=xsd1" />
+    <MetadataFile FileName="SDireccion2.xsd" MetadataType="Schema" ID="c6b0a7d4-ef69-478e-8bef-9976604ef632" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SDireccion.svc?xsd=xsd2" />
+    <MetadataFile FileName="SDireccion.wsdl" MetadataType="Wsdl" ID="30730f1b-4d95-4b4d-8f6b-62fac61626ab" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SDireccion.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

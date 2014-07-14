@@ -1,0 +1,23 @@
+﻿<dx:DXWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    x:Class="AIPos.DekstopLayer.Configuracion.ConfiguracionInicial"
+    Title="Configuracion inicial" Height="450" Width="525" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+    >
+
+    <Grid>
+        <Label Content="¡BIENVENIDO!" Margin="10,10,10.4,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" FontWeight="SemiBold" Foreground="#FF41C600"/>
+        <TextBlock Margin="10,65,10,0" TextWrapping="Wrap"  VerticalAlignment="Top" RenderTransformOrigin="-1.914,-2.463" Height="33" Text="Para poder empezar a trabajar, es necesario que primero configure para que sucursal será utilizado este POS." FontWeight="SemiBold" Foreground="#FFEF0D0D" TextAlignment="Center"/>
+        <dxe:ComboBoxEdit x:Name="cmbSucursales" HorizontalAlignment="Center" Margin="84,105,88,0" VerticalAlignment="Top" Width="348" ValueMember="Id" DisplayMember="Nombre" NullText="Selecciona la sucursal correcta...."/>
+        <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Center" Margin="222,390,222,0" VerticalAlignment="Top" Width="76" Click="btnAceptar_Click"/>
+        <dxe:ComboBoxEdit x:Name="cmbImpresoras" NullText="Selecciona la miniprinter que utilizaras" HorizontalAlignment="Center" Margin="86,172,86,0" VerticalAlignment="Top" Width="348"/>
+        <TextBlock Margin="10,151,10,0" TextWrapping="Wrap"  VerticalAlignment="Top" RenderTransformOrigin="-1.914,-2.463" Height="16" Text="Selecciona la miniprinter que usaras para todas tus impresiones." FontWeight="SemiBold" Foreground="#FFEF0D0D" TextAlignment="Center"/>
+        <dxe:ComboBoxEdit x:Name="cmbBasculas" NullText="Selecciona el puerto de la báscula que utilizaras" HorizontalAlignment="Center" Margin="86,232,86,0" VerticalAlignment="Top" Width="348"/>
+        <TextBlock Margin="10,211,10,0" TextWrapping="Wrap"  VerticalAlignment="Top" RenderTransformOrigin="-1.914,-2.463" Height="16" Text="Selecciona el puerto donde esta instalada tu báscula." FontWeight="SemiBold" Foreground="#FFEF0D0D" TextAlignment="Center"/>
+        <dxe:ComboBoxEdit x:Name="cmbListaPrecioMayoreo" ValueMember="Id" DisplayMember="Nombre" NullText="Selecciona la lista de mayoreo" HorizontalAlignment="Center" Margin="86,298,86,0" VerticalAlignment="Top" Width="348"/>
+        <TextBlock Margin="10,277,10,0" TextWrapping="Wrap"  VerticalAlignment="Top" RenderTransformOrigin="-1.914,-2.463" Height="16" Text="Selecciona la lista de precio de mayoreo para esta sucursal." FontWeight="SemiBold" Foreground="#FFEF0D0D" TextAlignment="Center"/>
+        <Label Content="Label" HorizontalAlignment="Stretch" Margin="0,340,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontSize="14" Foreground="Green" FontWeight="Bold" x:Name="lblListaPrecioBase"/>
+    </Grid>
+</dx:DXWindow>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c27f863f-52c3-4a1e-a898-4dbdf04bc573" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="AIPos.Domain" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/SProducto.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SProducto1.wsdl" MetadataType="Wsdl" ID="ff620e21-7f62-42ca-8f6e-31b7d9bd3172" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SProducto.svc?wsdl" />
+    <MetadataFile FileName="SProducto1.disco" MetadataType="Disco" ID="808960b2-75f3-4852-b3cf-1ccf55e483ed" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SProducto.svc?disco" />
+    <MetadataFile FileName="SProducto3.xsd" MetadataType="Schema" ID="81fae5d9-6deb-420b-aeb1-5f74d4597bc2" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SProducto.svc?xsd=xsd2" />
+    <MetadataFile FileName="SProducto31.xsd" MetadataType="Schema" ID="74e8c52f-5275-4ca8-8bae-7c3ff12f70ea" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SProducto.svc?xsd=xsd1" />
+    <MetadataFile FileName="SProducto32.xsd" MetadataType="Schema" ID="c2bfb8c8-34e1-40e0-a27c-09b34e0987dd" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SProducto.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

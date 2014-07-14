@@ -1,0 +1,140 @@
+﻿<dx:DXWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    x:Class="AIPos.DekstopLayer.Ventas.DXVentas"
+    Title="DXVentas" Height="550" Width="1080"
+    >
+
+    <Grid>
+
+
+        <Label Content="Precio Unit." HorizontalAlignment="Left" Margin="578,11,0,0" VerticalAlignment="Top" Width="115" FontWeight="SemiBold" FontSize="18" HorizontalContentAlignment="Center">
+            <Label.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF369DBB" Offset="0"/>
+                    <GradientStop Color="#FFA8F7E9" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Background>
+        </Label>
+
+
+        <Label Content="Cantidad" HorizontalAlignment="Left" Margin="698,11,0,0" VerticalAlignment="Top" Width="115" HorizontalContentAlignment="Center" FontSize="18" FontWeight="SemiBold">
+            <Label.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF6DBD1D" Offset="0"/>
+                    <GradientStop Color="#FFCAF7AB" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Background>
+        </Label>
+
+
+        <dxlc:GroupBox Header="Cliente" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="73" Width="553">
+            <dxlc:GroupBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FFFFF2B1" Offset="1"/>
+                </LinearGradientBrush>
+            </dxlc:GroupBox.Background>
+            <Grid>
+                <dxe:TextEdit x:Name="txtCodigoCliente" HorizontalAlignment="Left" Margin="0,6,0,0" VerticalAlignment="Top" Width="100" NullText="Código cliente" KeyUp="txtCodigoCliente_KeyUp"/>
+                <dxe:ComboBoxEdit x:Name="cmbClientes" HorizontalAlignment="Left" Margin="105,6,0,0" VerticalAlignment="Top" Width="263" NullText="Nombre cliente" DisplayMember="Nombre" ValueMember="Id" EditValueChanged="cmbClientes_EditValueChanged"/>
+                <Button x:Name="btnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="370,7,0,0" VerticalAlignment="Top" Width="75" FontWeight="SemiBold" Click="btnBuscar_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFF33B3B" Offset="0"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btnAgregar" Content="Nuevo" HorizontalAlignment="Left" Margin="450,7,0,0" VerticalAlignment="Top" Width="75" FontWeight="SemiBold" Click="btnAgregar_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF69CF00" Offset="0"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            </Grid>
+        </dxlc:GroupBox>
+        <dxlc:GroupBox Header="Producto" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="553" Height="73">
+            <dxlc:GroupBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FF76C764" Offset="1"/>
+                </LinearGradientBrush>
+            </dxlc:GroupBox.Background>
+            <Grid>
+                <dxe:TextEdit x:Name="txtCodigoProducto" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Width="100" NullText="Código producto" KeyUp="txtCodigoProducto_KeyUp"/>
+                <dxe:ComboBoxEdit x:Name="cmbProductos" HorizontalAlignment="Left" Margin="105,5,0,0" VerticalAlignment="Top" Width="345" NullText="Nombre producto" DisplayMember="Nombre" ValueMember="Id" EditValueChanged="cmbProductos_EditValueChanged"/>
+                <Button x:Name="btnBuscarProducto" Content="Buscar" HorizontalAlignment="Left" Margin="455,5,-0.4,0" VerticalAlignment="Top" Width="75" FontWeight="SemiBold" Click="btnBuscarProducto_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFF33B3B" Offset="0"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </Grid>
+        </dxlc:GroupBox>
+        <dxe:TextEdit x:Name="txtPrecioUnitario" HorizontalAlignment="Left" Margin="578,42,0,0" VerticalAlignment="Top" Width="115" Height="53" NullText="Precio Unit." HorizontalContentAlignment="Center" FontSize="20" IsReadOnly="True"/>
+        <dxe:TextEdit x:Name="txtCantidad" HorizontalAlignment="Left" Margin="698,42,0,0" VerticalAlignment="Top" Width="115" Height="53" NullText="Cantidad" HorizontalContentAlignment="Center" FontSize="20" KeyUp="txtCantidad_KeyUp" MaskType="RegEx" GotFocus="txtCantidad_GotFocus" MouseUp="txtCantidad_MouseUp" AllowNullInput="True" Mask="\d{0,9}(\R.\d{0,3})?"/>
+
+        <dxg:GridControl x:Name="gridVenta" Margin="10,196,0,9.667" SelectionMode="Row" HorizontalAlignment="Left" Width="553" CustomUnboundColumnData="gridVenta_CustomUnboundColumnData">
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="Codigo" Header="Cod." Width="40" />
+                <dxg:GridColumn FieldName="Nombre" Header="Producto" Width="120"/>
+                <dxg:GridColumn FieldName="PrecioUnitario" Header="P.L." Width="60">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings MaskType="Numeric" MaskUseAsDisplayFormat="True" Mask="c"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="Descuento" Header="Desc. %" Width="60">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="PrecioDescuento" Header="P.D." Width="60" UnboundType="Boolean" ReadOnly="True">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings MaskType="Numeric" MaskUseAsDisplayFormat="True" Mask="c"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="Cantidad" Header="Cant." Width="60"/>
+
+                <dxg:GridColumn FieldName="Importe" Header="Importe">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings MaskType="Numeric" MaskUseAsDisplayFormat="True" Mask="c"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView ShowTotalSummary="True" AllowEditing="False" ShowGroupPanel="False"/>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+        <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="75" Click="btnEliminar_Click"/>
+        <Button x:Name="btnCancelar" Content="Cancelar venta" HorizontalAlignment="Left" Margin="106,172,0,0" VerticalAlignment="Top" Width="101" Click="btnCancelar_Click_1"/>
+        <Button x:Name="btnVenta" Content="Imprimir venta" HorizontalAlignment="Left" Margin="335,172,0,0" VerticalAlignment="Top" Width="105" Click="btnVenta_Click"/>
+        <Button x:Name="btnDomicilio" Content="Venta a domicilio" HorizontalAlignment="Left" Margin="460,172,0,0" VerticalAlignment="Top" Width="103" Click="btnDomicilio_Click"/>
+        <Button x:Name="btnApartar" Content="APARTAR/SERV." HorizontalAlignment="Left" Margin="223,172,0,0" VerticalAlignment="Top" Width="99" Click="btnApartar_Click"/>
+        <Label x:Name="lblTotal" Content="TOTAL" HorizontalAlignment="Left" Margin="578,0,0,224" VerticalAlignment="Bottom" Width="235" Height="70" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" Foreground="#FF1A4C7D" FontWeight="SemiBold"/>
+        <Label x:Name="lblCambio" Content="CAMBIO" HorizontalAlignment="Left" Margin="578,0,0,83" VerticalAlignment="Bottom" Width="235" Height="70" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" Foreground="Red" FontWeight="SemiBold"/>
+        <TextBox x:Name="txtRecibi" HorizontalAlignment="Left" Height="70" Margin="578,0,0,153" TextWrapping="Wrap" Text="RECIBÍ" VerticalAlignment="Bottom" Width="235" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextAlignment="Center" FontSize="40" FontWeight="SemiBold" TextChanged="txtRecibi_TextChanged" GotFocus="txtRecibi_GotFocus" KeyUp="txtRecibi_KeyUp"/>
+        <Button x:Name="btnOrden" Content="ORDEN" HorizontalAlignment="Left" Margin="578,0,0,9.667" VerticalAlignment="Bottom" Width="235" Height="70" FontSize="40" Foreground="Red" Click="btnOrden_Click"/>
+        <dxe:CheckEdit x:Name="chkPrecioMayoreo" HorizontalAlignment="Left" Margin="578,100,0,0" VerticalAlignment="Top" Width="235" Content="Aplicar precio de mayoreo  " FontWeight="SemiBold" Foreground="Red" FontSize="14" EditValueChanged="chkPrecioMayoreo_EditValueChanged"/>
+        <Label Content="Descuento" HorizontalAlignment="Left" Margin="578,127,0,0" VerticalAlignment="Top" Width="235" FontSize="18" FontWeight="SemiBold" HorizontalContentAlignment="Center">
+            <Label.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFF03C3C" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Background>
+        </Label>
+        <dxe:TextEdit  IsReadOnly="True" x:Name="txtDescuento" HorizontalAlignment="Left" Margin="578,162,0,0" VerticalAlignment="Top" Width="235" Height="53" NullText="Descuento %" HorizontalContentAlignment="Center" FontSize="20"/>
+
+    </Grid>
+</dx:DXWindow>

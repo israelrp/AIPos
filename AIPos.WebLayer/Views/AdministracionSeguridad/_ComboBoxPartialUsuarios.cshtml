@@ -1,0 +1,10 @@
+@Html.DevExpress().ComboBox(settings =>
+{
+    settings.Name = "ComboBoxUsuarios";
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+    settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+    settings.CallbackRouteValues = new { Controller = "AdministracionSeguridad", Action = "ComboBoxPartialUsuarios" };
+    settings.Properties.CallbackPageSize = 50;
+    settings.Properties.ValueField = "Id";
+    settings.Properties.TextField = "Nombre";
+}).BindList(ViewData["Usuarios"]).GetHtml()

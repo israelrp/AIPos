@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8d905ed6-03a0-4b76-ba64-9f4881904ffa" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/SCorteCaja.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SCorteCaja.xsd" MetadataType="Schema" ID="ab2edbca-5e80-40a4-9d28-eb4ff66e684f" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SCorteCaja.svc?xsd=xsd2" />
+    <MetadataFile FileName="SCorteCaja1.xsd" MetadataType="Schema" ID="a0070c13-c040-40a1-b781-f3da6b66aa4f" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SCorteCaja.svc?xsd=xsd1" />
+    <MetadataFile FileName="SCorteCaja2.xsd" MetadataType="Schema" ID="6c35577f-f2af-48d9-89a4-306d9c49a6b9" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SCorteCaja.svc?xsd=xsd0" />
+    <MetadataFile FileName="SCorteCaja.disco" MetadataType="Disco" ID="1e01254c-2adc-45ee-81d6-8d2ed5f7f284" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SCorteCaja.svc?disco" />
+    <MetadataFile FileName="SCorteCaja.wsdl" MetadataType="Wsdl" ID="b6e91bb5-8b75-460d-8590-ede3e244ee2d" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SCorteCaja.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

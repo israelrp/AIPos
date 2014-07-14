@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A20A1BD1-602F-4DA2-8228-77C72421DA71}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AIPos.Services</RootNamespace>
+    <AssemblyName>AIPos.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.0.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.OData.5.0.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.Services.5.0.0\lib\net40\Microsoft.Data.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.0.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Spatial, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Spatial.5.0.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ISListaPrecioProducto.svc" />
+    <Content Include="ISRetiroDinero.svc" />
+    <Content Include="ISVenta.svc" />
+    <Content Include="SCliente.svc" />
+    <Content Include="SCorteCaja.svc" />
+    <Content Include="SDireccion.svc" />
+    <Content Include="SDireccionEnvio.svc" />
+    <Content Include="SDireccionFacturacion.svc" />
+    <Content Include="SEntrada.svc" />
+    <Content Include="SInventario.svc" />
+    <Content Include="SListaPrecio.svc" />
+    <Content Include="SPedidoSucursal.svc" />
+    <Content Include="SProducto.svc" />
+    <Content Include="SProveedor.svc" />
+    <Content Include="SSeguimientoServicioApartado.svc" />
+    <Content Include="SServicioApartado.svc" />
+    <Content Include="SSucursal.svc" />
+    <Content Include="STipo.svc" />
+    <Content Include="STipoProducto.svc" />
+    <Content Include="SUnidad.svc" />
+    <Content Include="SUsuario.svc" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IISListaPrecioProducto.cs" />
+    <Compile Include="IISRetiroDinero.cs" />
+    <Compile Include="IISVenta.cs" />
+    <Compile Include="ISCliente.cs" />
+    <Compile Include="ISCorteCaja.cs" />
+    <Compile Include="ISDireccion.cs" />
+    <Compile Include="ISDireccionEnvio.cs" />
+    <Compile Include="ISDireccionFacturacion.cs" />
+    <Compile Include="ISEntrada.cs" />
+    <Compile Include="ISInventario.cs" />
+    <Compile Include="ISListaPrecio.cs" />
+    <Compile Include="ISListaPrecioProducto.svc.cs">
+      <DependentUpon>ISListaPrecioProducto.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ISPedidoSucursal.cs" />
+    <Compile Include="ISProducto.cs" />
+    <Compile Include="ISProveedor.cs" />
+    <Compile Include="ISRetiroDinero.svc.cs">
+      <DependentUpon>ISRetiroDinero.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ISSeguimientoServicioApartado.cs" />
+    <Compile Include="ISServicioApartado.cs" />
+    <Compile Include="ISSucursal.cs" />
+    <Compile Include="ISTipo.cs" />
+    <Compile Include="ISTipoProducto.cs" />
+    <Compile Include="ISUnidad.cs" />
+    <Compile Include="ISUsuario.cs" />
+    <Compile Include="ISVenta.svc.cs">
+      <DependentUpon>ISVenta.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SCliente.svc.cs">
+      <DependentUpon>SCliente.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SCorteCaja.svc.cs">
+      <DependentUpon>SCorteCaja.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SDireccion.svc.cs">
+      <DependentUpon>SDireccion.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SDireccionEnvio.svc.cs">
+      <DependentUpon>SDireccionEnvio.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SDireccionFacturacion.svc.cs">
+      <DependentUpon>SDireccionFacturacion.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SEntrada.svc.cs">
+      <DependentUpon>SEntrada.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SInventario.svc.cs">
+      <DependentUpon>SInventario.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SListaPrecio.svc.cs">
+      <DependentUpon>SListaPrecio.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SPedidoSucursal.svc.cs">
+      <DependentUpon>SPedidoSucursal.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SProducto.svc.cs">
+      <DependentUpon>SProducto.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SProveedor.svc.cs">
+      <DependentUpon>SProveedor.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SSeguimientoServicioApartado.svc.cs">
+      <DependentUpon>SSeguimientoServicioApartado.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SServicioApartado.svc.cs">
+      <DependentUpon>SServicioApartado.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SSucursal.svc.cs">
+      <DependentUpon>SSucursal.svc</DependentUpon>
+    </Compile>
+    <Compile Include="STipo.svc.cs">
+      <DependentUpon>STipo.svc</DependentUpon>
+    </Compile>
+    <Compile Include="STipoProducto.svc.cs">
+      <DependentUpon>STipoProducto.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SUnidad.svc.cs">
+      <DependentUpon>SUnidad.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SUsuario.svc.cs">
+      <DependentUpon>SUsuario.svc</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\AIPOSService.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AIPos.BusinessLayer\AIPos.BusinessLayer.csproj">
+      <Project>{cdc8eb53-8669-47ae-a29a-57f5209df696}</Project>
+      <Name>AIPos.BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AIPos.Domain\AIPos.Domain.csproj">
+      <Project>{a965f8ad-ebe5-4f3f-aba0-8b808429a19b}</Project>
+      <Name>AIPos.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2196/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

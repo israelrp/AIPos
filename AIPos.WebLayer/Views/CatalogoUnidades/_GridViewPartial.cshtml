@@ -1,0 +1,49 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "gvUnidades";
+        settings.CallbackRouteValues = new { Controller = "CatalogoUnidades", Action = "GridViewPartial" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "CatalogoUnidades", Action = "GridViewPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "CatalogoUnidades", Action = "GridViewPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "CatalogoUnidades", Action = "GridViewPartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsPopup.EditForm.Width = 500;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.NewButton.Visible = true;
+        settings.CommandColumn.DeleteButton.Visible = true;
+        settings.CommandColumn.EditButton.Visible = true;
+
+        settings.KeyFieldName = "Id";
+        
+        
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+
+        settings.Columns.Add("Nombre");
+        settings.Columns.Add(c=>
+        {
+            c.ColumnType = MVCxGridViewColumnType.CheckBox;
+            c.FieldName = "Eliminado";
+            var checkBoxProperties = c.PropertiesEdit as CheckBoxProperties;
+            checkBoxProperties.ValueUnchecked = false;
+        });
+
+        settings.InitNewRow = (sender, e) =>
+        {
+            e.NewValues["Eliminado"] = false;
+        };
+
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

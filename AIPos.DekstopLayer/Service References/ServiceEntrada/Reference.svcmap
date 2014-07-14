@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="29bd7447-5838-4cc0-82f6-96a5c583754e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="AIPos.Domain" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/SEntrada.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SEntrada1.wsdl" MetadataType="Wsdl" ID="fcb33af4-a6fc-412c-b5c0-aff075439700" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SEntrada.svc?wsdl" />
+    <MetadataFile FileName="SEntrada3.xsd" MetadataType="Schema" ID="b0164329-cebf-455b-8bd2-6cf6fad41e35" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SEntrada.svc?xsd=xsd0" />
+    <MetadataFile FileName="SEntrada31.xsd" MetadataType="Schema" ID="1aa35eb6-507e-4636-939e-33f1983ed61f" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SEntrada.svc?xsd=xsd1" />
+    <MetadataFile FileName="SEntrada1.disco" MetadataType="Disco" ID="ccf09a3b-6baf-4e3e-aac8-5e5af9fa5188" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SEntrada.svc?disco" />
+    <MetadataFile FileName="SEntrada32.xsd" MetadataType="Schema" ID="c26f2f68-db96-489c-822a-e6497fd8d99f" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SEntrada.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

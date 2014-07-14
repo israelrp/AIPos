@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Reporte";
+}
+
+<h2>Reporte de retiros de dinero</h2>
+@using (Ajax.BeginForm("GridViewPartialRetirosDinero", new AjaxOptions { UpdateTargetId = "divReporte" }))
+{
+<table>
+    <tr>
+        <td>
+            @Html.DevExpress().DateEdit(settings =>
+            {
+                settings.Name = "Fecha";
+                settings.Properties.AllowNull = false;
+                settings.Properties.NullText = "Fecha";
+            }).GetHtml()
+        </td>
+        <td>
+            @Html.DevExpress().ComboBox(settings =>
+            {
+                settings.Name = "SucursalId";
+                settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+                settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+                settings.Properties.ValueField = "Id";
+                settings.Properties.TextField = "Nombre";
+                settings.Properties.NullText = "Sucursal que realizo las ventas";
+            }).BindList(new AIPos.BusinessLayer.BOSucursal().SelectAll()).GetHtml()
+        </td>
+        <td>
+            @Html.DevExpress().Button(settings=>
+           {
+               settings.Name = "btnConsultar";
+               settings.Text = "Consultar";
+               settings.UseSubmitBehavior = true;
+           }).GetHtml()
+        </td>
+    </tr>
+</table>
+
+}
+
+<div id="divReporte">
+
+</div>

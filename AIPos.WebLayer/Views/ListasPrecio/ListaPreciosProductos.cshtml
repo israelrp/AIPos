@@ -1,0 +1,359 @@
+﻿@{
+    ViewBag.Title = "ListaPreciosProductos";
+}
+
+<h5>Asignar precios a lista</h5>
+<style>
+    #GridViewListaPrecios table, .fila, tr, td
+    {
+        margin:0px;
+        padding:0px;
+        border:none;
+    }
+
+  
+    .btnGuardar {
+        font-size:20px;
+    }
+
+    .fila {
+        
+    }
+
+        .fila td
+        {
+            width:100px;
+            border-bottom:1px solid;
+            border-right:1px solid;
+        }
+
+        .fila input {
+            width: 50px;
+        }
+    .buscador-item
+    {
+        float: left;
+        margin-left: 10px;
+    }
+
+        .buscador-item label
+        {
+            vertical-align:middle;
+            margin-top:14px;
+        }
+
+    .label-table
+    {
+        font-weight:bold;
+    }
+
+    .contenedores-descuento
+    { 
+        height:50px; 
+        width:200px; 
+        float:left;
+    }
+</style>
+<script>
+
+    function CambioTipoDescuento() {
+        if (rbPorcentaje.GetValue() == true) {
+            txtPorcentaje.SetVisible(true);
+            txtImporte.SetVisible(false);
+        }
+        else {
+            txtPorcentaje.SetVisible(false);
+            txtImporte.SetVisible(true);
+        }
+    }
+
+    function CambioTipoDescuento2() {
+        if (rbPorcentajeDescuento.GetValue() == true) {
+            txtDescuento.SetVisible(true);
+            txtDescuentoDinero.SetVisible(false);
+        }
+        else {
+            txtDescuento.SetVisible(false);
+            txtDescuentoDinero.SetVisible(true);
+        }
+    }
+
+    function CopiarPrecioBase() {
+        $.ajax({
+            url: "/ListasPrecio/CopiarPrecioBaseListaPrecio",
+            type: 'POST',
+            data: { ListaPrecioIdSelected: cmbListasPrecio.GetValue(), Codigo: txtCodigoProducto.GetText(), Nombre: txtNombreProducto.GetText() },
+            success: function (response) {
+                GridViewListaPrecios.PerformCallback();
+            },
+            error: function (xhr) {
+                alert("Hubo un problema con aplicar el descuento a la lista de precios.");
+            }
+        });
+    }
+
+    function AplicarDescuento() {
+        var porcentaje = false;
+        var cantidad = 0;
+        var ejecutarAccion = false;
+        if (rbPorcentaje.GetValue() == true) {
+            porcentaje = true;
+            cantidad = txtDescuento.GetText();
+        }
+        else {
+            cantidad = txtDescuentoDinero.GetText();
+        }
+        if ($.isNumeric(cantidad)) {
+            ejecutarAccion = true;
+        }
+        if (ejecutarAccion) {
+            $.ajax({
+                url: "/ListasPrecio/AumentarDisminuirDescuentoLista",
+                type: 'POST',
+                data: { ListaPrecioIdSelected: cmbListasPrecio.GetValue(), Codigo: txtCodigoProducto.GetText(), Nombre: txtNombreProducto.GetText(), Porcentaje: porcentaje, cantidad: cantidad },
+                success: function (response) {
+                    GridViewListaPrecios.PerformCallback();
+                },
+                error: function (xhr) {
+                    alert("Hubo un problema con aplicar el descuento a la lista de precios.");
+                }
+            });
+        }
+        else {
+            alert("El porcentaje o importe deben ser númericos");
+        }
+    }
+
+    function AplicarAccion() {
+        var aumentar = false;
+        var porcentaje = false;
+        var cantidad = 0;
+        var ejecutarAccion = false;
+        if (rbAumentar.GetValue() == true) {
+            aumentar = true;
+        }
+        if (rbPorcentaje.GetValue()==true) {
+            porcentaje = true;
+            cantidad=txtPorcentaje.GetText();
+        }
+        else{
+            cantidad=txtImporte.GetText();
+        }
+        if ($.isNumeric(cantidad)) {
+            ejecutarAccion = true;
+        }
+        if (ejecutarAccion) {
+            $.ajax({
+                url: "/ListasPrecio/AumentarDisminuirPrecioLista",
+                type: 'POST',
+                data: { ListaPrecioIdSelected: cmbListasPrecio.GetValue(), Codigo: txtCodigoProducto.GetText(), Nombre: txtNombreProducto.GetText(), Aumentar: aumentar, Porcentaje: porcentaje, cantidad: cantidad },
+                success: function (response) {
+                    GridViewListaPrecios.PerformCallback();
+                },
+                error: function (xhr) {
+                    alert("Hubo un problema con aumentar o disminuir el precio de lista de los productos.");
+                }
+            });
+        }
+        else {
+            alert("El porcentaje o importe deben ser númericos");
+        }
+    }
+
+    function ModificarDescuento(ProductoId) {
+        var descuento = $("#txtDescuento_" + ProductoId).val();
+        var precioDescuento = $("#txtPrecioDescuento_" + ProductoId).val();
+        var precioLista = $("#txtPrecioLista_" + ProductoId).val();
+        if (precioLista > 0 && $.isNumeric(descuento)) {
+            if (descuento > 0) {
+                precioDescuento = precioLista - (precioLista * (descuento / 100));
+                $("#txtPrecioDescuento_" + ProductoId).val(precioDescuento);
+            }
+        }
+    }
+
+    function ModificarPrecioDescuento(ProductoId) {
+        var descuento = $("#txtDescuento_" + ProductoId).val();
+        var precioDescuento = $("#txtPrecioDescuento_" + ProductoId).val();
+        var precioLista = $("#txtPrecioLista_" + ProductoId).val();
+        if (precioLista > 0 && $.isNumeric(precioDescuento)) {
+            descuento = 100 - (precioDescuento * 100) / precioLista;
+            $("#txtDescuento_" + ProductoId).val(descuento);
+        }
+    }
+
+    function MostarOcultarAcciones() {
+        if ($("#divAcciones").css("display") == "none") {
+            $("#divAcciones").slideDown();
+        }
+        else {
+            $("#divAcciones").slideUp();
+        }
+    }
+
+    function MostarOcultarDescuentos() {
+        if ($("#divDescuento").css("display") == "none") {
+            $("#divDescuento").slideDown();
+        }
+        else {
+            $("#divDescuento").slideUp();
+        }
+    }
+</script>
+@Html.Action("ComboBoxPartialListasPrecio")
+<div style="height:60px;">
+        <h5>Buscar por:</h5>
+        <div class="buscador-item">
+            <label>Código:</label>
+        </div>
+        <div class="buscador-item">
+            @Html.DevExpress().TextBox(settings=>
+            {
+                settings.Name = "txtCodigoProducto";
+                settings.Width = 150;
+                settings.Properties.NullText = "Código del producto";
+            }).GetHtml()
+        </div>
+        <div class="buscador-item">
+            <label>Nombre:</label>
+        </div>
+        <div class="buscador-item">
+            @Html.DevExpress().TextBox(settings=>
+            {
+                settings.Name = "txtNombreProducto";
+                settings.Width = 300;
+                settings.Properties.NullText = "Nombre del producto";
+            }).GetHtml()
+        </div>
+</div>
+@Html.DevExpress().Button(settings =>
+{
+    settings.Name = "btnConsultar";
+    settings.UseSubmitBehavior = false;
+    settings.Text = "Consultar";
+    settings.ClientSideEvents.Click = "function(s,e) { GridViewListaPrecios.PerformCallback(); }";
+}).GetHtml()
+
+<a id="aAcciones" onclick="MostarOcultarAcciones()"><h5>Aumentar o disminuir precios de la lista</h5></a>
+<div id="divAcciones" style="border:1px solid; height:70px; display:none;">
+    <div class="contenedores-descuento">
+        <label>Acción:</label>
+        <div style="float:left;">
+        @Html.DevExpress().RadioButton(settings=>{
+            settings.Name = "rbAumentar";
+            settings.Checked = true;
+            settings.GroupName = "GrupoPrecio";
+            settings.Text = "Aumentar";
+        }).GetHtml()
+        </div>
+        <div style="float:left;">
+            @Html.DevExpress().RadioButton(settings=>{
+                settings.Name = "rbDisminuir";
+                settings.Checked = true;
+                settings.GroupName = "GrupoPrecio";
+                settings.Text = "Disminuir";
+            }).GetHtml()
+        </div>
+    </div>
+    <div class="contenedores-descuento" style="margin-left:10px; width:400px;">
+        <label>Por medio de:</label>
+        <div style="float:left;">
+        @Html.DevExpress().RadioButton(settings=>{
+            settings.Name = "rbPorcentaje";
+            settings.Checked = true;
+            settings.GroupName = "GrupoDescontar";
+            settings.Text = "Porcentaje";
+            settings.Properties.ClientSideEvents.CheckedChanged = "function(s,e) { CambioTipoDescuento(); }";
+        }).GetHtml()
+        </div>
+        <div style="float:left;">
+            @Html.DevExpress().RadioButton(settings=>{
+                settings.Name = "rbDinero";
+                settings.Checked = true;
+                settings.GroupName = "GrupoDescontar";
+                settings.Text = "Dinero";
+                settings.Properties.ClientSideEvents.CheckedChanged = "function(s,e) { CambioTipoDescuento(); }";
+            }).GetHtml()
+        </div>
+        <div style="float:left; margin-left:10px;">
+            @Html.DevExpress().TextBox(settings=>{
+                settings.Name = "txtPorcentaje";
+                settings.Width = 90;
+                settings.Properties.NullText = "Descuento %";
+            }).GetHtml()
+
+            @Html.DevExpress().TextBox(settings=>{
+                settings.Name = "txtImporte";
+                settings.Width = 90;
+                settings.Properties.NullText = "Dinero $";
+                settings.ClientVisible = false;
+            }).GetHtml()
+        </div>
+        <div style="float:left; margin-left:10px;">
+            @Html.DevExpress().Button(settings=>{
+                settings.Name = "btnAplicarAccion";
+                settings.Text = "Aplicar";
+                settings.ClientSideEvents.Click = "function (s,e) { AplicarAccion(); }";
+            }).GetHtml()
+        </div>
+    </div>
+</div>
+<a id="aDescuento" onclick="MostarOcultarDescuentos()"><h5>Aplicar descuento a todos los productos</h5></a>
+<div id="divDescuento" style="border:1px solid; height:70px; display:none;">
+    <div class="contenedores-descuento" style="width:600px;">
+        <label>Por medio de:</label>
+        <div style="float:left;">
+        @Html.DevExpress().RadioButton(settings=>{
+            settings.Name = "rbPorcentajeDescuento";
+            settings.Checked = true;
+            settings.GroupName = "GrupoDescuento";
+            settings.Text = "Porcentaje";
+            settings.Properties.ClientSideEvents.CheckedChanged = "function(s,e) { CambioTipoDescuento2(); }";
+        }).GetHtml()
+        </div>
+        <div style="float:left;">
+            @Html.DevExpress().RadioButton(settings=>{
+                settings.Name = "rbDineroDescuento";
+                settings.Checked = true;
+                settings.GroupName = "GrupoDescuento";
+                settings.Text = "Dinero";
+                settings.Properties.ClientSideEvents.CheckedChanged = "function(s,e) { CambioTipoDescuento2(); }";
+            }).GetHtml()
+        </div>
+        <div style="float:left; padding-top:15px; margin-left:10px;"">
+            <label>Descuento: </label>
+        </div>
+        <div style="float:left; margin-left:10px;">
+            @Html.DevExpress().TextBox(settings=>{
+                settings.Name = "txtDescuento";
+                settings.Width = 90;
+                settings.Properties.NullText = "Porcentaje %";
+            }).GetHtml()
+            @Html.DevExpress().TextBox(settings=>{
+                settings.Name = "txtDescuentoDinero";
+                settings.Width = 90;
+                settings.Properties.NullText = "Dinero $";
+                settings.ClientVisible = false;
+            }).GetHtml()
+        </div>
+        <div style="float:left; margin-left:10px;">
+            @Html.DevExpress().Button(settings=>{
+                settings.Name = "btnAplicarDescuento";
+                settings.Text = "Aplicar descuento";
+                settings.ClientSideEvents.Click = "function (s,e) { AplicarDescuento(); }";
+            }).GetHtml()
+        </div>
+    </div>
+</div>
+@Html.DevExpress().Button(settings =>
+{
+    settings.Name = "btnCopiar";
+    settings.UseSubmitBehavior = false;
+    settings.Text = "Conpiar los precios base";
+    settings.ClientSideEvents.Click = "function(s,e) { CopiarPrecioBase(); }";
+}).GetHtml()
+<br />
+
+@Html.Action("GridViewPartialListaPrecios")
+
+

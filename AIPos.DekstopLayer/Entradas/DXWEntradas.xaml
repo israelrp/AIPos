@@ -1,0 +1,100 @@
+﻿<dx:DXWindow xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    x:Class="AIPos.DekstopLayer.Entradas.DXWEntradas"
+    Title="DXWEntradas" Height="450" Width="865">
+
+    <Grid>
+        <Label x:Name="lblProveedor" Content="Proveedor:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"/>
+
+        <dxe:ComboBoxEdit x:Name="cmbProveedores" HorizontalAlignment="Left" Margin="162,9,0,0" VerticalAlignment="Top" Width="248" NullText="Nombre" DisplayMember="RazonSocial" ValueMember="Id" SelectedIndexChanged="cmbProveedores_SelectedIndexChanged"/>
+        <dxe:TextEdit x:Name="txtCodigoProveedor" HorizontalAlignment="Left" Margin="87,9,0,0" VerticalAlignment="Top" Width="60" NullText="Código" KeyDown="txtCodigoProveedor_KeyDown"/>
+        <Label Content="Producto:" HorizontalAlignment="Left" Margin="421,9,0,0" VerticalAlignment="Top"/>
+        <dxe:TextEdit x:Name="txtCodigoProducto" HorizontalAlignment="Left" Margin="485,9,0,0" VerticalAlignment="Top" Width="60" NullText="Código" KeyUp="txtCodigoProducto_KeyUp"/>
+        <dxe:ComboBoxEdit x:Name="cmbProductos" HorizontalAlignment="Left" Margin="562,9,0,0" VerticalAlignment="Top" Width="230" NullText="Productos" DisplayMember="Nombre" ValueMember="Id" SelectedIndexChanged="cmbProductos_SelectedIndexChanged"/>
+        <Label Content="Cantidad PV:" HorizontalAlignment="Left" Margin="190,57,0,0" VerticalAlignment="Top"/>
+        <dxe:TextEdit GotFocus="txtCantidadPV_GotFocus_1" KeyUp="txtCantidadPV_KeyUp_1" x:Name="txtCantidadPV" HorizontalAlignment="Left" Margin="274,60,0,0" VerticalAlignment="Top" Width="83" MaskType="RegEx" AllowNullInput="True" Mask="\d{0,9}(\R.\d{0,3})?"/>
+        <Label Content="Cantidad PROV:" HorizontalAlignment="Left" Margin="381,57,0,0" VerticalAlignment="Top"/>
+        <dxe:TextEdit GotFocus="txtCantidadDS_GotFocus_1" KeyUp="txtCantidadDS_KeyUp_1" x:Name="txtCantidadDS" HorizontalAlignment="Left" Margin="476,60,0,0" VerticalAlignment="Top" Width="83" MaskType="RegEx" AllowNullInput="True" Mask="\d{0,9}(\R.\d{0,3})?"/>
+        <Button x:Name="btnGuardar"  HorizontalAlignment="Left" Margin="746,57,0,0" VerticalAlignment="Top" Width="88" Height="28" FontWeight="SemiBold" Click="btnGuardar_Click" Background="{x:Null}" BorderBrush="Black" Cursor="Hand">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="48"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Guardar" HorizontalAlignment="Left" VerticalContentAlignment="Center" Foreground="#FFFF6400"></Label>
+                    <Image Source="/AIPos Desk;component/Images/guardar.png" HorizontalAlignment="Right"></Image>
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Border BorderBrush="#FFEE0D0D" BorderThickness="1" Margin="10,88,10.4,9.8" CornerRadius="5">
+            <Grid>
+                <Label Content="Consultar entradas de:" Margin="10,10,0,0"/>
+                <dxe:DateEdit x:Name="dateEditEntradas" Width="100" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,13,0,0" EditValueChanged="dateEditEntradas_EditValueChanged"/>
+                <dxg:GridControl x:Name="gridEntradas"  Margin="10,40,10,10" SelectionMode="Row">
+                    <dxg:GridControl.View>
+                        <dxg:TableView AutoWidth="True" ShowTotalSummary="True"/>
+                    </dxg:GridControl.View>
+                    <dxg:GridControl.TotalSummary>
+                        <dxg:GridSummaryItem FieldName="Importe" SummaryType="Sum" DisplayFormat="Total: {0:c2}" Visible="True"   />
+                    </dxg:GridControl.TotalSummary>
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn FieldName="Fecha" Header="Fecha" AllowEditing="False">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:DateEditSettings DisplayFormat="g" />
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="Proveedor.RazonSocial" Header="Proveedor" AllowEditing="False"/>
+                        <dxg:GridColumn FieldName="Producto.Nombre" Header="Producto" AllowEditing="False"/>
+                        <dxg:GridColumn FieldName="CantidadReal" Header="Cant. P.V." AllowEditing="False"/>
+                        <dxg:GridColumn FieldName="CantidadProveedor" Header="Cant. proveedor" AllowEditing="False"/>
+                        <dxg:GridColumn FieldName="Diferencia" Header="Diferencia" AllowEditing="False"/>
+                        <dxg:GridColumn FieldName="TipoProducto.Nombre" Header="Tipo" AllowEditing="False"/>
+                        <dxg:GridColumn FieldName="PrecioUnitario" Header="PrecioUnitario" AllowEditing="False">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings MaskType="Numeric" MaskUseAsDisplayFormat="True" Mask="c"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="Importe" Header="Importe" AllowEditing="False">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings MaskType="Numeric" MaskUseAsDisplayFormat="True" Mask="c"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                    </dxg:GridControl.Columns>
+                </dxg:GridControl>
+                <Button x:Name="btnEliminar" Height="29" Margin="0,6,10,0" HorizontalAlignment="Right" Width="90" VerticalAlignment="Top" Foreground="Red" Click="btnEliminar_Click" Background="{x:Null}" Cursor="Hand">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="26"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Eliminar" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="Red"></Label>
+                            <Image Source="/AIPos Desk;component/Images/delete.png" HorizontalAlignment="Right"></Image>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="btnImprimir" Height="29" Margin="0,6,120,0" HorizontalAlignment="Right" Width="90" VerticalAlignment="Top" Click="btnImprimir_Click" Background="{x:Null}" Cursor="Hand" >
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="26"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Imprimir" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="#FF6DAF1F"></Label>
+                            <Image Source="/AIPos Desk;component/Images/print.png" HorizontalAlignment="Right"></Image>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </Border>
+        <dxe:ComboBoxEdit KeyUp="cmbTipoProducto_KeyUp_1" x:Name="cmbTipoProducto" HorizontalAlignment="Left" Margin="581,60,0,0" VerticalAlignment="Top" Width="150" NullText="Tipo de producto" DisplayMember="Nombre" ValueMember="Id"/>
+        <dxe:TextEdit GotFocus="txtPrecioUnitario_GotFocus_1"  KeyUp="txtPrecioUnitario_KeyUp_1" x:Name="txtPrecioUnitario" HorizontalAlignment="Left" Margin="55,56,0,0" VerticalAlignment="Top" Width="88" NullText="Precio U." MaskType="RegEx" AllowNullInput="True" Mask="\d{0,9}(\R.\d{0,2})?"/>
+        <Label Content="Precio:" HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnBuscarProducto" Click="btnBuscarProducto_Click_1" Content="..." HorizontalAlignment="Left" Margin="804,9,0,0" VerticalAlignment="Top" Width="30"/>
+
+    </Grid>
+</dx:DXWindow>

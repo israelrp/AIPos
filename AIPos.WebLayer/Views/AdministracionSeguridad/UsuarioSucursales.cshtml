@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "UsuarioSucursales";
+}
+
+<h5>Asignar sucursales a usuarios</h5>
+
+
+
+@Html.Action("ComboBoxPartialUsuarios")
+
+@Html.DevExpress().Button(settings =>
+{
+    settings.Name = "btnConsultar";
+    settings.UseSubmitBehavior = false;
+    settings.Text = "Consultar";
+    settings.ClientSideEvents.Click = "function(s,e) { GridViewUsuarioSucursales.PerformCallback(); }";
+}).GetHtml()
+
+@Html.Action("GridViewPartialUsuarioSucursales")

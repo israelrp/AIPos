@@ -1,0 +1,13 @@
+@Html.DevExpress().ComboBox(settings =>
+{
+    settings.Name = "cmbListasPrecio";
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+    settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+    settings.CallbackRouteValues = new { Controller = "ListasPrecio", Action = "ComboBoxPartialListasPrecio" };
+    settings.Properties.CallbackPageSize = 50;
+    settings.Properties.ValueField = "Id";
+    settings.Properties.TextField = "Nombre";
+}).BindList(ViewData["Model"]).GetHtml()
+
+
+

@@ -1,0 +1,62 @@
+<div id="divReporte">
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridViewRetirosDinero";
+        settings.CallbackRouteValues = new { Controller = "RetirosDinero", Action = "GridViewPartialRetirosDinero" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "RetirosDinero", Action = "GridViewPartialRetirosDineroAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "RetirosDinero", Action = "GridViewPartialRetirosDineroUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "RetirosDinero", Action = "GridViewPartialRetirosDineroDelete" };
+        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=SucursalId.GetValue(); e.customArgs['Fecha']=Fecha.GetDate().toString();  }";
+        
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.NewButton.Visible = false;
+        settings.CommandColumn.DeleteButton.Visible = true;
+        settings.CommandColumn.EditButton.Visible = false;
+
+        settings.KeyFieldName = "Id";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "UsuarioId";
+            c.Caption = "Usuario";
+            c.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = c.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = new AIPos.BusinessLayer.BOUsuario().SelectAll();
+            comboBoxProperties.TextField = "Nombre";
+            comboBoxProperties.ValueField = "Id";
+        });
+
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "SucursalId";
+            c.Caption = "Sucursal";
+            c.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = c.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = new AIPos.BusinessLayer.BOSucursal().SelectAll();
+            comboBoxProperties.TextField = "Nombre";
+            comboBoxProperties.ValueField = "Id";
+        });
+        
+        
+        settings.Columns.Add("Monto");
+        settings.Columns.Add("Descripcion");
+        settings.Columns.Add("Fecha");
+        settings.Columns.Add("EsCorteCaja");
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()
+</div>

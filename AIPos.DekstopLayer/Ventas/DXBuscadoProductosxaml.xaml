@@ -1,0 +1,36 @@
+﻿<dx:DXWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    x:Class="AIPos.DekstopLayer.Ventas.DXBuscadoProductosxaml"
+    Title="DXBuscadoProductosxaml" Height="525" Width="525"
+    >
+
+    <Grid>
+
+        <dxg:GridControl x:Name="gridProductos" AutoGenerateColumns="None" Margin="10,50,10.4,9.8" MouseDoubleClick="gridProductos_MouseDoubleClick"  >
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="Codigo" Header="Cod." Width="40" />
+                <dxg:GridColumn FieldName="Nombre" Header="Producto" Width="120" />
+                <dxg:GridColumn FieldName="TipoId" Header="Unidad" Width="120" >
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:ComboBoxEditSettings IsTextEditable="False" DisplayMember="Nombre" ValueMember="Id"></dxe:ComboBoxEditSettings>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="UnidadId" Header="Unidad" Width="120" >
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:ComboBoxEditSettings IsTextEditable="False" DisplayMember="Nombre" ValueMember="Id"></dxe:ComboBoxEditSettings>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="Precio" Header="P.L." Width="40" />
+                <dxg:GridColumn FieldName="SePesa" Header="SePesa" Width="120"/>
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView ShowTotalSummary="False" AllowEditing="False" ShowGroupPanel="False" ShowSearchPanelMode="Never"/>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+        <dxe:SearchControl x:Name="scProductos" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Width="407" BorderBrush="Red"/>
+        <Label Content="Buscar:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="85" Foreground="Red" FontWeight="Bold" FontSize="15"/>
+    </Grid>
+</dx:DXWindow>

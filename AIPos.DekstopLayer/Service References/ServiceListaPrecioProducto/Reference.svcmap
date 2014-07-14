@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b2345e0e-863f-41fc-a33e-10b133ad63d2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="AIPos.Domain" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/ISListaPrecioProducto.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ISListaPrecioProducto.xsd" MetadataType="Schema" ID="039c388f-279b-4bbb-bfa3-3fb9ff50851c" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISListaPrecioProducto.svc?xsd=xsd2" />
+    <MetadataFile FileName="ISListaPrecioProducto.disco" MetadataType="Disco" ID="046e84f8-e73b-4f10-b990-649683429c71" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISListaPrecioProducto.svc?disco" />
+    <MetadataFile FileName="ISListaPrecioProducto1.xsd" MetadataType="Schema" ID="cc2436fe-19a8-43a7-ab0b-0273cbc19fb5" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISListaPrecioProducto.svc?xsd=xsd0" />
+    <MetadataFile FileName="ISListaPrecioProducto.wsdl" MetadataType="Wsdl" ID="03764d80-6714-4f3f-a14d-76cefea4a4dc" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISListaPrecioProducto.svc?wsdl" />
+    <MetadataFile FileName="ISListaPrecioProducto2.xsd" MetadataType="Schema" ID="6cb033d3-5549-4ef9-be8c-9d7c644afb58" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISListaPrecioProducto.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

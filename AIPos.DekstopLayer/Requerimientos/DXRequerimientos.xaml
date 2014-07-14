@@ -1,0 +1,81 @@
+﻿<dx:DXWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    x:Class="AIPos.DekstopLayer.Requerimientos.DXRequerimientos"
+    Title="Requerimientos" Height="450" Width="865" >
+
+    <Grid>
+        <Label Content="Producto:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <dxe:TextEdit x:Name="txtCodigoProducto" HorizontalAlignment="Left" Margin="73,10,0,0" VerticalAlignment="Top" Width="60" NullText="Código" KeyUp="txtCodigoProducto_KeyUp" TabIndex="1"/>
+        <dxe:ComboBoxEdit x:Name="cmbProductos" HorizontalAlignment="Left" Margin="150,10,0,0" VerticalAlignment="Top" Width="230" NullText="Productos" DisplayMember="Nombre" ValueMember="Id" SelectedIndexChanged="cmbProductos_SelectedIndexChanged" TabIndex="2"/>
+        <Label Content="Pedido:" HorizontalAlignment="Left" Margin="405,10,0,0" VerticalAlignment="Top"/>
+        <dxe:TextEdit x:Name="txtPedido" HorizontalAlignment="Left" Margin="471,10,0,0" VerticalAlignment="Top" Width="290" NullText="Nombre del producto a pedir" KeyUp="txtCodigoProducto_KeyUp" TabIndex="3"/>
+        <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="9,46,0,0" VerticalAlignment="Top"/>
+        <dxe:TextEdit x:Name="txtCantidad" HorizontalAlignment="Left" Margin="73,46,0,0" VerticalAlignment="Top" Width="82" NullText="Cantidad" KeyUp="txtCodigoProducto_KeyUp" TabIndex="4" Mask="\d{0,9}(\R.\d{0,3})?" MaskType="RegEx"/>
+        <Label Content="Fecha a entregar:" HorizontalAlignment="Left" Margin="406,46,0,0" VerticalAlignment="Top"/>
+        <dxe:DateEdit x:Name="deFechaEntregar" HorizontalAlignment="Left" Margin="510,46,0,0" VerticalAlignment="Top" Width="240" TabIndex="6" Mask="dddd dd MMMM yyyy'. Hora: 'h:mm tt"/>
+        <Button x:Name="btnGuardar"  HorizontalAlignment="Left" Margin="753,42,0,0" VerticalAlignment="Top" Width="88" Height="28" FontWeight="SemiBold" Click="btnGuardar_Click" Background="{x:Null}" BorderBrush="Black" Cursor="Hand" TabIndex="7">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="48"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Guardar" HorizontalAlignment="Left" VerticalContentAlignment="Center" Foreground="#FFFF6400"/>
+                <Image Source="/AIPos Desk;component/Images/guardar.png" HorizontalAlignment="Right"/>
+            </Grid>
+        </Button>
+        <Line X1="10" X2="855" Y1="85" Y2="85" Stroke="#FFC7CBC7" StrokeThickness="2"/>
+        <Label Content="Consultar pedidos:" HorizontalAlignment="Left" Margin="11,93,0,0" VerticalAlignment="Top"/>
+        <dxe:DateEdit x:Name="deFecha" HorizontalAlignment="Left" Margin="115,93,0,0" VerticalAlignment="Top" Width="150" TabIndex="8" EditValueChanged="deFecha_EditValueChanged"/>
+        <dxg:GridControl x:Name="gridDatos" AutoGenerateColumns="None" Margin="10,124,9.667,9.667">
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="Usuario.Nombre" Header="Usuario" AllowEditing="False"/>
+                <dxg:GridColumn FieldName="Sucursal.Nombre" Header="Sucursal" AllowEditing="False"/>
+                <dxg:GridColumn FieldName="Producto" Header="Producto" AllowEditing="False"/>
+                <dxg:GridColumn FieldName="Unidad.Nombre" Header="Unidad" AllowEditing="False"/>
+                <dxg:GridColumn FieldName="Cantidad" Header="Cantidad" AllowEditing="False"/>
+                <dxg:GridColumn FieldName="FechaRegistro" Header="Fecha registro" AllowEditing="False">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:DateEditSettings DisplayFormat="g" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="FechaEntrega" Header="Fecha entrega" AllowEditing="False">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:DateEditSettings DisplayFormat="g" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView ShowTotalSummary="True"/>
+            </dxg:GridControl.View>
+            <dxg:GridControl.TotalSummary>
+                <dxg:GridSummaryItem FieldName="Cantidad" SummaryType="Sum" DisplayFormat="Total cantidad: {0:0}" Visible="True"   />
+            </dxg:GridControl.TotalSummary>
+        </dxg:GridControl>
+        <Label Content="Unidad:" HorizontalAlignment="Left" Margin="175,46,0,0" VerticalAlignment="Top"/>
+        <dxe:ComboBoxEdit x:Name="cmbUnidades" HorizontalAlignment="Left" Margin="225,50,0,0" VerticalAlignment="Top" Width="155" NullText="Unidad de producto" DisplayMember="Nombre" ValueMember="Id" TabIndex="5" />
+        <Button x:Name="btnEliminar" Height="29" Margin="0,91,13.667,0" HorizontalAlignment="Right" Width="90" VerticalAlignment="Top" Foreground="Red" Click="btnEliminar_Click" Background="{x:Null}" Cursor="Hand">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="26"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Eliminar" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="Red"/>
+                <Image Source="/AIPos Desk;component/Images/delete.png" HorizontalAlignment="Right"/>
+            </Grid>
+        </Button>
+        <Button x:Name="btnImprimir" Height="29" Margin="0,91,123.667,0" HorizontalAlignment="Right" Width="90" VerticalAlignment="Top" Click="btnImprimir_Click" Background="{x:Null}" Cursor="Hand" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="26"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Imprimir" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="#FF6DAF1F"/>
+                <Image Source="/AIPos Desk;component/Images/print.png" HorizontalAlignment="Right"/>
+            </Grid>
+        </Button>
+    </Grid>
+</dx:DXWindow>

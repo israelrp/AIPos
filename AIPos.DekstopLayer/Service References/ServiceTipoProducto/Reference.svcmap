@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="adfdcf74-018c-45f2-ac12-088f88aadb64" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="AIPos.Domain" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/STipoProducto.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="STipoProducto3.xsd" MetadataType="Schema" ID="5d1260c0-84fd-4cf2-99df-03cc2625bb84" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/STipoProducto.svc?xsd=xsd1" />
+    <MetadataFile FileName="STipoProducto31.xsd" MetadataType="Schema" ID="0bbcdafc-8f06-4ca8-9cfd-6fa4d3e6d61a" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/STipoProducto.svc?xsd=xsd0" />
+    <MetadataFile FileName="STipoProducto32.xsd" MetadataType="Schema" ID="d914d08a-7bf1-4994-a17c-2254728510a5" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/STipoProducto.svc?xsd=xsd2" />
+    <MetadataFile FileName="STipoProducto1.disco" MetadataType="Disco" ID="ba491d1a-6802-4732-a11c-e5313ea935a7" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/STipoProducto.svc?disco" />
+    <MetadataFile FileName="STipoProducto1.wsdl" MetadataType="Wsdl" ID="a092a535-e4f5-4513-9863-d3a14a46fe6f" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/STipoProducto.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

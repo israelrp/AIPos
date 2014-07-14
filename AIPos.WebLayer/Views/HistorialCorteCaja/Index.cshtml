@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Historial de cortes de caja</h2>
+@Html.DevExpress().ComboBox(settings =>
+    {
+        settings.Name = "SucursalId";
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+        settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+        settings.Properties.ValueField = "Id";
+        settings.Properties.TextField = "Nombre";
+        settings.Properties.NullText = "Sucursal que realizo las ventas";
+    }).BindList(new AIPos.BusinessLayer.BOSucursal().SelectAll()).GetHtml()
+@Html.DevExpress().Button(settings =>
+    {
+        settings.Name = "btnConsultar";
+        settings.Text = "Consultar";
+        settings.ClientSideEvents.Click = "function(s,e){ GridViewHistorialCorteCaja.PerformCallback(); }";
+    }).GetHtml()
+
+
+@Html.Action("GridViewPartialHistorialCorteCaja")
+

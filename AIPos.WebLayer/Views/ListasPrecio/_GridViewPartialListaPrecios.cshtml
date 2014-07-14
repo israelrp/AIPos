@@ -1,0 +1,116 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridViewListaPrecios";
+        settings.CallbackRouteValues = new { Controller = "ListasPrecio", Action = "GridViewPartialListaPrecios" };
+        settings.ClientSideEvents.BeginCallback = "function(s, e) { "+
+            "e.customArgs['ListaPrecioIdSelected'] = cmbListasPrecio.GetValue(); "+
+            "e.customArgs['Codigo'] = txtCodigoProducto.GetText(); "+
+            "e.customArgs['Nombre'] = txtNombreProducto.GetText(); }";
+
+        settings.KeyFieldName = "ProductoId";
+
+        settings.Settings.ShowColumnHeaders = true;
+        settings.SettingsPager.PageSize = 100;
+        settings.SettingsPager.AlwaysShowPager = true;
+
+        settings.Columns.Add(col=>{
+            col.FieldName = "Codigo";
+            col.Width = 100;
+        });
+        settings.Columns.Add(col =>
+        {
+            col.FieldName = "Producto";
+            col.Width = 200;
+        });
+        settings.Columns.Add(col =>
+        {
+            col.FieldName = "PrecioBase";
+            col.Width = 100;
+        });
+        settings.Columns.Add(col =>
+        {
+            col.FieldName = "PrecioLista";
+            col.Width = 100;
+        });
+        settings.Columns.Add(col =>
+        {
+            col.FieldName = "Descuento";
+            col.Width = 100;
+        });
+
+        settings.Columns.Add(col =>
+        {
+            col.FieldName = "PrecioDescuento";
+            col.Width = 100;
+        });
+
+        settings.Columns.Add(col =>
+        {
+            col.Name = "Comando";
+            col.ColumnType = MVCxGridViewColumnType.ButtonEdit;
+            col.Width = 63;
+        });
+
+        settings.SetDataRowTemplateContent(c =>
+        {
+            var precioBase = Decimal.Parse(DataBinder.Eval(c.DataItem, "PrecioBase").ToString());
+            var precioLista = Decimal.Parse(DataBinder.Eval(c.DataItem,"PrecioLista").ToString());
+            var precioDescuento = Decimal.Parse(DataBinder.Eval(c.DataItem, "PrecioDescuento").ToString());
+            var descuento = Decimal.Parse(DataBinder.Eval(c.DataItem, "Descuento").ToString());
+            var productoId = int.Parse(DataBinder.Eval(c.DataItem, "ProductoId").ToString());
+            using (Ajax.BeginForm("ActualizarPrecio", "ListasPrecio", new AjaxOptions { OnSuccess = "GridViewListaPrecios.PerformCallback();" }))
+            {
+
+                ViewContext.Writer.Write(
+                    "<div class='fila'><table>" +
+                        "<tr>" +
+                            "<td style='width:117px;'>" +
+                                DataBinder.Eval(c.DataItem, "Codigo") +
+                            "</td>" +
+                            "<td style='width:217px;'>" +
+                                DataBinder.Eval(c.DataItem, "Producto") +
+                            "</td>" +
+                            "<td style='width:117px;'><span class='label-table'>Precio base:</span> " +
+                                    precioBase.ToString("c") +
+                            "</td>" +
+                            "<td style='width:117px;'><span class='label-table'>Precio lista:$</span>" +
+                                Html.TextBox("PrecioLista", precioLista,
+                                new
+                                {
+                                    id = "txtPrecioLista_" + productoId.ToString(),
+                                    onkeyup = "ModificarDescuento(" + productoId + ")"
+                                }) +
+                            "</td>" +
+                            "<td style='width:117px;'><span class='label-table'>Descuento:%</span> " +
+                                Html.TextBox("Descuento", descuento,
+                                new
+                                {
+                                    id = "txtDescuento_" + productoId.ToString(), 
+                                    onkeyup = "ModificarDescuento(" + productoId + ")"
+                                }) +
+                            "</td>" +
+                            "<td style='width:117px;'><span class='label-table'>Precio descuento:$</span>" +
+                                Html.TextBox("PrecioDescuento", precioDescuento, new
+                                {
+                                    id = "txtPrecioDescuento_" + productoId.ToString(), 
+                                    onkeyup="ModificarPrecioDescuento("+productoId+")"
+                                }) +
+                            "</td>" +
+                            "<td style='width:80px; text-align:center;'>" +
+                                "<button type='submit'>Guardar</button>" +
+                            "</td>" +
+                        "</tr>" +
+                        "</div></table>" +
+                        Html.Hidden("ProductoId", productoId) +
+                        Html.Hidden("Producto", DataBinder.Eval(c.DataItem, "Producto")) +
+                        Html.Hidden("PrecioBase", precioBase) +
+                        Html.Hidden("ListaPrecioId", DataBinder.Eval(c.DataItem, "ListaPrecioId")) +
+                        Html.Hidden("EsNuevo", DataBinder.Eval(c.DataItem, "EsNuevo")));
+            }
+        });
+        
+        
+    });
+}
+@grid.Bind(Model).GetHtml()

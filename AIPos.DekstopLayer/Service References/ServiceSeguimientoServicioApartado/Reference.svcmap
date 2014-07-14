@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2c75ce38-ce77-4c95-8784-3e81daecc2a2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="AIPos.Domain" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/SSeguimientoServicioApartado.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SSeguimientoServicioApartado.xsd" MetadataType="Schema" ID="b352740a-921b-4c53-ab4c-9e026959e216" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SSeguimientoServicioApartado.svc?xsd=xsd1" />
+    <MetadataFile FileName="SSeguimientoServicioApartado.wsdl" MetadataType="Wsdl" ID="43729092-caad-4db3-b4c2-7b41f3498dee" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SSeguimientoServicioApartado.svc?wsdl" />
+    <MetadataFile FileName="SSeguimientoServicioApartado.disco" MetadataType="Disco" ID="b1924f45-efb1-479a-bcc8-0a3511722ff6" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SSeguimientoServicioApartado.svc?disco" />
+    <MetadataFile FileName="SSeguimientoServicioApartado1.xsd" MetadataType="Schema" ID="cef623f7-aed6-48c3-a9c5-e21924cfa1ec" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SSeguimientoServicioApartado.svc?xsd=xsd0" />
+    <MetadataFile FileName="SSeguimientoServicioApartado2.xsd" MetadataType="Schema" ID="caa5e2d1-3f67-47f7-ac3a-0d952b3e878f" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SSeguimientoServicioApartado.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0434f4ae-69ff-4f71-b481-d92ff3a699a2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="AIPos.Domain" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/SCliente.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SCliente1.wsdl" MetadataType="Wsdl" ID="c754204b-7b88-4096-8146-9b3355329a60" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SCliente.svc?wsdl" />
+    <MetadataFile FileName="SCliente3.xsd" MetadataType="Schema" ID="499edfcf-9777-4545-b634-527547d617a1" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SCliente.svc?xsd=xsd2" />
+    <MetadataFile FileName="SCliente31.xsd" MetadataType="Schema" ID="5ab6e3da-b618-48ce-b45f-8b9195104502" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SCliente.svc?xsd=xsd1" />
+    <MetadataFile FileName="SCliente32.xsd" MetadataType="Schema" ID="fb093539-79f4-476b-a77a-a2b4710daa24" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SCliente.svc?xsd=xsd0" />
+    <MetadataFile FileName="SCliente1.disco" MetadataType="Disco" ID="1dea2eab-8ad0-48af-9995-bf0b8b8de7ea" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SCliente.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
