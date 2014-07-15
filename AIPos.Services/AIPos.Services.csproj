@@ -195,7 +195,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Properties\PublishProfiles\AIPOSService.pubxml" />
+    <None Include="Properties\PublishProfiles\sanagustinservices - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\sanagustinservices - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

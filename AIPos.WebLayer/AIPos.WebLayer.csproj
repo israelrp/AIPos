@@ -1109,7 +1109,8 @@
     <Content Include="App_Theme\Youthful\MVCxTreeView.skin" />
     <Content Include="App_Theme\Youthful\MVCxUploadControl.skin" />
     <Content Include="App_Theme\Youthful\MVCxValidationSummary.skin" />
-    <None Include="Properties\PublishProfiles\AIPos.pubxml" />
+    <None Include="Properties\PublishProfiles\sanagustin - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\sanagustin - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\carni1.gif" />
     <Content Include="Scripts\jquery-1.7.1.js" />

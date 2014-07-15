@@ -39,7 +39,7 @@ namespace AIPos.DekstopLayer
         {
             bool retorno = false;
             DXTabItem tabItem= tabControl.Items.OfType<DXTabItem>().Where(x => x.Name == Name).FirstOrDefault();
-            if (tabItem != null) { tabItem.SetVisible(true); tabControl.SelectedItem = tabItem; retorno = true; }
+            if (tabItem != null) { tabItem.Visibility = System.Windows.Visibility.Visible; tabControl.SelectedItem = tabItem; retorno = true; }
             return retorno;
         }
 
