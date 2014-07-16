@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
 using AIPos.Domain;
-
+using AIPos.DekstopLayer.Helpers;
 
 namespace AIPos.DekstopLayer.EntregasDomicilio
 {
@@ -21,15 +21,20 @@ namespace AIPos.DekstopLayer.EntregasDomicilio
     /// </summary>
     public partial class DXEntregasDomicilio : DXWindow
     {
+        SelectionHelper<int> selectionHelper = new SelectionHelper<int>();
+        List<ReporteServicioApartado> list=new List<ReporteServicioApartado>();
+
+        public List<ReporteServicioApartado> List { get { return list; } }
         public DXEntregasDomicilio()
         {
             InitializeComponent();
             RecuperarInformacion();
+            gridVentas.DataContext = this.List;
         }
 
         private void RecuperarInformacion()
         {
-            gridVentas.ItemsSource = new ServiceServicioApartado.SServicioApartadoClient().RecuperarReporteServicioApartado(General.ConfiguracionApp.SucursalId, null);
+            list = new ServiceServicioApartado.SServicioApartadoClient().RecuperarReporteServicioApartado(General.ConfiguracionApp.SucursalId, null).ToList();
         }
 
         private void btnEnviar_Click_1(object sender, RoutedEventArgs e)
@@ -82,6 +87,22 @@ namespace AIPos.DekstopLayer.EntregasDomicilio
                 }
 
             }
+        }
+
+        private void gridVentas_CustomUnboundColumnData(object sender, DevExpress.Xpf.Grid.GridColumnDataEventArgs e)
+        {
+            if (e.Column.FieldName != "Selected") return;
+            int key = (int)e.GetListSourceFieldValue("Id");
+            if (e.IsGetData)
+                e.Value = selectionHelper.GetIsSelected(key);
+            if (e.IsSetData)
+                selectionHelper.SetIsSelected(key, (bool)e.Value);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string caption = string.Format("Selected rows (Total: {0})", selectionHelper.GetSelectionCount());
+            MessageBox.Show(selectionHelper.GetSelectedKeysAsString(), caption);
         }
     }
 }

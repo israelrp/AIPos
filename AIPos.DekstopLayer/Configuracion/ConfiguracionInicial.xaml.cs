@@ -48,8 +48,11 @@ namespace AIPos.DekstopLayer.Configuracion
             ServiceListaPrecio.SListaPrecioClient sListaPrecioClient = new ServiceListaPrecio.SListaPrecioClient();
             try
             {
-                ListaPrecio listaPrecio = sListaPrecioClient.RecuperarListaPrecioDeSucursal(General.ConfiguracionApp.SucursalId);
-                listaPrecio.Nombre = listaPrecio.Nombre;
+                if (General.ConfiguracionApp != null)
+                {
+                    ListaPrecio listaPrecio = sListaPrecioClient.RecuperarListaPrecioDeSucursal(General.ConfiguracionApp.SucursalId);
+                    listaPrecio.Nombre = listaPrecio.Nombre;
+                }
             }
             catch (Exception ex)
             {

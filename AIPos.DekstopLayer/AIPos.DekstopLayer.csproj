@@ -239,6 +239,7 @@
       <DependentUpon>DXEnviar.xaml</DependentUpon>
     </Compile>
     <Compile Include="General.cs" />
+    <Compile Include="Helpers\SelectionHelper.cs" />
     <Compile Include="Inventario\DXInventarios.xaml.cs">
       <DependentUpon>DXInventarios.xaml</DependentUpon>
     </Compile>
