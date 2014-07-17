@@ -239,7 +239,6 @@
       <DependentUpon>DXEnviar.xaml</DependentUpon>
     </Compile>
     <Compile Include="General.cs" />
-    <Compile Include="Helpers\SelectionHelper.cs" />
     <Compile Include="Inventario\DXInventarios.xaml.cs">
       <DependentUpon>DXInventarios.xaml</DependentUpon>
     </Compile>
@@ -1434,6 +1433,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
