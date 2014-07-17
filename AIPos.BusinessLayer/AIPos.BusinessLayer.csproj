@@ -51,6 +51,7 @@
     <Compile Include="BODireccionFacturacion.cs" />
     <Compile Include="BOEncrypt.cs" />
     <Compile Include="BOEntrada.cs" />
+    <Compile Include="BOEstatusServicioApartado.cs" />
     <Compile Include="BOInventario.cs" />
     <Compile Include="BOListaPrecio.cs" />
     <Compile Include="BOListaPrecioProducto.cs" />
