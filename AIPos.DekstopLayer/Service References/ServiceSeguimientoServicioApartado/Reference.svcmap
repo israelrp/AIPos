@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/SSeguimientoServicioApartado.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://sanagustinservices.azurewebsites.net/SSeguimientoServicioApartado.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SSeguimientoServicioApartado.xsd" MetadataType="Schema" ID="b352740a-921b-4c53-ab4c-9e026959e216" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SSeguimientoServicioApartado.svc?xsd=xsd1" />
-    <MetadataFile FileName="SSeguimientoServicioApartado.wsdl" MetadataType="Wsdl" ID="43729092-caad-4db3-b4c2-7b41f3498dee" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SSeguimientoServicioApartado.svc?wsdl" />
-    <MetadataFile FileName="SSeguimientoServicioApartado.disco" MetadataType="Disco" ID="b1924f45-efb1-479a-bcc8-0a3511722ff6" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SSeguimientoServicioApartado.svc?disco" />
-    <MetadataFile FileName="SSeguimientoServicioApartado1.xsd" MetadataType="Schema" ID="cef623f7-aed6-48c3-a9c5-e21924cfa1ec" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SSeguimientoServicioApartado.svc?xsd=xsd0" />
-    <MetadataFile FileName="SSeguimientoServicioApartado2.xsd" MetadataType="Schema" ID="caa5e2d1-3f67-47f7-ac3a-0d952b3e878f" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SSeguimientoServicioApartado.svc?xsd=xsd2" />
+    <MetadataFile FileName="SSeguimientoServicioApartado1.disco" MetadataType="Disco" ID="4691534f-2f3c-4d6e-b113-55b64792e4b8" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SSeguimientoServicioApartado.svc?disco" />
+    <MetadataFile FileName="SSeguimientoServicioApartado3.xsd" MetadataType="Schema" ID="01a68a39-0a46-4677-8231-6fdd130b5460" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SSeguimientoServicioApartado.svc?xsd=xsd1" />
+    <MetadataFile FileName="SSeguimientoServicioApartado31.xsd" MetadataType="Schema" ID="c0b1b85c-d83e-4837-882c-f2b5a481600c" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SSeguimientoServicioApartado.svc?xsd=xsd0" />
+    <MetadataFile FileName="SSeguimientoServicioApartado32.xsd" MetadataType="Schema" ID="3e5f8998-32c0-4599-9712-813b3ff248b4" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SSeguimientoServicioApartado.svc?xsd=xsd2" />
+    <MetadataFile FileName="SSeguimientoServicioApartado1.wsdl" MetadataType="Wsdl" ID="8b22d4c2-fd5c-4e96-b0c0-e4a41554f70a" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SSeguimientoServicioApartado.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

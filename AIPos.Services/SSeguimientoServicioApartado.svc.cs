@@ -13,8 +13,6 @@ namespace AIPos.Services
     // NOTE: In order to launch WCF Test Client for testing this service, please select SSeguimientoServicioApartado.svc or SSeguimientoServicioApartado.svc.cs at the Solution Explorer and start debugging.
     public class SSeguimientoServicioApartado : ISSeguimientoServicioApartado
     {
-
-
         public SeguimientoServicioApartado Insert(SeguimientoServicioApartado entity)
         {
             return new BOSeguimientoServicioApartado().Insert(entity);
@@ -28,6 +26,11 @@ namespace AIPos.Services
         public SeguimientoServicioApartado SelectById(int VentaId)
         {
             return new BOSeguimientoServicioApartado().SelectById(VentaId);
+        }
+
+        public int GenerarNuevoFolioEnvio()
+        {
+            return new BOSeguimientoServicioApartado().GenerarNuevoFolioEnvio();
         }
     }
 }

@@ -36,5 +36,10 @@ namespace AIPos.BusinessLayer
         {
             dao.Delete(VentaId);
         }
+
+        public int GenerarNuevoFolioEnvio()
+        {
+            return dao.NuevoFolioEnvio();
+        }
     }
 }

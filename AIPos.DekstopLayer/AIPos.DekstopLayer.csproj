@@ -605,14 +605,14 @@
     <None Include="Service References\ServiceRetiroDinero\ISRetiroDinero2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado.wsdl" />
-    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado.xsd">
+    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado1.wsdl" />
+    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado1.xsd">
+    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado2.xsd">
+    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado32.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceServicioApartado\SServicioApartado.wsdl" />
@@ -935,14 +935,14 @@
     <None Include="Service References\ServiceVenta\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceVenta\ISVenta.wsdl" />
-    <None Include="Service References\ServiceVenta\ISVenta.xsd">
+    <None Include="Service References\ServiceVenta\ISVenta1.wsdl" />
+    <None Include="Service References\ServiceVenta\ISVenta3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceVenta\ISVenta1.xsd">
+    <None Include="Service References\ServiceVenta\ISVenta31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceVenta\ISVenta2.xsd">
+    <None Include="Service References\ServiceVenta\ISVenta32.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceVenta\Reference.svcmap">
@@ -1297,9 +1297,6 @@
     <None Include="Configuracion\Config.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceVenta\ISVenta.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\ServiceRetiroDinero\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -1423,9 +1420,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\ServiceSeguimientoServicioApartado\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -1466,6 +1460,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceVenta\ISVenta1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

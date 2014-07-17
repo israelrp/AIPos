@@ -9,6 +9,7 @@
       <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Folio" type="xs:int" />
       <xs:element minOccurs="0" name="FolioCancelado" type="xs:int" />
+      <xs:element minOccurs="0" name="FolioEnvio" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Recibio" type="xs:decimal" />
       <xs:element minOccurs="0" name="RequiereFactura" type="xs:boolean" />
@@ -29,6 +30,7 @@
       <xs:element minOccurs="0" name="Eliminado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RazonSocial" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Rfc" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SucursalRegistro" nillable="true" type="tns:Sucursal" />
       <xs:element minOccurs="0" name="SucursalRegistroId" type="xs:int" />

@@ -5,6 +5,7 @@
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     x:Class="AIPos.DekstopLayer.EntregasDomicilio.DXEnviar"
     Title="Datos del envio" Height="170" Width="525"
+    ResizeMode="NoResize"
     >
 
     <Grid>
@@ -13,7 +14,8 @@
 
         <dxe:TextEdit x:Name="txtRepartidor" HorizontalAlignment="Left" Margin="147,14,0,0" VerticalAlignment="Top" Width="268"/>
         <Button x:Name="btnEnviar" Content="Enviar ahora" HorizontalAlignment="Center" Margin="0,105,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-        <dxe:DateEdit x:Name="deFechaSalida" HorizontalAlignment="Left" Margin="147,58,0,0" VerticalAlignment="Top" Width="238" Mask="'Fecha: 'dddd dd MMMM yyyy'. Time: 'h:mm"/>
-
+        <dxe:DateEdit x:Name="deFechaSalida" HorizontalAlignment="Left" Margin="147,58,0,0" VerticalAlignment="Top" Width="238" MaskType="DateTime" 
+                Mask="dd-MMM-yyyy HH:mm" DisplayFormatString="dd-MMM-yyyy HH:mm" />
+        <Label Content="" Name="lblVentas" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,14,0,0"></Label>
     </Grid>
 </dx:DXWindow>

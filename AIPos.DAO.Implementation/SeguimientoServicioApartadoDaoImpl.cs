@@ -15,9 +15,9 @@ namespace AIPos.DAO.Implementation
 
         public SeguimientoServicioApartado Insert(SeguimientoServicioApartado entity)
         {
-            object[] parameters = new object[] { entity.VentaId, entity.FechaSolicitud, entity.FechaSalidaRepartidor, entity.FechaLlegadaRepartidor, entity.Repartidor };
+            object[] parameters = new object[] { entity.VentaId, entity.FechaSolicitud, entity.FechaSalidaRepartidor, entity.FechaLlegadaRepartidor, entity.Repartidor, entity.Folio };
             return cm.Database.SqlQuery<SeguimientoServicioApartado>("dbo.usp_SeguimientosServiciosApartadosInsert @VentaId={0}, @FechaSolicitud={1}, @FechaSalidaRepartidor={2},"+
-                "@FechaLlegadaRepartidor={3}, @Repartidor={4}", parameters).FirstOrDefault();
+                "@FechaLlegadaRepartidor={3}, @Repartidor={4}, @Folio={5}", parameters).FirstOrDefault();
         }
 
         public bool Delete(int key)
@@ -34,9 +34,9 @@ namespace AIPos.DAO.Implementation
 
         public SeguimientoServicioApartado Update(SeguimientoServicioApartado entity)
         {
-            object[] parameters = new object[] { entity.VentaId, entity.FechaSolicitud, entity.FechaSalidaRepartidor, entity.FechaLlegadaRepartidor, entity.Repartidor };
+            object[] parameters = new object[] { entity.VentaId, entity.FechaSolicitud, entity.FechaSalidaRepartidor, entity.FechaLlegadaRepartidor, entity.Repartidor, entity.Folio };
             return cm.Database.SqlQuery<SeguimientoServicioApartado>("dbo.usp_SeguimientosServiciosApartadosUpdate @VentaId={0}, @FechaSolicitud={1}, @FechaSalidaRepartidor={2}," +
-                "@FechaLlegadaRepartidor={3}, @Repartidor={4}", parameters).FirstOrDefault();
+                "@FechaLlegadaRepartidor={3}, @Repartidor={4}, @Folio={5}", parameters).FirstOrDefault();
         }
 
         public List<SeguimientoServicioApartado> SelectAll()
@@ -49,6 +49,12 @@ namespace AIPos.DAO.Implementation
         {
             object[] parameters = new object[] { key };
             return cm.Database.SqlQuery<SeguimientoServicioApartado>("dbo.usp_SeguimientosServiciosApartadosSelect @VentaId={0}", parameters).FirstOrDefault();
+        }
+
+        public int NuevoFolioEnvio()
+        {
+            object[] parameters = new object[] { null };
+            return cm.Database.SqlQuery<int>("dbo.usp_SeguimientosServiciosApartadosNuevoFolio", parameters).FirstOrDefault();
         }
     }
 }

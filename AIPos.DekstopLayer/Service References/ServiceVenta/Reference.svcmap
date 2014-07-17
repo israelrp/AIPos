@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/ISVenta.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://sanagustinservices.azurewebsites.net/ISVenta.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ISVenta.xsd" MetadataType="Schema" ID="37d5397b-6bf2-48f9-9336-5033220fa88f" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISVenta.svc?xsd=xsd2" />
-    <MetadataFile FileName="ISVenta1.xsd" MetadataType="Schema" ID="ce4e6dd0-1b41-4b2e-a763-fdfb79965905" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISVenta.svc?xsd=xsd0" />
-    <MetadataFile FileName="ISVenta.disco" MetadataType="Disco" ID="57838a3e-742e-4575-b1c1-0cde0129c1fd" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISVenta.svc?disco" />
-    <MetadataFile FileName="ISVenta2.xsd" MetadataType="Schema" ID="b464d605-8f30-4536-ad19-b901e6b43fff" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISVenta.svc?xsd=xsd1" />
-    <MetadataFile FileName="ISVenta.wsdl" MetadataType="Wsdl" ID="b90976cf-6efa-449f-b3c7-678746386f39" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISVenta.svc?wsdl" />
+    <MetadataFile FileName="ISVenta1.wsdl" MetadataType="Wsdl" ID="a4082777-7da4-4d2f-8e66-45cc8ff3aa8f" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/ISVenta.svc?wsdl" />
+    <MetadataFile FileName="ISVenta1.disco" MetadataType="Disco" ID="c04bae9b-4c5f-4bca-99cb-8f3952ea2ca2" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/ISVenta.svc?disco" />
+    <MetadataFile FileName="ISVenta3.xsd" MetadataType="Schema" ID="259c8328-3b88-433a-9947-1eb2ef364abb" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/ISVenta.svc?xsd=xsd0" />
+    <MetadataFile FileName="ISVenta31.xsd" MetadataType="Schema" ID="98d20d38-3f70-4e08-87c9-382fc0402489" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/ISVenta.svc?xsd=xsd2" />
+    <MetadataFile FileName="ISVenta32.xsd" MetadataType="Schema" ID="9128e03d-f5a2-426d-b459-8f25cb2fffc9" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/ISVenta.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
