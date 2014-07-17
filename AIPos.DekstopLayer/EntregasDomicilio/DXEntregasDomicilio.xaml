@@ -9,15 +9,15 @@
     >
     <Grid>
 
-        <dxg:GridControl x:Name="gridVentas" AutoGenerateColumns="None" Margin="10,40,9.667,9.667" SelectedItemChanged="gridVentas_SelectedItemChanged" CustomUnboundColumnData="gridVentas_CustomUnboundColumnData" ItemsSource="{Binding}">
+        <dxg:GridControl x:Name="gridVentas" AutoGenerateColumns="None" Margin="10,40,9.667,9.667" SelectedItemChanged="gridVentas_SelectedItemChanged" CustomUnboundColumnData="gridVentas_CustomUnboundColumnData" ItemsSource="{Binding List}">
             <dxg:GridControl.View>
                 <dxg:TableView ShowTotalSummary="True"/>
             </dxg:GridControl.View>
             <dxg:GridControl.Columns>
-                <dxg:GridColumn Header="*" UnboundType="Boolean" AllowSorting="False">
+                <dxg:GridColumn FieldName="Selected" UnboundType="Boolean" AllowSorting="False">
                     <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox Name="chkSelect" IsChecked="{Binding Data.Selected}" HorizontalAlignment="Center" VerticalAlignment="Center"></CheckBox>
+                            <dxe:CheckEdit IsChecked="{Binding Data.Selected}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </DataTemplate>
                     </dxg:GridColumn.CellTemplate>
                 </dxg:GridColumn>
@@ -42,9 +42,10 @@
                 <dxg:GridColumn FieldName="Repartidor" Header="Repartidor" AllowEditing="False"/>
             </dxg:GridControl.Columns>
         </dxg:GridControl>
-        <Button x:Name="btnEnviar" Content="Enviar" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Width="75" Click="btnEnviar_Click_1"/>
-        <Button x:Name="btnConfirmar" Content="Confirmar entrega" HorizontalAlignment="Left" Margin="110,15,0,0" VerticalAlignment="Top" Width="105" Click="btnConfirmar_Click_1"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="316,15,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button x:Name="btnEnviar" Content="Enviar" HorizontalAlignment="Right" Margin="10,14,10,0" VerticalAlignment="Top" Width="75" Click="btnEnviar_Click_1"/>
+        <Button x:Name="btnConfirmar" Content="Confirmar entrega" HorizontalAlignment="Right" Margin="110,15,110,0" VerticalAlignment="Top" Width="105" Click="btnConfirmar_Click_1"/>
+        <Label VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,14,0,0">Mostrar por:</Label>
+        <dxe:ComboBoxEdit HorizontalAlignment="Left" Margin="80,14,0,0" VerticalAlignment="Top" Width="150" ItemsSource="{Binding Estatus}" DisplayMember="Nombre" ValueMember="Id" Name="cmbEstatus" SelectedIndexChanged="cmbEstatus_SelectedIndexChanged"/>
 
     </Grid>
 </dx:DXWindow>

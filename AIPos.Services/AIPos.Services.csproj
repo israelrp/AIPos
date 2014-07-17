@@ -89,6 +89,7 @@
     <Content Include="SDireccionEnvio.svc" />
     <Content Include="SDireccionFacturacion.svc" />
     <Content Include="SEntrada.svc" />
+    <Content Include="SEstatusServicioApartado.svc" />
     <Content Include="SInventario.svc" />
     <Content Include="SListaPrecio.svc" />
     <Content Include="SPedidoSucursal.svc" />
@@ -113,6 +114,7 @@
     <Compile Include="ISDireccionEnvio.cs" />
     <Compile Include="ISDireccionFacturacion.cs" />
     <Compile Include="ISEntrada.cs" />
+    <Compile Include="ISEstatusServicioApartado.cs" />
     <Compile Include="ISInventario.cs" />
     <Compile Include="ISListaPrecio.cs" />
     <Compile Include="ISListaPrecioProducto.svc.cs">
@@ -151,6 +153,9 @@
     </Compile>
     <Compile Include="SEntrada.svc.cs">
       <DependentUpon>SEntrada.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SEstatusServicioApartado.svc.cs">
+      <DependentUpon>SEstatusServicioApartado.svc</DependentUpon>
     </Compile>
     <Compile Include="SInventario.svc.cs">
       <DependentUpon>SInventario.svc</DependentUpon>

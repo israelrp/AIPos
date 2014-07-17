@@ -283,6 +283,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ServiceEstatusServicioApartado\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ServiceInventario\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -437,6 +442,7 @@
     <None Include="Properties\DataSources\AIPos.Domain.DireccionEnvio.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.DireccionFacturacion.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.Entrada.datasource" />
+    <None Include="Properties\DataSources\AIPos.Domain.EstatusServicioApartado.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.Inventario.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.ListaPrecio.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.ListaPrecioProducto.datasource" />
@@ -517,6 +523,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceEntrada\SEntrada32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceEstatusServicioApartado\SEstatusServicioApartado.wsdl" />
+    <None Include="Service References\ServiceEstatusServicioApartado\SEstatusServicioApartado.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceEstatusServicioApartado\SEstatusServicioApartado1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceEstatusServicioApartado\SEstatusServicioApartado2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceInventario\SInventario.wsdl" />
@@ -769,6 +785,7 @@
     <WCFMetadataStorage Include="Service References\ServiceDireccionFacturacion\" />
     <WCFMetadataStorage Include="Service References\ServiceDireccion\" />
     <WCFMetadataStorage Include="Service References\ServiceEntrada\" />
+    <WCFMetadataStorage Include="Service References\ServiceEstatusServicioApartado\" />
     <WCFMetadataStorage Include="Service References\ServiceInventario\" />
     <WCFMetadataStorage Include="Service References\ServiceListaPrecioProducto\" />
     <WCFMetadataStorage Include="Service References\ServiceListaPrecio\" />
@@ -1431,6 +1448,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceDireccionFacturacion\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceEstatusServicioApartado\SEstatusServicioApartado.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceEstatusServicioApartado\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceEstatusServicioApartado\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceEstatusServicioApartado\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

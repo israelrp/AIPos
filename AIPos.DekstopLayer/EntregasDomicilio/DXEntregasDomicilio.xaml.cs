@@ -22,19 +22,24 @@ namespace AIPos.DekstopLayer.EntregasDomicilio
     public partial class DXEntregasDomicilio : DXWindow
     {
         SelectionHelper<int> selectionHelper = new SelectionHelper<int>();
-        List<ReporteServicioApartado> list=new List<ReporteServicioApartado>();
-
+        List<ReporteServicioApartado> list=new List<ReporteServicioApartado>();        
         public List<ReporteServicioApartado> List { get { return list; } }
         public DXEntregasDomicilio()
         {
             InitializeComponent();
             RecuperarInformacion();
-            gridVentas.DataContext = this.List;
+            gridVentas.DataContext = this;
         }
 
         private void RecuperarInformacion()
-        {
-            list = new ServiceServicioApartado.SServicioApartadoClient().RecuperarReporteServicioApartado(General.ConfiguracionApp.SucursalId, null).ToList();
+        {            
+            List<EstatusServicioApartado> estatus = new ServiceEstatusServicioApartado.SEstatusServicioApartadoClient().SelectAll().ToList();
+            if (estatus.Count > 0)
+            {
+                cmbEstatus.ItemsSource = estatus;
+                cmbEstatus.SelectedIndex = 0;
+                list = new ServiceServicioApartado.SServicioApartadoClient().RecuperarReporteServicioApartado(General.ConfiguracionApp.SucursalId, estatus[0].Id).ToList();
+            }
         }
 
         private void btnEnviar_Click_1(object sender, RoutedEventArgs e)
@@ -92,17 +97,21 @@ namespace AIPos.DekstopLayer.EntregasDomicilio
         private void gridVentas_CustomUnboundColumnData(object sender, DevExpress.Xpf.Grid.GridColumnDataEventArgs e)
         {
             if (e.Column.FieldName != "Selected") return;
-            int key = (int)e.GetListSourceFieldValue("Id");
+            int key = (int)e.GetListSourceFieldValue("VentaId");
             if (e.IsGetData)
                 e.Value = selectionHelper.GetIsSelected(key);
             if (e.IsSetData)
                 selectionHelper.SetIsSelected(key, (bool)e.Value);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void cmbEstatus_SelectedIndexChanged(object sender, RoutedEventArgs e)
         {
-            string caption = string.Format("Selected rows (Total: {0})", selectionHelper.GetSelectionCount());
-            MessageBox.Show(selectionHelper.GetSelectedKeysAsString(), caption);
+            if (cmbEstatus.SelectedIndex > -1)
+            {
+                EstatusServicioApartado estatus = (EstatusServicioApartado)cmbEstatus.SelectedItem;
+                list = new ServiceServicioApartado.SServicioApartadoClient().RecuperarReporteServicioApartado(General.ConfiguracionApp.SucursalId, estatus.Id).ToList();
+            }
         }
+
     }
 }
