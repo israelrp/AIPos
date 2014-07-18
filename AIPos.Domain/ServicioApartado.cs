@@ -48,5 +48,6 @@ namespace AIPos.Domain
         public DateTime? FechaSalidaRepartidor { get; set; }
         public DateTime? FechaLlegadaRepartidor { get; set; }
         public string Repartidor { get; set; }
+        public int? FolioEnvio { get; set; }
     }
 }

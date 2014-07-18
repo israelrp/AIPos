@@ -44,53 +44,71 @@ namespace AIPos.DekstopLayer.EntregasDomicilio
 
         private void btnEnviar_Click_1(object sender, RoutedEventArgs e)
         {
-            Domain.ReporteServicioApartado venta=(Domain.ReporteServicioApartado)gridVentas.SelectedItem;
-            DXEnviar dxEnviar = new DXEnviar();
-            dxEnviar.VentaId = venta.VentaId;
-            dxEnviar.ShowDialog();
-            RecuperarInformacion();
+            if (selectionHelper.GetSelectionCount() > 0)
+            {
+                DXEnviar dxEnviar = new DXEnviar();
+                dxEnviar.VentaIds = selectionHelper.GetSelectedKeys();
+                dxEnviar.ShowDialog();
+                RecuperarInformacion();
+                gridVentas.ItemsSource = list;
+            }
+            else
+            {
+                MessageBox.Show("Debe de seleccionar al menos un registro para enviar");
+            }
         }
 
         private void btnConfirmar_Click_1(object sender, RoutedEventArgs e)
         {
-            Domain.ReporteServicioApartado venta=(Domain.ReporteServicioApartado)gridVentas.SelectedItem;
             ServiceServicioApartado.SServicioApartadoClient servicioApartadoClient = new ServiceServicioApartado.SServicioApartadoClient();
             ServiceSeguimientoServicioApartado.SSeguimientoServicioApartadoClient seguimientoClient = new ServiceSeguimientoServicioApartado.SSeguimientoServicioApartadoClient();
-            SeguimientoServicioApartado seguimiento = seguimientoClient.SelectById(venta.VentaId);
-            ServicioApartado servicioApartado = servicioApartadoClient.SelectById(venta.VentaId);
-            if (servicioApartado != null)
+            foreach (int ventaId in selectionHelper.GetSelectedKeys())
             {
-                if (seguimiento != null)
+                SeguimientoServicioApartado seguimiento = seguimientoClient.SelectById(ventaId);
+                ServicioApartado servicioApartado = servicioApartadoClient.SelectById(ventaId);
+                if (servicioApartado != null)
                 {
-                    seguimiento.FechaLlegadaRepartidor = DateTime.Now;
-                    seguimientoClient.Update(seguimiento);
+                    if (seguimiento != null)
+                    {
+                        seguimiento.FechaLlegadaRepartidor = DateTime.Now;
+                        seguimientoClient.Update(seguimiento);
+                    }
+                    servicioApartado.EstatusId = 6;
+                    servicioApartadoClient.Update(servicioApartado);
                 }
-                servicioApartado.EstatusId = 6;
-                servicioApartadoClient.Update(servicioApartado);
             }
             RecuperarInformacion();
+            gridVentas.ItemsSource = list;
         }
 
         private void gridVentas_SelectedItemChanged(object sender, DevExpress.Xpf.Grid.SelectedItemChangedEventArgs e)
         {
             Domain.ReporteServicioApartado venta = (Domain.ReporteServicioApartado)gridVentas.SelectedItem;
-            ServiceServicioApartado.SServicioApartadoClient servicioApartadoClient = new ServiceServicioApartado.SServicioApartadoClient();
-            ServicioApartado servicioApartado = servicioApartadoClient.SelectById(venta.VentaId);
-            btnConfirmar.IsEnabled = false;
-            btnEnviar.IsEnabled = false;
-            if (servicioApartado != null)
+            if (venta != null)
             {
-                if (servicioApartado.EstatusId == 5)
+                ServiceServicioApartado.SServicioApartadoClient servicioApartadoClient = new ServiceServicioApartado.SServicioApartadoClient();
+                ServicioApartado servicioApartado = servicioApartadoClient.SelectById(venta.VentaId);
+                btnConfirmar.IsEnabled = false;
+                btnEnviar.IsEnabled = false;
+                if (servicioApartado != null)
                 {
-                    btnConfirmar.IsEnabled = true;
-                    btnEnviar.IsEnabled = false;
-                }
-                if (servicioApartado.EstatusId == 4)
-                {
-                    btnConfirmar.IsEnabled = false;
-                    btnEnviar.IsEnabled = true;
-                }
+                    if (servicioApartado.EstatusId == 5)
+                    {
+                        btnConfirmar.IsEnabled = true;
+                        btnEnviar.IsEnabled = false;
+                    }
+                    if (servicioApartado.EstatusId == 4)
+                    {
+                        btnConfirmar.IsEnabled = false;
+                        btnEnviar.IsEnabled = true;
+                    }
 
+                }
+            }
+            else
+            {
+                btnConfirmar.IsEnabled = false;
+                btnEnviar.IsEnabled = true;
             }
         }
 
@@ -110,8 +128,14 @@ namespace AIPos.DekstopLayer.EntregasDomicilio
             {
                 EstatusServicioApartado estatus = (EstatusServicioApartado)cmbEstatus.SelectedItem;
                 list = new ServiceServicioApartado.SServicioApartadoClient().RecuperarReporteServicioApartado(General.ConfiguracionApp.SucursalId, estatus.Id).ToList();
+                foreach(int key in selectionHelper.GetSelectedKeys())
+                {
+                    selectionHelper.SetIsSelected(key, false);
+                }
+                gridVentas.ItemsSource = list;
             }
         }
+
 
     }
 }

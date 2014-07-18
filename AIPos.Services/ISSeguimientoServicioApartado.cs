@@ -21,6 +21,9 @@ namespace AIPos.Services
         [OperationContract]
         SeguimientoServicioApartado SelectById(int VentaId);
 
+        [OperationContract]
+        int GenerarNuevoFolioEnvio();
+
         
     }
 }

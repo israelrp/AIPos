@@ -4,7 +4,7 @@
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     x:Class="AIPos.DekstopLayer.EntregasDomicilio.DXEntregasDomicilio"
-    Title="Control de entregas" Height="350" Width="525"
+    Title="Control de entregas" Height="350" Width="725"
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     >
     <Grid>
@@ -21,6 +21,7 @@
                         </DataTemplate>
                     </dxg:GridColumn.CellTemplate>
                 </dxg:GridColumn>
+                <dxg:GridColumn FieldName="FolioEnvio" Header="Folio Envio" AllowEditing="False"/>
                 <dxg:GridColumn FieldName="Cliente" Header="Cliente" AllowEditing="False"/>
                 <dxg:GridColumn FieldName="Telefono" Header="Telefono" AllowEditing="False"/>
                 <dxg:GridColumn FieldName="Celular" Header="Celular" AllowEditing="False"/>
@@ -37,8 +38,16 @@
                 <dxg:GridColumn FieldName="Orden" Header="Orden" AllowEditing="False"/>
                 <dxg:GridColumn FieldName="Especificaciones" AllowEditing="False"/>
                 <dxg:GridColumn FieldName="DireccionEnvio" Header="Dirección de envio" AllowEditing="False"/>
-                <dxg:GridColumn FieldName="FechaSalidaRepartidor" Header="Hora salida repartidor" AllowEditing="False"/>
-                <dxg:GridColumn FieldName="FechaLlegadaRepartidor" Header="Hora llegada repartidor" AllowEditing="False"/>
+                <dxg:GridColumn FieldName="FechaSalidaRepartidor" Header="Hora salida repartidor" AllowEditing="False">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:DateEditSettings DisplayFormat="g" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="FechaLlegadaRepartidor" Header="Hora llegada repartidor" AllowEditing="False">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:DateEditSettings DisplayFormat="g" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
                 <dxg:GridColumn FieldName="Repartidor" Header="Repartidor" AllowEditing="False"/>
             </dxg:GridControl.Columns>
         </dxg:GridControl>
@@ -46,6 +55,6 @@
         <Button x:Name="btnConfirmar" Content="Confirmar entrega" HorizontalAlignment="Right" Margin="110,15,110,0" VerticalAlignment="Top" Width="105" Click="btnConfirmar_Click_1"/>
         <Label VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,14,0,0">Mostrar por:</Label>
         <dxe:ComboBoxEdit HorizontalAlignment="Left" Margin="80,14,0,0" VerticalAlignment="Top" Width="150" ItemsSource="{Binding Estatus}" DisplayMember="Nombre" ValueMember="Id" Name="cmbEstatus" SelectedIndexChanged="cmbEstatus_SelectedIndexChanged"/>
-
+        
     </Grid>
 </dx:DXWindow>

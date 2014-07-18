@@ -20,7 +20,19 @@ namespace AIPos.DekstopLayer.EntregasDomicilio
     /// </summary>
     public partial class DXEnviar : DXWindow
     {
-        public int VentaId { get; set; }
+        public List<int> ventaIds=new List<int>();
+        public List<int> VentaIds
+        {
+            get
+            {
+                return ventaIds;
+            }
+            set
+            {
+                ventaIds = value;
+                lblVentas.Content = "Ha seleccionado " + ventaIds.Count().ToString() + " ventas para enviar.";
+            }
+        }
         
 
         public DXEnviar()
@@ -35,30 +47,36 @@ namespace AIPos.DekstopLayer.EntregasDomicilio
             {
                 ServiceServicioApartado.SServicioApartadoClient servicioApartadoClient = new ServiceServicioApartado.SServicioApartadoClient();
                 ServiceSeguimientoServicioApartado.SSeguimientoServicioApartadoClient seguimientoClient = new ServiceSeguimientoServicioApartado.SSeguimientoServicioApartadoClient();
-                SeguimientoServicioApartado seguimiento = seguimientoClient.SelectById(VentaId);
-                ServicioApartado servicioApartado = servicioApartadoClient.SelectById(VentaId);
-                if (servicioApartado != null)
+                int folio = seguimientoClient.GenerarNuevoFolioEnvio();
+                foreach(int ventaId in VentaIds)
                 {
-                    if (seguimiento == null)
+                    SeguimientoServicioApartado seguimiento = seguimientoClient.SelectById(ventaId);
+                    ServicioApartado servicioApartado = servicioApartadoClient.SelectById(ventaId);
+                    if (servicioApartado != null)
                     {
-                        seguimiento = new SeguimientoServicioApartado();
-                        seguimiento.FechaSalidaRepartidor = deFechaSalida.DateTime;
-                        seguimiento.Repartidor = txtRepartidor.Text;
-                        seguimiento.VentaId = VentaId;
-                        seguimiento.FechaSolicitud = DateTime.Now;
-                        seguimientoClient.Insert(seguimiento);
+                        if (seguimiento == null)
+                        {
+                            seguimiento = new SeguimientoServicioApartado();
+                            seguimiento.FechaSalidaRepartidor = deFechaSalida.DateTime;
+                            seguimiento.Repartidor = txtRepartidor.Text;
+                            seguimiento.VentaId = ventaId;
+                            seguimiento.FechaSolicitud = DateTime.Now;
+                            seguimiento.Folio = folio;
+                            seguimientoClient.Insert(seguimiento);
+                        }
+                        else
+                        {
+                            seguimiento.FechaSalidaRepartidor = deFechaSalida.DateTime;
+                            seguimiento.Repartidor = txtRepartidor.Text;
+                            seguimiento.VentaId = ventaId;
+                            seguimiento.FechaSolicitud = DateTime.Now;
+                            seguimiento.Folio = folio;
+                            seguimientoClient.Update(seguimiento);
+                        }
+                        servicioApartado.EstatusId = 5;
+                        servicioApartadoClient.Update(servicioApartado);
                     }
-                    else
-                    {
-                        seguimiento.FechaSalidaRepartidor = deFechaSalida.DateTime;
-                        seguimiento.Repartidor = txtRepartidor.Text;
-                        seguimiento.VentaId = VentaId;
-                        seguimiento.FechaSolicitud = DateTime.Now;
-                        seguimientoClient.Update(seguimiento);
-                    }
-                    servicioApartado.EstatusId = 5;
-                    servicioApartadoClient.Update(servicioApartado);
-                }
+                }                
             }
             else
             {

@@ -27,7 +27,7 @@
     <InstallUrl>http://serveraplicaciones.cloudapp.net:65/Instalador/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>29</ApplicationRevision>
+    <ApplicationRevision>30</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -605,14 +605,14 @@
     <None Include="Service References\ServiceRetiroDinero\ISRetiroDinero2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado.wsdl" />
-    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado.xsd">
+    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado1.wsdl" />
+    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado1.xsd">
+    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado2.xsd">
+    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado32.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceServicioApartado\SServicioApartado.wsdl" />
@@ -935,14 +935,14 @@
     <None Include="Service References\ServiceVenta\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceVenta\ISVenta.wsdl" />
-    <None Include="Service References\ServiceVenta\ISVenta.xsd">
+    <None Include="Service References\ServiceVenta\ISVenta1.wsdl" />
+    <None Include="Service References\ServiceVenta\ISVenta3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceVenta\ISVenta1.xsd">
+    <None Include="Service References\ServiceVenta\ISVenta31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceVenta\ISVenta2.xsd">
+    <None Include="Service References\ServiceVenta\ISVenta32.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceVenta\Reference.svcmap">
@@ -1007,7 +1007,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 y x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -1019,6 +1019,11 @@
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="SAP.CrystalReports14.NET.2.0">
+      <Visible>False</Visible>
+      <ProductName>SAP Crystal Reports Runtime Engine for .NET Framework</ProductName>
+      <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
@@ -1297,9 +1302,6 @@
     <None Include="Configuracion\Config.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceVenta\ISVenta.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\ServiceRetiroDinero\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -1423,9 +1425,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\ServiceSeguimientoServicioApartado\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -1466,6 +1465,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceVenta\ISVenta1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

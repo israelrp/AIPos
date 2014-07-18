@@ -88,6 +88,12 @@ namespace AIPos.DAO.Implementation
             object[] parameters = new object[] { FechaInicio, FechaFin };
             return cm.Database.SqlQuery<ReporteCorteCaja>("dbo.usp_CorteCaja @FechaInicio={0}, @FechaFin={1} ", parameters).ToList();
         }
+
+        public List<ReporteVentasProducto> RecuperarVentasProducto(int SucursalId)
+        {
+            object[] parameters = new object[] { SucursalId };
+            return cm.Database.SqlQuery<ReporteVentasProducto>("dbo.usp_ReporteVentasProducto @SucursalId={0}", parameters).ToList();
+        }
     }
 
 

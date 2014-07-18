@@ -28,6 +28,7 @@ namespace AIPos.Domain
         public Sucursal Sucursal { get; set; }
 
         public List<VentaDetalle> VentasDetalle { get; set; }
+
     }
 
     public class ReporteCorteCaja
@@ -49,5 +50,16 @@ namespace AIPos.Domain
         public DateTime? FechaEntrega { get; set; }
         public string Especificaciones { get; set; }
         public string DireccionEnvio { get; set; }
+
+    }
+
+    public class ReporteVentasProducto
+    {
+        public int ProductoId { get; set; }
+        public string Tipo { get; set; }
+        public string Producto { get; set; }
+        public decimal Cantidad { get; set; }
+        public decimal ImporteTotal { get; set; }
+
     }
 }
