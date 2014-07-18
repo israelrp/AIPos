@@ -1,0 +1,20 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "GridViewVentasProducto";
+        settings.CallbackRouteValues = new { Controller = "ReporteVentasProducto", Action = "GridViewPartialVentasProducto" };
+
+
+		settings.KeyFieldName = "ProductoId";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = true;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+				settings.Columns.Add("Tipo");
+				settings.Columns.Add("Producto");
+				settings.Columns.Add("Cantidad");
+				settings.Columns.Add("ImporteTotal");
+			});
+}
+@grid.Bind(Model).GetHtml()

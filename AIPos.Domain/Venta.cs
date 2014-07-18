@@ -52,4 +52,14 @@ namespace AIPos.Domain
         public string DireccionEnvio { get; set; }
 
     }
+
+    public class ReporteVentasProducto
+    {
+        public int ProductoId { get; set; }
+        public string Tipo { get; set; }
+        public string Producto { get; set; }
+        public decimal Cantidad { get; set; }
+        public decimal ImporteTotal { get; set; }
+
+    }
 }

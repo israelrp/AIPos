@@ -254,6 +254,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListasPrecioController.cs" />
     <Compile Include="Controllers\ReporteCorteCajaController.cs" />
+    <Compile Include="Controllers\ReporteVentasProductoController.cs" />
     <Compile Include="Controllers\RetirosDineroController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -1201,6 +1202,8 @@
     <Content Include="Views\HistorialCorteCaja\_GridViewPartialHistorialCorteCaja.cshtml" />
     <Content Include="Views\RetirosDinero\Reporte.cshtml" />
     <Content Include="Views\RetirosDinero\_GridViewPartialRetirosDinero.cshtml" />
+    <Content Include="Views\ReporteVentasProducto\Index.cshtml" />
+    <Content Include="Views\ReporteVentasProducto\_GridViewPartialVentasProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

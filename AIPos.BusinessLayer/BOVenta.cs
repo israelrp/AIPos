@@ -118,5 +118,10 @@ namespace AIPos.BusinessLayer
             return ventaDaoImpl.RecuperarCorteCaja(fechaInicio, fechaFin);
         }
 
+        public List<ReporteVentasProducto> RecuperarVentasProducto(int SucursalId)
+        {
+            return ventaDaoImpl.RecuperarVentasProducto(SucursalId);
+        }
+
     }
 }

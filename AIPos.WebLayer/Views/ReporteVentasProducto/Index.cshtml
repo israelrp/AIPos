@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Ajax.BeginForm("GridViewPartialVentasProducto", new AjaxOptions { UpdateTargetId = "divCorte" }))
+{
+<table>
+    <tr>
+        <td>
+            @Html.DevExpress().ComboBox(settings =>
+            {
+                settings.Name = "SucursalId";
+                settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+                settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+                settings.Properties.ValueField = "Id";
+                settings.Properties.TextField = "Nombre";
+                settings.Properties.NullText = "Sucursal que realizo las ventas";
+            }).BindList(new AIPos.BusinessLayer.BOSucursal().SelectAll()).GetHtml()
+        </td>
+        <td>
+            @Html.DevExpress().Button(settings =>
+           {
+               settings.Name = "btnConsultar";
+               settings.Text = "Consultar";
+               settings.UseSubmitBehavior = true;
+           }).GetHtml()
+        </td>
+    </tr>
+</table>
+}
+<div id="divCorte">
+
+</div>
