@@ -64,6 +64,13 @@ namespace AIPos.BusinessLayer
             return usuario;
         }
 
+        public Usuario Login(string UserName, string Password)
+        {
+            string passwordEncrypt = BOEncrypt.Encrypt(Password.Trim().ToLower());
+            Usuario usuario = new BOUsuario().SelectAll().Where(x => x.UserName.ToLower() == UserName.ToLower() && x.Password == passwordEncrypt).FirstOrDefault();
+            return usuario;
+        }
+
         public Usuario Login(string UserName, string Password, int SucursalId)
         {
             string passwordEncrypt=BOEncrypt.Encrypt(Password.Trim().ToLower());

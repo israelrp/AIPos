@@ -26,10 +26,6 @@ namespace AIPos.WebLayer.Controllers
             {
                 corteCaja = new BusinessLayer.BOCorteCaja().SelectAll().Where(x => x.SucursalId == SucursalId.Value).ToList();
             }
-            else
-            {
-                corteCaja = new BusinessLayer.BOCorteCaja().SelectAll();
-            }
             return PartialView("_GridViewPartialHistorialCorteCaja", corteCaja);
         }
 

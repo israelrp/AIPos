@@ -8,13 +8,13 @@ using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
-using AIPos.WebLayer.Filters;
 using AIPos.WebLayer.Models;
+using AIPos.BusinessLayer;
+using AIPos.Domain;
 
 namespace AIPos.WebLayer.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
@@ -35,9 +35,13 @@ namespace AIPos.WebLayer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            BOUsuario boUsuario = new BOUsuario();
+            Usuario usuario = boUsuario.Login(model.UserName, model.Password);
+            if (ModelState.IsValid && usuario!=null)
             {
-                return RedirectToLocal(returnUrl);
+                FormsAuthentication.SetAuthCookie(model.UserName, false);
+
+                return RedirectToAction("Index", "Home");
             }
 
             // If we got this far, something failed, redisplay form
@@ -52,8 +56,7 @@ namespace AIPos.WebLayer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            WebSecurity.Logout();
-
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 

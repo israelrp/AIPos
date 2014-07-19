@@ -15,7 +15,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/jqueryval")
-    <link href="~/Content/Menu.css" rel="stylesheet" type="text/css" />
+        @Scripts.Render("~/bundles/bootstrap")
     @Html.DevExpress().GetScripts( 
         new Script { ExtensionSuite = ExtensionSuite.All }
     )
@@ -32,76 +32,71 @@
     </script>
     </head>
     <body>
-        <header>
-            <div id="header">
-                <div class="content-wrapper">
-                    <div>
-                    <section id="login">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("San agustin", "Index", "Administracion", null, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catálogos<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="~/CatalogoUnidades/">Unidades de medida</a></li>
+                                <li><a href="~/CatalogoTipos/">Tipos de producto</a></li>
+                                <li><a href="~/CatalogoSucursales/">Sucursales</a></li>
+                                <li><a href="~/CatalogoProductos/">Productos</a></li>
+                                <li><a href="~/CatalogoClientes/">Clientes</a></li>
+                                <li><a href="~/CatalogoProveedores/">Proveedores</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lista precios<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="~/ListasPrecio/">Catalogo listas</a></li>
+                                <li><a href="~/ListasPrecio/ListaPreciosProductos">Asignar precios a listas</a></li>
+                                <li><a href="~/ListasPrecio/AsignarListaPrecioSucursal">Asignar sucursales a lista</a></li>
+                                <li><a href="~/ListasPrecio/AsignarListaPrecioCliente">Asignar clientes a lista</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrar usuarios<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="~/AdministracionSeguridad/">Catálogo usuarios</a></li>
+                                <li><a href="~/AdministracionSeguridad/UsuarioSucursales">Asignar sucursales a uuarios</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="~/ReporteCorteCaja/">Corte de caja</a></li>
+                                <li><a href="~/HistorialCorteCaja/">Historio de cortes de caja</a></li>
+                                <li><a href="~/RetirosDinero/Reporte">Retiros de dinero</a></li>
+                                <li><a href="~/ReporteVentasProducto/">Ventas por producto</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="http://serveraplicaciones.cloudapp.net:65/Instalador/publish.htm">Instalador POS</a></li>
                         @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-	                        <li><a href="~/">Home</a></li>
-	                        <li>
-		                        <a href="#">Catálogos</a>
-		                        <ul>
-			                        <li><a href="~/CatalogoUnidades/">Unidades de medida</a></li>
-			                        <li><a href="~/CatalogoTipos/">Tipos de producto</a></li>
-			                        <li><a href="~/CatalogoSucursales/">Sucursales</a></li>
-			                        <li><a href="~/CatalogoProductos/">Productos</a></li>
-                                    <li><a href="~/CatalogoClientes/">Clientes</a></li>
-                                    <li><a href="~/CatalogoProveedores/">Proveedores</a></li>
-		                        </ul>
-	                        </li>
-                            <li>
-		                        <a href="#">Listas precios</a>
-		                        <ul>
-			                        <li><a href="~/ListasPrecio/">Catalogo listas</a></li>
-                                    <li><a href="~/ListasPrecio/ListaPreciosProductos">Asignar precios a listas</a></li>
-                                    <li><a href="~/ListasPrecio/AsignarListaPrecioSucursal">Asignar sucursales a lista</a></li>
-                                    <li><a href="~/ListasPrecio/AsignarListaPrecioCliente">Asignar clientes a lista</a></li>
-		                        </ul>
-	                        </li>
-	                        <li>
-                                <a href="#">Administrar usuarios</a>
-                                <ul>
-			                        <li><a href="~/AdministracionSeguridad/">Catálogo usuarios</a></li>
-                                    <li><a href="~/AdministracionSeguridad/UsuarioSucursales">Asignar sucursales a uuarios</a></li>
-		                        </ul>
-	                        </li>
-	                        <li>
-		                        <a href="#">Reportes</a>
-		                        <ul>
-			                        <li><a href="~/ReporteCorteCaja/">Corte de caja</a></li>
-                                    <li><a href="~/HistorialCorteCaja/">Historio de cortes de caja</a></li>
-                                    <li><a href="~/RetirosDinero/Reporte">Retiros de dinero</a></li>
-                                    <li><a href="~/ReporteVentasProducto/">Ventas por producto</a></li>
-		                        </ul>
-	                        </li>
-	                        <li><a href="http://serveraplicaciones.cloudapp.net:65/Instalador/publish.htm">Instalador POS</a></li>
-                        </ul>
-                    </nav>
-                </div>
+                    </ul>
                 </div>
             </div>
-
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                <div>
-                    @RenderBody()
-                </div>
-            </section>
         </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - Distribuidora San Agustin</p>
+        <div class="container body-content" style="padding-top:50px;">
+            @RenderBody()
+            <hr />
+            @*<footer>
+                <div class="content-wrapper">
+                    <div class="float-left">
+                        <p>&copy; @DateTime.Now.Year - Distribuidora San Agustin</p>
+                    </div>
                 </div>
-            </div>
-        </footer>
-
+            </footer>*@
+        </div>  
         @RenderSection("scripts", required: false)
     </body>
 </html>
