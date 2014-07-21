@@ -53,10 +53,16 @@ namespace AIPos.DAO.Implementation
             throw new NotImplementedException();
         }
 
-        public SucursalListaPrecio SelectByKey(int SucursalId, int ListaPrecioId)
+        public SucursalListaPrecio SelectByKey(int SucursalId, int? ListaPrecioId)
         {
             object[] parameters = new object[] { SucursalId, ListaPrecioId };
             return cm.Database.SqlQuery<SucursalListaPrecio>("dbo.usp_SucursalesListasPrecioSelect @SucursalId={0}, @ListaPrecioId={1}", parameters).FirstOrDefault();
+        }
+
+        public List<SucursalListaPrecio> SelectByListaPrecio(int ListaPrecioId)
+        {
+            object[] parameters = new object[] { null, ListaPrecioId };
+            return cm.Database.SqlQuery<SucursalListaPrecio>("dbo.usp_SucursalesListasPrecioSelect @SucursalId={0}, @ListaPrecioId={1}", parameters).ToList();
         }
     }
 }

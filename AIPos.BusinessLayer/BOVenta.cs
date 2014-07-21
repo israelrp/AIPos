@@ -49,12 +49,12 @@ namespace AIPos.BusinessLayer
 
         public Venta SelectByFolio(int Folio, int SucursalId)
         {
-            return ventaDaoImpl.SelectAll().Where(x => x.Folio == Folio && x.SucursalId==SucursalId).FirstOrDefault();
+            return ventaDaoImpl.SelectBySucursalFolio(SucursalId, Folio);
         }
 
         public Venta SelectByFolioCancelado(int FolioCancelado, int SucursalId)
         {
-            return ventaDaoImpl.SelectAll().Where(x => x.FolioCancelado == FolioCancelado && x.SucursalId==SucursalId).FirstOrDefault();
+            return ventaDaoImpl.SelectBySucursalFolioCancelado(SucursalId, FolioCancelado);
         }
 
         public List<Venta> SelectAll()

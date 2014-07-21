@@ -9,6 +9,7 @@ namespace AIPos.WebLayer.Controllers
 {
     public class ReporteVentasProductoController : Controller
     {
+        [Authorize]
         //
         // GET: /ReporteVentasProducto/
 

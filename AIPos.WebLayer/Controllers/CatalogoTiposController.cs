@@ -8,6 +8,7 @@ using AIPos.BusinessLayer;
 
 namespace AIPos.WebLayer.Controllers
 {
+    [Authorize]
     public class CatalogoTiposController : Controller
     {
         //

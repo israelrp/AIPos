@@ -66,7 +66,7 @@ namespace AIPos.BusinessLayer
         public ListaPrecio RecuperarListaPrecioDelCliente(int ClienteId)
         {
             ListaPrecio listaPrecio;
-            ClienteListaPrecio clienteListaPrecio= new ClienteListaPrecioDaoImpl().SelectAll().Where(x => x.ClienteId == ClienteId).FirstOrDefault();
+            ClienteListaPrecio clienteListaPrecio = new ClienteListaPrecioDaoImpl().SelectByKey(ClienteId, null);
             if (clienteListaPrecio != null)
             {
                 listaPrecio = listaPrecioDaoImpl.SelectByKey(clienteListaPrecio.ListaPrecioId);
@@ -81,7 +81,7 @@ namespace AIPos.BusinessLayer
         public ListaPrecio RecuperarListaPrecioDeSucursal(int SucursalId)
         {
             ListaPrecio listaPrecio;
-            SucursalListaPrecio sucursalListaPrecio = new SucursalListaPrecioDaoImpl().SelectAll().Where(x => x.SucursalId == SucursalId).FirstOrDefault();
+            SucursalListaPrecio sucursalListaPrecio = new SucursalListaPrecioDaoImpl().SelectByKey(SucursalId, null);
             if (sucursalListaPrecio != null)
             {
                 listaPrecio = listaPrecioDaoImpl.SelectByKey(sucursalListaPrecio.ListaPrecioId);

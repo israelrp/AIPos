@@ -53,6 +53,18 @@ namespace AIPos.DAO.Implementation
             return cm.Database.SqlQuery<Venta>("dbo.usp_VentasSelect @Id={0}", parameters).FirstOrDefault();
         }
 
+        public Venta SelectBySucursalFolio(int SucursalId, int Folio)
+        {
+            object[] parameters = new object[] { SucursalId, Folio };
+            return cm.Database.SqlQuery<Venta>("dbo.usp_VentasSelectFolioSucursal @SucursalId={0}, @Folio={1}", parameters).FirstOrDefault();
+        }
+
+        public Venta SelectBySucursalFolioCancelado(int SucursalId, int FolioCancelado)
+        {
+            object[] parameters = new object[] { SucursalId, FolioCancelado };
+            return cm.Database.SqlQuery<Venta>("dbo.usp_VentasSelectFolioSucursal @SucursalId={0}, @FolioCancelado={1}", parameters).FirstOrDefault();
+        }
+
         public int GenerarFolioVenta(int SucursalId)
         {
             object[] parameters = new object[] { SucursalId };

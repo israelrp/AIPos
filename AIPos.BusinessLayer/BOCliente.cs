@@ -62,7 +62,7 @@ namespace AIPos.BusinessLayer
 
         public Cliente SelectByCodigo(string Codigo)
         {
-            return clienteDaoImpl.SelectAll().Where(x => x.Codigo.ToLower() == Codigo.ToLower()).FirstOrDefault();
+            return clienteDaoImpl.SelectByCodigo(Codigo);
         }
     }
 }

@@ -20,17 +20,17 @@ namespace AIPos.BusinessLayer
 
         public List<UsuarioSucursal> SelectByUsuarioId(int UsuarioId)
         {
-            return usuarioSucursalDaoImpl.SelectAll().Where(x => x.UsuarioId == UsuarioId).ToList();
+            return usuarioSucursalDaoImpl.SelectByKey(null, UsuarioId);
         }
 
         public List<UsuarioSucursal> SelectBySucursalId(int SucursalId)
         {
-            return usuarioSucursalDaoImpl.SelectAll().Where(x => x.SucursalId == SucursalId).ToList();
+            return usuarioSucursalDaoImpl.SelectByKey(SucursalId, null);
         }
 
         public UsuarioSucursal SelectBySucursalUsuarioId(int SucursalId, int UsuarioId)
         {
-            return usuarioSucursalDaoImpl.SelectAll().Where(x => x.SucursalId == SucursalId && x.UsuarioId == UsuarioId).FirstOrDefault();
+            return usuarioSucursalDaoImpl.SelectByKey(SucursalId, UsuarioId);
         }
 
         public void Delete(UsuarioSucursal usuarioSucursal)

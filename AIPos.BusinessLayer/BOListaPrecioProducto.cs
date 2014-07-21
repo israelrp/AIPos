@@ -35,7 +35,7 @@ namespace AIPos.BusinessLayer
 
         public ListaPrecioProducto SelectByProductoListaPrecio(int ListaPrecioId, int ProductoId)
         {
-            return listaPrecioProductoDaoImpl.SelectAll().Where(x => x.ListaPrecioId == ListaPrecioId && x.ProductoId == ProductoId).FirstOrDefault();
+            return listaPrecioProductoDaoImpl.SelectByKey(new ListaPrecioProducto() { ListaPrecioId = ListaPrecioId, ProductoId = ProductoId });
         }
 
         public ListaPrecioProducto SelectByProductoSucursal(int SucursalId, int ProductoId)
@@ -46,7 +46,7 @@ namespace AIPos.BusinessLayer
             {
                 return null;
             }
-            return listaPrecioProductoDaoImpl.SelectAll().Where(x => x.ListaPrecioId == sucursalListaPrecio.ListaPrecioId && x.ProductoId == ProductoId).FirstOrDefault();
+            return listaPrecioProductoDaoImpl.SelectByKey(new ListaPrecioProducto() { ListaPrecioId = sucursalListaPrecio.ListaPrecioId, ProductoId = ProductoId });
         }
 
         public ListaPrecioProducto SelectByProductoLista(int ListaId, int ProductoId)
@@ -57,12 +57,12 @@ namespace AIPos.BusinessLayer
             {
                 return null;
             }
-            return listaPrecioProductoDaoImpl.SelectAll().Where(x => x.ListaPrecioId == listaPrecio.Id && x.ProductoId == ProductoId).FirstOrDefault();
+            return listaPrecioProductoDaoImpl.SelectByKey(new ListaPrecioProducto() { ListaPrecioId = listaPrecio.Id, ProductoId = ProductoId });
         }
 
         public List<ListaPrecioProducto> SelectByProducto(int ProductoId)
         {
-            return listaPrecioProductoDaoImpl.SelectAll().Where(x => x.ProductoId == ProductoId).ToList();
+            return listaPrecioProductoDaoImpl.SelectByProducto(ProductoId);
         }
 
 
@@ -74,7 +74,21 @@ namespace AIPos.BusinessLayer
             {
                 return null;
             }
-            return listaPrecioProductoDaoImpl.SelectAll().Where(x => x.ListaPrecioId == clienteListaPrecio.ListaPrecioId && x.ProductoId == ProductoId).FirstOrDefault();
+            return listaPrecioProductoDaoImpl.SelectByKey(new ListaPrecioProducto() { ListaPrecioId = clienteListaPrecio.ListaPrecioId, ProductoId = ProductoId });
+        }
+
+        public List<ListaPrecioProductoModel> SelectByListaPrecio(int ListaPrecioId, string Codigo, string Nombre)
+        {
+            List<ListaPrecioProductoModel> datos = listaPrecioProductoDaoImpl.SelectByListaPrecio(ListaPrecioId);
+            if (Codigo != "")
+            {
+                datos = datos.Where(x => x.Codigo.ToLower() == Codigo.ToLower()).ToList();
+            }
+            if (Nombre != "")
+            {
+                datos = datos.Where(x => x.Producto.ToLower() == Nombre.ToLower()).ToList();
+            }
+            return datos;
         }
         
     }

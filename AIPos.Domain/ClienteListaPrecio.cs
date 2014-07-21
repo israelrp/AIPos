@@ -16,4 +16,12 @@ namespace AIPos.Domain
         [Key, Column(Order = 1)]
         public int ListaPrecioId { get; set; }
     }
+
+    public class ClienteListaPrecioModel
+    {
+        public string Cliente { get; set; }
+        public string ListaPrecio { get; set; }
+        public int ClienteId { get; set; }
+        public int? ListaPrecioId { get; set; }
+    }
 }

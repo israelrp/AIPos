@@ -10,6 +10,7 @@ using AIPos.WebLayer.Models;
 
 namespace AIPos.WebLayer.Controllers
 {
+    [Authorize]
     public class ListasPrecioController : Controller
     {
         BOListaPrecio blListaPrecio = new BOListaPrecio();
@@ -263,60 +264,7 @@ namespace AIPos.WebLayer.Controllers
             List<ListaPrecioProductoModel> listaPreciosProductos = new List<ListaPrecioProductoModel>();
             if (ListaPrecioIdSelected.HasValue)
             {
-                List<Producto> productos = new List<Producto>();
-                if (Codigo == "" && Nombre == "")
-                {
-                    productos = new BOProducto().SelectAll();
-                }
-                else if(Codigo!="")
-                {
-                    var producto = new BOProducto().SelectByCodigo(Codigo);
-                    if(producto!=null)
-                        productos.Add(producto);
-                }
-                else if (Nombre != "")
-                {
-                    productos = new BOProducto().SelectAll().Where(x => x.Nombre.ToLower().Contains(Nombre.ToLower())).ToList();
-                }
-                productos.OrderBy(x => x.Codigo);
-                foreach (var producto in productos)
-                {
-                    //Se busca el precio de lista del producto existente
-                    ListaPrecioProducto listaPrecioProducto = new ListaPrecioProducto(); ;
-                    listaPrecioProducto.ListaPrecioId = ListaPrecioIdSelected.Value;
-                    listaPrecioProducto.ProductoId = producto.Id;
-                    listaPrecioProducto = new BOListaPrecioProducto().SelectById(listaPrecioProducto);
-
-                    ListaPrecioProductoModel listaPrecioProductoModel = new ListaPrecioProductoModel();
-                    listaPrecioProductoModel.ListaPrecioId = ListaPrecioIdSelected.Value;
-                    listaPrecioProductoModel.ProductoId = producto.Id;
-                    listaPrecioProductoModel.Producto = producto.Nombre;
-                    listaPrecioProductoModel.Codigo = producto.Codigo;
-                    listaPrecioProductoModel.PrecioBase = producto.Precio;
-                    if (listaPrecioProducto != null)
-                    {
-                        
-                        listaPrecioProductoModel.PrecioLista = listaPrecioProducto.Precio;
-                        listaPrecioProductoModel.Descuento = listaPrecioProducto.Descuento;
-                        if (listaPrecioProductoModel.Descuento != 0)
-                        {
-                            listaPrecioProductoModel.PrecioDescuento = listaPrecioProducto.Precio - (listaPrecioProducto.Precio * (listaPrecioProducto.Descuento / 100));
-                        }
-                        else
-                        {
-                            listaPrecioProductoModel.PrecioDescuento = 0;
-                        }
-                        listaPrecioProductoModel.EsNuevo = false;
-                    }
-                    else
-                    {
-                        listaPrecioProductoModel.PrecioDescuento = 0;
-                        listaPrecioProductoModel.PrecioLista = 0;
-                        listaPrecioProductoModel.EsNuevo = true;
-                        listaPrecioProductoModel.Descuento = 0;
-                    }
-                    listaPreciosProductos.Add(listaPrecioProductoModel);
-                }
+                listaPreciosProductos = new BOListaPrecioProducto().SelectByListaPrecio(ListaPrecioIdSelected.Value, Codigo, Nombre);
             }
             return PartialView("_GridViewPartialListaPrecios", listaPreciosProductos);
         }
@@ -430,40 +378,16 @@ namespace AIPos.WebLayer.Controllers
             return PartialView("_GridViewPartialSucursalListaPrecio", RecuperarSucursalesListaPrecio());
         }
 
-        private List<Models.ClienteListaPrecioModel> RecuperarClientesListaPrecio()
-        {
-            List<Models.ClienteListaPrecioModel> clientesListaPrecioModel = new List<ClienteListaPrecioModel>();
-            List<Cliente> clientes = new BOCliente().SelectAll();
-            foreach (var cliente in clientes)
-            {
-                Models.ClienteListaPrecioModel clienteListaPrecioModel = new ClienteListaPrecioModel();
-                ClienteListaPrecio clienteListaPrecio = new BOClienteListaPrecio().SelectByCliente(cliente.Id);
-                if (clienteListaPrecio != null)
-                {
-                    clienteListaPrecioModel.ListaPrecioId = clienteListaPrecio.ListaPrecioId;
-                    clienteListaPrecioModel.ListaPrecio = new BOListaPrecio().SelectById(clienteListaPrecio.ListaPrecioId).Nombre;
-                }
-                else
-                {
-                    clienteListaPrecioModel.ListaPrecioId = null;
-                    clienteListaPrecioModel.ListaPrecio = "PRECIO DE SUCURSAL";
-                }
-                clienteListaPrecioModel.ClienteId = cliente.Id;
-                clienteListaPrecioModel.Cliente = cliente.Nombre;
-                clientesListaPrecioModel.Add(clienteListaPrecioModel);
-            }
-            return clientesListaPrecioModel;
-        }
 
 
         [ValidateInput(false)]
         public ActionResult GridViewPartialClienteListaPrecio()
         {
-            return PartialView("_GridViewPartialClienteListaPrecio", RecuperarClientesListaPrecio());
+            return PartialView("_GridViewPartialClienteListaPrecio", new BOClienteListaPrecio().SelectAllGrid());
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewPartialClienteListaPrecioUpdate(AIPos.WebLayer.Models.ClienteListaPrecioModel item)
+        public ActionResult GridViewPartialClienteListaPrecioUpdate(ClienteListaPrecioModel item)
         {
             if (ModelState.IsValid)
             {
@@ -488,7 +412,7 @@ namespace AIPos.WebLayer.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_GridViewPartialClienteListaPrecio", RecuperarClientesListaPrecio());
+            return PartialView("_GridViewPartialClienteListaPrecio", new BOClienteListaPrecio().SelectAllGrid());
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridViewPartialClienteListaPrecioDelete(System.Int32 ClienteId)
@@ -510,7 +434,7 @@ namespace AIPos.WebLayer.Controllers
                     ViewData["EditError"] = e.Message;
                 }
             }
-            return PartialView("_GridViewPartialClienteListaPrecio", RecuperarClientesListaPrecio());
+            return PartialView("_GridViewPartialClienteListaPrecio", new BOClienteListaPrecio().SelectAllGrid());
         }
 
 

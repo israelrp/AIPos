@@ -34,7 +34,7 @@ namespace AIPos.BusinessLayer
             int minutes = fecha.Minute;
             DateTime fechaInicio = fecha.AddHours(hours * -1).AddMinutes(minutes * -1);
             DateTime fechaFin = fecha.AddHours(23 - hours).AddMinutes(59 - minutes);
-            List<Entrada> entradas= entradaDaoImpl.SelectAll().Where(x => x.Fecha >= fechaInicio && x.Fecha <= fechaFin && x.SucursalId==SucursalId).ToList();
+            List<Entrada> entradas = entradaDaoImpl.SelectByFechaSucursal(fechaInicio, fechaFin, SucursalId);
             foreach (var entrada in entradas)
             {
                 entrada.Proveedor = new BOProveedor().SelectById(entrada.ProveedorId);

@@ -47,16 +47,28 @@ namespace AIPos.DAO.Implementation
             throw new NotImplementedException();
         }
 
-        public ClienteListaPrecio SelectByKey(int ClienteId, int ListaPrecioId)
+        public ClienteListaPrecio SelectByKey(int ClienteId, int? ListaPrecioId)
         {
             object[] parameters = new object[] { ClienteId, ListaPrecioId };
             return cm.Database.SqlQuery<ClienteListaPrecio>("dbo.usp_ClientesListasPrecioSelect @ClienteId={0}, @ListaPrecioId={1}", parameters).FirstOrDefault();
+        }
+
+        public List<ClienteListaPrecio> SelectByKey(int? ClienteId, int? ListaPrecioId)
+        {
+            object[] parameters = new object[] { ClienteId, ListaPrecioId };
+            return cm.Database.SqlQuery<ClienteListaPrecio>("dbo.usp_ClientesListasPrecioSelect @ClienteId={0}, @ListaPrecioId={1}", parameters).ToList();
         }
 
         public ClienteListaPrecio Update(ClienteListaPrecio entity)
         {
             object[] parameters = new object[] { entity.ClienteId, entity.ListaPrecioId };
             return cm.Database.SqlQuery<ClienteListaPrecio>("dbo.usp_TiposUpdate @ClienteId={0}, @ListaPrecioId={1}", parameters).FirstOrDefault();
+        }
+
+        public List<ClienteListaPrecioModel> SelectAllGrid()
+        {
+            object[] parameters = new object[] { null };
+            return cm.Database.SqlQuery<ClienteListaPrecioModel>("dbo.usp_ClientesListasPrecioSelectGrid", parameters).ToList();
         }
     }
 }

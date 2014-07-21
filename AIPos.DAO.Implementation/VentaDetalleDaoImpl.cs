@@ -52,5 +52,11 @@ namespace AIPos.DAO.Implementation
             object[] parameters = new object[] { key };
             return cm.Database.SqlQuery<VentaDetalle>("dbo.usp_VentasDetalleSelect @Id={0}", parameters).FirstOrDefault();
         }
+
+        public List<VentaDetalle> SelectByVenta(int VentaId)
+        {
+            object[] parameters = new object[] { VentaId };
+            return cm.Database.SqlQuery<VentaDetalle>("dbo.usp_VentasDetalleSelectByVentaId @VentaId={0}", parameters).ToList();
+        }
     }
 }

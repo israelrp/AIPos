@@ -48,6 +48,12 @@ namespace AIPos.DAO.Implementation
             return cm.Database.SqlQuery<UsuarioSucursal>("dbo.usp_UsuariosSurcusalSelect @SucursalId={0}, @UsuarioId={1}", parameters).ToList();
         }
 
+        public List<UsuarioSucursal> SelectByKey(int? SucursalId, int? UsuarioId)
+        {
+            object[] parameters = new object[] { SucursalId, UsuarioId };
+            return cm.Database.SqlQuery<UsuarioSucursal>("dbo.usp_UsuariosSurcusalSelect @SucursalId={0}, @UsuarioId={1}", parameters).ToList();
+        }
+
         public UsuarioSucursal SelectByKey(int key)
         {
             throw new NotImplementedException();

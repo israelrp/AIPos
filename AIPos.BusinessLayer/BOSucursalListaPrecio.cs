@@ -29,12 +29,12 @@ namespace AIPos.BusinessLayer
 
         public List<SucursalListaPrecio> SelectByListaPrecio(int ListaPrecioId)
         {
-            return sucursalListaPrecioDaoImpl.SelectAll().Where(x => x.ListaPrecioId == ListaPrecioId).ToList();
+            return sucursalListaPrecioDaoImpl.SelectByListaPrecio(ListaPrecioId);
         }
 
         public SucursalListaPrecio SelectBySucursal(int SucursalId)
         {
-            return sucursalListaPrecioDaoImpl.SelectAll().Where(x => x.SucursalId == SucursalId).FirstOrDefault();
+            return sucursalListaPrecioDaoImpl.SelectByKey(SucursalId, null);
         }
 
 

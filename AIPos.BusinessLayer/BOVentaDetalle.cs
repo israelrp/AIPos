@@ -30,7 +30,7 @@ namespace AIPos.BusinessLayer
 
         public List<VentaDetalle> SelectByVentaId(int VentaId)
         {
-            return ventaDetalleDaoImpl.SelectAll().Where(x => x.VentaId == VentaId).ToList();
+            return ventaDetalleDaoImpl.SelectByVenta(VentaId);
         }
 
 

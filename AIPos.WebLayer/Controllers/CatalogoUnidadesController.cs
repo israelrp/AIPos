@@ -10,6 +10,7 @@ namespace AIPos.WebLayer.Controllers
 {
     public class CatalogoUnidadesController : Controller
     {
+        [Authorize]
         //
         // GET: /CatalogoUnidades/
 

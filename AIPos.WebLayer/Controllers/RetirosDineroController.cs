@@ -11,6 +11,7 @@ namespace AIPos.WebLayer.Controllers
 {
     public class RetirosDineroController : Controller
     {
+        [Authorize]
         //
         // GET: /RetirosDinero/
 

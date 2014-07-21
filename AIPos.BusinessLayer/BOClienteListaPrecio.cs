@@ -35,12 +35,17 @@ namespace AIPos.BusinessLayer
 
         public List<ClienteListaPrecio> SelectByListaPrecio(int ListaPrecioId)
         {
-            return clienteListaPrecioDaoImpl.SelectAll().Where(x => x.ListaPrecioId == ListaPrecioId).ToList();
+            return clienteListaPrecioDaoImpl.SelectByKey(null, ListaPrecioId);
         }
 
         public ClienteListaPrecio SelectByCliente(int ClienteId)
         {
-            return clienteListaPrecioDaoImpl.SelectAll().Where(x => x.ClienteId == ClienteId).FirstOrDefault();
+            return clienteListaPrecioDaoImpl.SelectByKey(ClienteId, null);
+        }
+
+        public List<ClienteListaPrecioModel> SelectAllGrid()
+        {
+            return clienteListaPrecioDaoImpl.SelectAllGrid();
         }
 
 

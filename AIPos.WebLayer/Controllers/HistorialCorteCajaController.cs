@@ -9,6 +9,7 @@ namespace AIPos.WebLayer.Controllers
 {
     public class HistorialCorteCajaController : Controller
     {
+        [Authorize]
         //
         // GET: /HistorialCorteCaja/
 

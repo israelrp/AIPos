@@ -48,5 +48,17 @@ namespace AIPos.DAO.Implementation
             object[] parameters = new object[] { key.ListaPrecioId, key.ProductoId };
             return cm.Database.SqlQuery<ListaPrecioProducto>("dbo.usp_ListasPrecioProductosSelect @ListaPrecioId={0}, @ProductoId={1}", parameters).FirstOrDefault();
         }
+
+        public List<ListaPrecioProducto> SelectByProducto(int ProductoId)
+        {
+            object[] parameters = new object[] { null, ProductoId };
+            return cm.Database.SqlQuery<ListaPrecioProducto>("dbo.usp_ListasPrecioProductosSelect @ListaPrecioId={0}, @ProductoId={1}", parameters).ToList();
+        }
+
+        public List<ListaPrecioProductoModel> SelectByListaPrecio(int ListaPrecioId)
+        {
+            object[] parameters = new object[] { ListaPrecioId };
+            return cm.Database.SqlQuery<ListaPrecioProductoModel>("dbo.usp_ListasPrecioProductosSelectGrid @ListaPrecioId={0}", parameters).ToList();
+        }
     }
 }

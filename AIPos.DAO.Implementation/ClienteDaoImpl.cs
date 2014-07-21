@@ -52,5 +52,11 @@ namespace AIPos.DAO.Implementation
             object[] parameters = new object[] { key };
             return cm.Database.SqlQuery<Cliente>("dbo.usp_ClientesSelect @Id={0}", parameters).FirstOrDefault();
         }
+
+        public Cliente SelectByCodigo(string Codigo)
+        {
+            object[] parameters = new object[] { Codigo };
+            return cm.Database.SqlQuery<Cliente>("dbo.usp_ClientesSelectByCodigo @Codigo={0}", parameters).FirstOrDefault();
+        }
     }
 }
