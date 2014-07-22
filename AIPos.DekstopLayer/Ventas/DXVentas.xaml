@@ -116,15 +116,81 @@
                 <dxg:TableView ShowTotalSummary="True" AllowEditing="False" ShowGroupPanel="False"/>
             </dxg:GridControl.View>
         </dxg:GridControl>
-        <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="75" Click="btnEliminar_Click"/>
-        <Button x:Name="btnCancelar" Content="Cancelar venta" HorizontalAlignment="Left" Margin="106,172,0,0" VerticalAlignment="Top" Width="101" Click="btnCancelar_Click_1"/>
-        <Button x:Name="btnVenta" Content="Imprimir venta" HorizontalAlignment="Left" Margin="335,172,0,0" VerticalAlignment="Top" Width="105" Click="btnVenta_Click"/>
-        <Button x:Name="btnDomicilio" Content="Venta a domicilio" HorizontalAlignment="Left" Margin="460,172,0,0" VerticalAlignment="Top" Width="103" Click="btnDomicilio_Click"/>
-        <Button x:Name="btnApartar" Content="APARTAR/SERV." HorizontalAlignment="Left" Margin="223,172,0,0" VerticalAlignment="Top" Width="99" Click="btnApartar_Click"/>
+        <Button x:Name="btnEliminar" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Width="90" Height="29" Click="btnEliminar_Click" Background="{x:Null}" Cursor="Hand">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="26"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Eliminar" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="Red"></Label>
+                    <Image Source="/AIPos Desk;component/Images/delete.png" HorizontalAlignment="Right"></Image>
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btnCancelar" HorizontalAlignment="Left" Margin="104,165,0,0" VerticalAlignment="Top" Width="85" Height="29" Click="btnCancelar_Click_1" Background="{x:Null}" Cursor="Hand">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="26"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Cancelar" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="Red"></Label>
+                    <Image Source="/AIPos Desk;component/Images/cancelar.png" HorizontalAlignment="Right"></Image>
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btnVenta" HorizontalAlignment="Left" Margin="310,165,0,0" VerticalAlignment="Top" Width="125" Height="29" Click="btnVenta_Click" Background="{x:Null}" Cursor="Hand">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="115"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Imprimir venta" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="#FF0F87FF"></Label>
+                    <Image Source="/AIPos Desk;component/Images/ticket-mini.png" HorizontalAlignment="Right"></Image>
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btnDomicilio" HorizontalAlignment="Left" Margin="438,165,0,0" VerticalAlignment="Top" Width="125" Height="29" Click="btnDomicilio_Click" Background="{x:Null}" Cursor="Hand">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="117"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Venta domicilio" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="#FF8409FF"></Label>
+                    <Image Source="/AIPos Desk;component/Images/domicilio.png" HorizontalAlignment="Right"></Image>
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btnApartar" HorizontalAlignment="Left" Margin="192,165,0,0" VerticalAlignment="Top" Width="115" Height="29" Click="btnApartar_Click" Background="{x:Null}" Cursor="Hand">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="105"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Apartar/Serv." HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="#FF008B19"></Label>
+                    <Image Source="/AIPos Desk;component/Images/apartado.png" HorizontalAlignment="Right"></Image>
+                </Grid>
+            </Button.Content>
+        </Button>
         <Label x:Name="lblTotal" Content="TOTAL" HorizontalAlignment="Left" Margin="578,0,0,224" VerticalAlignment="Bottom" Width="235" Height="70" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" Foreground="#FF1A4C7D" FontWeight="SemiBold"/>
         <Label x:Name="lblCambio" Content="CAMBIO" HorizontalAlignment="Left" Margin="578,0,0,83" VerticalAlignment="Bottom" Width="235" Height="70" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" Foreground="Red" FontWeight="SemiBold"/>
         <TextBox x:Name="txtRecibi" HorizontalAlignment="Left" Height="70" Margin="578,0,0,153" TextWrapping="Wrap" Text="RECIBÍ" VerticalAlignment="Bottom" Width="235" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextAlignment="Center" FontSize="40" FontWeight="SemiBold" TextChanged="txtRecibi_TextChanged" GotFocus="txtRecibi_GotFocus" KeyUp="txtRecibi_KeyUp"/>
-        <Button x:Name="btnOrden" Content="ORDEN" HorizontalAlignment="Left" Margin="578,0,0,9.667" VerticalAlignment="Bottom" Width="235" Height="70" FontSize="40" Foreground="Red" Click="btnOrden_Click"/>
+        <Button x:Name="btnOrden" HorizontalAlignment="Left" Margin="578,0,0,9.667" VerticalAlignment="Bottom" Width="235" Height="70" Click="btnOrden_Click" Background="{x:Null}" Cursor="Hand" BorderThickness="2">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="225"/>
+                        <ColumnDefinition Width="26"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="ORDEN" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="Red" FontSize="40"></Label>
+                    <Image Source="/AIPos Desk;component/Images/order.png" HorizontalAlignment="Right"></Image>
+                </Grid>
+            </Button.Content>
+        </Button>
         <dxe:CheckEdit x:Name="chkPrecioMayoreo" HorizontalAlignment="Left" Margin="578,100,0,0" VerticalAlignment="Top" Width="235" Content="Aplicar precio de mayoreo  " FontWeight="SemiBold" Foreground="Red" FontSize="14" EditValueChanged="chkPrecioMayoreo_EditValueChanged"/>
         <Label Content="Descuento" HorizontalAlignment="Left" Margin="578,127,0,0" VerticalAlignment="Top" Width="235" FontSize="18" FontWeight="SemiBold" HorizontalContentAlignment="Center">
             <Label.Background>

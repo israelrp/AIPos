@@ -20,7 +20,7 @@
                         <ColumnDefinition Width="160"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="ENTRAR" FontWeight="Bold" Foreground="#FFFA8800" VerticalContentAlignment="Center"></Label>
+                    <Label Content="ENTRAR" FontWeight="Bold" Foreground="#FF4567FF" VerticalContentAlignment="Center"></Label>
                     <Image Source="/AIPos Desk;component/Images/entrar.png"  ></Image>    
                 </Grid>
                 
