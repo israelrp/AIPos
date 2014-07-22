@@ -4,7 +4,7 @@
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     x:Class="AIPos.DekstopLayer.Login.Login"
-    Title="Login" Height="250" Width="325" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+    Title="Acceso al POS" Height="250" Width="325" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/AIPos Desk;component/PUNTOVENTA.ico"
     >
 
     <Grid>

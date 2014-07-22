@@ -63,5 +63,10 @@ namespace AIPos.Services
             DateTime fechaFin = DateTime.FromFileTimeUtc(FechaFin);
             return boVenta.RecuperarCorteCaja(fechaInicio, fechaFin, SucursalId);
         }
+
+        public List<VentaDetalle> RecuperarVentaDetalle(int VentaId)
+        {
+            return new BOVentaDetalle().SelectByVentaId(VentaId);
+        }
     }
 }

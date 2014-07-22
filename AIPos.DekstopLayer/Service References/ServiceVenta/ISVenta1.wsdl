@@ -74,6 +74,12 @@
   <wsdl:message name="IISVenta_RecuperarCorteCaja_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarCorteCajaResponse" />
   </wsdl:message>
+  <wsdl:message name="IISVenta_RecuperarVentaDetalle_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarVentaDetalle" />
+  </wsdl:message>
+  <wsdl:message name="IISVenta_RecuperarVentaDetalle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarVentaDetalleResponse" />
+  </wsdl:message>
   <wsdl:portType name="IISVenta">
     <wsdl:operation name="Insert">
       <wsdl:input wsaw:Action="http://tempuri.org/IISVenta/Insert" message="tns:IISVenta_Insert_InputMessage" />
@@ -102,6 +108,10 @@
     <wsdl:operation name="RecuperarCorteCaja">
       <wsdl:input wsaw:Action="http://tempuri.org/IISVenta/RecuperarCorteCaja" message="tns:IISVenta_RecuperarCorteCaja_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IISVenta/RecuperarCorteCajaResponse" message="tns:IISVenta_RecuperarCorteCaja_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarVentaDetalle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IISVenta/RecuperarVentaDetalle" message="tns:IISVenta_RecuperarVentaDetalle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IISVenta/RecuperarVentaDetalleResponse" message="tns:IISVenta_RecuperarVentaDetalle_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IISVenta" type="tns:IISVenta">
@@ -169,6 +179,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RecuperarVentaDetalle">
+      <soap:operation soapAction="http://tempuri.org/IISVenta/RecuperarVentaDetalle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BasicHttpsBinding_IISVenta" type="tns:IISVenta">
     <wsp:PolicyReference URI="#BasicHttpsBinding_IISVenta_policy" />
@@ -229,6 +248,15 @@
     </wsdl:operation>
     <wsdl:operation name="RecuperarCorteCaja">
       <soap:operation soapAction="http://tempuri.org/IISVenta/RecuperarCorteCaja" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarVentaDetalle">
+      <soap:operation soapAction="http://tempuri.org/IISVenta/RecuperarVentaDetalle" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

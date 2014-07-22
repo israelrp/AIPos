@@ -32,5 +32,8 @@ namespace AIPos.Services
 
         [OperationContract]
         List<ReporteCorteCaja> RecuperarCorteCaja(long FechaInicio, long FechaFin, int? SucursalId);
+
+        [OperationContract]
+        List<VentaDetalle> RecuperarVentaDetalle(int VentaId);
     }
 }

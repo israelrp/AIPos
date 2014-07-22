@@ -9,7 +9,6 @@
       <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Folio" type="xs:int" />
       <xs:element minOccurs="0" name="FolioCancelado" type="xs:int" />
-      <xs:element minOccurs="0" name="FolioEnvio" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Recibio" type="xs:decimal" />
       <xs:element minOccurs="0" name="RequiereFactura" type="xs:boolean" />
@@ -152,6 +151,7 @@
       <xs:element minOccurs="0" name="Tipo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Total" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="Usuario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VentaId" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReporteCorteCaja" nillable="true" type="tns:ReporteCorteCaja" />

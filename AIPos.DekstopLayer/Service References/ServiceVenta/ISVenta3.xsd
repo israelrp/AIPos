@@ -105,4 +105,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="RecuperarVentaDetalle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="VentaId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecuperarVentaDetalleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/AIPos.Domain" minOccurs="0" name="RecuperarVentaDetalleResult" nillable="true" type="q4:ArrayOfVentaDetalle" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

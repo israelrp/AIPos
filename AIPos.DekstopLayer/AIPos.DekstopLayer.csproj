@@ -202,6 +202,9 @@
     <Compile Include="CorteCaja\DXRealizarCorteCaja.xaml.cs">
       <DependentUpon>DXRealizarCorteCaja.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CorteCaja\DXVentaDetalle.xaml.cs">
+      <DependentUpon>DXVentaDetalle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Documentos\CorteCaja.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -460,6 +463,7 @@
     <None Include="Properties\DataSources\AIPos.Domain.Unidad.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.Usuario.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.Venta.datasource" />
+    <None Include="Properties\DataSources\AIPos.Domain.VentaDetalle.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -696,6 +700,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CorteCaja\DXRealizarCorteCaja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CorteCaja\DXVentaDetalle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

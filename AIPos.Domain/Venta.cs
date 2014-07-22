@@ -33,6 +33,7 @@ namespace AIPos.Domain
 
     public class ReporteCorteCaja
     {
+        public int VentaId { get; set; }
         public string Cliente { get; set; }
         public string Sucursal { get; set; }
         public int SucursalId { get; set; }

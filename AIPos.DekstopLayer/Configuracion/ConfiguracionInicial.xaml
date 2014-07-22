@@ -4,7 +4,7 @@
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     x:Class="AIPos.DekstopLayer.Configuracion.ConfiguracionInicial"
-    Title="Configuracion inicial" Height="450" Width="525" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+    Title="Configuracion inicial" Height="450" Width="525" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/AIPos Desk;component/PUNTOVENTA.ico"
     >
 
     <Grid>

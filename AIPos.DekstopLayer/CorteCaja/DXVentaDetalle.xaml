@@ -1,0 +1,47 @@
+﻿<dx:DXWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    x:Class="AIPos.DekstopLayer.CorteCaja.DXVentaDetalle"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    Title="Detalle de la venta" Height="350" Width="525" Icon="/AIPos Desk;component/PUNTOVENTA.ico"
+    >
+
+    <Grid>
+
+        <dxg:GridControl Name="gridVentaDetalle" AutoGenerateColumns="None" EnableSmartColumnsGeneration="True">
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="Codigo" Header="Cod." Width="40" />
+                <dxg:GridColumn FieldName="Nombre" Header="Producto" Width="120"/>
+                <dxg:GridColumn FieldName="PrecioUnitario" Header="P.L." Width="60">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings MaskType="Numeric" MaskUseAsDisplayFormat="True" Mask="c"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="Descuento" Header="Desc. %" Width="60">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="PrecioDescuento" Header="P.D." Width="60" UnboundType="Boolean" ReadOnly="True">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings MaskType="Numeric" MaskUseAsDisplayFormat="True" Mask="c"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="Cantidad" Header="Cant." Width="60"/>
+
+                <dxg:GridColumn FieldName="Importe" Header="Importe">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings MaskType="Numeric" MaskUseAsDisplayFormat="True" Mask="c"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView ShowTotalSummary="True" AllowEditing="False" ShowGroupPanel="False"/>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+
+    </Grid>
+</dx:DXWindow>

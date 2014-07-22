@@ -4,7 +4,7 @@
     xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     x:Class="AIPos.DekstopLayer.Principal"
-    Title="AIPos 2.0" Height="550" Width="725" WindowState="Maximized" Closed="DXRibbonWindow_Closed_1" 
+    Title="AIPos 2.0" Height="550" Width="725" WindowState="Maximized" Closed="DXRibbonWindow_Closed_1" Icon="PUNTOVENTA.ico" 
     >
 
     <Grid>
@@ -35,7 +35,7 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <dxr:RibbonControl Grid.Row="0" RibbonStyle="Office2010">
+                <dxr:RibbonControl Grid.Row="0" RibbonStyle="Office2010" MinimizationButtonVisibility="Collapsed">
                     <dxr:RibbonDefaultPageCategory>
                         <dxr:RibbonPage Caption="Movimientos">
                             <dxr:RibbonPageGroup CaptionButtonCommandParameter="Entradas" Caption="Inventario" ShowCaptionButton="True" Glyph="pack://application:,,,/DevExpress.Images.v13.2;component/Images/Data/Database_32x32.png">

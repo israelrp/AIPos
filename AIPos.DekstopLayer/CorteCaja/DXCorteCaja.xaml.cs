@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
+using AIPos.Domain;
 
 
 namespace AIPos.DekstopLayer.CorteCaja
@@ -30,9 +31,16 @@ namespace AIPos.DekstopLayer.CorteCaja
 
         private void btnConsultar_Click(object sender, RoutedEventArgs e)
         {
-            ServiceVenta.ISVentaClient ventaClient = new ServiceVenta.ISVentaClient();
-            Domain.Usuario usuario = (Domain.Usuario)cmbUsuarios.SelectedItem;
-            gridCorte.ItemsSource = ventaClient.RecuperarCorteCaja(deFechaInicio.DateTime.ToFileTimeUtc(), deFechaInicio.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId).ToList().Where(x=>x.Usuario==usuario.Nombre);
+            if (cmbUsuarios.SelectedItem != null)
+            {
+                ServiceVenta.ISVentaClient ventaClient = new ServiceVenta.ISVentaClient();
+                Domain.Usuario usuario = (Domain.Usuario)cmbUsuarios.SelectedItem;
+                gridCorte.ItemsSource = ventaClient.RecuperarCorteCaja(deFechaInicio.DateTime.ToFileTimeUtc(), deFechaInicio.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId).ToList().Where(x => x.Usuario == usuario.Nombre);
+            }
+            else
+            {
+                MessageBox.Show("Debe de seleccionar un usuario para realizar el corte de caja.");
+            }
         }
 
 
@@ -66,6 +74,25 @@ namespace AIPos.DekstopLayer.CorteCaja
             DXRealizarCorteCaja realizarCorte = new DXRealizarCorteCaja();
             realizarCorte.CorteCaja = corteCaja;
             realizarCorte.ShowDialog();
+        }
+
+        private void gridCorte_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ReporteCorteCaja corte = (ReporteCorteCaja)gridCorte.SelectedItem;
+            if (corte != null)
+            {
+                List<VentaDetalle> ventaDetalle = new ServiceVenta.ISVentaClient().RecuperarVentaDetalle(corte.VentaId).ToList();
+                if (ventaDetalle.Count() > 0)
+                {
+                    DXVentaDetalle dxventaDetalle = new DXVentaDetalle();
+                    dxventaDetalle.gridVentaDetalle.ItemsSource = ventaDetalle;
+                    dxventaDetalle.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("No fue posible recuperar los detalles de la venta.");
+                }
+            }
         }
     }
 }

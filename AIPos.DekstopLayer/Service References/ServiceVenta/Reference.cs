@@ -56,6 +56,12 @@ namespace AIPos.DekstopLayer.ServiceVenta {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IISVenta/RecuperarCorteCaja", ReplyAction="http://tempuri.org/IISVenta/RecuperarCorteCajaResponse")]
         System.Threading.Tasks.Task<AIPos.Domain.ReporteCorteCaja[]> RecuperarCorteCajaAsync(long FechaInicio, long FechaFin, System.Nullable<int> SucursalId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IISVenta/RecuperarVentaDetalle", ReplyAction="http://tempuri.org/IISVenta/RecuperarVentaDetalleResponse")]
+        AIPos.Domain.VentaDetalle[] RecuperarVentaDetalle(int VentaId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IISVenta/RecuperarVentaDetalle", ReplyAction="http://tempuri.org/IISVenta/RecuperarVentaDetalleResponse")]
+        System.Threading.Tasks.Task<AIPos.Domain.VentaDetalle[]> RecuperarVentaDetalleAsync(int VentaId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -139,6 +145,14 @@ namespace AIPos.DekstopLayer.ServiceVenta {
         
         public System.Threading.Tasks.Task<AIPos.Domain.ReporteCorteCaja[]> RecuperarCorteCajaAsync(long FechaInicio, long FechaFin, System.Nullable<int> SucursalId) {
             return base.Channel.RecuperarCorteCajaAsync(FechaInicio, FechaFin, SucursalId);
+        }
+        
+        public AIPos.Domain.VentaDetalle[] RecuperarVentaDetalle(int VentaId) {
+            return base.Channel.RecuperarVentaDetalle(VentaId);
+        }
+        
+        public System.Threading.Tasks.Task<AIPos.Domain.VentaDetalle[]> RecuperarVentaDetalleAsync(int VentaId) {
+            return base.Channel.RecuperarVentaDetalleAsync(VentaId);
         }
     }
 }

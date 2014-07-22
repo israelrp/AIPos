@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" x:Class="AIPos.DekstopLayer.Ventas.RegistrarCliente"
-        Title="Registrar nuevo cliente" Height="220" Width="550" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Registrar nuevo cliente" Height="220" Width="550" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/AIPos Desk;component/PUNTOVENTA.ico">
     <Grid>
         <Label Content="Nombre:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
 

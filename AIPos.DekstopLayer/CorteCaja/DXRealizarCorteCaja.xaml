@@ -4,7 +4,7 @@
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     x:Class="AIPos.DekstopLayer.CorteCaja.DXRealizarCorteCaja"
-    Title="Generar corte de caja" Height="250" Width="425"
+    Title="Generar corte de caja" Height="250" Width="425" Icon="/AIPos Desk;component/PUNTOVENTA.ico"
     >
 
     <Grid>
