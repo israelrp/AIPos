@@ -4,20 +4,136 @@
 <div style="margin-top:150px; text-align:center;">
     <h2>Bienvenido</h2>
 </div>
+<style>
+    .contenedor-dockzone{
+        width:300px;
+        float:left;
+        margin-left:10px;
+    }
+</style>
 
-@Html.DevExpress().DockZone(settings =>
-{
-    settings.Name = "DockZone";
-    settings.ZoneUID = "Zone";
-    settings.Width = 300;
-}).GetHtml()
+
+<div style="width:960px; margin:0px auto;">
+    <div class="contenedor-dockzone">
+        @Html.DevExpress().DockZone(settings =>
+        {
+            settings.Name = "DockZone1";
+            settings.ZoneUID = "Zone1";
+            settings.AllowGrowing = true;
+            settings.Height = 200;
+            settings.Width = 300;
+        }).GetHtml()
+    </div>
+
+    <div class="contenedor-dockzone">
+        @Html.DevExpress().DockZone(settings =>
+                {
+                    settings.Name = "DockZone2";
+                    settings.ZoneUID = "Zone2";
+                    settings.AllowGrowing = true;
+                    settings.Height = 200;
+                    settings.Width = 300;
+                }).GetHtml()
+    </div>
+
+    <div class="contenedor-dockzone">
+        @Html.DevExpress().DockZone(settings =>
+                {
+                    settings.Name = "DockZone3";
+                    settings.ZoneUID = "Zone3";
+                    settings.AllowGrowing = true;
+                    settings.Height = 200;
+                    settings.Width = 300;
+                }).GetHtml()
+    </div>
+
+    <div class="contenedor-dockzone">
+        @Html.DevExpress().DockZone(settings =>
+                {
+                    settings.Name = "DockZone4";
+                    settings.ZoneUID = "Zone4";
+                    settings.AllowGrowing = true;
+                    settings.Height = 200;
+                    settings.Width = 300;
+                }).GetHtml()
+    </div>
+
+    <div class="contenedor-dockzone">
+        @Html.DevExpress().DockZone(settings =>
+                {
+                    settings.Name = "DockZone5";
+                    settings.ZoneUID = "Zone5";
+                    settings.AllowGrowing = true;
+                    settings.Height = 200;
+                    settings.Width = 300;
+                }).GetHtml()
+    </div>
+
+    <div class="contenedor-dockzone">
+        @Html.DevExpress().DockZone(settings =>
+                {
+                    settings.Name = "DockZone6";
+                    settings.ZoneUID = "Zone6";
+                    settings.AllowGrowing = true;
+                    settings.Height = 200;
+                    settings.Width = 300;
+                }).GetHtml()
+    </div>
+</div>
 
 
 
 
 @Html.DevExpress().DockPanel(settings =>
 {
-    settings.Name = "DockPanel";
-    settings.HeaderText = "Dock Panel";
-    settings.AllowedDockState = AllowedDockState.All;
+    settings.Name = "DockPanel1";
+    settings.HeaderText = "Ventas";
+    settings.AllowedDockState = AllowedDockState.DockedOnly;
+    settings.OwnerZoneUID = "Zone1";
+    settings.ShowCloseButton = false;
+}).GetHtml()
+
+@Html.DevExpress().DockPanel(settings =>
+{
+    settings.Name = "DockPanel2";
+    settings.HeaderText = "Requerimientos";
+    settings.AllowedDockState = AllowedDockState.DockedOnly;
+    settings.OwnerZoneUID = "Zone2";
+    settings.ShowCloseButton = false;
+}).GetHtml()
+
+@Html.DevExpress().DockPanel(settings =>
+{
+    settings.Name = "DockPanel3";
+    settings.HeaderText = "Time delivery";
+    settings.AllowedDockState = AllowedDockState.DockedOnly;
+    settings.OwnerZoneUID = "Zone3";
+    settings.ShowCloseButton = false;
+}).GetHtml()
+
+@Html.DevExpress().DockPanel(settings =>
+{
+    settings.Name = "DockPanel4";
+    settings.HeaderText = "Cortes de caja";
+    settings.AllowedDockState = AllowedDockState.DockedOnly;
+    settings.OwnerZoneUID = "Zone4";
+    settings.ShowCloseButton = false;
+}).GetHtml()
+
+@Html.DevExpress().DockPanel(settings =>
+{
+    settings.Name = "DockPanel5";
+    settings.HeaderText = "Entradas";
+    settings.AllowedDockState = AllowedDockState.DockedOnly;
+    settings.OwnerZoneUID = "Zone5";
+    settings.ShowCloseButton = false;
+}).GetHtml()
+
+@Html.DevExpress().DockPanel(settings =>
+{
+    settings.Name = "DockPanel6";
+    settings.HeaderText = "Retiros dinero";
+    settings.AllowedDockState = AllowedDockState.DockedOnly;
+    settings.OwnerZoneUID = "Zone6";
+    settings.ShowCloseButton = false;
 }).GetHtml()
