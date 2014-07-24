@@ -82,7 +82,13 @@
                                     <li><a href="~/ReporteVentasProducto/">Ventas por producto</a></li>
                                 </ul>
                             </li>
-                            <li><a href="http://serveraplicaciones.cloudapp.net:65/Instalador/publish.htm">Instalador POS</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instaladores<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">                                    
+                                    <li><a href="http://sanagustin.azurewebsites.net/Instalador/crystalreport.html">Crystal report</a></li>
+                                    <li><a href="http://sanagustin.azurewebsites.net/Instalador/publish.htm">AIPos Desk</a></li>
+                                </ul>
+                            </li>                            
                         }
                         @Html.Partial("_LoginPartial")
                     </ul>

@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="AIPos.DekstopLayer.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <startup useLegacyV2RuntimeActivationPolicy="true"> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+    
+
+    </startup>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_ISProducto" maxBufferPoolSize="2147483647"
+                    maxBufferSize="2147483647" maxReceivedMessageSize="2147483647" />
+                <binding name="BasicHttpBinding_ISProveedor" />
+                <binding name="BasicHttpBinding_ISSucursal" />
+                <binding name="BasicHttpBinding_ISUsuario" />
+                <binding name="BasicHttpBinding_ISEntrada" />
+                <binding name="BasicHttpBinding_ISTipoProducto" />
+                <binding name="BasicHttpBinding_ISCliente" maxBufferPoolSize="2147483647"
+                    maxBufferSize="2147483647" maxReceivedMessageSize="2147483647" />
+                <binding name="BasicHttpBinding_IISListaPrecioProducto" />
+                <binding name="BasicHttpBinding_IISVenta" />
+                <binding name="BasicHttpBinding_ISServicioApartado" />
+                <binding name="BasicHttpBinding_ISDireccion" />
+                <binding name="BasicHttpBinding_ISDireccionEnvio" />
+                <binding name="BasicHttpBinding_IISRetiroDinero" />
+                <binding name="BasicHttpBinding_ISTipo" />
+                <binding name="BasicHttpBinding_ISUnidad" />
+                <binding name="BasicHttpBinding_ISInventario" />
+                <binding name="BasicHttpBinding_ISPedidoSucursal" />
+                <binding name="BasicHttpBinding_ISListaPrecio" />
+                <binding name="BasicHttpBinding_ISCorteCaja" />
+                <binding name="BasicHttpBinding_ISSeguimientoServicioApartado" />
+                <binding name="BasicHttpBinding_ISDireccionFacturacion" />
+                <binding name="BasicHttpBinding_ISEstatusServicioApartado" />
+                <binding name="BasicHttpsBinding_ISEstatusServicioApartado">
+                    <security mode="Transport" />
+                </binding>
+                <binding name="BasicHttpsBinding_ISSeguimientoServicioApartado">
+                    <security mode="Transport" />
+                </binding>
+                <binding name="BasicHttpsBinding_IISVenta">
+                    <security mode="Transport" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SCliente.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISCliente"
+                contract="ServiceCliente.ISCliente" name="BasicHttpBinding_ISCliente" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SProducto.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISProducto"
+                contract="ServiceProducto.ISProducto" name="BasicHttpBinding_ISProducto" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SProveedor.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISProveedor"
+                contract="ServiceProveedor.ISProveedor" name="BasicHttpBinding_ISProveedor" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SSucursal.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISSucursal"
+                contract="ServiceSucursal.ISSucursal" name="BasicHttpBinding_ISSucursal" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/STipoProducto.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISTipoProducto"
+                contract="ServiceTipoProducto.ISTipoProducto" name="BasicHttpBinding_ISTipoProducto" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SUsuario.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISUsuario"
+                contract="ServiceUsuario.ISUsuario" name="BasicHttpBinding_ISUsuario" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SEntrada.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISEntrada"
+                contract="ServiceEntrada.ISEntrada" name="BasicHttpBinding_ISEntrada" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/ISListaPrecioProducto.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IISListaPrecioProducto"
+                contract="ServiceListaPrecioProducto.IISListaPrecioProducto"
+                name="BasicHttpBinding_IISListaPrecioProducto" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SServicioApartado.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISServicioApartado"
+                contract="ServiceServicioApartado.ISServicioApartado" name="BasicHttpBinding_ISServicioApartado" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SDireccion.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISDireccion"
+                contract="ServiceDireccion.ISDireccion" name="BasicHttpBinding_ISDireccion" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SDireccionEnvio.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISDireccionEnvio"
+                contract="ServiceDireccionEnvio.ISDireccionEnvio" name="BasicHttpBinding_ISDireccionEnvio" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/ISRetiroDinero.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IISRetiroDinero"
+                contract="ServiceRetiroDinero.IISRetiroDinero" name="BasicHttpBinding_IISRetiroDinero" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/STipo.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISTipo"
+                contract="ServiceTipo.ISTipo" name="BasicHttpBinding_ISTipo" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SUnidad.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISUnidad"
+                contract="ServiceUnidad.ISUnidad" name="BasicHttpBinding_ISUnidad" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SInventario.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISInventario"
+                contract="ServiceInventario.ISInventario" name="BasicHttpBinding_ISInventario" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SPedidoSucursal.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISPedidoSucursal"
+                contract="ServicePedidoSucursal.ISPedidoSucursal" name="BasicHttpBinding_ISPedidoSucursal" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SListaPrecio.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISListaPrecio"
+                contract="ServiceListaPrecio.ISListaPrecio" name="BasicHttpBinding_ISListaPrecio" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SCorteCaja.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISCorteCaja"
+                contract="ServiceCorteCaja.ISCorteCaja" name="BasicHttpBinding_ISCorteCaja" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SDireccionFacturacion.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISDireccionFacturacion"
+                contract="ServiceDireccionFacturacion.ISDireccionFacturacion"
+                name="BasicHttpBinding_ISDireccionFacturacion" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SEstatusServicioApartado.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISEstatusServicioApartado"
+                contract="ServiceEstatusServicioApartado.ISEstatusServicioApartado"
+                name="BasicHttpBinding_ISEstatusServicioApartado" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/SSeguimientoServicioApartado.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISSeguimientoServicioApartado"
+                contract="ServiceSeguimientoServicioApartado.ISSeguimientoServicioApartado"
+                name="BasicHttpBinding_ISSeguimientoServicioApartado" />
+            <endpoint address="http://sanagustinservices.azurewebsites.net/ISVenta.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IISVenta"
+                contract="ServiceVenta.IISVenta" name="BasicHttpBinding_IISVenta" />
+        </client>
+    </system.serviceModel>
+</configuration>

@@ -4,11 +4,11 @@
 
             
         </li>
-    <li>
+    <li style="padding-top:10px;">
         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
         {
             @Html.AntiForgeryToken()
-            <button class="btn btn-default" type="submit">Salir</button>
+            <button class="btn btn-default" type="submit">Cerrar sesión</button>
         }
     </li>
 } else {
