@@ -5,3 +5,19 @@
     <h2>Bienvenido</h2>
 </div>
 
+@Html.DevExpress().DockZone(settings =>
+{
+    settings.Name = "DockZone";
+    settings.ZoneUID = "Zone";
+    settings.Width = 300;
+}).GetHtml()
+
+
+
+
+@Html.DevExpress().DockPanel(settings =>
+{
+    settings.Name = "DockPanel";
+    settings.HeaderText = "Dock Panel";
+    settings.AllowedDockState = AllowedDockState.All;
+}).GetHtml()
