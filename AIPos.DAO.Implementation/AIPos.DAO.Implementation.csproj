@@ -61,6 +61,7 @@
     <Compile Include="DireccionEnvioDaoImpl.cs" />
     <Compile Include="DireccionFacturacionDaoImpl.cs" />
     <Compile Include="EntradaDaoImpl.cs" />
+    <Compile Include="Enums\TipoVenta.cs" />
     <Compile Include="EstatusServicioApartadoDaoImpl.cs" />
     <Compile Include="InventarioDaoImpl.cs" />
     <Compile Include="ListaPrecioDaoImpl.cs" />

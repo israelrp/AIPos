@@ -1,0 +1,21 @@
+﻿@model AIPos.Domain.ResumenVentasModel
+
+
+@Html.DevExpress().Chart(settings =>
+{
+    settings.Name = "chart";
+    settings.Titles.Add(new ChartTitle()
+    {
+        Font = new System.Drawing.Font("Tahoma", 18),
+        Text = "Ventas últimos 7 días"
+    });
+    Series series = new Series("Ventas",
+      DevExpress.XtraCharts.ViewType.Area);
+    series.ArgumentDataMember = "Fecha";
+    series.ValueDataMembers[0] = "Conteo";
+    settings.Series.Add(series);
+    settings.Width = 800;
+    XYDiagram diagram = (XYDiagram)settings.Diagram;
+    diagram.AxisY.Title.Text = "Total de ventas";
+    diagram.AxisY.Title.Visible = true;
+}).Bind(Model.Ventas).GetHtml()

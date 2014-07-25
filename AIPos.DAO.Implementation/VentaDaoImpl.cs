@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using AIPos.DataContext;
 using AIPos.DAO.IGeneric;
 using AIPos.Domain;
+using AIPos.DAO.Implementation.Enums;
 
 namespace AIPos.DAO.Implementation
 {
     public class VentaDaoImpl : VentaDao
     {
+
         ConnectionManager cm = new ConnectionManager();
 
         public Venta Insert(Venta entity)
@@ -105,6 +107,13 @@ namespace AIPos.DAO.Implementation
         {
             object[] parameters = new object[] { SucursalId };
             return cm.Database.SqlQuery<ReporteVentasProducto>("dbo.usp_ReporteVentasProducto @SucursalId={0}", parameters).ToList();
+        }
+
+
+        public ConteoVenta RecuperarResumenVenta(DateTime FechaInicio, DateTime FechaFin, TipoVenta TipoVenta)
+        {
+            object[] parameters = new object[] { FechaInicio, FechaFin, TipoVenta };
+            return cm.Database.SqlQuery<ConteoVenta>("dbo.usp_VentasRecuperarResumen @FechaInicio={0}, @FechaFin={1}, @Tipo={2}", parameters).FirstOrDefault();
         }
     }
 

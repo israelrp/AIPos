@@ -63,4 +63,20 @@ namespace AIPos.Domain
         public decimal ImporteTotal { get; set; }
 
     }
+
+    public class ResumenVentasModel
+    {
+        public List<ConteoVenta> Ventas { get; set; }
+        public List<ConteoVenta> Ordenes { get; set; }
+        public List<ConteoVenta> Domiciolio { get; set; }
+        public List<ConteoVenta> Apartados { get; set; }
+        public List<ConteoVenta> Servicios { get; set; }
+    }
+
+    public class ConteoVenta
+    {
+        public DateTime Fecha { get; set; }
+        public decimal ImporteDia { get; set; }
+        public int Conteo { get; set; }
+    }
 }

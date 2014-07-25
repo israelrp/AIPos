@@ -14,14 +14,13 @@
 
 
 <div style="width:960px; margin:0px auto;">
-    <div class="contenedor-dockzone">
+    <div>
         @Html.DevExpress().DockZone(settings =>
         {
             settings.Name = "DockZone1";
             settings.ZoneUID = "Zone1";
             settings.AllowGrowing = true;
-            settings.Height = 200;
-            settings.Width = 300;
+            settings.Width = 860;
         }).GetHtml()
     </div>
 
@@ -91,6 +90,11 @@
     settings.AllowedDockState = AllowedDockState.DockedOnly;
     settings.OwnerZoneUID = "Zone1";
     settings.ShowCloseButton = false;
+    settings.Height = 400;
+    settings.SetContent(() =>
+    {
+        ViewContext.Writer.Write(Html.Action("_ResumenVentas"));
+    });
 }).GetHtml()
 
 @Html.DevExpress().DockPanel(settings =>

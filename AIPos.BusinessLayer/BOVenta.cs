@@ -123,5 +123,31 @@ namespace AIPos.BusinessLayer
             return ventaDaoImpl.RecuperarVentasProducto(SucursalId);
         }
 
+        /// <summary>
+        /// Recuperar el resumen de totales de un tipo de venta por semana
+        /// </summary>
+        /// <param name="tipo">Tipo de la venta (Venta, orden, servicio, apartado o domicilio)</param>
+        /// <returns></returns>
+        public List<ConteoVenta> RecuperarResumenSemanal(AIPos.DAO.Implementation.Enums.TipoVenta tipo)
+        {
+            List<ConteoVenta> resumen = new List<ConteoVenta>();
+            DateTime fechaActual = DateTime.Now;
+            int hours=fechaActual.Hour;
+            int minutes=fechaActual.Minute;;
+            int DiasRecuperar = 6;
+            for (int Dia = 0; Dia <= DiasRecuperar; Dia++)
+            {
+                int quitarDia=(Dia*-1);
+                DateTime fechaInicio = Tools.DateTimeManager.AbsoluteStart(fechaActual.AddDays(quitarDia));
+                DateTime fechaFin = Tools.DateTimeManager.AbsoluteEnd(fechaActual.AddDays(quitarDia));
+                ConteoVenta resumenDiario = ventaDaoImpl.RecuperarResumenVenta(fechaInicio, fechaFin, tipo);
+                if (resumenDiario == null)
+                {
+                    resumenDiario = new ConteoVenta() { Conteo = 0, Fecha = fechaInicio, ImporteDia = 0 };
+                }
+                resumen.Add(resumenDiario);
+            }
+            return resumen;
+        }
     }
 }

@@ -78,6 +78,7 @@
     <Compile Include="BOVenta.cs" />
     <Compile Include="BOVentaDetalle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\DateTimeManager.cs" />
     <Compile Include="Tools\TimeConverter.cs" />
   </ItemGroup>
   <ItemGroup>

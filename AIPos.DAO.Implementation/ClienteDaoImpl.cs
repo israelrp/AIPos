@@ -7,6 +7,7 @@ using AIPos.Domain;
 using AIPos.DAO.IGeneric;
 using AIPos.DataContext;
 
+
 namespace AIPos.DAO.Implementation
 {
     public class ClienteDaoImpl : ClienteDao
@@ -58,5 +59,7 @@ namespace AIPos.DAO.Implementation
             object[] parameters = new object[] { Codigo };
             return cm.Database.SqlQuery<Cliente>("dbo.usp_ClientesSelectByCodigo @Codigo={0}", parameters).FirstOrDefault();
         }
+
+
     }
 }

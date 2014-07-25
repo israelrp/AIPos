@@ -1400,6 +1400,7 @@
     <Content Include="Views\RetirosDinero\_GridViewPartialRetirosDinero.cshtml" />
     <Content Include="Views\ReporteVentasProducto\Index.cshtml" />
     <Content Include="Views\ReporteVentasProducto\_GridViewPartialVentasProducto.cshtml" />
+    <Content Include="Views\Home\_ResumenVentas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1414,6 +1415,10 @@
     <ProjectReference Include="..\AIPos.BusinessLayer\AIPos.BusinessLayer.csproj">
       <Project>{cdc8eb53-8669-47ae-a29a-57f5209df696}</Project>
       <Name>AIPos.BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AIPos.DAO.Implementation\AIPos.DAO.Implementation.csproj">
+      <Project>{f7577909-6469-42ff-9971-06627c6c1bb3}</Project>
+      <Name>AIPos.DAO.Implementation</Name>
     </ProjectReference>
     <ProjectReference Include="..\AIPos.Domain\AIPos.Domain.csproj">
       <Project>{a965f8ad-ebe5-4f3f-aba0-8b808429a19b}</Project>
