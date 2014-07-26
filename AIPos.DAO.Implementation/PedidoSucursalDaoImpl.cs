@@ -53,6 +53,13 @@ namespace AIPos.DAO.Implementation
             return cm.Database.SqlQuery<PedidoSucursal>("dbo.usp_PedidosSucursalSelectBySucursalFecha @SucursalId={0}, @FechaInicio={1}, @FechaFin={2}", parameters).ToList();
         }
 
+
+        public List<PedidoSucursal> SelectBySucursalFechaEntrega(int SucursalId, DateTime FechaInicio, DateTime FechaFin)
+        {
+            object[] parameters = new object[] { SucursalId, FechaInicio, FechaFin };
+            return cm.Database.SqlQuery<PedidoSucursal>("dbo.usp_PedidosSucursalSelectBySucursalFechaEntrega @SucursalId={0}, @FechaInicio={1}, @FechaFin={2}", parameters).ToList();
+        }
+
         public PedidoSucursal SelectByKey(int key)
         {
             object[] parameters = new object[] { key };

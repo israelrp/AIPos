@@ -1,0 +1,36 @@
+﻿@model List<AIPos.Domain.ReporteSeguimientoServicioApartado>
+
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "gvSeguimientos";
+        settings.CallbackRouteValues = new { Controller = "Home", Action = "_RecuperarSeguimientosServiciosApartados" };
+
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsPopup.EditForm.Width = 500;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = false;
+
+
+
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+
+        settings.Columns.Add("Folio");
+        settings.Columns.Add("Repartidor");
+        settings.Columns.Add("TiempoEntrega");
+        settings.Columns.Add("Estatus");
+
+
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

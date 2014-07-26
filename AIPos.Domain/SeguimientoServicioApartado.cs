@@ -20,4 +20,15 @@ namespace AIPos.Domain
 
         public int? Folio { get; set; }
     }
+
+    public class ReporteSeguimientoServicioApartado
+    {
+        public int Folio { get; set; }
+        public string Repartidor { get; set; }
+        public DateTime FechaSalidaRepartidor { get; set; }
+        public DateTime FechaLlegadaRepartidor { get; set; }
+        public int TotalEnvios { get; set; }
+        public int TiempoEntrega { get; set; }
+        public string Estatus { get; set; }
+    }
 }

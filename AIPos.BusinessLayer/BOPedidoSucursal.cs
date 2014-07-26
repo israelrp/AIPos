@@ -45,5 +45,14 @@ namespace AIPos.BusinessLayer
             DateTime fechaFin = Fecha.AddHours(23 - hours).AddMinutes(59 - minutes);
             return pedidoSucursalDaoImpl.SelectBySucursalFecha(SucursalId, fechaInicio, fechaFin);
         }
+
+        public List<PedidoSucursal> SelectBySucursalFechaEntrega(int SucursalId, DateTime Fecha)
+        {
+            int hours = Fecha.Hour;
+            int minutes = Fecha.Minute;
+            DateTime fechaInicio = Fecha.AddHours(hours * -1).AddMinutes(minutes * -1);
+            DateTime fechaFin = Fecha.AddHours(23 - hours).AddMinutes(59 - minutes);
+            return pedidoSucursalDaoImpl.SelectBySucursalFechaEntrega(SucursalId, fechaInicio, fechaFin);
+        }
     }
 }

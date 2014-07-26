@@ -41,5 +41,12 @@ namespace AIPos.BusinessLayer
         {
             return dao.NuevoFolioEnvio();
         }
+
+        public List<ReporteSeguimientoServicioApartado> RecuperarReporteFecha(DateTime Fecha)
+        {
+            DateTime fechaInicio = Tools.DateTimeManager.AbsoluteStart(Fecha);
+            DateTime fechaFin = Tools.DateTimeManager.AbsoluteEnd(Fecha);
+            return dao.SelectReporteByFecha(fechaInicio, fechaFin);
+        }
     }
 }

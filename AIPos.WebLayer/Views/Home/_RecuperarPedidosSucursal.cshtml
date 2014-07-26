@@ -1,0 +1,36 @@
+﻿@model List<AIPos.WebLayer.Models.ReportePedidosSucursalModel>
+
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "gvPedidosSucursal";
+        settings.CallbackRouteValues = new { Controller = "Home", Action = "_RecuperarPedidosSucursal" };
+
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsPopup.EditForm.Width = 500;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = false;
+
+
+
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+
+        settings.Columns.Add("Sucursal");
+        settings.Columns.Add("Producto");
+        settings.Columns.Add("Unidad");
+        settings.Columns.Add("Cantidad");
+
+
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

@@ -261,6 +261,8 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CatalogoProveedorModel.cs" />
+    <Compile Include="Models\ReportePedidosSucursalModel.cs" />
+    <Compile Include="Models\ResumenVentasChartDataModel.cs" />
     <Compile Include="Models\SucursalListaPrecioModel.cs" />
     <Compile Include="Models\SucursalModel.cs" />
     <Compile Include="Models\UsuarioSucursalModel.cs" />
@@ -1401,6 +1403,8 @@
     <Content Include="Views\ReporteVentasProducto\Index.cshtml" />
     <Content Include="Views\ReporteVentasProducto\_GridViewPartialVentasProducto.cshtml" />
     <Content Include="Views\Home\_ResumenVentas.cshtml" />
+    <Content Include="Views\Home\_RecuperarPedidosSucursal.cshtml" />
+    <Content Include="Views\Home\_RecuperarSeguimientosServiciosApartados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
