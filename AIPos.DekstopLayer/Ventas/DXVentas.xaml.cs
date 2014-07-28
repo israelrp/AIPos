@@ -387,7 +387,18 @@ namespace AIPos.DekstopLayer.Ventas
             report.Database.Tables[4].SetDataSource(new List<Venta>() {venta});
             report.Database.Tables[5].SetDataSource(new List<Direccion>() { venta.Sucursal.Direccion });
             report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
-            report.PrintToPrinter(2, false, 1, 1);
+            //----------------------------------------------------------------------
+            CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
+            //PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
+
+            System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
+            printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
+            printerSettings.Copies = 2;
+            var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
+            report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
+            report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
+            report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+            //----------------------------------------------------------------------
         }
 
         private void ImprimirApartadosServicio(Venta venta, ServicioApartado servicioApartado)
@@ -406,7 +417,18 @@ namespace AIPos.DekstopLayer.Ventas
             report.Database.Tables[6].SetDataSource(new List<Venta>() { venta });
             report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
             report.SetParameterValue(0, direccionSucursal);
-            report.PrintToPrinter(2, false, 1, 1);
+            //----------------------------------------------------------------------
+            CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
+            //PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
+
+            System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
+            printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
+            printerSettings.Copies = 2;
+            var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
+            report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
+            report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
+            report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+            //----------------------------------------------------------------------
         }
 
         private void txtRecibi_TextChanged(object sender, TextChangedEventArgs e)

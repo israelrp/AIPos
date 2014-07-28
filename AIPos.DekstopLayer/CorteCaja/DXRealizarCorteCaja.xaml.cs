@@ -50,10 +50,21 @@ namespace AIPos.DekstopLayer.CorteCaja
                     report.Database.Tables[3].SetDataSource(new List<Domain.Usuario>() { usuario });
                     report.Database.Tables[4].SetDataSource(retiros);
                     report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
-                    report.PrintToPrinter(2, false, 1, 1);
+                    //----------------------------------------------------------------------
+                    CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
+                    PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
+                    System.Drawing.Printing.PrinterSettings printerSettings=new System.Drawing.Printing.PrinterSettings();
+                    printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
+                    printerSettings.Copies = 2;
+                    var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
+                    pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
+                    report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
+                    report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
+                    report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+                    //----------------------------------------------------------------------
                     while (MessageBox.Show("¿Se imprimio correctamente el corte de caja?", "Corte caja", MessageBoxButton.YesNo) == MessageBoxResult.No)
                     {
-                        report.PrintToPrinter(2, false, 1, 1);
+                        report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
                     }
                     ServiceCorteCaja.SCorteCajaClient corteCajaClient = new ServiceCorteCaja.SCorteCajaClient();
                     RetiroDinero retiroDinero = new RetiroDinero();
