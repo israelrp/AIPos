@@ -18,11 +18,11 @@ namespace AIPos.DAO.Implementation
             object[] parameters = new object[] { entity.UsuarioId, entity.SucursalId, entity.Fecha, entity.TotalMostrador, entity.TotalDomicilio,
                 entity.TotalServicios, entity.TotalApartados, entity.TotalRetiros, entity.TotalAbonosServicios, entity.TotalAbonosApartados,
                 entity.TotalCancelados, entity.TotalCaja, entity.TotalCambio, entity.QuienRetira, entity.CorteEntregado, entity.Diferencia,
-                entity.TotalTickectsMostrados, entity.TotalTickectsDomicilio, entity.TotalTickectsMostrador };
+                entity.TotalTickectsDomicilio, entity.TotalTickectsMostrador, entity.TotalVentas };
             return cm.Database.SqlQuery<CorteCaja>("dbo.usp_CortesCajaInsert @UsuarioId={0}, @SucursalId={1}, @Fecha={2}, @TotalMostrador={3}, "+
                 "@TotalDomicilio={4}, @TotalServicios={5}, @TotalApartados={6}, @TotalRetiros={7}, @TotalAbonosServicios={8}, @TotalAbonosApartados={9}, " +
-                "@TotalCancelados={10}, @TotalCaja={11}, @TotalCambio={12}, @QuienRetira={13}, @CorteEntregado={14}, @Diferencia={15}, @TotalTickectsMostrados={16}," +
-                "@TotalTickectsDomicilio={17}, @TotalTickectsMostrador={18}", parameters).FirstOrDefault();
+                "@TotalCancelados={10}, @TotalCaja={11}, @TotalCambio={12}, @QuienRetira={13}, @CorteEntregado={14}, @Diferencia={15}, "+
+                "@TotalTickectsDomicilio={16}, @TotalTickectsMostrador={17}, @TotalVentas={18}", parameters).FirstOrDefault();
         }
 
         public bool Delete(int key)
@@ -42,17 +42,23 @@ namespace AIPos.DAO.Implementation
             object[] parameters = new object[] { entity.Id, entity.UsuarioId, entity.SucursalId, entity.Fecha, entity.TotalMostrador, entity.TotalDomicilio,
                 entity.TotalServicios, entity.TotalApartados, entity.TotalRetiros, entity.TotalAbonosServicios, entity.TotalAbonosApartados,
                 entity.TotalCancelados, entity.TotalCaja, entity.TotalCambio, entity.QuienRetira, entity.CorteEntregado, entity.Diferencia,
-                entity.TotalTickectsMostrados, entity.TotalTickectsDomicilio, entity.TotalTickectsMostrador };
+                entity.TotalTickectsDomicilio, entity.TotalTickectsMostrador, entity.TotalVentas };
             return cm.Database.SqlQuery<CorteCaja>("dbo.usp_CortesCajaUpdate @Id={0}, @UsuarioId={1}, @SucursalId={2}, @Fecha={3}, @TotalMostrador={4}, " +
                 "@TotalDomicilio={5}, @TotalServicios={6}, @TotalApartados={7}, @TotalRetiros={8}, @TotalAbonosServicios={9}, @TotalAbonosApartados={10}, " +
-                "@TotalCancelados={11}, @TotalCaja={12}, @TotalCambio={13}, @QuienRetira={14}, @CorteEntregado={15}, @Diferencia={16}, @TotalTickectsMostrados={17}," +
-                "@TotalTickectsDomicilio={18}, @TotalTickectsMostrador={19}", parameters).FirstOrDefault();
+                "@TotalCancelados={11}, @TotalCaja={12}, @TotalCambio={13}, @QuienRetira={14}, @CorteEntregado={15}, @Diferencia={16}, "+
+                "@TotalTickectsDomicilio={17}, @TotalTickectsMostrador={18}, @TotalVentas={19}", parameters).FirstOrDefault();
         }
 
         public List<CorteCaja> SelectAll()
         {
             object[] parameters = new object[] { null };
             return cm.Database.SqlQuery<CorteCaja>("dbo.usp_CortesCajaSelect @Id={0}", parameters).ToList();
+        }
+
+        public List<CorteCaja> SelectByFecha(DateTime FechaInicio, DateTime FechaFin)
+        {
+            object[] parameters = new object[] { FechaInicio, FechaFin };
+            return cm.Database.SqlQuery<CorteCaja>("dbo.usp_CortesCajaSelectByFecha @FechaInicio={0}, @FechaFin={1}", parameters).ToList();
         }
 
         public CorteCaja SelectByKey(int key)

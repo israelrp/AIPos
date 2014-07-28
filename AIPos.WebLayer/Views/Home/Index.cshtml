@@ -48,9 +48,8 @@
                 {
                     settings.Name = "DockZone4";
                     settings.ZoneUID = "Zone4";
-                    settings.AllowGrowing = true;
-                    settings.Height = 200;
-                    settings.Width = 300;
+                    settings.AllowGrowing = true;                    
+                    settings.Width = 1200;
                 }).GetHtml()
     </div>
 
@@ -129,6 +128,11 @@
     settings.AllowedDockState = AllowedDockState.DockedOnly;
     settings.OwnerZoneUID = "Zone4";
     settings.ShowCloseButton = false;
+    settings.Height = 300;
+    settings.SetContent(() =>
+    {
+        ViewContext.Writer.Write(Html.Action("_RecuperarCortesCaja"));
+    });
 }).GetHtml()
 
 @Html.DevExpress().DockPanel(settings =>

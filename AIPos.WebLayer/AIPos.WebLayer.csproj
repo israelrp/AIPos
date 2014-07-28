@@ -1405,6 +1405,7 @@
     <Content Include="Views\Home\_ResumenVentas.cshtml" />
     <Content Include="Views\Home\_RecuperarPedidosSucursal.cshtml" />
     <Content Include="Views\Home\_RecuperarSeguimientosServiciosApartados.cshtml" />
+    <Content Include="Views\Home\_RecuperarCortesCaja.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -453,9 +453,18 @@ namespace AIPos.DekstopLayer.Ventas
             {
                 recibio = 0;
             }
-            RegistroApartadoServicio registroApartadoServicio = new RegistroApartadoServicio();
-            registroApartadoServicio.txtAnticipo.Text = recibio.ToString();
+            List<VentaDetalle> ventasDetalle = (List<VentaDetalle>)gridVenta.ItemsSource;
+            RegistroApartadoServicio registroApartadoServicio = new RegistroApartadoServicio();            
             registroApartadoServicio.ClienteId = ((Cliente)cmbClientes.SelectedItem).Id;
+            registroApartadoServicio.TotalVenta = ventasDetalle.Sum(x => x.Importe);
+            if (recibio <= registroApartadoServicio.TotalVenta)
+            {
+                registroApartadoServicio.txtAnticipo.Text = recibio.ToString();
+            }
+            else
+            {
+                registroApartadoServicio.txtAnticipo.Text = registroApartadoServicio.TotalVenta.ToString();
+            }
             registroApartadoServicio.ShowDialog();
             if (registroApartadoServicio.ServicioApartadoVenta != null)
             {

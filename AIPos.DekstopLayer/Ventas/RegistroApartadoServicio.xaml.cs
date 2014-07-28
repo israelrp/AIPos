@@ -21,6 +21,7 @@ namespace AIPos.DekstopLayer.Ventas
     public partial class RegistroApartadoServicio : Window
     {
         public ServicioApartado ServicioApartadoVenta { get; set; }
+        public decimal TotalVenta { get; set; }
 
         private int clienteId;
         public int ClienteId
@@ -60,29 +61,36 @@ namespace AIPos.DekstopLayer.Ventas
             decimal anticipo = 0;
             if (decimal.TryParse(txtAnticipo.Text, out anticipo))
             {
-                if (cmbDireccionEntrega.SelectedItem != null)
+                if (anticipo <= TotalVenta)
                 {
-                    ServicioApartado servicioApartado = new ServicioApartado();
-                    servicioApartado.Anticipo = anticipo;
-                    servicioApartado.DireccionEnvioId = ((Direccion)cmbDireccionEntrega.SelectedItem).Id;
-                    servicioApartado.Especificaciones = txtEspecificaciones.Text;
-                    if (chkEsServicio.IsChecked.Value)
+                    if (cmbDireccionEntrega.SelectedItem != null)
                     {
-                        servicioApartado.Tipo = 2;
+                        ServicioApartado servicioApartado = new ServicioApartado();
+                        servicioApartado.Anticipo = anticipo;
+                        servicioApartado.DireccionEnvioId = ((Direccion)cmbDireccionEntrega.SelectedItem).Id;
+                        servicioApartado.Especificaciones = txtEspecificaciones.Text;
+                        if (chkEsServicio.IsChecked.Value)
+                        {
+                            servicioApartado.Tipo = 2;
+                        }
+                        else
+                        {
+                            servicioApartado.Tipo = 1;
+                        }
+                        //Nuevo
+                        servicioApartado.EstatusId = 4;
+                        servicioApartado.FechaEntrega = deFechaHoraEntrega.DateTime;
+                        this.ServicioApartadoVenta = servicioApartado;
+                        this.Close();
                     }
                     else
                     {
-                        servicioApartado.Tipo = 1;
+                        MessageBox.Show("Debes de seleccionar una dirección del listado");
                     }
-                    //Nuevo
-                    servicioApartado.EstatusId = 4;
-                    servicioApartado.FechaEntrega = deFechaHoraEntrega.DateTime;
-                    this.ServicioApartadoVenta = servicioApartado;
-                    this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Debes de seleccionar una dirección del listado");
+                    MessageBox.Show("El anticipo debe ser igual o menor que el total de la venta.");
                 }
             }
             else

@@ -107,7 +107,19 @@ namespace AIPos.WebLayer.Controllers
             return PartialView(boSeguimiento.RecuperarReporteFecha(DateTime.Now));
         }
 
-        
+        public PartialViewResult _RecuperarCortesCaja()
+        {
+            BOCorteCaja boCorteCaja = new BOCorteCaja();
+            List<CorteCaja> cortes= boCorteCaja.SelectByFecha(DateTime.Now);
+            foreach (CorteCaja corte in cortes)
+            {
+                corte.Sucursal = new BOSucursal().SelectById(corte.SucursalId);
+                corte.Usuario = new BOUsuario().SelectById(corte.UsuarioId);
+            }
+            return PartialView(cortes);
+        }
+
+
 
     }
 }

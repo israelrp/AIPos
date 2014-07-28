@@ -26,10 +26,11 @@ namespace AIPos.Domain
         public decimal TotalCambio { get; set; }
         public string QuienRetira { get; set; }
         public decimal CorteEntregado { get; set; }
-        public decimal Diferencia { get; set; }
-        public int TotalTickectsMostrados { get; set; }
+        public decimal Diferencia { get; set; }        
         public int TotalTickectsDomicilio { get; set; }
         public int TotalTickectsMostrador { get; set; }
+
+        public decimal TotalVentas { get; set; }
 
         public Usuario Usuario { get; set; }
         public Sucursal Sucursal { get; set; }

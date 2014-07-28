@@ -11,7 +11,7 @@
         <Label Content="Fecha inicio: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <dxe:DateEdit x:Name="deFechaInicio" HorizontalAlignment="Left" Margin="93,10,0,0" VerticalAlignment="Top" Width="150"/>
         <Button x:Name="btnConsultar" Content="Consultar" HorizontalAlignment="Left" Margin="505,10,0,0" VerticalAlignment="Top" Width="75" Click="btnConsultar_Click"/>
-        <dxg:GridControl x:Name="gridCorte" AutoGenerateColumns="None" Margin="10,49,9.667,9.667" MouseDoubleClick="gridCorte_MouseDoubleClick">
+        <dxg:GridControl x:Name="gridCorte" AutoGenerateColumns="None" Margin="10,49,9.667,60" MouseDoubleClick="gridCorte_MouseDoubleClick">
             <dxg:GridControl.GroupSummary>
                 <dxg:GridSummaryItem DisplayFormat="Total dinero: {0:c2}" FieldName="Total" ShowInColumn="" SummaryType="Sum" />
                 <dxg:GridSummaryItem DisplayFormat="No. operaciones: {0:0}" FieldName="Folio" ShowInColumn="" SummaryType="Count" />
@@ -76,5 +76,6 @@
         </Button>
         <Label Content="Usuario:" HorizontalAlignment="Left" Margin="260,10,0,0" VerticalAlignment="Top"/>
         <dxe:ComboBoxEdit x:Name="cmbUsuarios" ValueMember="Id" DisplayMember="Nombre" HorizontalAlignment="Left" Margin="313,10,0,0" VerticalAlignment="Top" Width="177"/>
-    </Grid>
+        <Label Name="lblTotalCaja" Content=" " HorizontalAlignment="Right" Margin="10,10,10,10" VerticalAlignment="Bottom" FontSize="20" FontWeight="Bold" Foreground="Red"/>
+    </Grid>    
 </dx:DXWindow>

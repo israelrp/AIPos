@@ -28,6 +28,13 @@ namespace AIPos.BusinessLayer
             return corteCajaDaoImpl.SelectAll();
         }
 
+        public List<CorteCaja> SelectByFecha(DateTime Fecha)
+        {
+            DateTime fechaInicio = Tools.DateTimeManager.AbsoluteStart(Fecha);
+            DateTime fechaFin = Tools.DateTimeManager.AbsoluteEnd(Fecha);
+            return corteCajaDaoImpl.SelectByFecha(fechaInicio, fechaFin);
+        }
+
         public void Delete(int Id)
         {
             corteCajaDaoImpl.Delete(Id);

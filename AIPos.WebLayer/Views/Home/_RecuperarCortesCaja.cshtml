@@ -1,0 +1,61 @@
+﻿@model List<AIPos.Domain.CorteCaja>
+
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "gvCortesCaja";
+        settings.CallbackRouteValues = new { Controller = "Home", Action = "_RecuperarCortesCaja" };
+
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsPopup.EditForm.Width = 500;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = false;
+
+
+
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+
+        settings.Columns.Add(col =>
+        {
+            col.Caption = "Sucursal";
+            col.SetDataItemTemplateContent(c =>
+            {
+                AIPos.Domain.Sucursal sucursal = (AIPos.Domain.Sucursal)DataBinder.Eval(c.DataItem, "Sucursal");
+                ViewContext.Writer.Write(sucursal.Nombre);
+            });
+        });
+        settings.Columns.Add(col =>
+        {
+            col.Caption = "Usuario";
+            col.SetDataItemTemplateContent(c =>
+            {
+                AIPos.Domain.Usuario usuario = (AIPos.Domain.Usuario)DataBinder.Eval(c.DataItem, "Usuario");
+                ViewContext.Writer.Write(usuario.Nombre);
+            });
+        });
+        settings.Columns.Add("TotalMostrador");
+        settings.Columns.Add("TotalDomicilio");
+        settings.Columns.Add("TotalServicios");
+        settings.Columns.Add("TotalApartados");
+        settings.Columns.Add("TotalRetiros");
+        settings.Columns.Add("TotalAbonosServicios");
+        settings.Columns.Add("TotalAbonosApartados");
+        settings.Columns.Add("TotalCancelados");
+        settings.Columns.Add("TotalCaja");
+        settings.Columns.Add("CorteEntregado");
+        settings.Columns.Add("Diferencia");
+        
+
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()
