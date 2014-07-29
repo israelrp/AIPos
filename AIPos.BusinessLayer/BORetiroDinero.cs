@@ -24,10 +24,8 @@ namespace AIPos.BusinessLayer
 
         public List<RetiroDinero> SelectAllByFechaSucursal(int SucursalId, DateTime fecha)
         {
-            int hours = fecha.Hour;
-            int minutes = fecha.Minute;
-            DateTime fechaInicio = fecha.AddHours(hours * -1).AddMinutes(minutes * -1);
-            DateTime fechaFin = fecha.AddHours(23 - hours).AddMinutes(59 - minutes);
+            DateTime fechaInicio = Tools.DateTimeManager.AbsoluteStart(fecha);
+            DateTime fechaFin = Tools.DateTimeManager.AbsoluteEnd(fecha);
             return retiroDineroDao.SelectAllByFechaSucursal(fechaInicio,fechaFin,SucursalId);
         }
 
