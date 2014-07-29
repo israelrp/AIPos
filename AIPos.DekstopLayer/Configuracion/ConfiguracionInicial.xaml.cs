@@ -51,14 +51,14 @@ namespace AIPos.DekstopLayer.Configuracion
                 if (General.ConfiguracionApp != null)
                 {
                     ListaPrecio listaPrecio = sListaPrecioClient.RecuperarListaPrecioDeSucursal(General.ConfiguracionApp.SucursalId);
-                    listaPrecio.Nombre = listaPrecio.Nombre;
+                    nombreListaPrecio = listaPrecio.Nombre;
                 }
             }
             catch (Exception ex)
             {
                 if (ex.Message == "La sucursal no tiene asignada una lista de precios")
                 {
-                    nombreListaPrecio = "NO ASIGNADA";
+                    nombreListaPrecio = "PRECIO BASE";
                 }
                 else
                 {

@@ -4,7 +4,7 @@
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     x:Class="AIPos.DekstopLayer.Ventas.DXBuscadoProductosxaml"
-    Title="Buscador de productos" Height="525" Width="525" Icon="/AIPos Desk;component/PUNTOVENTA.ico"
+    Title="Buscador de productos" Height="525" Width="825" Icon="/AIPos Desk;component/PUNTOVENTA.ico"
     >
 
     <Grid>

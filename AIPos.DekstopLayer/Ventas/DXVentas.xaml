@@ -6,13 +6,13 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     x:Class="AIPos.DekstopLayer.Ventas.DXVentas"
-    Title="DXVentas" Height="550" Width="1080"
+    Title="DXVentas" Height="550" Width="1180"
     >
 
     <Grid>
 
 
-        <Label Content="Precio Unit." HorizontalAlignment="Left" Margin="578,11,0,0" VerticalAlignment="Top" Width="115" FontWeight="SemiBold" FontSize="18" HorizontalContentAlignment="Center">
+        <Label Content="Precio Unit." HorizontalAlignment="Left" Margin="11,87,0,0" VerticalAlignment="Top" Width="115" FontWeight="SemiBold" FontSize="18" HorizontalContentAlignment="Center">
             <Label.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF369DBB" Offset="0"/>
@@ -22,7 +22,7 @@
         </Label>
 
 
-        <Label Content="Cantidad" HorizontalAlignment="Left" Margin="698,11,0,0" VerticalAlignment="Top" Width="115" HorizontalContentAlignment="Center" FontSize="18" FontWeight="SemiBold">
+        <Label Content="Cantidad" HorizontalAlignment="Left" Margin="167,87,0,0" VerticalAlignment="Top" Width="115" HorizontalContentAlignment="Center" FontSize="18" FontWeight="SemiBold">
             <Label.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF6DBD1D" Offset="0"/>
@@ -32,7 +32,7 @@
         </Label>
 
 
-        <dxlc:GroupBox Header="Cliente" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="73" Width="553">
+        <dxlc:GroupBox Header="Cliente" HorizontalAlignment="Left" Margin="576,10,0,0" VerticalAlignment="Top" Height="73" Width="553">
             <dxlc:GroupBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="0"/>
@@ -60,7 +60,7 @@
                 </Button>
             </Grid>
         </dxlc:GroupBox>
-        <dxlc:GroupBox Header="Producto" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="553" Height="73">
+        <dxlc:GroupBox Header="Producto" HorizontalAlignment="Left" Margin="11,10,0,0" VerticalAlignment="Top" Width="553" Height="73">
             <dxlc:GroupBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="0"/>
@@ -81,29 +81,29 @@
 
             </Grid>
         </dxlc:GroupBox>
-        <dxe:TextEdit x:Name="txtPrecioUnitario" HorizontalAlignment="Left" Margin="578,42,0,0" VerticalAlignment="Top" Width="115" Height="53" NullText="Precio Unit." HorizontalContentAlignment="Center" FontSize="20" IsReadOnly="True"/>
-        <dxe:TextEdit x:Name="txtCantidad" HorizontalAlignment="Left" Margin="698,42,0,0" VerticalAlignment="Top" Width="115" Height="53" NullText="Cantidad" HorizontalContentAlignment="Center" FontSize="20" KeyUp="txtCantidad_KeyUp" MaskType="RegEx" GotFocus="txtCantidad_GotFocus" MouseUp="txtCantidad_MouseUp" AllowNullInput="True" Mask="\d{0,9}(\R.\d{0,3})?"/>
+        <dxe:TextEdit x:Name="txtPrecioUnitario" HorizontalAlignment="Left" Margin="11,113,0,0" VerticalAlignment="Top" Width="115" Height="41" NullText="Precio Unit." HorizontalContentAlignment="Center" FontSize="20" IsReadOnly="True"/>
+        <dxe:TextEdit x:Name="txtCantidad" HorizontalAlignment="Left" Margin="167,113,0,0" VerticalAlignment="Top" Width="115" Height="41" NullText="Cantidad" HorizontalContentAlignment="Center" FontSize="20" KeyUp="txtCantidad_KeyUp" MaskType="RegEx" GotFocus="txtCantidad_GotFocus" MouseUp="txtCantidad_MouseUp" AllowNullInput="True" Mask="\d{0,9}(\R.\d{0,3})?"/>
 
-        <dxg:GridControl x:Name="gridVenta" Margin="10,196,0,9.667" SelectionMode="Row" HorizontalAlignment="Left" Width="553" CustomUnboundColumnData="gridVenta_CustomUnboundColumnData">
+        <dxg:GridControl x:Name="gridVenta" Margin="10,159,0,10" SelectionMode="Row" HorizontalAlignment="Left" CustomUnboundColumnData="gridVenta_CustomUnboundColumnData" Width="862">
             <dxg:GridControl.Columns>
-                <dxg:GridColumn FieldName="Codigo" Header="Cod." Width="40" />
-                <dxg:GridColumn FieldName="Nombre" Header="Producto" Width="120"/>
-                <dxg:GridColumn FieldName="PrecioUnitario" Header="P.L." Width="60">
+                <dxg:GridColumn FieldName="Codigo" Header="Código" Width="90" />
+                <dxg:GridColumn FieldName="Nombre" Header="Producto" Width="250"/>
+                <dxg:GridColumn FieldName="PrecioUnitario" Header="Precio lista" Width="90">
                     <dxg:GridColumn.EditSettings>
                         <dxe:TextEditSettings MaskType="Numeric" MaskUseAsDisplayFormat="True" Mask="c"/>
                     </dxg:GridColumn.EditSettings>
                 </dxg:GridColumn>
-                <dxg:GridColumn FieldName="Descuento" Header="Desc. %" Width="60">
+                <dxg:GridColumn FieldName="Descuento" Header="Descuento %" Width="90">
                     <dxg:GridColumn.EditSettings>
                         <dxe:TextEditSettings MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
                     </dxg:GridColumn.EditSettings>
                 </dxg:GridColumn>
-                <dxg:GridColumn FieldName="PrecioDescuento" Header="P.D." Width="60" UnboundType="Boolean" ReadOnly="True">
+                <dxg:GridColumn FieldName="PrecioDescuento" Header="Precio Desc." Width="90" UnboundType="Boolean" ReadOnly="True">
                     <dxg:GridColumn.EditSettings>
                         <dxe:TextEditSettings MaskType="Numeric" MaskUseAsDisplayFormat="True" Mask="c"/>
                     </dxg:GridColumn.EditSettings>
                 </dxg:GridColumn>
-                <dxg:GridColumn FieldName="Cantidad" Header="Cant." Width="60"/>
+                <dxg:GridColumn FieldName="Cantidad" Header="Cantidad" Width="90"/>
 
                 <dxg:GridColumn FieldName="Importe" Header="Importe">
                     <dxg:GridColumn.EditSettings>
@@ -116,70 +116,70 @@
                 <dxg:TableView ShowTotalSummary="True" AllowEditing="False" ShowGroupPanel="False"/>
             </dxg:GridControl.View>
         </dxg:GridControl>
-        <Button x:Name="btnEliminar" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Width="90" Height="29" Click="btnEliminar_Click" Background="{x:Null}" Cursor="Hand">
+        <Button x:Name="btnEliminar" HorizontalAlignment="Left" Margin="578,123,0,0" VerticalAlignment="Top" Width="120" Height="29" Click="btnEliminar_Click" Background="{x:Null}" Cursor="Hand">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="110"/>
                         <ColumnDefinition Width="26"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Eliminar" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="Red"></Label>
+                    <Label Content="Eliminar item" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="Red"></Label>
                     <Image Source="/AIPos Desk;component/Images/delete.png" HorizontalAlignment="Right"></Image>
                 </Grid>
             </Button.Content>
         </Button>
-        <Button x:Name="btnCancelar" HorizontalAlignment="Left" Margin="104,165,0,0" VerticalAlignment="Top" Width="85" Height="29" Click="btnCancelar_Click_1" Background="{x:Null}" Cursor="Hand">
-            <Button.Content>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"/>
-                        <ColumnDefinition Width="26"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="Cancelar" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="Red"></Label>
-                    <Image Source="/AIPos Desk;component/Images/cancelar.png" HorizontalAlignment="Right"></Image>
-                </Grid>
-            </Button.Content>
-        </Button>
-        <Button x:Name="btnVenta" HorizontalAlignment="Left" Margin="310,165,0,0" VerticalAlignment="Top" Width="125" Height="29" Click="btnVenta_Click" Background="{x:Null}" Cursor="Hand">
+        <Button x:Name="btnCancelar" HorizontalAlignment="Left" Margin="752,123,0,0" VerticalAlignment="Top" Width="120" Height="29" Click="btnCancelar_Click_1" Background="{x:Null}" Cursor="Hand">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="115"/>
+                        <ColumnDefinition Width="26"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Cancelar venta" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="Red"></Label>
+                    <Image Source="/AIPos Desk;component/Images/cancelar.png" HorizontalAlignment="Right"></Image>
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btnVenta" HorizontalAlignment="Left" Margin="894,398,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnVenta_Click" Background="{x:Null}" Cursor="Hand">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="135"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Imprimir venta" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="#FF0F87FF"></Label>
+                    <Label Content="Imprimir venta" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="Bold" Foreground="#FF0F87FF"></Label>
                     <Image Source="/AIPos Desk;component/Images/ticket-mini.png" HorizontalAlignment="Right"></Image>
                 </Grid>
             </Button.Content>
         </Button>
-        <Button x:Name="btnDomicilio" HorizontalAlignment="Left" Margin="438,165,0,0" VerticalAlignment="Top" Width="125" Height="29" Click="btnDomicilio_Click" Background="{x:Null}" Cursor="Hand">
+        <Button x:Name="btnDomicilio" HorizontalAlignment="Left" Margin="894,442,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnDomicilio_Click" Background="{x:Null}" Cursor="Hand">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="117"/>
+                        <ColumnDefinition Width="135"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Venta domicilio" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="#FF8409FF"></Label>
+                    <Label Content="Venta domicilio" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="Bold" Foreground="#FF8409FF"></Label>
                     <Image Source="/AIPos Desk;component/Images/domicilio.png" HorizontalAlignment="Right"></Image>
                 </Grid>
             </Button.Content>
         </Button>
-        <Button x:Name="btnApartar" HorizontalAlignment="Left" Margin="192,165,0,0" VerticalAlignment="Top" Width="115" Height="29" Click="btnApartar_Click" Background="{x:Null}" Cursor="Hand">
+        <Button x:Name="btnApartar" HorizontalAlignment="Left" Margin="894,353,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnApartar_Click" Background="{x:Null}" Cursor="Hand">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="105"/>
+                        <ColumnDefinition Width="135"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Apartar/Serv." HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="SemiBold" Foreground="#FF008B19"></Label>
+                    <Label Content="Apartar/Servicio" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="Bold" Foreground="#FF008B19"></Label>
                     <Image Source="/AIPos Desk;component/Images/apartado.png" HorizontalAlignment="Right"></Image>
                 </Grid>
             </Button.Content>
         </Button>
-        <Label x:Name="lblTotal" Content="TOTAL" HorizontalAlignment="Left" Margin="578,0,0,224" VerticalAlignment="Bottom" Width="235" Height="70" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" Foreground="#FF1A4C7D" FontWeight="SemiBold"/>
-        <Label x:Name="lblCambio" Content="CAMBIO" HorizontalAlignment="Left" Margin="578,0,0,83" VerticalAlignment="Bottom" Width="235" Height="70" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" Foreground="Red" FontWeight="SemiBold"/>
-        <TextBox x:Name="txtRecibi" HorizontalAlignment="Left" Height="70" Margin="578,0,0,153" TextWrapping="Wrap" Text="RECIBÍ" VerticalAlignment="Bottom" Width="235" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextAlignment="Center" FontSize="40" FontWeight="SemiBold" TextChanged="txtRecibi_TextChanged" GotFocus="txtRecibi_GotFocus" KeyUp="txtRecibi_KeyUp"/>
-        <Button x:Name="btnOrden" HorizontalAlignment="Left" Margin="578,0,0,9.667" VerticalAlignment="Bottom" Width="235" Height="70" Click="btnOrden_Click" Background="{x:Null}" Cursor="Hand" BorderThickness="2">
+        <Label x:Name="lblTotal" Content="TOTAL" HorizontalAlignment="Left" Margin="891,94,0,0" VerticalAlignment="Top" Width="235" Height="60" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" Foreground="#FF1A4C7D" FontWeight="SemiBold"/>
+        <Label x:Name="lblCambio" Content="CAMBIO" HorizontalAlignment="Left" Margin="891,214,0,0" VerticalAlignment="Top" Width="235" Height="60" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" Foreground="Red" FontWeight="SemiBold"/>
+        <TextBox x:Name="txtRecibi" HorizontalAlignment="Left" Height="60" Margin="891,154,0,0" TextWrapping="Wrap" Text="RECIBÍ" VerticalAlignment="Top" Width="235" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextAlignment="Center" FontSize="40" FontWeight="SemiBold" TextChanged="txtRecibi_TextChanged" GotFocus="txtRecibi_GotFocus" KeyUp="txtRecibi_KeyUp"/>
+        <Button x:Name="btnOrden" HorizontalAlignment="Left" Margin="891,274,0,0" VerticalAlignment="Top" Width="235" Height="70" Click="btnOrden_Click" Background="{x:Null}" Cursor="Hand" BorderThickness="2">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -191,8 +191,8 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <dxe:CheckEdit x:Name="chkPrecioMayoreo" HorizontalAlignment="Left" Margin="578,100,0,0" VerticalAlignment="Top" Width="235" Content="Aplicar precio de mayoreo  " FontWeight="SemiBold" Foreground="Red" FontSize="14" EditValueChanged="chkPrecioMayoreo_EditValueChanged"/>
-        <Label Content="Descuento" HorizontalAlignment="Left" Margin="578,127,0,0" VerticalAlignment="Top" Width="235" FontSize="18" FontWeight="SemiBold" HorizontalContentAlignment="Center">
+        <dxe:CheckEdit x:Name="chkPrecioMayoreo" HorizontalAlignment="Left" Margin="578,90,0,0" VerticalAlignment="Top" Width="235" Content="Aplicar precio de mayoreo  " FontWeight="SemiBold" Foreground="Red" FontSize="14" EditValueChanged="chkPrecioMayoreo_EditValueChanged"/>
+        <Label Content="Descuento" HorizontalAlignment="Left" Margin="328,88,0,0" VerticalAlignment="Top" Width="235" FontSize="18" FontWeight="SemiBold" HorizontalContentAlignment="Center">
             <Label.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFF03C3C" Offset="0"/>
@@ -200,7 +200,7 @@
                 </LinearGradientBrush>
             </Label.Background>
         </Label>
-        <dxe:TextEdit  IsReadOnly="True" x:Name="txtDescuento" HorizontalAlignment="Left" Margin="578,162,0,0" VerticalAlignment="Top" Width="235" Height="53" NullText="Descuento %" HorizontalContentAlignment="Center" FontSize="20"/>
+        <dxe:TextEdit  IsReadOnly="True" x:Name="txtDescuento" HorizontalAlignment="Left" Margin="328,114,0,0" VerticalAlignment="Top" Width="235" Height="40" NullText="Descuento %" HorizontalContentAlignment="Center" FontSize="20"/>
 
     </Grid>
 </dx:DXWindow>

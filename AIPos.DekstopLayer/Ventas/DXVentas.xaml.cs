@@ -15,6 +15,8 @@ using AIPos.Domain;
 using System.IO.Ports;
 using System.Threading;
 using System.Windows.Threading;
+using System.ServiceModel;
+using System.IO;
 
 
 namespace AIPos.DekstopLayer.Ventas
@@ -38,14 +40,25 @@ namespace AIPos.DekstopLayer.Ventas
 
         private void RecuperarDatos()
         {
-            ServiceCliente.SClienteClient sClienteClient = new ServiceCliente.SClienteClient();
-            cmbClientes.ItemsSource = sClienteClient.SelectAll();
-            Cliente cliente = sClienteClient.SelectByCodigo("0");
-            cmbClientes.SelectedItem = cliente;
-            ServiceProducto.SProductoClient sProductoClient = new ServiceProducto.SProductoClient();
-            cmbProductos.ItemsSource = sProductoClient.SelectAllProductos();
-            List<VentaDetalle> inicio = new List<VentaDetalle>();
-            gridVenta.ItemsSource = inicio;
+            try
+            {
+                ServiceCliente.SClienteClient sClienteClient = new ServiceCliente.SClienteClient();
+                cmbClientes.ItemsSource = sClienteClient.SelectAll();
+                Cliente cliente = sClienteClient.SelectByCodigo("0");
+                cmbClientes.SelectedItem = cliente;
+                ServiceProducto.SProductoClient sProductoClient = new ServiceProducto.SProductoClient();
+                cmbProductos.ItemsSource = sProductoClient.SelectAllProductos();
+                List<VentaDetalle> inicio = new List<VentaDetalle>();
+                gridVenta.ItemsSource = inicio;
+            }
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
         }
 
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
@@ -93,15 +106,26 @@ namespace AIPos.DekstopLayer.Ventas
                 ServiceListaPrecioProducto.ISListaPrecioProductoClient isListaPrecioProductoClient = new ServiceListaPrecioProducto.ISListaPrecioProductoClient();
                 ListaPrecioProducto listaPrecioProducto=null;
 
-                if (cmbClientes.SelectedItem != null)
+                try
                 {
-                    Cliente cliente=(Cliente)cmbClientes.SelectedItem;
-                    listaPrecioProducto = isListaPrecioProductoClient.SelectByProductoCliente(cliente.Id, producto.Id);
-                }
+                    if (cmbClientes.SelectedItem != null)
+                    {
+                        Cliente cliente = (Cliente)cmbClientes.SelectedItem;
+                        listaPrecioProducto = isListaPrecioProductoClient.SelectByProductoCliente(cliente.Id, producto.Id);
+                    }
 
-                if (listaPrecioProducto == null)
+                    if (listaPrecioProducto == null)
+                    {
+                        listaPrecioProducto = isListaPrecioProductoClient.SelectByProductoSucursal(General.ConfiguracionApp.SucursalId, producto.Id);
+                    }
+                }
+                catch (FaultException ex)
                 {
-                    listaPrecioProducto = isListaPrecioProductoClient.SelectByProductoSucursal(General.ConfiguracionApp.SucursalId, producto.Id);
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
                 }
                 
                 if (listaPrecioProducto != null)
@@ -110,17 +134,20 @@ namespace AIPos.DekstopLayer.Ventas
                     txtDescuento.Text = CalcularDescuentoEnPesos(listaPrecioProducto.Precio,listaPrecioProducto.Descuento).ToString("c");
                     descuento=listaPrecioProducto.Descuento;
                 }
+
                 if (General.ConfiguracionApp.PuertoBascula != "")
                 {
                     if (producto.SePesa)
                     {
                         if (General.ConfiguracionApp.PuertoBascula != "")
                         {
-                            InicializaPuertoBascula(General.ConfiguracionApp.PuertoBascula, 19200);
-                            RecuperarPesoBascula();
-                            Thread.Sleep(5000);
-                            txtCantidad.Text = peso;
-                            PuertoSerieBascula.Close();
+                            if (InicializaPuertoBascula(General.ConfiguracionApp.PuertoBascula, 19200))
+                            {
+                                RecuperarPesoBascula();
+                                Thread.Sleep(5000);
+                                txtCantidad.Text = peso;
+                                PuertoSerieBascula.Close();
+                            }
                         }                        
                     }
                 }
@@ -133,6 +160,18 @@ namespace AIPos.DekstopLayer.Ventas
             try
             {
                 PuertoSerieBascula.Write("P");
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show("Error: El puerto " + PuertoSerieBascula.PortName + " no se encuentra abierto.");
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show("Error: La respuesta fue null");
+            }
+            catch (TimeoutException ex)
+            {
+                MessageBox.Show("La operación no se completo en el tiempo establecido.");
             }
             catch (Exception ex)
             {
@@ -250,11 +289,18 @@ namespace AIPos.DekstopLayer.Ventas
                 gridVenta.RefreshData();
                 CalcularTotal();
             }
+            else
+            {
+                MessageBox.Show("No ha seleccionado ninguna fila de la venta para eliminarla.");
+            }
         }
 
         private void btnCancelar_Click_1(object sender, RoutedEventArgs e)
         {
-            ReiniciarVenta();
+            if (gridVenta.VisibleRowCount > 0)
+                ReiniciarVenta();
+            else
+                MessageBox.Show("No hay ninguna venta que cancelar.");
         }
 
         void ReiniciarVenta()
@@ -470,28 +516,35 @@ namespace AIPos.DekstopLayer.Ventas
 
         private void btnApartar_Click(object sender, RoutedEventArgs e)
         {
-            decimal recibio = 0;
-            if (!decimal.TryParse(txtRecibi.Text, out recibio))
+            if (gridVenta.VisibleRowCount > 0)
             {
-                recibio = 0;
-            }
-            List<VentaDetalle> ventasDetalle = (List<VentaDetalle>)gridVenta.ItemsSource;
-            RegistroApartadoServicio registroApartadoServicio = new RegistroApartadoServicio();            
-            registroApartadoServicio.ClienteId = ((Cliente)cmbClientes.SelectedItem).Id;
-            registroApartadoServicio.TotalVenta = ventasDetalle.Sum(x => x.Importe);
-            if (recibio <= registroApartadoServicio.TotalVenta)
-            {
-                registroApartadoServicio.txtAnticipo.Text = recibio.ToString();
+                decimal recibio = 0;
+                if (!decimal.TryParse(txtRecibi.Text, out recibio))
+                {
+                    recibio = 0;
+                }
+                List<VentaDetalle> ventasDetalle = (List<VentaDetalle>)gridVenta.ItemsSource;
+                RegistroApartadoServicio registroApartadoServicio = new RegistroApartadoServicio();
+                registroApartadoServicio.ClienteId = ((Cliente)cmbClientes.SelectedItem).Id;
+                registroApartadoServicio.TotalVenta = ventasDetalle.Sum(x => x.Importe);
+                if (recibio <= registroApartadoServicio.TotalVenta)
+                {
+                    registroApartadoServicio.txtAnticipo.Text = recibio.ToString();
+                }
+                else
+                {
+                    registroApartadoServicio.txtAnticipo.Text = registroApartadoServicio.TotalVenta.ToString();
+                }
+                registroApartadoServicio.ShowDialog();
+                if (registroApartadoServicio.ServicioApartadoVenta != null)
+                {
+                    //Se hacer persistente la venta y el servicio o apartado
+                    GenerarVenta(registroApartadoServicio.ServicioApartadoVenta, true);
+                }
             }
             else
             {
-                registroApartadoServicio.txtAnticipo.Text = registroApartadoServicio.TotalVenta.ToString();
-            }
-            registroApartadoServicio.ShowDialog();
-            if (registroApartadoServicio.ServicioApartadoVenta != null)
-            {
-                //Se hacer persistente la venta y el servicio o apartado
-                GenerarVenta(registroApartadoServicio.ServicioApartadoVenta, true);
+                MessageBox.Show("Debes agregar productos a la venta.");
             }
         }
 
@@ -514,20 +567,27 @@ namespace AIPos.DekstopLayer.Ventas
 
         private void btnDomicilio_Click(object sender, RoutedEventArgs e)
         {
-            decimal recibio = 0;
-            if (!decimal.TryParse(txtRecibi.Text, out recibio))
+            if (gridVenta.VisibleRowCount > 0)
             {
-                recibio = 0;
-                txtRecibi.Text = "0";
+                decimal recibio = 0;
+                if (!decimal.TryParse(txtRecibi.Text, out recibio))
+                {
+                    recibio = 0;
+                    txtRecibi.Text = "0";
+                }
+                Ventas.ResgistroVentaDomicilio registroVentaDomicilio = new ResgistroVentaDomicilio();
+                registroVentaDomicilio.ClienteId = ((Cliente)cmbClientes.SelectedItem).Id;
+                registroVentaDomicilio.ShowDialog();
+                if (registroVentaDomicilio.ServicioApartadoVenta != null)
+                {
+                    //Se guarda la venta y el domicilio de envio
+                    registroVentaDomicilio.ServicioApartadoVenta.Anticipo = recibio;
+                    GenerarVenta(registroVentaDomicilio.ServicioApartadoVenta, true);
+                }
             }
-            Ventas.ResgistroVentaDomicilio registroVentaDomicilio = new ResgistroVentaDomicilio();
-            registroVentaDomicilio.ClienteId = ((Cliente)cmbClientes.SelectedItem).Id;
-            registroVentaDomicilio.ShowDialog();
-            if (registroVentaDomicilio.ServicioApartadoVenta != null)
+            else
             {
-                //Se guarda la venta y el domicilio de envio
-                registroVentaDomicilio.ServicioApartadoVenta.Anticipo = recibio;
-                GenerarVenta(registroVentaDomicilio.ServicioApartadoVenta, true);
+                MessageBox.Show("Debes de agregar productos a la venta.");
             }
         }
 
@@ -538,8 +598,9 @@ namespace AIPos.DekstopLayer.Ventas
         }
 
 
-        public void InicializaPuertoBascula(string puerto, int baud)
+        public bool InicializaPuertoBascula(string puerto, int baud)
         {
+            bool retorno=false;
             if (puerto != "" && puerto != string.Empty)
             {
                 PuertoSerieBascula = new SerialPort(puerto, baud);
@@ -561,22 +622,41 @@ namespace AIPos.DekstopLayer.Ventas
                     {
 
                         PuertoSerieBascula.Open();
+                        retorno = true;
+                    }
+                    catch (UnauthorizedAccessException ex)
+                    {
+                        MessageBox.Show("Acceso denegado al puerto "+puerto+". Detalle: "+ex.Message);
+                    }
+                    catch(ArgumentOutOfRangeException ex){
+                        MessageBox.Show("Una configuración para conectarse a la báscula esta incorrecta, por favor verifiquela. Detalles: " + ex.Message);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show("El nombre del puesto no empieza con \"COM\" o el tipo de puerto no esta soportado.");
+                    }
+                    catch (IOException ex)
+                    {
+                        MessageBox.Show("El puerto se encuentra en un estado inválido. Detalles: " + ex.Message);
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        MessageBox.Show("El puerto especificado ya se encuentra abierto");
                     }
                     catch (Exception error)
                     {
                         MessageBox.Show("Error al abrir el dispositivo (Bascula) ...\r" + error.Message);
-
                     }
                 }
                 else
                     MessageBox.Show("El puerto está abierto...");
 
             }
+            return retorno;
         }
         
         void PuertoSerieBascula_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            
             try
             {
                 peso = PuertoSerieBascula.ReadExisting().Replace("Info:","").Replace("LSQ N/S:K121931","").Replace("kg","").Replace("N/S:K121931","").Trim();

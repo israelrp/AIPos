@@ -5,7 +5,7 @@
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     x:Class="AIPos.DekstopLayer.Ventas.DXBuscadorCliente"
-    Title="Buscador de clientes" Height="525" Width="525" Icon="/AIPos Desk;component/PUNTOVENTA.ico">
+    Title="Buscador de clientes" Height="525" Width="825" Icon="/AIPos Desk;component/PUNTOVENTA.ico">
 
     <Grid>
 
