@@ -14,15 +14,18 @@ namespace AIPos.Services
     public interface ISPedidoSucursal
     {
         [OperationContract]
-        PedidoSucursal Insert(PedidoSucursal entity);
+        PedidoSucursal Insert(PedidoSucursal entity, long FechaRegistro, long FechaEntrega);
 
         [OperationContract]
-        PedidoSucursal Update(PedidoSucursal entity);
+        PedidoSucursal Update(PedidoSucursal entity, long FechaRegistro, long FechaEntrega);
 
         [OperationContract]
         void Delete(int Id);
 
         [OperationContract]
         List<PedidoSucursal> SelectBySucursalFecha(int SucursalId, long Day);
+
+        [OperationContract]
+        List<PedidoSucursal> SelectBySucursalFechaEntrega(int SucursalId, long Day);
     }
 }

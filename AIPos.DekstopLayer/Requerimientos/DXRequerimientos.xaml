@@ -16,7 +16,7 @@
         <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="9,46,0,0" VerticalAlignment="Top"/>
         <dxe:TextEdit x:Name="txtCantidad" HorizontalAlignment="Left" Margin="73,46,0,0" VerticalAlignment="Top" Width="82" NullText="Cantidad" KeyUp="txtCodigoProducto_KeyUp" TabIndex="4" Mask="\d{0,9}(\R.\d{0,3})?" MaskType="RegEx"/>
         <Label Content="Fecha a entregar:" HorizontalAlignment="Left" Margin="406,46,0,0" VerticalAlignment="Top"/>
-        <dxe:DateEdit x:Name="deFechaEntregar" HorizontalAlignment="Left" Margin="510,46,0,0" VerticalAlignment="Top" Width="240" TabIndex="6" Mask="dddd dd MMMM yyyy'. Hora: 'h:mm tt"/>
+        <dxe:DateEdit x:Name="deFechaEntregar" HorizontalAlignment="Left" Margin="510,46,0,0" VerticalAlignment="Top" Width="240" TabIndex="6" EditValueChanged="deFechaEntregar_EditValueChanged"/>
         <Button x:Name="btnGuardar"  HorizontalAlignment="Left" Margin="753,42,0,0" VerticalAlignment="Top" Width="88" Height="28" FontWeight="SemiBold" Click="btnGuardar_Click" Background="{x:Null}" BorderBrush="Black" Cursor="Hand" TabIndex="7">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -44,7 +44,7 @@
                 </dxg:GridColumn>
                 <dxg:GridColumn FieldName="FechaEntrega" Header="Fecha entrega" AllowEditing="False">
                     <dxg:GridColumn.EditSettings>
-                        <dxe:DateEditSettings DisplayFormat="g" />
+                        <dxe:DateEditSettings DisplayFormat="dd-MMM-yyyy" />
                     </dxg:GridColumn.EditSettings>
                 </dxg:GridColumn>
             </dxg:GridControl.Columns>

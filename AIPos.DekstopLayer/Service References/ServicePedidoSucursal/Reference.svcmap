@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4e808e87-c806-4879-976d-3cb37901b491" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://sanagustinservices.azurewebsites.net/SPedidoSucursal.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SPedidoSucursal1.wsdl" MetadataType="Wsdl" ID="c62807df-6118-4225-ac40-3ee3c9bef123" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SPedidoSucursal.svc?wsdl" />
+    <MetadataFile FileName="SPedidoSucursal3.xsd" MetadataType="Schema" ID="a7ecbc23-16f9-4342-911a-1d0611c81684" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SPedidoSucursal.svc?xsd=xsd2" />
+    <MetadataFile FileName="SPedidoSucursal31.xsd" MetadataType="Schema" ID="190d1011-7913-48bf-a6e1-505d5fe1f35f" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SPedidoSucursal.svc?xsd=xsd1" />
+    <MetadataFile FileName="SPedidoSucursal1.disco" MetadataType="Disco" ID="d840df73-8b95-4bf3-ba63-50bac975eea8" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SPedidoSucursal.svc?disco" />
+    <MetadataFile FileName="SPedidoSucursal32.xsd" MetadataType="Schema" ID="04058dc6-83db-4a51-aa2a-c7c1affdd09c" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SPedidoSucursal.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
