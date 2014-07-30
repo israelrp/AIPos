@@ -24,6 +24,9 @@ namespace AIPos.DekstopLayer.Requerimientos
         {
             InitializeComponent();
             RecuperarInformacion();
+            deFecha.DateTime = DateTime.Now.Date;
+            deFecha.EditValue = DateTime.Now.Date;
+            RecuperarDatos();
         }
 
         private void RecuperarDatos()
@@ -151,6 +154,30 @@ namespace AIPos.DekstopLayer.Requerimientos
         private void deFechaEntregar_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
         {
             DateTime fecha = deFechaEntregar.DateTime;
+        }
+
+        private void txtPedido_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key==Key.Enter)
+                txtCantidad.Focus();
+        }
+
+        private void txtCantidad_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                cmbUnidades.Focus();
+        }
+
+        private void deFechaEntregar_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                btnGuardar.Focus();
+        }
+
+        private void cmbUnidades_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                deFechaEntregar.Focus();
         }
     }
 }

@@ -12,11 +12,11 @@
         <dxe:TextEdit x:Name="txtCodigoProducto" HorizontalAlignment="Left" Margin="73,10,0,0" VerticalAlignment="Top" Width="60" NullText="Código" KeyUp="txtCodigoProducto_KeyUp" TabIndex="1"/>
         <dxe:ComboBoxEdit x:Name="cmbProductos" HorizontalAlignment="Left" Margin="150,10,0,0" VerticalAlignment="Top" Width="230" NullText="Productos" DisplayMember="Nombre" ValueMember="Id" SelectedIndexChanged="cmbProductos_SelectedIndexChanged" TabIndex="2"/>
         <Label Content="Pedido:" HorizontalAlignment="Left" Margin="405,10,0,0" VerticalAlignment="Top"/>
-        <dxe:TextEdit x:Name="txtPedido" HorizontalAlignment="Left" Margin="471,10,0,0" VerticalAlignment="Top" Width="290" NullText="Nombre del producto a pedir" KeyUp="txtCodigoProducto_KeyUp" TabIndex="3"/>
+        <dxe:TextEdit x:Name="txtPedido" HorizontalAlignment="Left" Margin="471,10,0,0" VerticalAlignment="Top" Width="290" NullText="Nombre del producto a pedir" KeyUp="txtPedido_KeyUp" TabIndex="3"/>
         <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="9,46,0,0" VerticalAlignment="Top"/>
-        <dxe:TextEdit x:Name="txtCantidad" HorizontalAlignment="Left" Margin="73,46,0,0" VerticalAlignment="Top" Width="82" NullText="Cantidad" KeyUp="txtCodigoProducto_KeyUp" TabIndex="4" Mask="\d{0,9}(\R.\d{0,3})?" MaskType="RegEx"/>
+        <dxe:TextEdit x:Name="txtCantidad" HorizontalAlignment="Left" Margin="73,46,0,0" VerticalAlignment="Top" Width="82" NullText="Cantidad" TabIndex="4" Mask="\d{0,9}(\R.\d{0,3})?" MaskType="RegEx" KeyUp="txtCantidad_KeyUp"/>
         <Label Content="Fecha a entregar:" HorizontalAlignment="Left" Margin="406,46,0,0" VerticalAlignment="Top"/>
-        <dxe:DateEdit x:Name="deFechaEntregar" HorizontalAlignment="Left" Margin="510,46,0,0" VerticalAlignment="Top" Width="240" TabIndex="6" EditValueChanged="deFechaEntregar_EditValueChanged"/>
+        <dxe:DateEdit x:Name="deFechaEntregar" HorizontalAlignment="Left" Margin="510,46,0,0" VerticalAlignment="Top" Width="240" TabIndex="6" EditValueChanged="deFechaEntregar_EditValueChanged" KeyUp="deFechaEntregar_KeyUp"/>
         <Button x:Name="btnGuardar"  HorizontalAlignment="Left" Margin="753,42,0,0" VerticalAlignment="Top" Width="88" Height="28" FontWeight="SemiBold" Click="btnGuardar_Click" Background="{x:Null}" BorderBrush="Black" Cursor="Hand" TabIndex="7">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -56,7 +56,7 @@
             </dxg:GridControl.TotalSummary>
         </dxg:GridControl>
         <Label Content="Unidad:" HorizontalAlignment="Left" Margin="175,46,0,0" VerticalAlignment="Top"/>
-        <dxe:ComboBoxEdit x:Name="cmbUnidades" HorizontalAlignment="Left" Margin="225,50,0,0" VerticalAlignment="Top" Width="155" NullText="Unidad de producto" DisplayMember="Nombre" ValueMember="Id" TabIndex="5" />
+        <dxe:ComboBoxEdit x:Name="cmbUnidades" HorizontalAlignment="Left" Margin="225,50,0,0" VerticalAlignment="Top" Width="155" NullText="Unidad de producto" DisplayMember="Nombre" ValueMember="Id" TabIndex="5" KeyUp="cmbUnidades_KeyUp" />
         <Button x:Name="btnEliminar" Height="29" Margin="0,91,13.667,0" HorizontalAlignment="Right" Width="90" VerticalAlignment="Top" Foreground="Red" Click="btnEliminar_Click" Background="{x:Null}" Cursor="Hand">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -67,7 +67,7 @@
                 <Image Source="/AIPos Desk;component/Images/delete.png" HorizontalAlignment="Right"/>
             </Grid>
         </Button>
-        <Button x:Name="btnImprimir" Height="29" Margin="0,91,123.667,0" HorizontalAlignment="Right" Width="90" VerticalAlignment="Top" Click="btnImprimir_Click" Background="{x:Null}" Cursor="Hand" >
+        <Button x:Name="btnImprimir" Height="29" Margin="0,91,123.667,0" HorizontalAlignment="Right" Width="90" VerticalAlignment="Top" Click="btnImprimir_Click" Background="{x:Null}" Cursor="Hand" Visibility="Hidden" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80"/>

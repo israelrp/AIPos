@@ -37,7 +37,7 @@
                 <Image Source="/AIPos Desk;component/Images/delete.png" HorizontalAlignment="Right"/>
             </Grid>
         </Button>
-        <Button x:Name="btnImprimir" Height="29" Margin="0,66,123.667,0" HorizontalAlignment="Right" Width="90" VerticalAlignment="Top" Click="btnImprimir_Click" Background="{x:Null}" Cursor="Hand" TabIndex="5" >
+        <Button x:Name="btnImprimir" Height="29" Margin="0,66,123.667,0" HorizontalAlignment="Right" Width="90" VerticalAlignment="Top" Click="btnImprimir_Click" Background="{x:Null}" Cursor="Hand" TabIndex="5" Visibility="Hidden" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80"/>

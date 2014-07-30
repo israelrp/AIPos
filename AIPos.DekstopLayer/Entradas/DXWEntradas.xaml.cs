@@ -25,6 +25,7 @@ namespace AIPos.DekstopLayer.Entradas
         {
             InitializeComponent();
             dateEditEntradas.DateTime = DateTime.Now.Date;
+            dateEditEntradas.EditValue = DateTime.Now.Date;
             RecuperarInformacion();
         }
 
@@ -177,7 +178,18 @@ namespace AIPos.DekstopLayer.Entradas
             List<TipoProducto> tipos = new ServiceTipoProducto.STipoProductoClient().SelectAll().ToList();
             report.Database.Tables[2].SetDataSource(tipos);
             report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
-            report.PrintToPrinter(2, false, 1, 1);
+            //----------------------------------------------------------------------
+            CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
+            PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
+            System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
+            printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
+            printerSettings.Copies = 2;
+            var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
+            pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
+            report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
+            report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
+            report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+            //----------------------------------------------------------------------
 
         }
 

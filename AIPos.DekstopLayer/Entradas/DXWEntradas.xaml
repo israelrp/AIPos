@@ -77,7 +77,7 @@
                         </Grid>
                     </Button.Content>
                 </Button>
-                <Button x:Name="btnImprimir" Height="29" Margin="0,6,120,0" HorizontalAlignment="Right" Width="90" VerticalAlignment="Top" Click="btnImprimir_Click" Background="{x:Null}" Cursor="Hand" >
+                <Button x:Name="btnImprimir" Height="29" Margin="0,6,120,0" HorizontalAlignment="Right" Width="90" VerticalAlignment="Top" Click="btnImprimir_Click" Background="{x:Null}" Cursor="Hand" Visibility="Hidden" >
                     <Button.Content>
                         <Grid>
                             <Grid.ColumnDefinitions>

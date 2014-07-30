@@ -25,7 +25,8 @@ namespace AIPos.DekstopLayer.Inventario
         {
             InitializeComponent();
             RecuperarInformacion();
-            deFecha.DateTime = DateTime.Now;
+            deFecha.DateTime = DateTime.Now.Date;
+            deFecha.EditValue = DateTime.Now.Date;
             RecuperarDatos();
         }
 
@@ -100,7 +101,7 @@ namespace AIPos.DekstopLayer.Inventario
             txtCantidad.Text = "";
             txtCodigoProducto.Text = "";
             cmbProductos.SelectedIndex = -1;
-            deFecha.DateTime = DateTime.Now;
+            deFecha.DateTime = DateTime.Now.Date;
             txtCodigoProducto.Focus();
         }
 
