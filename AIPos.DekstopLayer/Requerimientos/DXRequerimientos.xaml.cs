@@ -82,7 +82,7 @@ namespace AIPos.DekstopLayer.Requerimientos
                 pedido.SucursalId = General.ConfiguracionApp.SucursalId;
                 pedido.UnidadId = ((Unidad)cmbUnidades.SelectedItem).Id;
                 pedido.UsuarioId = General.UsuarioLogueado.Id;
-                sPedidoSucursalClient.Insert(pedido);
+                sPedidoSucursalClient.Insert(pedido,pedido.FechaRegistro.ToFileTimeUtc(),pedido.FechaEntrega.ToFileTimeUtc());
                 LimpiarDatos();
                 RecuperarDatos();
             }
@@ -97,7 +97,7 @@ namespace AIPos.DekstopLayer.Requerimientos
             txtCantidad.Text = "";
             cmbUnidades.SelectedIndex = -1;
             deFecha.DateTime = DateTime.Now;
-            deFechaEntregar.DateTime = DateTime.Now;
+            //deFechaEntregar.DateTime = DateTime.Now;
             txtCodigoProducto.Focus();
         }
 
@@ -155,6 +155,11 @@ namespace AIPos.DekstopLayer.Requerimientos
         private void deFecha_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
         {
             RecuperarDatos();
+        }
+
+        private void deFechaEntregar_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
+        {
+            DateTime fecha = deFechaEntregar.DateTime;
         }
     }
 }

@@ -569,14 +569,14 @@
     <None Include="Service References\ServiceListaPrecio\SListaPrecio2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal.wsdl" />
-    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal.xsd">
+    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal1.wsdl" />
+    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal1.xsd">
+    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal2.xsd">
+    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal32.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceProducto\SProducto1.wsdl" />
@@ -1388,9 +1388,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\ServicePedidoSucursal\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -1488,6 +1485,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\order.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

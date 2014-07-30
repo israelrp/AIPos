@@ -19,14 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/SPedidoSucursal.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://sanagustinservices.azurewebsites.net/SPedidoSucursal.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SPedidoSucursal.xsd" MetadataType="Schema" ID="b4d6c67c-d4d8-4484-947f-1dbfad13c149" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SPedidoSucursal.svc?xsd=xsd0" />
-    <MetadataFile FileName="SPedidoSucursal.wsdl" MetadataType="Wsdl" ID="6adfbc5e-759e-4cc9-9fac-574fc037dd58" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SPedidoSucursal.svc?wsdl" />
-    <MetadataFile FileName="SPedidoSucursal1.xsd" MetadataType="Schema" ID="0663b98a-338f-4db8-9ecd-4e14c1d1b46c" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SPedidoSucursal.svc?xsd=xsd2" />
-    <MetadataFile FileName="SPedidoSucursal2.xsd" MetadataType="Schema" ID="5f0bf854-0a0a-4b5b-9d05-35fabc67ff1a" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SPedidoSucursal.svc?xsd=xsd1" />
-    <MetadataFile FileName="SPedidoSucursal.disco" MetadataType="Disco" ID="3e6df8bf-cfdc-4272-ad7f-779eb61ed9ed" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SPedidoSucursal.svc?disco" />
+    <MetadataFile FileName="SPedidoSucursal1.wsdl" MetadataType="Wsdl" ID="c62807df-6118-4225-ac40-3ee3c9bef123" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SPedidoSucursal.svc?wsdl" />
+    <MetadataFile FileName="SPedidoSucursal3.xsd" MetadataType="Schema" ID="a7ecbc23-16f9-4342-911a-1d0611c81684" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SPedidoSucursal.svc?xsd=xsd2" />
+    <MetadataFile FileName="SPedidoSucursal31.xsd" MetadataType="Schema" ID="190d1011-7913-48bf-a6e1-505d5fe1f35f" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SPedidoSucursal.svc?xsd=xsd1" />
+    <MetadataFile FileName="SPedidoSucursal1.disco" MetadataType="Disco" ID="d840df73-8b95-4bf3-ba63-50bac975eea8" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SPedidoSucursal.svc?disco" />
+    <MetadataFile FileName="SPedidoSucursal32.xsd" MetadataType="Schema" ID="04058dc6-83db-4a51-aa2a-c7c1affdd09c" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SPedidoSucursal.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using AIPos.Domain;
 using AIPos.BusinessLayer;
+using AIPos.BusinessLayer.Tools;
 
 namespace AIPos.Services
 {
@@ -14,15 +15,21 @@ namespace AIPos.Services
     public class SPedidoSucursal : ISPedidoSucursal
     {
 
-        public PedidoSucursal Insert(PedidoSucursal entity)
+        public PedidoSucursal Insert(PedidoSucursal entity, long FechaRegistro, long FechaEntrega)
         {
             BOPedidoSucursal boPedidoSucursal = new BOPedidoSucursal();
+            entity.FechaRegistro = DateTime.FromFileTimeUtc(FechaRegistro);
+            entity.FechaEntrega = DateTime.FromFileTimeUtc(FechaEntrega);
+            entity.FechaRegistro = TimeConverter.GetDateTimeMexico(entity.FechaRegistro);
+            entity.FechaEntrega = TimeConverter.GetDateTimeMexico(entity.FechaEntrega);
             return boPedidoSucursal.Insert(entity);
         }
 
-        public PedidoSucursal Update(PedidoSucursal entity)
+        public PedidoSucursal Update(PedidoSucursal entity, long FechaRegistro, long FechaEntrega)
         {
             BOPedidoSucursal boPedidoSucursal = new BOPedidoSucursal();
+            entity.FechaRegistro = DateTime.FromFileTimeUtc(FechaRegistro);
+            entity.FechaEntrega = DateTime.FromFileTimeUtc(FechaEntrega);
             return boPedidoSucursal.Update(entity);
         }
 
@@ -37,6 +44,13 @@ namespace AIPos.Services
             BOPedidoSucursal boPedidoSucursal = new BOPedidoSucursal();
             DateTime fecha = DateTime.FromFileTimeUtc(Day);
             return boPedidoSucursal.SelectBySucursalFecha(SucursalId,fecha);
+        }
+
+        public List<PedidoSucursal> SelectBySucursalFechaEntrega(int SucursalId, long Day)
+        {
+            BOPedidoSucursal boPedidoSucursal = new BOPedidoSucursal();
+            DateTime fecha = DateTime.FromFileTimeUtc(Day);
+            return boPedidoSucursal.SelectBySucursalFechaEntrega(SucursalId, fecha);
         }
     }
 }
