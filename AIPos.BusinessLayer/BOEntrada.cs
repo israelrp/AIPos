@@ -40,7 +40,6 @@ namespace AIPos.BusinessLayer
                 entrada.Proveedor = new BOProveedor().SelectById(entrada.ProveedorId);
                 entrada.Producto = new BOProducto().SelectById(entrada.ProductoId);
                 entrada.TipoProducto = new BOTipoProducto().SeectById(entrada.TipoProductoId);
-                
             }
             return entradas;
         }

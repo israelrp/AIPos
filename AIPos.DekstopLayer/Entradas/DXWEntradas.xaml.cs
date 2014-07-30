@@ -24,7 +24,7 @@ namespace AIPos.DekstopLayer.Entradas
         public DXWEntradas()
         {
             InitializeComponent();
-            dateEditEntradas.DateTime = DateTime.Now;
+            dateEditEntradas.DateTime = DateTime.Now.Date;
             RecuperarInformacion();
         }
 

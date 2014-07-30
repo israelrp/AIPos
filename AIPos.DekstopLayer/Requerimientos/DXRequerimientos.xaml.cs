@@ -31,16 +31,7 @@ namespace AIPos.DekstopLayer.Requerimientos
             if (deFecha.DateTime != null)
             {
                 ServicePedidoSucursal.SPedidoSucursalClient sPedidoSucursalClient = new ServicePedidoSucursal.SPedidoSucursalClient();
-                List<Domain.PedidoSucursal> pedidos=sPedidoSucursalClient.SelectBySucursalFecha(General.ConfiguracionApp.SucursalId,deFecha.DateTime.ToFileTimeUtc()).ToList();
-                ServiceUsuario.SUsuarioClient sUsuarioClient=new ServiceUsuario.SUsuarioClient();
-                ServiceUnidad.SUnidadClient sUnidadClient=new ServiceUnidad.SUnidadClient();
-                ServiceSucursal.SSucursalClient sSucursalClient = new ServiceSucursal.SSucursalClient();
-                foreach (var pedido in pedidos)
-                {
-                    pedido.Usuario = sUsuarioClient.SelectById(pedido.UsuarioId);
-                    pedido.Unidad = sUnidadClient.SelectById(pedido.UnidadId);
-                    pedido.Sucursal = sSucursalClient.SelectById(pedido.SucursalId);
-                }
+                List<Domain.PedidoSucursal> pedidos=sPedidoSucursalClient.SelectBySucursalFechaEntrega(General.ConfiguracionApp.SucursalId,deFecha.DateTime.ToFileTimeUtc()).ToList();
                 gridDatos.ItemsSource = pedidos;
             }
         }
@@ -96,7 +87,7 @@ namespace AIPos.DekstopLayer.Requerimientos
             txtPedido.Text = "";
             txtCantidad.Text = "";
             cmbUnidades.SelectedIndex = -1;
-            deFecha.DateTime = DateTime.Now;
+            deFecha.DateTime = DateTime.Now.Date;
             //deFechaEntregar.DateTime = DateTime.Now;
             txtCodigoProducto.Focus();
         }

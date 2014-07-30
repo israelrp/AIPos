@@ -38,6 +38,12 @@ namespace AIPos.DekstopLayer.ServicePedidoSucursal {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISPedidoSucursal/SelectBySucursalFecha", ReplyAction="http://tempuri.org/ISPedidoSucursal/SelectBySucursalFechaResponse")]
         System.Threading.Tasks.Task<AIPos.Domain.PedidoSucursal[]> SelectBySucursalFechaAsync(int SucursalId, long Day);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISPedidoSucursal/SelectBySucursalFechaEntrega", ReplyAction="http://tempuri.org/ISPedidoSucursal/SelectBySucursalFechaEntregaResponse")]
+        AIPos.Domain.PedidoSucursal[] SelectBySucursalFechaEntrega(int SucursalId, long Day);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISPedidoSucursal/SelectBySucursalFechaEntrega", ReplyAction="http://tempuri.org/ISPedidoSucursal/SelectBySucursalFechaEntregaResponse")]
+        System.Threading.Tasks.Task<AIPos.Domain.PedidoSucursal[]> SelectBySucursalFechaEntregaAsync(int SucursalId, long Day);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -97,6 +103,14 @@ namespace AIPos.DekstopLayer.ServicePedidoSucursal {
         
         public System.Threading.Tasks.Task<AIPos.Domain.PedidoSucursal[]> SelectBySucursalFechaAsync(int SucursalId, long Day) {
             return base.Channel.SelectBySucursalFechaAsync(SucursalId, Day);
+        }
+        
+        public AIPos.Domain.PedidoSucursal[] SelectBySucursalFechaEntrega(int SucursalId, long Day) {
+            return base.Channel.SelectBySucursalFechaEntrega(SucursalId, Day);
+        }
+        
+        public System.Threading.Tasks.Task<AIPos.Domain.PedidoSucursal[]> SelectBySucursalFechaEntregaAsync(int SucursalId, long Day) {
+            return base.Channel.SelectBySucursalFechaEntregaAsync(SucursalId, Day);
         }
     }
 }

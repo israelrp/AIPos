@@ -60,4 +60,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SelectBySucursalFechaEntrega">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SucursalId" type="xs:int" />
+        <xs:element minOccurs="0" name="Day" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectBySucursalFechaEntregaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/AIPos.Domain" minOccurs="0" name="SelectBySucursalFechaEntregaResult" nillable="true" type="q6:ArrayOfPedidoSucursal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

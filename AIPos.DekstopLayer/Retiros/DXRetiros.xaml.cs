@@ -23,7 +23,7 @@ namespace AIPos.DekstopLayer.Retiros
         public DXRetiros()
         {
             InitializeComponent();
-            deFechaConsulta.DateTime = DateTime.Now;
+            deFechaConsulta.DateTime = DateTime.Now.Date;
             ServiceRetiroDinero.ISRetiroDineroClient retiroClient = new ServiceRetiroDinero.ISRetiroDineroClient();
             gridRetiros.ItemsSource = retiroClient.SelectAllByFechaSucursal(deFechaConsulta.DateTime, General.ConfiguracionApp.SucursalId);
         }

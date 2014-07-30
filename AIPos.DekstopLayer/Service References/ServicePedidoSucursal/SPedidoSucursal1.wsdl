@@ -56,6 +56,12 @@
   <wsdl:message name="ISPedidoSucursal_SelectBySucursalFecha_OutputMessage">
     <wsdl:part name="parameters" element="tns:SelectBySucursalFechaResponse" />
   </wsdl:message>
+  <wsdl:message name="ISPedidoSucursal_SelectBySucursalFechaEntrega_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectBySucursalFechaEntrega" />
+  </wsdl:message>
+  <wsdl:message name="ISPedidoSucursal_SelectBySucursalFechaEntrega_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectBySucursalFechaEntregaResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISPedidoSucursal">
     <wsdl:operation name="Insert">
       <wsdl:input wsaw:Action="http://tempuri.org/ISPedidoSucursal/Insert" message="tns:ISPedidoSucursal_Insert_InputMessage" />
@@ -72,6 +78,10 @@
     <wsdl:operation name="SelectBySucursalFecha">
       <wsdl:input wsaw:Action="http://tempuri.org/ISPedidoSucursal/SelectBySucursalFecha" message="tns:ISPedidoSucursal_SelectBySucursalFecha_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISPedidoSucursal/SelectBySucursalFechaResponse" message="tns:ISPedidoSucursal_SelectBySucursalFecha_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectBySucursalFechaEntrega">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISPedidoSucursal/SelectBySucursalFechaEntrega" message="tns:ISPedidoSucursal_SelectBySucursalFechaEntrega_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISPedidoSucursal/SelectBySucursalFechaEntregaResponse" message="tns:ISPedidoSucursal_SelectBySucursalFechaEntrega_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISPedidoSucursal" type="tns:ISPedidoSucursal">
@@ -112,6 +122,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SelectBySucursalFechaEntrega">
+      <soap:operation soapAction="http://tempuri.org/ISPedidoSucursal/SelectBySucursalFechaEntrega" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BasicHttpsBinding_ISPedidoSucursal" type="tns:ISPedidoSucursal">
     <wsp:PolicyReference URI="#BasicHttpsBinding_ISPedidoSucursal_policy" />
@@ -145,6 +164,15 @@
     </wsdl:operation>
     <wsdl:operation name="SelectBySucursalFecha">
       <soap:operation soapAction="http://tempuri.org/ISPedidoSucursal/SelectBySucursalFecha" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectBySucursalFechaEntrega">
+      <soap:operation soapAction="http://tempuri.org/ISPedidoSucursal/SelectBySucursalFechaEntrega" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

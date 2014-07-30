@@ -50,7 +50,14 @@ namespace AIPos.Services
         {
             BOPedidoSucursal boPedidoSucursal = new BOPedidoSucursal();
             DateTime fecha = DateTime.FromFileTimeUtc(Day);
-            return boPedidoSucursal.SelectBySucursalFechaEntrega(SucursalId, fecha);
+            List<PedidoSucursal> pedidos=boPedidoSucursal.SelectBySucursalFechaEntrega(SucursalId, fecha);
+            foreach (PedidoSucursal pedido in pedidos)
+            {
+                pedido.Usuario = new BOUsuario().SelectById(pedido.UsuarioId);
+                pedido.Unidad = new BOUnidad().SelectById(pedido.UnidadId);
+                pedido.Sucursal = new BOSucursal().SelectById(pedido.SucursalId);
+            }
+            return pedidos;
         }
     }
 }
