@@ -1,10 +1,9 @@
-<div id="divCorte">
 @{
     var grid = Html.DevExpress().GridView(settings =>
     {
         settings.Name = "GridViewReporteCorteCaja";
-        settings.CallbackRouteValues = new { Controller = "ReporteCorteCaja", Action = "GridViewPartialReporteCorteCaja" };
-        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArg['FechaInicio']=FechaInicio.GetDate(); e.customArg['FechaFin']=FechaFin.GetDate(); }";
+        settings.CallbackRouteValues = new { Controller = "ReporteCorteCaja", Action = "_GridViewPartialReporteCorteCaja" };
+        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['FechaInicio']=FechaInicio.GetDate().toLocaleDateString(); e.customArgs['FechaFin']=FechaFin.GetDate().toLocaleDateString(); e.customArgs['SucursalId_VI']=SucursalId.GetValue(); }";
         settings.KeyFieldName = "Folio";
 
         settings.SettingsPager.Visible = true;
@@ -13,19 +12,57 @@
         settings.SettingsBehavior.AllowSelectByRowClick = true;
 
         settings.Columns.Add("Cliente");
-        settings.Columns.Add("Sucursal");
-        settings.Columns.Add("Fecha");
-        settings.Columns.Add("Total");
-        settings.Columns.Add("Recibio");
-        settings.Columns.Add("Cambio");
-        settings.Columns.Add("Anticipo");
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "Sucursal";
+            x.Caption = "Sucursal";
+            x.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = x.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = new AIPos.BusinessLayer.BOSucursal().SelectAll();
+            comboBoxProperties.TextField = "Nombre";
+            comboBoxProperties.ValueField = "Id";
+            
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "Fecha";
+            x.Caption = "Fecha";
+            x.ColumnType = MVCxGridViewColumnType.DateEdit;
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "Total";
+            x.Caption = "Total";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(x=>{
+            x.FieldName="Recibio";
+            x.Caption="Recibio";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "Cambio";
+            x.Caption = "Cambio";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "Anticipo";
+            x.Caption = "Anticipo";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
         settings.Columns.Add("FolioCancelado");
         settings.Columns.Add("Folio");
         settings.Columns.Add("Usuario");
         settings.Columns.Add("Estatus");
         settings.Columns.Add("Tipo");
-        settings.Columns.Add("Cancelado");
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "Cancelado";
+            x.Caption = "Cancelado";
+            x.ColumnType = MVCxGridViewColumnType.CheckBox;
+        });
     });
 }
 @grid.Bind(Model).GetHtml()
-</div>

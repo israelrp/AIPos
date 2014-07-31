@@ -74,27 +74,30 @@
                             "<td style='width:117px;'><span class='label-table'>Precio base:</span> " +
                                     precioBase.ToString("c") +
                             "</td>" +
-                            "<td style='width:117px;'><span class='label-table'>Precio lista:$</span>" +
+                            "<td style='width:120px;'><span class='label-table'>Precio lista:$</span>" +
                                 Html.TextBox("PrecioLista", precioLista,
                                 new
                                 {
                                     id = "txtPrecioLista_" + productoId.ToString(),
-                                    onkeyup = "ModificarDescuento(" + productoId + ")"
+                                    onkeyup = "ModificarDescuento(" + productoId + ")",
+                                    style = "width:120px;"
                                 }) +
                             "</td>" +
-                            "<td style='width:117px;'><span class='label-table'>Descuento:%</span> " +
+                            "<td style='width:120px;'><span class='label-table'>Descuento:%</span> " +
                                 Html.TextBox("Descuento", descuento,
                                 new
                                 {
                                     id = "txtDescuento_" + productoId.ToString(), 
-                                    onkeyup = "ModificarDescuento(" + productoId + ")"
+                                    onkeyup = "ModificarDescuento(" + productoId + ")",
+                                    style = "width:120px;"
                                 }) +
                             "</td>" +
-                            "<td style='width:117px;'><span class='label-table'>Precio descuento:$</span>" +
+                            "<td style='width:120px;'><span class='label-table'>Precio descuento:$</span>" +
                                 Html.TextBox("PrecioDescuento", precioDescuento, new
                                 {
                                     id = "txtPrecioDescuento_" + productoId.ToString(), 
-                                    onkeyup="ModificarPrecioDescuento("+productoId+")"
+                                    onkeyup="ModificarPrecioDescuento("+productoId+")",
+                                    style="width:120px;"
                                 }) +
                             "</td>" +
                             "<td style='width:80px; text-align:center;'>" +

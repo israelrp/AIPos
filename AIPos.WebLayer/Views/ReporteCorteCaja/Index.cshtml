@@ -2,9 +2,14 @@
     ViewBag.Title = "Index";
 }
 
+<script>
+    function Consultar() {
+        GridViewReporteCorteCaja.Refresh();
+    }
+</script>
+
 <h2>Corte de caja</h2>
-@using (Ajax.BeginForm("GridViewPartialReporteCorteCaja", new AjaxOptions { UpdateTargetId = "divCorte" }))
-{
+
 <table>
     <tr>
         <td>
@@ -40,13 +45,12 @@
                settings.Name = "btnConsultar";
                settings.Text = "Consultar";
                settings.UseSubmitBehavior = true;
+               settings.ClientSideEvents.Click = "Consultar";
            }).GetHtml()
         </td>
     </tr>
 </table>
 
-}
 
-<div id="divCorte">
+@Html.Action("_GridViewPartialReporteCorteCaja")
 
-</div>

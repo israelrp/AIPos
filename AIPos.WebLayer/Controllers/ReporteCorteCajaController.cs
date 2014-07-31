@@ -20,12 +20,14 @@ namespace AIPos.WebLayer.Controllers
 
 
         [ValidateInput(false)]
-        public ActionResult GridViewPartialReporteCorteCaja(DateTime FechaInicio, DateTime FechaFin, int? SucursalId_VI)
+        public ActionResult _GridViewPartialReporteCorteCaja(DateTime? FechaInicio, DateTime? FechaFin, int? SucursalId_VI)
         {
             List<Domain.ReporteCorteCaja> model = new List<Domain.ReporteCorteCaja>();
-            model = new BusinessLayer.BOVenta().RecuperarCorteCaja(FechaInicio, FechaFin, SucursalId_VI);
+            if(FechaInicio.HasValue && FechaFin.HasValue)
+                model = new BusinessLayer.BOVenta().RecuperarCorteCaja(FechaInicio.Value, FechaFin.Value, SucursalId_VI);
             return PartialView("_GridViewPartialReporteCorteCaja", model);
         }
+
 
     }
 }

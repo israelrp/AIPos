@@ -46,12 +46,27 @@
             comboBoxProperties.TextField = "Nombre";
             comboBoxProperties.ValueField = "Id";
         });
-        
-        
-        settings.Columns.Add("Monto");
+
+
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "Monto";
+            x.Caption = "Monto";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
         settings.Columns.Add("Descripcion");
-        settings.Columns.Add("Fecha");
-        settings.Columns.Add("EsCorteCaja");
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "Fecha";
+            x.Caption = "Fecha";
+            x.ColumnType = MVCxGridViewColumnType.DateEdit;
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "EsCorteCaja";
+            x.Caption = "Corte caja";
+            x.ColumnType = MVCxGridViewColumnType.CheckBox;
+        });
     });
     if (ViewData["EditError"] != null)
     {

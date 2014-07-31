@@ -53,6 +53,16 @@
         width:200px; 
         float:left;
     }
+
+    .contenedor-buscador {
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #e2e2e2;
+        margin-top: 10px;
+        padding: 10px;
+        width: 740px;
+    }
 </style>
 <script>
 
@@ -201,13 +211,14 @@
     }
 </script>
 @Html.Action("ComboBoxPartialListasPrecio")
-<div style="height:60px;">
-        <h5>Buscar por:</h5>
+<div class="contenedor-buscador">
+    <div style="height:60px;">
+        <h5><b>Buscar por producto:</b></h5>
         <div class="buscador-item">
             <label>Código:</label>
         </div>
         <div class="buscador-item">
-            @Html.DevExpress().TextBox(settings=>
+            @Html.DevExpress().TextBox(settings =>
             {
                 settings.Name = "txtCodigoProducto";
                 settings.Width = 150;
@@ -218,133 +229,150 @@
             <label>Nombre:</label>
         </div>
         <div class="buscador-item">
-            @Html.DevExpress().TextBox(settings=>
+            @Html.DevExpress().TextBox(settings =>
             {
                 settings.Name = "txtNombreProducto";
                 settings.Width = 300;
                 settings.Properties.NullText = "Nombre del producto";
             }).GetHtml()
         </div>
+        <div class="buscador-item">
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btnConsultar";
+                settings.UseSubmitBehavior = false;
+                settings.Text = "Consultar";
+                settings.ClientSideEvents.Click = "function(s,e) { GridViewListaPrecios.PerformCallback(); }";
+            }).GetHtml()
+        </div>
+    </div>
+    
 </div>
-@Html.DevExpress().Button(settings =>
-{
-    settings.Name = "btnConsultar";
-    settings.UseSubmitBehavior = false;
-    settings.Text = "Consultar";
-    settings.ClientSideEvents.Click = "function(s,e) { GridViewListaPrecios.PerformCallback(); }";
-}).GetHtml()
-
-<a id="aAcciones" onclick="MostarOcultarAcciones()"><h5>Aumentar o disminuir precios de la lista</h5></a>
-<div id="divAcciones" style="border:1px solid; height:70px; display:none;">
+<a id="aAcciones" onclick="MostarOcultarAcciones()"><h5><b>Aumentar o disminuir precios de la lista</b></h5></a>
+<div id="divAcciones" style="display:none;" class="contenedor-buscador">
     <div class="contenedores-descuento">
         <label>Acción:</label>
         <div style="float:left;">
-        @Html.DevExpress().RadioButton(settings=>{
-            settings.Name = "rbAumentar";
-            settings.Checked = true;
-            settings.GroupName = "GrupoPrecio";
-            settings.Text = "Aumentar";
-        }).GetHtml()
+            @Html.DevExpress().RadioButton(settings =>
+   {
+       settings.Name = "rbAumentar";
+       settings.Checked = true;
+       settings.GroupName = "GrupoPrecio";
+       settings.Text = "Aumentar";
+   }).GetHtml()
         </div>
         <div style="float:left;">
-            @Html.DevExpress().RadioButton(settings=>{
-                settings.Name = "rbDisminuir";
-                settings.Checked = true;
-                settings.GroupName = "GrupoPrecio";
-                settings.Text = "Disminuir";
-            }).GetHtml()
+            @Html.DevExpress().RadioButton(settings =>
+       {
+           settings.Name = "rbDisminuir";
+           settings.Checked = true;
+           settings.GroupName = "GrupoPrecio";
+           settings.Text = "Disminuir";
+       }).GetHtml()
         </div>
     </div>
     <div class="contenedores-descuento" style="margin-left:10px; width:400px;">
         <label>Por medio de:</label>
         <div style="float:left;">
-        @Html.DevExpress().RadioButton(settings=>{
-            settings.Name = "rbPorcentaje";
-            settings.Checked = true;
-            settings.GroupName = "GrupoDescontar";
-            settings.Text = "Porcentaje";
-            settings.Properties.ClientSideEvents.CheckedChanged = "function(s,e) { CambioTipoDescuento(); }";
-        }).GetHtml()
+            @Html.DevExpress().RadioButton(settings =>
+   {
+       settings.Name = "rbPorcentaje";
+       settings.Checked = true;
+       settings.GroupName = "GrupoDescontar";
+       settings.Text = "Porcentaje";
+       settings.Properties.ClientSideEvents.CheckedChanged = "function(s,e) { CambioTipoDescuento(); }";
+   }).GetHtml()
         </div>
         <div style="float:left;">
-            @Html.DevExpress().RadioButton(settings=>{
-                settings.Name = "rbDinero";
-                settings.Checked = true;
-                settings.GroupName = "GrupoDescontar";
-                settings.Text = "Dinero";
-                settings.Properties.ClientSideEvents.CheckedChanged = "function(s,e) { CambioTipoDescuento(); }";
-            }).GetHtml()
+            @Html.DevExpress().RadioButton(settings =>
+       {
+           settings.Name = "rbDinero";
+           settings.Checked = true;
+           settings.GroupName = "GrupoDescontar";
+           settings.Text = "Dinero";
+           settings.Properties.ClientSideEvents.CheckedChanged = "function(s,e) { CambioTipoDescuento(); }";
+       }).GetHtml()
         </div>
         <div style="float:left; margin-left:10px;">
-            @Html.DevExpress().TextBox(settings=>{
-                settings.Name = "txtPorcentaje";
-                settings.Width = 90;
-                settings.Properties.NullText = "Descuento %";
-            }).GetHtml()
+            @Html.DevExpress().TextBox(settings =>
+       {
+           settings.Name = "txtPorcentaje";
+           settings.Width = 90;
+           settings.Properties.NullText = "Descuento %";
+       }).GetHtml()
 
-            @Html.DevExpress().TextBox(settings=>{
-                settings.Name = "txtImporte";
-                settings.Width = 90;
-                settings.Properties.NullText = "Dinero $";
-                settings.ClientVisible = false;
-            }).GetHtml()
+            @Html.DevExpress().TextBox(settings =>
+       {
+           settings.Name = "txtImporte";
+           settings.Width = 90;
+           settings.Properties.NullText = "Dinero $";
+           settings.ClientVisible = false;
+       }).GetHtml()
         </div>
         <div style="float:left; margin-left:10px;">
-            @Html.DevExpress().Button(settings=>{
-                settings.Name = "btnAplicarAccion";
-                settings.Text = "Aplicar";
-                settings.ClientSideEvents.Click = "function (s,e) { AplicarAccion(); }";
-            }).GetHtml()
+            @Html.DevExpress().Button(settings =>
+       {
+           settings.Name = "btnAplicarAccion";
+           settings.Text = "Aplicar";
+           settings.ClientSideEvents.Click = "function (s,e) { AplicarAccion(); }";
+       }).GetHtml()
         </div>
     </div>
 </div>
-<a id="aDescuento" onclick="MostarOcultarDescuentos()"><h5>Aplicar descuento a todos los productos</h5></a>
-<div id="divDescuento" style="border:1px solid; height:70px; display:none;">
+
+<a id="aDescuento" onclick="MostarOcultarDescuentos()"><h5><b>Aplicar descuento a todos los productos</b></h5></a>
+<div id="divDescuento" style="display:none;" class="contenedor-buscador">
     <div class="contenedores-descuento" style="width:600px;">
         <label>Por medio de:</label>
         <div style="float:left;">
-        @Html.DevExpress().RadioButton(settings=>{
-            settings.Name = "rbPorcentajeDescuento";
-            settings.Checked = true;
-            settings.GroupName = "GrupoDescuento";
-            settings.Text = "Porcentaje";
-            settings.Properties.ClientSideEvents.CheckedChanged = "function(s,e) { CambioTipoDescuento2(); }";
-        }).GetHtml()
+            @Html.DevExpress().RadioButton(settings =>
+   {
+       settings.Name = "rbPorcentajeDescuento";
+       settings.Checked = true;
+       settings.GroupName = "GrupoDescuento";
+       settings.Text = "Porcentaje";
+       settings.Properties.ClientSideEvents.CheckedChanged = "function(s,e) { CambioTipoDescuento2(); }";
+   }).GetHtml()
         </div>
         <div style="float:left;">
-            @Html.DevExpress().RadioButton(settings=>{
-                settings.Name = "rbDineroDescuento";
-                settings.Checked = true;
-                settings.GroupName = "GrupoDescuento";
-                settings.Text = "Dinero";
-                settings.Properties.ClientSideEvents.CheckedChanged = "function(s,e) { CambioTipoDescuento2(); }";
-            }).GetHtml()
+            @Html.DevExpress().RadioButton(settings =>
+       {
+           settings.Name = "rbDineroDescuento";
+           settings.Checked = true;
+           settings.GroupName = "GrupoDescuento";
+           settings.Text = "Dinero";
+           settings.Properties.ClientSideEvents.CheckedChanged = "function(s,e) { CambioTipoDescuento2(); }";
+       }).GetHtml()
         </div>
-        <div style="float:left; padding-top:15px; margin-left:10px;"">
+        <div style="float:left; padding-top:10px; margin-left:10px;" >
             <label>Descuento: </label>
         </div>
         <div style="float:left; margin-left:10px;">
-            @Html.DevExpress().TextBox(settings=>{
-                settings.Name = "txtDescuento";
-                settings.Width = 90;
-                settings.Properties.NullText = "Porcentaje %";
-            }).GetHtml()
-            @Html.DevExpress().TextBox(settings=>{
-                settings.Name = "txtDescuentoDinero";
-                settings.Width = 90;
-                settings.Properties.NullText = "Dinero $";
-                settings.ClientVisible = false;
-            }).GetHtml()
+            @Html.DevExpress().TextBox(settings =>
+       {
+           settings.Name = "txtDescuento";
+           settings.Width = 90;
+           settings.Properties.NullText = "Porcentaje %";
+       }).GetHtml()
+            @Html.DevExpress().TextBox(settings =>
+       {
+           settings.Name = "txtDescuentoDinero";
+           settings.Width = 90;
+           settings.Properties.NullText = "Dinero $";
+           settings.ClientVisible = false;
+       }).GetHtml()
         </div>
         <div style="float:left; margin-left:10px;">
-            @Html.DevExpress().Button(settings=>{
-                settings.Name = "btnAplicarDescuento";
-                settings.Text = "Aplicar descuento";
-                settings.ClientSideEvents.Click = "function (s,e) { AplicarDescuento(); }";
-            }).GetHtml()
+            @Html.DevExpress().Button(settings =>
+       {
+           settings.Name = "btnAplicarDescuento";
+           settings.Text = "Aplicar descuento";
+           settings.ClientSideEvents.Click = "function (s,e) { AplicarDescuento(); }";
+       }).GetHtml()
         </div>
     </div>
 </div>
+<br />
 @Html.DevExpress().Button(settings =>
 {
     settings.Name = "btnCopiar";

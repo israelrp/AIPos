@@ -12,21 +12,91 @@
         settings.Settings.ShowFilterRow = true;
         settings.SettingsBehavior.AllowSelectByRowClick = true;
 
-        settings.Columns.Add("Fecha");
-        settings.Columns.Add("TotalMostrador");
-        settings.Columns.Add("TotalDomicilio");
-        settings.Columns.Add("TotalServicios");
-        settings.Columns.Add("TotalApartados");
-        settings.Columns.Add("TotalRetiros");
-        settings.Columns.Add("TotalAbonosServicios");
-        settings.Columns.Add("TotalAbonosApartados");
-        settings.Columns.Add("TotalCancelados");
-        settings.Columns.Add("TotalCaja");
-        settings.Columns.Add("TotalCambio");
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "Fecha";
+            x.Caption = "Fecha";
+            x.ColumnType = MVCxGridViewColumnType.DateEdit;
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "TotalVentas";
+            x.Caption = "Total Ventas";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "TotalMostrador";
+            x.Caption = "Total Mostrador";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "TotalDomicilio";
+            x.Caption = "Total Domicilio";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "TotalServicios";
+            x.Caption = "Total Servicios";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "TotalApartados";
+            x.Caption = "Total Apartados";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "TotalRetiros";
+            x.Caption = "Total Retiros";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "TotalAbonosServicios";
+            x.Caption = "Total abonos servicios";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "TotalAbonosApartados";
+            x.Caption = "Total Abonos Apartados";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "TotalCancelados";
+            x.Caption = "Total Cancelados";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "TotalCaja";
+            x.Caption = "Total Caja";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "TotalCambio";
+            x.Caption = "Total Cambio";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
         settings.Columns.Add("QuienRetira");
-        settings.Columns.Add("CorteEntregado");
-        settings.Columns.Add("Diferencia");
-        settings.Columns.Add("TotalTickectsMostrados");
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "CorteEntregado";
+            x.Caption = "Corte Entregado";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(x =>
+        {
+            x.FieldName = "Diferencia";
+            x.Caption = "Diferencia";
+            x.PropertiesEdit.DisplayFormatString = "c";
+        });
         settings.Columns.Add("TotalTickectsDomicilio");
         settings.Columns.Add("TotalTickectsMostrador");
     });
