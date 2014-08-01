@@ -1,0 +1,51 @@
+﻿@model List<AIPos.Domain.ReporteEntrada>
+
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "gvEntradas";
+        settings.CallbackRouteValues = new { Controller = "Home", Action = "_RecuperarEntradas" };
+        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=ComboBoxSucursalEntradas.GetValue(); }";
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsPopup.EditForm.Width = 500;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = false;
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.KeyFieldName = "EntradaId";
+
+        settings.Columns.Add("Proveedor");
+        settings.Columns.Add("Producto");
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "TipoProducto";
+            c.Caption = "Unidad";
+        });
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "PrecioUnitario";
+            c.Caption = "Precio unit.";
+            c.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add("CantidadProveedor");        
+        settings.Columns.Add("CantidadReal");
+        settings.Columns.Add("TotalPiezas");
+        settings.Columns.Add("Diferencia");        
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "Importe";
+            c.Caption = "Importe";
+            c.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add("Fecha");        
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

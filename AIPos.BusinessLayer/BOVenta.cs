@@ -132,14 +132,13 @@ namespace AIPos.BusinessLayer
         public List<ConteoVenta> RecuperarResumenSemanal(AIPos.DAO.Implementation.Enums.TipoVenta tipo)
         {
             List<ConteoVenta> resumen = new List<ConteoVenta>();
-            int semana=DateTimeFormatInfo.CurrentInfo.Calendar.GetWeekOfYear(DateTime.Now, DateTimeFormatInfo.CurrentInfo.CalendarWeekRule, DateTimeFormatInfo.CurrentInfo.FirstDayOfWeek);
-            DateTime fechaActual = DateTime.Now;
+            DateTime fechaFinSemana = Tools.DateTimeManager.EndOfWeek(DateTime.Now, DayOfWeek.Saturday);
             int DiasRecuperar = 6;
             for (int Dia = 0; Dia <= DiasRecuperar; Dia++)
             {
                 int quitarDia=(Dia*-1);
-                DateTime fechaInicio = Tools.DateTimeManager.AbsoluteStart(fechaActual.AddDays(quitarDia));
-                DateTime fechaFin = Tools.DateTimeManager.AbsoluteEnd(fechaActual.AddDays(quitarDia));
+                DateTime fechaInicio = Tools.DateTimeManager.AbsoluteStart(fechaFinSemana.AddDays(quitarDia));
+                DateTime fechaFin = Tools.DateTimeManager.AbsoluteEnd(fechaFinSemana.AddDays(quitarDia));
                 ConteoVenta resumenDiario = ventaDaoImpl.RecuperarResumenVenta(fechaInicio, fechaFin, tipo);
                 if (resumenDiario == null)
                 {

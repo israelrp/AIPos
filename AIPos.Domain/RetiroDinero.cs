@@ -21,4 +21,14 @@ namespace AIPos.Domain
         public Usuario Usuario { get; set; }
         public Sucursal Sucursal { get; set; }
     }
+
+    public class ReporteRetiroDinero
+    {
+        public int RetiroDineroId { get; set; }
+        public string Usuario { get; set; }
+        public decimal Monto { get; set; }
+        public string Descripcion { get; set; }
+        public DateTime Fecha { get; set; }
+        public bool EsCorteCaja { get; set; }
+    }
 }

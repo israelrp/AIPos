@@ -29,6 +29,13 @@ namespace AIPos.BusinessLayer
             return retiroDineroDao.SelectAllByFechaSucursal(fechaInicio,fechaFin,SucursalId);
         }
 
+        public List<ReporteRetiroDinero> SelectReporteByFechaSucursal(int SucursalId, DateTime fecha, bool EsCorteCaja)
+        {
+            DateTime fechaInicio = Tools.DateTimeManager.AbsoluteStart(fecha);
+            DateTime fechaFin = Tools.DateTimeManager.AbsoluteEnd(fecha);
+            return retiroDineroDao.SelectReporteByFechaSucursal(fechaInicio, fechaFin, SucursalId, EsCorteCaja);
+        }
+
         public RetiroDinero Insert(RetiroDinero retiroDinero)
         {
             retiroDinero.Fecha = Tools.TimeConverter.GetDateTimeNowMexico();

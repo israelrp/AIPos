@@ -63,5 +63,11 @@ namespace AIPos.DAO.Implementation
             object[] parameters = new object[] { key };
             return cm.Database.SqlQuery<Entrada>("dbo.usp_EntradasSelect @Id={0}", parameters).FirstOrDefault();
         }
+
+        public List<ReporteEntrada> SelectReporteByFechaSucursal(DateTime FechaInicio, DateTime FechaFin, int SucursalId)
+        {
+            object[] parameters = new object[] { FechaInicio, FechaFin, SucursalId };
+            return cm.Database.SqlQuery<ReporteEntrada>("dbo.usp_EntradasReporteSelectByFechaSucursal @FechaInicio={0}, @FechaFin={1}, @SucursalId={2}", parameters).ToList();
+        }
     }
 }

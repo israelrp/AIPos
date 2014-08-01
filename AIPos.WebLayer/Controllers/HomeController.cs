@@ -15,6 +15,7 @@ namespace AIPos.WebLayer.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            ViewData["Sucursales"] = new BOSucursal().SelectAll();
             return View();
         }
 
@@ -80,31 +81,26 @@ namespace AIPos.WebLayer.Controllers
             return PartialView(resumenChartData);
         }
 
-        public PartialViewResult _RecuperarPedidosSucursal()
+        public PartialViewResult _RecuperarPedidosSucursal(int? SucursalId)
         {
-            BOPedidoSucursal boPedidoSucursal=new BOPedidoSucursal();
-            List<Sucursal> sucursales = new BOSucursal().SelectAll();
-            List<ReportePedidosSucursalModel> pedidosModel = new List<ReportePedidosSucursalModel>();
-            foreach (Sucursal item in sucursales)
+            List<ReportePedidoSucursal> pedidos = new List<ReportePedidoSucursal>();
+            if(SucursalId.HasValue)
             {
-                List<PedidoSucursal> pedidos = boPedidoSucursal.SelectBySucursalFechaEntrega(item.Id, DateTime.Now);
-                foreach (PedidoSucursal pedido in pedidos)
-                {
-                    ReportePedidosSucursalModel reporte = new ReportePedidosSucursalModel();
-                    reporte.Cantidad = pedido.Cantidad;
-                    reporte.Producto = pedido.Producto;
-                    reporte.Sucursal = item.Nombre;
-                    reporte.Unidad = new BOUnidad().SelectById(pedido.UnidadId).Nombre;
-                    pedidosModel.Add(reporte);
-                }
+                BOPedidoSucursal boPedidoSucursal = new BOPedidoSucursal();
+                pedidos = boPedidoSucursal.SelectReporteBySucursalFechaEntrega(SucursalId.Value, DateTime.Now);
             }
-            return PartialView(pedidosModel);
+            return PartialView(pedidos);
         }
 
-        public PartialViewResult _RecuperarSeguimientosServiciosApartados()
+        public PartialViewResult _RecuperarSeguimientosServiciosApartados(int? SucursalId)
         {
-            BOSeguimientoServicioApartado boSeguimiento = new BOSeguimientoServicioApartado();
-            return PartialView(boSeguimiento.RecuperarReporteFecha(DateTime.Now));
+            List<ReporteSeguimientoServicioApartado> reporte = new List<ReporteSeguimientoServicioApartado>();
+            if (SucursalId.HasValue)
+            {
+                BOSeguimientoServicioApartado boSeguimiento = new BOSeguimientoServicioApartado();
+                reporte = boSeguimiento.RecuperarReporteFechaSucursal(DateTime.Now, SucursalId.Value);
+            }
+            return PartialView(reporte);
         }
 
         public PartialViewResult _RecuperarCortesCaja()
@@ -119,7 +115,28 @@ namespace AIPos.WebLayer.Controllers
             return PartialView(cortes);
         }
 
+        public PartialViewResult _RecuperarEntradas(int? SucursalId)
+        {
+            List<ReporteEntrada> reporte=new List<ReporteEntrada>();
+            if (SucursalId.HasValue)
+            {
+                BOEntrada boEntrada = new BOEntrada();
+                reporte = boEntrada.SelectReporteByDay(SucursalId.Value, DateTime.Now);
+            }
+            return PartialView(reporte);
 
+        }
+
+        public PartialViewResult _RecuperarRetiros(int? SucursalId)
+        {
+            List<ReporteRetiroDinero> reporte = new List<ReporteRetiroDinero>();
+            if (SucursalId.HasValue)
+            {
+                BORetiroDinero boRetiroDinero = new BORetiroDinero();
+                reporte = boRetiroDinero.SelectReporteByFechaSucursal(SucursalId.Value, DateTime.Now, false);
+            }
+            return PartialView(reporte);
+        }
 
     }
 }

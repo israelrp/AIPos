@@ -48,5 +48,12 @@ namespace AIPos.BusinessLayer
             DateTime fechaFin = Tools.DateTimeManager.AbsoluteEnd(Fecha);
             return dao.SelectReporteByFecha(fechaInicio, fechaFin);
         }
+
+        public List<ReporteSeguimientoServicioApartado> RecuperarReporteFechaSucursal(DateTime Fecha, int SucursalId)
+        {
+            DateTime fechaInicio = Tools.DateTimeManager.AbsoluteStart(Fecha);
+            DateTime fechaFin = Tools.DateTimeManager.AbsoluteEnd(Fecha);
+            return dao.SelectReporteByFechaSucursal(fechaInicio, fechaFin, SucursalId);
+        }
     }
 }

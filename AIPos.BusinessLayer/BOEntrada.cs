@@ -43,5 +43,13 @@ namespace AIPos.BusinessLayer
             }
             return entradas;
         }
+
+        public List<ReporteEntrada> SelectReporteByDay(int SucursalId, DateTime fecha)
+        {
+            DateTime fechaInicio = Tools.DateTimeManager.AbsoluteStart(fecha);
+            DateTime fechaFin = Tools.DateTimeManager.AbsoluteEnd(fecha);
+            List<ReporteEntrada> reporteEntradas = entradaDaoImpl.SelectReporteByFechaSucursal(fechaInicio, fechaFin, SucursalId);
+            return reporteEntradas;
+        }
     }
 }

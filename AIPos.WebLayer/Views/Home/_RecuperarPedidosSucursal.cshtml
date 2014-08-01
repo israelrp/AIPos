@@ -1,19 +1,17 @@
-﻿@model List<AIPos.WebLayer.Models.ReportePedidosSucursalModel>
+﻿@model List<AIPos.Domain.ReportePedidoSucursal>
 
 @{
     var grid = Html.DevExpress().GridView(settings =>
     {
         settings.Name = "gvPedidosSucursal";
         settings.CallbackRouteValues = new { Controller = "Home", Action = "_RecuperarPedidosSucursal" };
-
+        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=ComboBoxPedidos.GetValue(); }";
+        
         settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
         settings.SettingsPopup.EditForm.Width = 500;
         settings.SettingsBehavior.ConfirmDelete = true;
 
         settings.CommandColumn.Visible = false;
-
-
-
 
         settings.SettingsPager.Visible = true;
         settings.Settings.ShowGroupPanel = false;
@@ -21,10 +19,9 @@
         settings.SettingsBehavior.AllowSelectByRowClick = true;
 
 
-        settings.Columns.Add("Sucursal");
         settings.Columns.Add("Producto");
-        settings.Columns.Add("Unidad");
         settings.Columns.Add("Cantidad");
+        settings.Columns.Add("Unidad");
 
 
     });

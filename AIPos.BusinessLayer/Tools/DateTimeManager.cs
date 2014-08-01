@@ -23,5 +23,24 @@ namespace AIPos.BusinessLayer.Tools
         {
             return AbsoluteStart(dateTime).AddDays(1).AddTicks(-1);
         }
+
+        public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
+        {
+            int diff = dt.DayOfWeek - startOfWeek;
+            if (diff < 0)
+            {
+                diff += 7;
+            }
+
+            return dt.AddDays(-1 * diff).Date;
+        }
+
+        public static DateTime EndOfWeek(this DateTime dt, DayOfWeek endOfWeek)
+        {
+            int diff = endOfWeek-dt.DayOfWeek;
+            return dt.AddDays(diff).Date;
+        }
+
+
     }
 }

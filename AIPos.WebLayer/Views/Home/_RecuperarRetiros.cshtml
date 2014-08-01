@@ -1,0 +1,36 @@
+﻿@model List<AIPos.Domain.ReporteRetiroDinero>
+
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "gvRetirosDinero";
+        settings.CallbackRouteValues = new { Controller = "Home", Action = "_RecuperarRetiros" };
+        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=ComboBoxSucursalRetirosDinero.GetValue(); }";
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsPopup.EditForm.Width = 500;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = false;
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.KeyFieldName = "RetiroDineroId";
+        settings.Columns.Add("Fecha");
+        settings.Columns.Add("Usuario");
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "Monto";
+            c.Caption = "Monto";
+            c.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add("Descripcion");
+        settings.Columns.Add("EsCorteCaja");
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

@@ -22,6 +22,15 @@
             settings.Width = 760;
         }).GetHtml()
     </div>
+    <div class="contenedor-dockzone">
+        @Html.DevExpress().DockZone(settings =>
+                {
+                    settings.Name = "DockZone4";
+                    settings.ZoneUID = "Zone4";
+                    settings.AllowGrowing = true;
+                    settings.Width = 1200;
+                }).GetHtml()
+    </div>
 
     <div class="contenedor-dockzone">
         @Html.DevExpress().DockZone(settings =>
@@ -43,15 +52,7 @@
                 }).GetHtml()
     </div>
 
-    <div class="contenedor-dockzone">
-        @Html.DevExpress().DockZone(settings =>
-                {
-                    settings.Name = "DockZone4";
-                    settings.ZoneUID = "Zone4";
-                    settings.AllowGrowing = true;                    
-                    settings.Width = 1200;
-                }).GetHtml()
-    </div>
+
 
     <div class="contenedor-dockzone">
         @Html.DevExpress().DockZone(settings =>
@@ -59,8 +60,7 @@
                     settings.Name = "DockZone5";
                     settings.ZoneUID = "Zone5";
                     settings.AllowGrowing = true;
-                    settings.Height = 200;
-                    settings.Width = 300;
+                    settings.Width = 1200;
                 }).GetHtml()
     </div>
 
@@ -70,8 +70,7 @@
                     settings.Name = "DockZone6";
                     settings.ZoneUID = "Zone6";
                     settings.AllowGrowing = true;
-                    settings.Height = 200;
-                    settings.Width = 300;
+                    settings.Width = 680;
                 }).GetHtml()
     </div>
 </div>
@@ -103,6 +102,17 @@
     settings.Height = 300;
     settings.SetContent(() =>
     {
+        ViewContext.Writer.Write(
+            @Html.DevExpress().ComboBox(s =>
+            {
+                s.Name = "ComboBoxPedidos";
+                s.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+                s.Properties.DropDownStyle = DropDownStyle.DropDown;
+                s.Properties.TextField = "Nombre";
+                s.Properties.ValueField = "Id";
+                s.Properties.ClientSideEvents.SelectedIndexChanged = "function(s,e){ gvPedidosSucursal.PerformCallback(); }";
+            }).BindList(ViewData["Sucursales"]).GetHtml()
+        );
         ViewContext.Writer.Write(Html.Action("_RecuperarPedidosSucursal"));
     });
 }).GetHtml()
@@ -117,6 +127,17 @@
     settings.Height = 300;
     settings.SetContent(() =>
     {
+        ViewContext.Writer.Write(
+            @Html.DevExpress().ComboBox(s =>
+            {
+                s.Name = "ComboBoxSucursalEnvios";
+                s.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+                s.Properties.DropDownStyle = DropDownStyle.DropDown;
+                s.Properties.TextField = "Nombre";
+                s.Properties.ValueField = "Id";
+                s.Properties.ClientSideEvents.SelectedIndexChanged = "function(s,e){ gvSeguimientos.PerformCallback(); }";
+            }).BindList(ViewData["Sucursales"]).GetHtml()
+        );
         ViewContext.Writer.Write(Html.Action("_RecuperarSeguimientosServiciosApartados"));
     });
 }).GetHtml()
@@ -142,6 +163,22 @@
     settings.AllowedDockState = AllowedDockState.DockedOnly;
     settings.OwnerZoneUID = "Zone5";
     settings.ShowCloseButton = false;
+    settings.Height = 300;
+    settings.SetContent(() =>
+    {
+        ViewContext.Writer.Write(
+            @Html.DevExpress().ComboBox(s =>
+            {
+                s.Name = "ComboBoxSucursalEntradas";
+                s.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+                s.Properties.DropDownStyle = DropDownStyle.DropDown;
+                s.Properties.TextField = "Nombre";
+                s.Properties.ValueField = "Id";
+                s.Properties.ClientSideEvents.SelectedIndexChanged = "function(s,e){ gvEntradas.PerformCallback(); }";
+            }).BindList(ViewData["Sucursales"]).GetHtml()
+        );
+        ViewContext.Writer.Write(Html.Action("_RecuperarEntradas"));
+    });
 }).GetHtml()
 
 @Html.DevExpress().DockPanel(settings =>
@@ -151,4 +188,20 @@
     settings.AllowedDockState = AllowedDockState.DockedOnly;
     settings.OwnerZoneUID = "Zone6";
     settings.ShowCloseButton = false;
+    settings.Height = 300;
+    settings.SetContent(() =>
+    {
+        ViewContext.Writer.Write(
+            @Html.DevExpress().ComboBox(s =>
+            {
+                s.Name = "ComboBoxSucursalRetirosDinero";
+                s.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+                s.Properties.DropDownStyle = DropDownStyle.DropDown;
+                s.Properties.TextField = "Nombre";
+                s.Properties.ValueField = "Id";
+                s.Properties.ClientSideEvents.SelectedIndexChanged = "function(s,e){ gvRetirosDinero.PerformCallback(); }";
+            }).BindList(ViewData["Sucursales"]).GetHtml()
+        );
+        ViewContext.Writer.Write(Html.Action("_RecuperarRetiros"));
+    });
 }).GetHtml()

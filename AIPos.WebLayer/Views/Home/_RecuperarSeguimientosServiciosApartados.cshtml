@@ -5,14 +5,14 @@
     {
         settings.Name = "gvSeguimientos";
         settings.CallbackRouteValues = new { Controller = "Home", Action = "_RecuperarSeguimientosServiciosApartados" };
-
+        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=ComboBoxSucursalEnvios.GetValue(); }";
         settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
         settings.SettingsPopup.EditForm.Width = 500;
         settings.SettingsBehavior.ConfirmDelete = true;
 
         settings.CommandColumn.Visible = false;
 
-
+        settings.KeyFieldName = "Folio";
 
 
         settings.SettingsPager.Visible = true;
