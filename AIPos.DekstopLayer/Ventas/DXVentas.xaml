@@ -40,9 +40,9 @@
                 </LinearGradientBrush>
             </dxlc:GroupBox.Background>
             <Grid>
-                <dxe:TextEdit x:Name="txtCodigoCliente" HorizontalAlignment="Left" Margin="0,6,0,0" VerticalAlignment="Top" Width="100" NullText="Código cliente" KeyUp="txtCodigoCliente_KeyUp"/>
-                <dxe:ComboBoxEdit x:Name="cmbClientes" HorizontalAlignment="Left" Margin="105,6,0,0" VerticalAlignment="Top" Width="263" NullText="Nombre cliente" DisplayMember="Nombre" ValueMember="Id" EditValueChanged="cmbClientes_EditValueChanged"/>
-                <Button x:Name="btnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="370,7,0,0" VerticalAlignment="Top" Width="75" FontWeight="SemiBold" Click="btnBuscar_Click">
+                <dxe:TextEdit x:Name="txtCodigoCliente" HorizontalAlignment="Left" Margin="0,6,0,0" VerticalAlignment="Top" Width="100" NullText="Código cliente" KeyUp="txtCodigoCliente_KeyUp" ToolTip="Escribe el código del cliente y presiona Enter para efectuar la búsqueda."/>
+                <dxe:ComboBoxEdit x:Name="cmbClientes" HorizontalAlignment="Left" Margin="105,6,0,0" VerticalAlignment="Top" Width="263" NullText="Nombre cliente" DisplayMember="Nombre" ValueMember="Id" EditValueChanged="cmbClientes_EditValueChanged" ToolTip="System.Windows.Controls.ContentControl: Selecciona el cliente a quien le venderas. Por defecto debe ser Mostrador."/>
+                <Button x:Name="btnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="370,7,0,0" VerticalAlignment="Top" Width="75" FontWeight="SemiBold" Click="btnBuscar_Click" ToolTip="Busca un cliente por nombre.">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFF33B3B" Offset="0"/>
@@ -50,7 +50,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btnAgregar" Content="Nuevo" HorizontalAlignment="Left" Margin="450,7,0,0" VerticalAlignment="Top" Width="75" FontWeight="SemiBold" Click="btnAgregar_Click">
+                <Button x:Name="btnAgregar" Content="Nuevo" HorizontalAlignment="Left" Margin="450,7,0,0" VerticalAlignment="Top" Width="75" FontWeight="SemiBold" Click="btnAgregar_Click" ToolTip="Capturar un nuevo cliente.">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FF69CF00" Offset="0"/>
@@ -68,9 +68,9 @@
                 </LinearGradientBrush>
             </dxlc:GroupBox.Background>
             <Grid>
-                <dxe:TextEdit x:Name="txtCodigoProducto" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Width="100" NullText="Código producto" KeyUp="txtCodigoProducto_KeyUp"/>
-                <dxe:ComboBoxEdit x:Name="cmbProductos" HorizontalAlignment="Left" Margin="105,5,0,0" VerticalAlignment="Top" Width="345" NullText="Nombre producto" DisplayMember="Nombre" ValueMember="Id" EditValueChanged="cmbProductos_EditValueChanged"/>
-                <Button x:Name="btnBuscarProducto" Content="Buscar" HorizontalAlignment="Left" Margin="455,5,-0.4,0" VerticalAlignment="Top" Width="75" FontWeight="SemiBold" Click="btnBuscarProducto_Click">
+                <dxe:TextEdit x:Name="txtCodigoProducto" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Width="100" NullText="Código producto" KeyUp="txtCodigoProducto_KeyUp" ToolTip="Escribe el código del producto y presiona Enter para efectuar la búsqueda."/>
+                <dxe:ComboBoxEdit x:Name="cmbProductos" HorizontalAlignment="Left" Margin="105,5,0,0" VerticalAlignment="Top" Width="345" NullText="Nombre producto" DisplayMember="Nombre" ValueMember="Id" EditValueChanged="cmbProductos_EditValueChanged" ToolTip="Selecciona el producto que desea vender."/>
+                <Button x:Name="btnBuscarProducto" Content="Buscar" HorizontalAlignment="Left" Margin="455,5,-0.4,0" VerticalAlignment="Top" Width="75" FontWeight="SemiBold" Click="btnBuscarProducto_Click" ToolTip="Buscar un producto por nombre.">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFF33B3B" Offset="0"/>
@@ -82,9 +82,9 @@
             </Grid>
         </dxlc:GroupBox>
         <dxe:TextEdit x:Name="txtPrecioUnitario" HorizontalAlignment="Left" Margin="11,113,0,0" VerticalAlignment="Top" Width="115" Height="41" NullText="Precio Unit." HorizontalContentAlignment="Center" FontSize="20" IsReadOnly="True"/>
-        <dxe:TextEdit x:Name="txtCantidad" HorizontalAlignment="Left" Margin="167,113,0,0" VerticalAlignment="Top" Width="115" Height="41" NullText="Cantidad" HorizontalContentAlignment="Center" FontSize="20" KeyUp="txtCantidad_KeyUp" MaskType="RegEx" GotFocus="txtCantidad_GotFocus" MouseUp="txtCantidad_MouseUp" AllowNullInput="True" Mask="\d{0,9}(\R.\d{0,3})?"/>
+        <dxe:TextEdit x:Name="txtCantidad" HorizontalAlignment="Left" Margin="167,113,0,0" VerticalAlignment="Top" Width="115" Height="41" NullText="Cantidad" HorizontalContentAlignment="Center" FontSize="20" KeyUp="txtCantidad_KeyUp" MaskType="RegEx" GotFocus="txtCantidad_GotFocus" MouseUp="txtCantidad_MouseUp" AllowNullInput="True" Mask="\d{0,9}(\R.\d{0,3})?" ToolTip="Capture la cantidad o si la báscula esta conectada y este producto acepta pesar automaticamente aparece aquí."/>
 
-        <dxg:GridControl x:Name="gridVenta" Margin="10,159,0,10" SelectionMode="Row" HorizontalAlignment="Left" CustomUnboundColumnData="gridVenta_CustomUnboundColumnData" Width="862">
+        <dxg:GridControl x:Name="gridVenta" Margin="10,159,0,10" SelectionMode="Row" HorizontalAlignment="Left" CustomUnboundColumnData="gridVenta_CustomUnboundColumnData" Width="862" ToolTip="Productos agregados a la venta actual.">
             <dxg:GridControl.Columns>
                 <dxg:GridColumn FieldName="Codigo" Header="Código" Width="90" />
                 <dxg:GridColumn FieldName="Nombre" Header="Producto" Width="250"/>
@@ -116,7 +116,7 @@
                 <dxg:TableView ShowTotalSummary="True" AllowEditing="False" ShowGroupPanel="False"/>
             </dxg:GridControl.View>
         </dxg:GridControl>
-        <Button x:Name="btnEliminar" HorizontalAlignment="Left" Margin="578,123,0,0" VerticalAlignment="Top" Width="120" Height="29" Click="btnEliminar_Click" Background="{x:Null}" Cursor="Hand">
+        <Button x:Name="btnEliminar" HorizontalAlignment="Left" Margin="578,123,0,0" VerticalAlignment="Top" Width="120" Height="29" Click="btnEliminar_Click" Background="{x:Null}" Cursor="Hand" ToolTip="Elimina solo el producto seleccionado de la tabla inferior de la venta.">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -128,7 +128,7 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <Button x:Name="btnCancelar" HorizontalAlignment="Left" Margin="752,123,0,0" VerticalAlignment="Top" Width="120" Height="29" Click="btnCancelar_Click_1" Background="{x:Null}" Cursor="Hand">
+        <Button x:Name="btnCancelar" HorizontalAlignment="Left" Margin="752,123,0,0" VerticalAlignment="Top" Width="120" Height="29" Click="btnCancelar_Click_1" Background="{x:Null}" Cursor="Hand" ToolTip="Cancela toda la venta actual.">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -140,7 +140,7 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <Button x:Name="btnVenta" HorizontalAlignment="Left" Margin="894,398,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnVenta_Click" Background="{x:Null}" Cursor="Hand">
+        <Button x:Name="btnVenta" HorizontalAlignment="Left" Margin="894,389,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnVenta_Click" Background="{x:Null}" Cursor="Hand" ToolTip="Imprime ticket y cierra la venta actual.">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -152,7 +152,7 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <Button x:Name="btnDomicilio" HorizontalAlignment="Left" Margin="894,442,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnDomicilio_Click" Background="{x:Null}" Cursor="Hand">
+        <Button x:Name="btnDomicilio" HorizontalAlignment="Left" Margin="894,433,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnDomicilio_Click" Background="{x:Null}" Cursor="Hand" ToolTip="La venta actual será enviada al domicilio del cliente seleccionado en la parte superior e imprime el ticket de la venta.">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -164,7 +164,7 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <Button x:Name="btnApartar" HorizontalAlignment="Left" Margin="894,353,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnApartar_Click" Background="{x:Null}" Cursor="Hand">
+        <Button x:Name="btnApartar" HorizontalAlignment="Left" Margin="894,344,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnApartar_Click" Background="{x:Null}" Cursor="Hand" ToolTip="Genera un apartado o un servicio para el cliente seleccionado en la parte superior e imprime el ticket de la venta.">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -176,10 +176,10 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <Label x:Name="lblTotal" Content="TOTAL" HorizontalAlignment="Left" Margin="891,94,0,0" VerticalAlignment="Top" Width="235" Height="60" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" Foreground="#FF1A4C7D" FontWeight="SemiBold"/>
-        <Label x:Name="lblCambio" Content="CAMBIO" HorizontalAlignment="Left" Margin="891,214,0,0" VerticalAlignment="Top" Width="235" Height="60" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" Foreground="Red" FontWeight="SemiBold"/>
-        <TextBox x:Name="txtRecibi" HorizontalAlignment="Left" Height="60" Margin="891,154,0,0" TextWrapping="Wrap" Text="RECIBÍ" VerticalAlignment="Top" Width="235" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextAlignment="Center" FontSize="40" FontWeight="SemiBold" TextChanged="txtRecibi_TextChanged" GotFocus="txtRecibi_GotFocus" KeyUp="txtRecibi_KeyUp"/>
-        <Button x:Name="btnOrden" HorizontalAlignment="Left" Margin="891,274,0,0" VerticalAlignment="Top" Width="235" Height="70" Click="btnOrden_Click" Background="{x:Null}" Cursor="Hand" BorderThickness="2">
+        <Label x:Name="lblTotal" Content="TOTAL" HorizontalAlignment="Left" Margin="891,85,0,0" VerticalAlignment="Top" Width="235" Height="60" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" Foreground="#FF1A4C7D" FontWeight="SemiBold"/>
+        <Label x:Name="lblCambio" Content="CAMBIO" HorizontalAlignment="Left" Margin="891,205,0,0" VerticalAlignment="Top" Width="235" Height="60" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" Foreground="Red" FontWeight="SemiBold"/>
+        <TextBox x:Name="txtRecibi" HorizontalAlignment="Left" Height="60" Margin="891,145,0,0" TextWrapping="Wrap" Text="RECIBÍ" VerticalAlignment="Top" Width="235" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextAlignment="Center" FontSize="40" FontWeight="SemiBold" TextChanged="txtRecibi_TextChanged" GotFocus="txtRecibi_GotFocus" KeyUp="txtRecibi_KeyUp" ToolTip="Escribe la cantidad de dinero que recibiste por parte del cliente."/>
+        <Button x:Name="btnOrden" HorizontalAlignment="Left" Margin="891,265,0,0" VerticalAlignment="Top" Width="235" Height="70" Click="btnOrden_Click" Background="{x:Null}" Cursor="Hand" BorderThickness="2" ToolTip="Cerrar la venta actual e imprime el ticket de la orden.">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -191,7 +191,7 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <dxe:CheckEdit x:Name="chkPrecioMayoreo" HorizontalAlignment="Left" Margin="578,90,0,0" VerticalAlignment="Top" Width="235" Content="Aplicar precio de mayoreo  " FontWeight="SemiBold" Foreground="Red" FontSize="14" EditValueChanged="chkPrecioMayoreo_EditValueChanged"/>
+        <dxe:CheckEdit x:Name="chkPrecioMayoreo" HorizontalAlignment="Left" Margin="578,90,0,0" VerticalAlignment="Top" Width="235" Content="Aplicar precio de mayoreo  " FontWeight="SemiBold" Foreground="Red" FontSize="14" EditValueChanged="chkPrecioMayoreo_EditValueChanged" ToolTip="Si el administrador aplico la politica de mayoreo se aplicara el descuento establecido."/>
         <Label Content="Descuento" HorizontalAlignment="Left" Margin="328,88,0,0" VerticalAlignment="Top" Width="235" FontSize="18" FontWeight="SemiBold" HorizontalContentAlignment="Center">
             <Label.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -200,7 +200,8 @@
                 </LinearGradientBrush>
             </Label.Background>
         </Label>
-        <dxe:TextEdit  IsReadOnly="True" x:Name="txtDescuento" HorizontalAlignment="Left" Margin="328,114,0,0" VerticalAlignment="Top" Width="235" Height="40" NullText="Descuento %" HorizontalContentAlignment="Center" FontSize="20"/>
+        <dxe:TextEdit  IsReadOnly="True" x:Name="txtDescuento" HorizontalAlignment="Left" Margin="328,114,0,0" VerticalAlignment="Top" Width="235" Height="40" NullText="Descuento %" HorizontalContentAlignment="Center" FontSize="20" ToolTip="Porcentaje de descuento aplicado por alguna politica de la distribuidora."/>
+        <CheckBox x:Name="chkFacturar" Content="Requiere factura" HorizontalAlignment="Left" Margin="894,472,0,0" VerticalAlignment="Top" FontSize="20" Foreground="Red" FontWeight="Bold" HorizontalContentAlignment="Center" Width="235" VerticalContentAlignment="Center" BorderBrush="Red" BorderThickness="3" ToolTip="Marca la casilla para solicitar factura para esta venta." Cursor="Hand"/>
 
     </Grid>
 </dx:DXWindow>

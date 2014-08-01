@@ -22,5 +22,10 @@ namespace AIPos.BusinessLayer
         {
             direccionFacturacionDaoImpl.Delete(DireccionId, ClienteId);
         }
+
+        public List<DireccionFacturacion> SelectByClienteId(int ClienteId)
+        {
+            return direccionFacturacionDaoImpl.SelectByKeys(ClienteId);
+        }
     }
 }

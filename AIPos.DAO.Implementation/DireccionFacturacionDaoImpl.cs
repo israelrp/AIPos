@@ -48,5 +48,11 @@ namespace AIPos.DAO.Implementation
             object[] parameters = new object[] { DireccionId, ClienteId };
             return cm.Database.SqlQuery<DireccionFacturacion>("dbo.usp_DireccionesFacturacionSelect @DireccionId={0}, @ClienteId={1}", parameters).FirstOrDefault();
         }
+
+        public List<DireccionFacturacion> SelectByKeys(int ClienteId)
+        {
+            object[] parameters = new object[] { null, ClienteId };
+            return cm.Database.SqlQuery<DireccionFacturacion>("dbo.usp_DireccionesFacturacionSelect @DireccionId={0}, @ClienteId={1}", parameters).ToList();
+        }
     }
 }

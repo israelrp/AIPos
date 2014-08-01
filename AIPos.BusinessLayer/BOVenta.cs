@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AIPos.DAO;
 using AIPos.DAO.Implementation;
 using AIPos.Domain;
+using System.Globalization;
 
 namespace AIPos.BusinessLayer
 {
@@ -131,9 +132,8 @@ namespace AIPos.BusinessLayer
         public List<ConteoVenta> RecuperarResumenSemanal(AIPos.DAO.Implementation.Enums.TipoVenta tipo)
         {
             List<ConteoVenta> resumen = new List<ConteoVenta>();
+            int semana=DateTimeFormatInfo.CurrentInfo.Calendar.GetWeekOfYear(DateTime.Now, DateTimeFormatInfo.CurrentInfo.CalendarWeekRule, DateTimeFormatInfo.CurrentInfo.FirstDayOfWeek);
             DateTime fechaActual = DateTime.Now;
-            int hours=fechaActual.Hour;
-            int minutes=fechaActual.Minute;;
             int DiasRecuperar = 6;
             for (int Dia = 0; Dia <= DiasRecuperar; Dia++)
             {

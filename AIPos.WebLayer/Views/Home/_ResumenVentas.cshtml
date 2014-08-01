@@ -11,7 +11,8 @@
     settings.Titles.Add(new ChartTitle()
     {
         Font = new System.Drawing.Font("Tahoma", 18),
-        Text = "Reporte ventas ultimos 7 días"
+        Text = "Reporte ventas de la semana " + System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar.GetWeekOfYear(DateTime.Now,
+            System.Globalization.DateTimeFormatInfo.CurrentInfo.CalendarWeekRule, System.Globalization.DateTimeFormatInfo.CurrentInfo.FirstDayOfWeek).ToString()
     });
     
 

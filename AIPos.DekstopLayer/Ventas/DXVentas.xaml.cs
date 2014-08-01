@@ -311,6 +311,7 @@ namespace AIPos.DekstopLayer.Ventas
             CalcularTotal();
             cmbClientes.SelectedIndex = 0;
             chkPrecioMayoreo.IsChecked = false;
+            chkFacturar.IsChecked = false;
         }
 
 
@@ -377,7 +378,10 @@ namespace AIPos.DekstopLayer.Ventas
                                                 break;
                                         }
                                     }
-
+                                    if (chkFacturar.IsChecked.HasValue)
+                                        venta.RequiereFactura = chkFacturar.IsChecked.Value;
+                                    else
+                                        venta.RequiereFactura = false;
                                     Venta ventaInsertada = ventaClient.Insert(venta);
                                     if (ServicioApartadoVenta != null)
                                     {
