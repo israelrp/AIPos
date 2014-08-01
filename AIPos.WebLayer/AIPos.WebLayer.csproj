@@ -254,6 +254,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListasPrecioController.cs" />
     <Compile Include="Controllers\ReporteCorteCajaController.cs" />
+    <Compile Include="Controllers\ReporteEntradasController.cs" />
+    <Compile Include="Controllers\ReporteInventariosController.cs" />
+    <Compile Include="Controllers\ReportePedidosSucursalController.cs" />
     <Compile Include="Controllers\ReporteVentasProductoController.cs" />
     <Compile Include="Controllers\RetirosDineroController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1408,6 +1411,12 @@
     <Content Include="Views\Home\_RecuperarCortesCaja.cshtml" />
     <Content Include="Views\Home\_RecuperarEntradas.cshtml" />
     <Content Include="Views\Home\_RecuperarRetiros.cshtml" />
+    <Content Include="Views\ReportePedidosSucursal\Index.cshtml" />
+    <Content Include="Views\ReportePedidosSucursal\_GridViewPartialPedidosSucursal.cshtml" />
+    <Content Include="Views\ReporteEntradas\Index.cshtml" />
+    <Content Include="Views\ReporteEntradas\_GridViewPartialEntradas.cshtml" />
+    <Content Include="Views\ReporteInventarios\Index.cshtml" />
+    <Content Include="Views\ReporteInventarios\_GridViewPartialInventarios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,26 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "GridViewPedidosSucursal";
+        settings.CallbackRouteValues = new { Controller = "ReportePedidosSucursal", Action = "GridViewPartialPedidosSucursal" };
+        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=ComboBoxSucursales.GetValue(); e.customArgs['Fecha']=DateEditFecha.GetDate().toLocaleDateString(); }";
+
+		settings.KeyFieldName = "Id";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = true;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+			settings.Columns.Add("Usuario");
+            settings.Columns.Add("Producto");
+            settings.Columns.Add("Cantidad");
+            settings.Columns.Add("Unidad");
+            settings.Columns.Add("FechaRegistro");
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "FechaEntrega";
+                x.Caption = "FechaEntrega";
+                x.ColumnType = MVCxGridViewColumnType.DateEdit;
+            });
+		});
+}
+@grid.Bind(Model).GetHtml()

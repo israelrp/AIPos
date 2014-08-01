@@ -1,0 +1,33 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "GridViewInventarios";
+        settings.CallbackRouteValues = new { Controller = "ReporteInventarios", Action = "GridViewPartialInventarios" };
+        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=ComboBoxSucursales.GetValue(); e.customArgs['Fecha']=DateEditFecha.GetDate().toLocaleDateString(); }";
+
+		settings.KeyFieldName = "Producto";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = true;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.KeyFieldName = "Id";
+				settings.Columns.Add("Usuario");
+				settings.Columns.Add("Producto");
+				settings.Columns.Add("CantidadReal");
+				settings.Columns.Add("CantidadSistema");
+                settings.Columns.Add(c =>
+                {
+                    c.FieldName = "PrecioUnitario";
+                    c.Caption = "Precio unitario";
+                    c.PropertiesEdit.DisplayFormatString = "c";
+                });
+                settings.Columns.Add(c =>
+                {
+                    c.FieldName = "Monto";
+                    c.Caption = "Monto";
+                    c.PropertiesEdit.DisplayFormatString = "c";
+                });
+				settings.Columns.Add("FechaRegistro");
+			});
+}
+@grid.Bind(Model).GetHtml()

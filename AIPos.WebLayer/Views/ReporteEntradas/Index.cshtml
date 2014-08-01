@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Reporte de entradas</h2>
+
+<table>
+    <tr>
+        <td>
+            @Html.DevExpress().ComboBox(s =>
+            {
+                s.Name = "ComboBoxSucursales";
+                s.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+                s.Properties.DropDownStyle = DropDownStyle.DropDown;
+                s.Properties.TextField = "Nombre";
+                s.Properties.ValueField = "Id";
+                s.Properties.NullText = "Sucursal que realizo entradas";
+            }).BindList(ViewData["Sucursales"]).GetHtml()
+        </td>
+        <td>
+            @Html.DevExpress().DateEdit(settings =>
+            {
+                settings.Name = "DateEditFecha";
+                settings.Properties.NullText = "Fecha entradas";
+                settings.Properties.AllowNull = false;
+            }).GetHtml()
+        </td>
+        <td>
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btnConsultar";
+                settings.UseSubmitBehavior = false;
+                settings.Text = "Consultar";
+                settings.ClientSideEvents.Click = " function(s,e){ GridViewEntradas.PerformCallback(); } ";
+            }).GetHtml()
+        </td>
+    </tr>
+</table>
+
+@Html.Action("GridViewPartialEntradas")

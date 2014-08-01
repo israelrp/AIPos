@@ -15,7 +15,12 @@
 				settings.Columns.Add("Tipo");
 				settings.Columns.Add("Producto");
 				settings.Columns.Add("Cantidad");
-				settings.Columns.Add("ImporteTotal");
+                settings.Columns.Add(c =>
+                {
+                    c.FieldName = "ImporteTotal";
+                    c.Caption = "Importe";
+                    c.PropertiesEdit.DisplayFormatString = "c";
+                });
 			});
 }
 @grid.Bind(Model).GetHtml()

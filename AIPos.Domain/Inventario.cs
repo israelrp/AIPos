@@ -24,4 +24,16 @@ namespace AIPos.Domain
         public Producto Producto { get; set; }
         public Sucursal Sucursal { get; set; }
     }
+
+    public class ReporteInventario
+    {
+        public int Id { get; set; }
+        public string Usuario { get; set; }
+        public string Producto { get; set; }
+        public decimal CantidadReal { get; set; }
+        public decimal CantidadSistema { get; set; }
+        public decimal PrecioUnitario { get; set; }
+        public decimal Monto { get; set; }
+        public DateTime FechaRegistro { get; set; }
+    }
 }
