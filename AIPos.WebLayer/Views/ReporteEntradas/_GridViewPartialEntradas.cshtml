@@ -1,0 +1,36 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "GridViewEntradas";
+        settings.CallbackRouteValues = new { Controller = "ReporteEntradas", Action = "GridViewPartialEntradas" };
+        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=ComboBoxSucursales.GetValue(); e.customArgs['Fecha']=DateEditFecha.GetDate().toLocaleDateString(); }";
+
+		settings.KeyFieldName = "EntradaId";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = true;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.Columns.Add("Fecha");
+        settings.Columns.Add("Usuario");
+				settings.Columns.Add("Proveedor");
+				settings.Columns.Add("Producto");
+                settings.Columns.Add("TotalPiezas");
+				settings.Columns.Add("CantidadReal");
+                settings.Columns.Add("CantidadProveedor");
+                settings.Columns.Add("Diferencia");
+                settings.Columns.Add("TipoProducto");                
+                settings.Columns.Add(c =>
+                {
+                    c.FieldName = "PrecioUnitario";
+                    c.Caption = "Precio unitario";
+                    c.PropertiesEdit.DisplayFormatString = "c";
+                });
+                settings.Columns.Add(c =>
+                {
+                    c.FieldName = "Importe";
+                    c.Caption = "Importe";
+                    c.PropertiesEdit.DisplayFormatString = "c";
+                });
+			});
+}
+@grid.Bind(Model).GetHtml()
