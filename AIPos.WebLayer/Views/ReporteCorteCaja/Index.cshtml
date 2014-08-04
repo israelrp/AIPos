@@ -9,48 +9,55 @@
 </script>
 
 <h2>Corte de caja</h2>
-
-<table>
-    <tr>
-        <td>
-            @Html.DevExpress().DateEdit(settings =>
-            {
-                settings.Name = "FechaInicio";
-                settings.Properties.AllowNull = false;
-                settings.Properties.NullText = "Fecha de inicio";
-            }).GetHtml()
-        </td>
-        <td>
-            @Html.DevExpress().DateEdit(settings =>
-            {
-                settings.Name = "FechaFin";
-                settings.Properties.AllowNull = false;
-                settings.Properties.NullText = "Fecha de fin";
-            }).GetHtml()
-        </td>
-        <td>
-            @Html.DevExpress().ComboBox(settings =>
-            {
-                settings.Name = "SucursalId";
-                settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
-                settings.Properties.DropDownStyle = DropDownStyle.DropDown;
-                settings.Properties.ValueField = "Id";
-                settings.Properties.TextField = "Nombre";
-                settings.Properties.NullText = "Sucursal que realizo las ventas";
-            }).BindList(new AIPos.BusinessLayer.BOSucursal().SelectAll()).GetHtml()
-        </td>
-        <td>
-            @Html.DevExpress().Button(settings=>
-           {
-               settings.Name = "btnConsultar";
-               settings.Text = "Consultar";
-               settings.UseSubmitBehavior = true;
-               settings.ClientSideEvents.Click = "Consultar";
-           }).GetHtml()
-        </td>
-    </tr>
-</table>
-
-
+@using (Html.BeginForm("ExportTo", "ReporteCorteCaja"))
+{
+    <table>
+        <tr>
+            <td>
+                @Html.DevExpress().DateEdit(settings =>
+                {
+                    settings.Name = "FechaInicio";
+                    settings.Properties.AllowNull = false;
+                    settings.Properties.NullText = "Fecha de inicio";
+                }).GetHtml()
+            </td>
+            <td>
+                @Html.DevExpress().DateEdit(settings =>
+                {
+                    settings.Name = "FechaFin";
+                    settings.Properties.AllowNull = false;
+                    settings.Properties.NullText = "Fecha de fin";
+                }).GetHtml()
+            </td>
+            <td>
+                @Html.DevExpress().ComboBox(settings =>
+                {
+                    settings.Name = "SucursalId";
+                    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+                    settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+                    settings.Properties.ValueField = "Id";
+                    settings.Properties.TextField = "Nombre";
+                    settings.Properties.NullText = "Sucursal que realizo las ventas";
+                }).BindList(new AIPos.BusinessLayer.BOSucursal().SelectAll()).GetHtml()
+            </td>
+            <td>
+                @Html.DevExpress().Button(settings=>
+               {
+                   settings.Name = "btnConsultar";
+                   settings.Text = "Consultar";
+                   settings.UseSubmitBehavior = false;
+                   settings.ClientSideEvents.Click = "Consultar";
+               }).GetHtml()
+            </td>
+        </tr>
+    </table>
+    <div style="margin-top:15px; margin-bottom:15px;">
+        @foreach (string typeName in AIPos.WebLayer.Helpers.GridViewExportHelper.ExportTypes.Keys)
+        {
+            <button class="btn btn-sm btn-success" type="submit" name="@typeName">@AIPos.WebLayer.Helpers.GridViewExportHelper.ExportTypes[typeName].Title</button>
+            <text>&nbsp;</text>
+        }
+    </div>
+}
 @Html.Action("_GridViewPartialReporteCorteCaja")
 

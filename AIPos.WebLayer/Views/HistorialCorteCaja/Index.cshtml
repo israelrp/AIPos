@@ -3,7 +3,10 @@
 }
 
 <h2>Historial de cortes de caja</h2>
-@Html.DevExpress().ComboBox(settings =>
+
+@using (Html.BeginForm("ExportTo", "HistorialCorteCaja"))
+{
+    @Html.DevExpress().ComboBox(settings =>
     {
         settings.Name = "SucursalId";
         settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
@@ -12,13 +15,21 @@
         settings.Properties.TextField = "Nombre";
         settings.Properties.NullText = "Sucursal que realizo las ventas";
     }).BindList(new AIPos.BusinessLayer.BOSucursal().SelectAll()).GetHtml()
-@Html.DevExpress().Button(settings =>
+    @Html.DevExpress().Button(settings =>
     {
         settings.Name = "btnConsultar";
         settings.Text = "Consultar";
+        settings.UseSubmitBehavior = false;
         settings.ClientSideEvents.Click = "function(s,e){ GridViewHistorialCorteCaja.PerformCallback(); }";
     }).GetHtml()
-
+    <div style="margin-top:15px; margin-bottom:15px;">
+        @foreach (string typeName in AIPos.WebLayer.Helpers.GridViewExportHelper.ExportTypes.Keys)
+        {
+            <button class="btn btn-sm btn-success" type="submit" name="@typeName">@AIPos.WebLayer.Helpers.GridViewExportHelper.ExportTypes[typeName].Title</button>
+            <text>&nbsp;</text>
+        }
+    </div>
+}
 
 @Html.Action("GridViewPartialHistorialCorteCaja")
 

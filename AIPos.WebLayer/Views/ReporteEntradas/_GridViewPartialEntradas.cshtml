@@ -12,25 +12,25 @@
 		settings.SettingsBehavior.AllowSelectByRowClick = true;
         settings.Columns.Add("Fecha");
         settings.Columns.Add("Usuario");
-				settings.Columns.Add("Proveedor");
-				settings.Columns.Add("Producto");
-                settings.Columns.Add("TotalPiezas");
-				settings.Columns.Add("CantidadReal");
-                settings.Columns.Add("CantidadProveedor");
-                settings.Columns.Add("Diferencia");
-                settings.Columns.Add("TipoProducto");                
-                settings.Columns.Add(c =>
-                {
-                    c.FieldName = "PrecioUnitario";
-                    c.Caption = "Precio unitario";
-                    c.PropertiesEdit.DisplayFormatString = "c";
-                });
-                settings.Columns.Add(c =>
-                {
-                    c.FieldName = "Importe";
-                    c.Caption = "Importe";
-                    c.PropertiesEdit.DisplayFormatString = "c";
-                });
-			});
+		settings.Columns.Add("Proveedor");
+		settings.Columns.Add("Producto");
+        settings.Columns.Add("TotalPiezas");
+		settings.Columns.Add("CantidadReal");
+        settings.Columns.Add("CantidadProveedor");
+        settings.Columns.Add("Diferencia");
+        settings.Columns.Add("TipoProducto");                
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "PrecioUnitario";
+            c.Caption = "Precio unitario";
+            c.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "Importe";
+            c.Caption = "Importe";
+            c.PropertiesEdit.DisplayFormatString = "c";
+        });
+	});
 }
 @grid.Bind(Model).GetHtml()
