@@ -57,28 +57,17 @@ namespace AIPos.WebLayer.Controllers
         public override GridViewSettings CreateExportGridViewSettings()
         {
             GridViewSettings settings = new GridViewSettings();
-            settings.Name = "GridViewReporteCorteCaja";
-            settings.CallbackRouteValues = new { Controller = "ReporteCorteCaja", Action = "_GridViewPartialReporteCorteCaja" };
-            settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['FechaInicio']=FechaInicio.GetDate().toLocaleDateString(); e.customArgs['FechaFin']=FechaFin.GetDate().toLocaleDateString(); e.customArgs['SucursalId_VI']=SucursalId.GetValue(); }";
-            settings.KeyFieldName = "Folio";
+            settings.Name = "GridViewHistorialCorteCaja";
+            settings.CallbackRouteValues = new { Controller = "HistorialCorteCaja", Action = "GridViewPartialHistorialCorteCaja" };
+            settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=SucursalId.GetValue(); }";
+
+            settings.KeyFieldName = "Id";
 
             settings.SettingsPager.Visible = true;
             settings.Settings.ShowGroupPanel = true;
             settings.Settings.ShowFilterRow = true;
             settings.SettingsBehavior.AllowSelectByRowClick = true;
 
-            settings.Columns.Add("Cliente");
-            settings.Columns.Add(x =>
-            {
-                x.FieldName = "Sucursal";
-                x.Caption = "Sucursal";
-                x.ColumnType = MVCxGridViewColumnType.ComboBox;
-                var comboBoxProperties = x.PropertiesEdit as ComboBoxProperties;
-                comboBoxProperties.DataSource = new AIPos.BusinessLayer.BOSucursal().SelectAll();
-                comboBoxProperties.TextField = "Nombre";
-                comboBoxProperties.ValueField = "Id";
-
-            });
             settings.Columns.Add(x =>
             {
                 x.FieldName = "Fecha";
@@ -87,39 +76,85 @@ namespace AIPos.WebLayer.Controllers
             });
             settings.Columns.Add(x =>
             {
-                x.FieldName = "Total";
-                x.Caption = "Total";
+                x.FieldName = "TotalVentas";
+                x.Caption = "Total Ventas";
                 x.PropertiesEdit.DisplayFormatString = "c";
             });
             settings.Columns.Add(x =>
             {
-                x.FieldName = "Recibio";
-                x.Caption = "Recibio";
+                x.FieldName = "TotalMostrador";
+                x.Caption = "Total Mostrador";
                 x.PropertiesEdit.DisplayFormatString = "c";
             });
             settings.Columns.Add(x =>
             {
-                x.FieldName = "Cambio";
-                x.Caption = "Cambio";
+                x.FieldName = "TotalDomicilio";
+                x.Caption = "Total Domicilio";
                 x.PropertiesEdit.DisplayFormatString = "c";
             });
             settings.Columns.Add(x =>
             {
-                x.FieldName = "Anticipo";
-                x.Caption = "Anticipo";
+                x.FieldName = "TotalServicios";
+                x.Caption = "Total Servicios";
                 x.PropertiesEdit.DisplayFormatString = "c";
             });
-            settings.Columns.Add("FolioCancelado");
-            settings.Columns.Add("Folio");
-            settings.Columns.Add("Usuario");
-            settings.Columns.Add("Estatus");
-            settings.Columns.Add("Tipo");
             settings.Columns.Add(x =>
             {
-                x.FieldName = "Cancelado";
-                x.Caption = "Cancelado";
-                x.ColumnType = MVCxGridViewColumnType.CheckBox;
+                x.FieldName = "TotalApartados";
+                x.Caption = "Total Apartados";
+                x.PropertiesEdit.DisplayFormatString = "c";
             });
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "TotalRetiros";
+                x.Caption = "Total Retiros";
+                x.PropertiesEdit.DisplayFormatString = "c";
+            });
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "TotalAbonosServicios";
+                x.Caption = "Total abonos servicios";
+                x.PropertiesEdit.DisplayFormatString = "c";
+            });
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "TotalAbonosApartados";
+                x.Caption = "Total Abonos Apartados";
+                x.PropertiesEdit.DisplayFormatString = "c";
+            });
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "TotalCancelados";
+                x.Caption = "Total Cancelados";
+                x.PropertiesEdit.DisplayFormatString = "c";
+            });
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "TotalCaja";
+                x.Caption = "Total Caja";
+                x.PropertiesEdit.DisplayFormatString = "c";
+            });
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "TotalCambio";
+                x.Caption = "Total Cambio";
+                x.PropertiesEdit.DisplayFormatString = "c";
+            });
+            settings.Columns.Add("QuienRetira");
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "CorteEntregado";
+                x.Caption = "Corte Entregado";
+                x.PropertiesEdit.DisplayFormatString = "c";
+            });
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "Diferencia";
+                x.Caption = "Diferencia";
+                x.PropertiesEdit.DisplayFormatString = "c";
+            });
+            settings.Columns.Add("TotalTickectsDomicilio");
+            settings.Columns.Add("TotalTickectsMostrador");
             return settings;
         }
     }

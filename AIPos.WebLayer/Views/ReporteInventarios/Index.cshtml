@@ -4,37 +4,46 @@
 
 <h2>Reporte inventarios</h2>
 
-<table>
-    <tr>
-        <td>
-            @Html.DevExpress().ComboBox(s =>
-            {
-                s.Name = "ComboBoxSucursales";
-                s.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
-                s.Properties.DropDownStyle = DropDownStyle.DropDown;
-                s.Properties.TextField = "Nombre";
-                s.Properties.ValueField = "Id";
-                s.Properties.NullText = "Sucursal inventario";
-            }).BindList(ViewData["Sucursales"]).GetHtml()
-        </td>
-        <td>
-            @Html.DevExpress().DateEdit(settings =>
-            {
-                settings.Name = "DateEditFecha";
-                settings.Properties.NullText = "Fecha inventario";
-                settings.Properties.AllowNull = false;
-            }).GetHtml()
-        </td>
-        <td>
-            @Html.DevExpress().Button(settings =>
-            {
-                settings.Name = "btnConsultar";
-                settings.UseSubmitBehavior = false;
-                settings.Text = "Consultar";
-                settings.ClientSideEvents.Click = " function(s,e){ GridViewInventarios.PerformCallback(); } ";
-            }).GetHtml()
-        </td>
-    </tr>
-</table>
-
+@using (Html.BeginForm("ExportTo", "ReporteInventarios"))
+{
+    <table>
+        <tr>
+            <td>
+                @Html.DevExpress().ComboBox(s =>
+                {
+                    s.Name = "ComboBoxSucursales";
+                    s.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+                    s.Properties.DropDownStyle = DropDownStyle.DropDown;
+                    s.Properties.TextField = "Nombre";
+                    s.Properties.ValueField = "Id";
+                    s.Properties.NullText = "Sucursal inventario";
+                }).BindList(ViewData["Sucursales"]).GetHtml()
+            </td>
+            <td>
+                @Html.DevExpress().DateEdit(settings =>
+                {
+                    settings.Name = "DateEditFecha";
+                    settings.Properties.NullText = "Fecha inventario";
+                    settings.Properties.AllowNull = false;
+                }).GetHtml()
+            </td>
+            <td>
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnConsultar";
+                    settings.UseSubmitBehavior = false;
+                    settings.Text = "Consultar";
+                    settings.ClientSideEvents.Click = " function(s,e){ GridViewInventarios.PerformCallback(); } ";
+                }).GetHtml()
+            </td>
+        </tr>
+    </table>
+    <div style="margin-top:15px; margin-bottom:15px;">
+        @foreach (string typeName in AIPos.WebLayer.Helpers.GridViewExportHelper.ExportTypes.Keys)
+        {
+            <button class="btn btn-sm btn-success" type="submit" name="@typeName">@AIPos.WebLayer.Helpers.GridViewExportHelper.ExportTypes[typeName].Title</button>
+            <text>&nbsp;</text>
+        }
+    </div>
+}
 @Html.Action("GridViewPartialInventarios")
