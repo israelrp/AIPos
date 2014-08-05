@@ -6,6 +6,7 @@
         settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['FechaInicio']=FechaInicio.GetDate().toLocaleDateString(); e.customArgs['FechaFin']=FechaFin.GetDate().toLocaleDateString(); e.customArgs['SucursalId_VI']=SucursalId.GetValue(); }";
         settings.KeyFieldName = "Folio";
 
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
         settings.SettingsPager.Visible = true;
         settings.Settings.ShowGroupPanel = true;
         settings.Settings.ShowFilterRow = true;

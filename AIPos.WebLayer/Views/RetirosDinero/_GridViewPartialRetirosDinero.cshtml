@@ -1,4 +1,4 @@
-<div id="divReporte">
+
 @{
     var grid = Html.DevExpress().GridView(settings =>
     {
@@ -8,11 +8,12 @@
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "RetirosDinero", Action = "GridViewPartialRetirosDineroAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "RetirosDinero", Action = "GridViewPartialRetirosDineroUpdate" };
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "RetirosDinero", Action = "GridViewPartialRetirosDineroDelete" };
-        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=SucursalId.GetValue(); e.customArgs['Fecha']=Fecha.GetDate().toString();  }";
+        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=SucursalId.GetValue(); e.customArgs['Fecha']=Fecha.GetDate().toLocaleDateString();  }";
         
         settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
         settings.SettingsBehavior.ConfirmDelete = true;
 
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
         settings.CommandColumn.Visible = true;
         settings.CommandColumn.NewButton.Visible = false;
         settings.CommandColumn.DeleteButton.Visible = true;
@@ -74,4 +75,3 @@
     }
 }
 @grid.Bind(Model).GetHtml()
-</div>

@@ -35,7 +35,6 @@ namespace AIPos.DekstopLayer.CorteCaja
             {
                 ServiceVenta.ISVentaClient ventaClient = new ServiceVenta.ISVentaClient();
                 Domain.Usuario usuario = (Domain.Usuario)cmbUsuarios.SelectedItem;
-                //gridCorte.ItemsSource = ventaClient.RecuperarCorteCaja(deFechaInicio.DateTime.ToFileTimeUtc(), deFechaInicio.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId).ToList().Where(x => x.Usuario == usuario.Nombre);
                 RecuperarDatos();
             }
             else

@@ -2,10 +2,11 @@
 	var grid = Html.DevExpress().GridView(settings => {
         settings.Name = "GridViewVentasProducto";
         settings.CallbackRouteValues = new { Controller = "ReporteVentasProducto", Action = "GridViewPartialVentasProducto" };
-
+        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=SucursalId.GetValue(); }";
 
 		settings.KeyFieldName = "ProductoId";
 
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
         settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
 		settings.SettingsPager.Visible = false;
 		settings.Settings.ShowGroupPanel = true;
