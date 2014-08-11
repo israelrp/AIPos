@@ -250,6 +250,9 @@
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\VentaDetalle.cs" />
+    <Compile Include="ReportViewer.xaml.cs">
+      <DependentUpon>ReportViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Requerimientos\DXRequerimientos.xaml.cs">
       <DependentUpon>DXRequerimientos.xaml</DependentUpon>
     </Compile>
@@ -732,6 +735,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Principal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReportViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

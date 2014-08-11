@@ -31,11 +31,14 @@ namespace AIPos.DekstopLayer
             if (FaltaConfiguracion)
             {
                 var window = new Configuracion.ConfiguracionInicial();
-                window.Reconfigurar = false;
                 window.Show();
             }
             else
             {
+                ServiceSucursal.SSucursalClient sucursalClient = new ServiceSucursal.SSucursalClient();
+                ServiceDireccion.SDireccionClient direccionClient = new ServiceDireccion.SDireccionClient();
+                General.SucursalActual = sucursalClient.SelectById(General.ConfiguracionApp.SucursalId);
+                General.SucursalActual.Direccion = direccionClient.SelectById(General.SucursalActual.DireccionId);
                 var login = new Login.Login();
                 login.Show();
             }

@@ -14,6 +14,7 @@ namespace AIPos.Domain
         public int DireccionId  { get; set; }
         public string Nombre { get; set; }
         public string Telefono { get; set; }
+        public string FraseTicket { get; set; }
 
         public Direccion Direccion { get; set; }
     }

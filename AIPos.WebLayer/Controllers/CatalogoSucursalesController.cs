@@ -55,6 +55,7 @@ namespace AIPos.WebLayer.Controllers
                     sucursal.Nombre = item.Nombre;
                     sucursal.DireccionId = direccion.Id;
                     sucursal.Telefono = item.Telefono;
+                    sucursal.FraseTicket = item.FraseTicket;
                     blSucursal.Insert(sucursal);
                 }
                 catch (Exception e)
@@ -90,7 +91,7 @@ namespace AIPos.WebLayer.Controllers
                     direccion.Referencia = item.Referencia;
                     direccion.Id = sucursal.DireccionId;
                     blDireccion.Update(direccion);
-                    
+                    sucursal.FraseTicket = item.FraseTicket;
                     sucursal.Nombre = item.Nombre;
                     sucursal.Telefono = item.Telefono;
                     blSucursal.Update(sucursal);
@@ -147,6 +148,7 @@ namespace AIPos.WebLayer.Controllers
                 sucursalModel.Nombre = sucursal.Nombre;
                 sucursalModel.Telefono = sucursal.Telefono;
                 sucursalModel.Referencia = sucursal.Direccion.Referencia;
+                sucursalModel.FraseTicket = sucursal.FraseTicket;
                 sucursalModel.Id = sucursal.Id;
                 sucursalesModel.Add(sucursalModel);
             }

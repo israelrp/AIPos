@@ -14,6 +14,7 @@ namespace AIPos.BusinessLayer
 
         public Inventario Insert(Inventario entity)
         {
+            entity.FechaRegistro = Tools.TimeConverter.GetDateTimeNowMexico();
             return inventarioDaoImpl.Insert(entity);
         }
 

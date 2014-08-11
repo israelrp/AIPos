@@ -33,14 +33,28 @@ namespace AIPos.DekstopLayer.Configuracion
             RecuperarImpresoras();
             RecuperarPuertosCOM();
             RecuperarListaDePreciosBase();
-            if (Reconfigurar)
+        }
+
+        public ConfiguracionInicial(bool reconfigurar)
+        {
+            Reconfigurar = reconfigurar;
+            InitializeComponent();
+            RecuperarSucursales();
+            RecuperarImpresoras();
+            RecuperarPuertosCOM();
+            RecuperarListaDePreciosBase();
+            if (reconfigurar)
             {
+                ServiceSucursal.SSucursalClient sucursalClient = new ServiceSucursal.SSucursalClient();
+                ServiceListaPrecio.SListaPrecioClient listaPrecioClient = new ServiceListaPrecio.SListaPrecioClient();
                 cmbBasculas.SelectedItem = General.ConfiguracionApp.PuertoBascula;
                 cmbImpresoras.SelectedItem = General.ConfiguracionApp.MiniPrinter;
-                cmbSucursales.SelectedItem = General.ConfiguracionApp.SucursalId;
-                cmbListaPrecioMayoreo.SelectedItem = General.ConfiguracionApp.ListaPrecioMayoreoId;
+                cmbSucursales.SelectedItem = sucursalClient.SelectById(General.ConfiguracionApp.SucursalId);
+                cmbListaPrecioMayoreo.SelectedItem = listaPrecioClient.SelectAll().Where(x=>x.Id== General.ConfiguracionApp.ListaPrecioMayoreoId).FirstOrDefault();
+                chkViewer.IsChecked = General.ConfiguracionApp.ImpresoraVirtual;
             }
         }
+
 
         private void RecuperarListaDePreciosBase()
         {
@@ -110,6 +124,7 @@ namespace AIPos.DekstopLayer.Configuracion
                             configuracion.SucursalId = ((Sucursal)cmbSucursales.SelectedItemValue).Id;
                             configuracion.ListaPrecioMayoreoId = ((ListaPrecio)cmbListaPrecioMayoreo.SelectedItemValue).Id;
                             configuracion.MiniPrinter = cmbImpresoras.SelectedItemValue.ToString();
+                            configuracion.ImpresoraVirtual = chkViewer.IsChecked.Value;
                             XmlSerializer serializer = new XmlSerializer(typeof(Configuracion));
                             TextWriter textWriter = new StreamWriter("config.xml");
                             serializer.Serialize(textWriter, configuracion);
@@ -131,6 +146,7 @@ namespace AIPos.DekstopLayer.Configuracion
                                 configuracion.SucursalId = ((Sucursal)cmbSucursales.SelectedItemValue).Id;
                                 configuracion.ListaPrecioMayoreoId = ((ListaPrecio)cmbListaPrecioMayoreo.SelectedItemValue).Id;
                                 configuracion.MiniPrinter = cmbImpresoras.SelectedItemValue.ToString();
+                                configuracion.ImpresoraVirtual = chkViewer.IsChecked.Value;
                                 XmlSerializer serializer = new XmlSerializer(typeof(Configuracion));
                                 TextWriter textWriter = new StreamWriter("config.xml");
                                 serializer.Serialize(textWriter, configuracion);

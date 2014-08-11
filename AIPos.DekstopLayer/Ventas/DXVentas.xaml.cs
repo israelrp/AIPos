@@ -17,6 +17,7 @@ using System.Threading;
 using System.Windows.Threading;
 using System.ServiceModel;
 using System.IO;
+using CrystalDecisions.CrystalReports.Engine;
 
 
 namespace AIPos.DekstopLayer.Ventas
@@ -350,6 +351,7 @@ namespace AIPos.DekstopLayer.Ventas
                                     venta.Sucursal.Id = sucursal.Id;
                                     venta.Sucursal.Nombre = sucursal.Nombre;
                                     venta.Sucursal.DireccionId = sucursal.DireccionId;
+                                    venta.Sucursal.FraseTicket = sucursal.FraseTicket;
                                     venta.Total = total;
                                     venta.UsuarioId = General.UsuarioLogueado.Id;
                                     venta.Usuario = new Usuario();
@@ -444,10 +446,18 @@ namespace AIPos.DekstopLayer.Ventas
             printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
             printerSettings.Copies = 2;
             var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
-            pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
-            report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
-            report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
-            report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+            //pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
+            //report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
+            //report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
+            if(!General.ConfiguracionApp.ImpresoraVirtual)
+                report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+            else
+            {
+                ReportViewer reportViewer = new ReportViewer();
+                reportViewer.Show();
+                ReportDocument reportDocument=(ReportDocument)report;
+                reportViewer.viewer.ViewerCore.ReportSource = reportDocument;
+            }
             //----------------------------------------------------------------------
         }
 
@@ -474,10 +484,18 @@ namespace AIPos.DekstopLayer.Ventas
             printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
             printerSettings.Copies = 2;
             var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
-            pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
-            report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
-            report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
-            report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+            //pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
+            //report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
+            //report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
+            if (!General.ConfiguracionApp.ImpresoraVirtual)
+                report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+            else
+            {
+                ReportViewer reportViewer = new ReportViewer();
+                reportViewer.Show();
+                ReportDocument reportDocument = (ReportDocument)report;
+                reportViewer.viewer.ViewerCore.ReportSource = reportDocument;
+            }
             //----------------------------------------------------------------------
         }
 

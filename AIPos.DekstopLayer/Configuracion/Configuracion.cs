@@ -12,5 +12,6 @@ namespace AIPos.DekstopLayer.Configuracion
         public string MiniPrinter { get; set; }
         public string PuertoBascula { get; set; }
         public int ListaPrecioMayoreoId { get; set; }
+        public bool ImpresoraVirtual { get; set; }
     }
 }

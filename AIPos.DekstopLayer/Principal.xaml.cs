@@ -85,8 +85,7 @@ namespace AIPos.DekstopLayer
         {
             if (!ExisteTabName("Configuracion"))
             {
-                var window = new Configuracion.ConfiguracionInicial();
-                window.Reconfigurar = true;
+                var window = new Configuracion.ConfiguracionInicial(true);
                 AgregarTab("Configuracion", "Configuración", window.Content);
             }
         }

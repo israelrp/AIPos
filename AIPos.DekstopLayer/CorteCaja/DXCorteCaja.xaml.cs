@@ -59,11 +59,11 @@ namespace AIPos.DekstopLayer.CorteCaja
             corteCaja.TotalRetiros = retiros.Sum(x => x.Monto);
             corteCaja.TotalAbonosServicios = reporte.Where(x => x.Tipo.ToUpper() == "SERVICIO").Sum(x => x.Anticipo).Value;
             corteCaja.TotalAbonosApartados = reporte.Where(x => x.Tipo.ToUpper() == "APARTADO").Sum(x => x.Anticipo).Value;            
-            corteCaja.TotalCaja = corteCaja.TotalVentas + corteCaja.TotalMostrador + corteCaja.TotalDomicilio + corteCaja.TotalAbonosApartados + corteCaja.TotalAbonosServicios - corteCaja.TotalRetiros;
+            corteCaja.TotalCaja = corteCaja.TotalVentas + corteCaja.TotalMostrador + corteCaja.TotalDomicilio  - corteCaja.TotalRetiros;
             gridCorte.ItemsSource = reporte;
             decimal totalAbonos = corteCaja.TotalAbonosApartados + corteCaja.TotalAbonosServicios;
             decimal totalVentas = corteCaja.TotalMostrador + corteCaja.TotalDomicilio+ corteCaja.TotalVentas;
-            lblTotalCaja.Content = "Total en ventas: "+ totalVentas.ToString("c") + " - Total de retiros: " + corteCaja.TotalRetiros.ToString("c") + " + Total abonos serv./apart.: "+ totalAbonos.ToString("c") + " = TOTAL EN CAJA: " + corteCaja.TotalCaja.ToString("c");
+            lblTotalCaja.Content = "Total en ventas: "+ totalVentas.ToString("c") + " - Total de retiros: " + corteCaja.TotalRetiros.ToString("c") + " = TOTAL EN CAJA: " + corteCaja.TotalCaja.ToString("c");
         }
 
 
@@ -87,7 +87,7 @@ namespace AIPos.DekstopLayer.CorteCaja
             corteCaja.TotalAbonosServicios = reporte.Where(x => x.Tipo.ToUpper() == "SERVICIO").Sum(x => x.Anticipo).Value;
             corteCaja.TotalAbonosApartados = reporte.Where(x => x.Tipo.ToUpper() == "APARTADO").Sum(x => x.Anticipo).Value;
             corteCaja.TotalCancelados = 0;
-            corteCaja.TotalCaja = corteCaja.TotalVentas + corteCaja.TotalMostrador + corteCaja.TotalDomicilio + corteCaja.TotalAbonosApartados + corteCaja.TotalAbonosServicios - corteCaja.TotalRetiros;
+            corteCaja.TotalCaja = corteCaja.TotalVentas + corteCaja.TotalMostrador + corteCaja.TotalDomicilio - corteCaja.TotalRetiros;
             corteCaja.TotalCambio = reporte.Where(x=>x.Cambio>0).Sum(c => c.Cambio).Value;
             corteCaja.QuienRetira = "";
             corteCaja.CorteEntregado = 0;

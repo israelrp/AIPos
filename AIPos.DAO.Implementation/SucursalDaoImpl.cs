@@ -15,8 +15,8 @@ namespace AIPos.DAO.Implementation
 
         public Sucursal Insert(Sucursal entity)
         {
-            object[] parameters = new object[] { entity.DireccionId, entity.Nombre, entity.Telefono };
-            return cm.Database.SqlQuery<Sucursal>("dbo.usp_SucursalesInsert @DireccionId={0}, @Nombre={1}, @Telefono={2}", parameters).FirstOrDefault();
+            object[] parameters = new object[] { entity.DireccionId, entity.Nombre, entity.Telefono, entity.FraseTicket };
+            return cm.Database.SqlQuery<Sucursal>("dbo.usp_SucursalesInsert @DireccionId={0}, @Nombre={1}, @Telefono={2}, @FraseTicket={3}", parameters).FirstOrDefault();
         }
 
         public bool Delete(int key)
@@ -33,8 +33,8 @@ namespace AIPos.DAO.Implementation
 
         public Sucursal Update(Sucursal entity)
         {
-            object[] parameters = new object[] { entity.Id, entity.DireccionId, entity.Nombre, entity.Telefono };
-            return cm.Database.SqlQuery<Sucursal>("dbo.usp_SucursalesUpdate @Id={0}, @DireccionId={1}, @Nombre={2}, @Telefono={3}", parameters).FirstOrDefault();
+            object[] parameters = new object[] { entity.Id, entity.DireccionId, entity.Nombre, entity.Telefono, entity.FraseTicket };
+            return cm.Database.SqlQuery<Sucursal>("dbo.usp_SucursalesUpdate @Id={0}, @DireccionId={1}, @Nombre={2}, @Telefono={3}, @FraseTicket={4}", parameters).FirstOrDefault();
         }
 
         public List<Sucursal> SelectAll()

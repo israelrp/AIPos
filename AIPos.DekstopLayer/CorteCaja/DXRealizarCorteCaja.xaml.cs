@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
 using AIPos.Domain;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace AIPos.DekstopLayer.CorteCaja
 {
@@ -57,14 +58,30 @@ namespace AIPos.DekstopLayer.CorteCaja
                     printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
                     printerSettings.Copies = 2;
                     var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
-                    pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
-                    report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
-                    report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
-                    report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+                    //pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
+                    //report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
+                    //report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
+                    if (!General.ConfiguracionApp.ImpresoraVirtual)
+                        report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+                    else
+                    {
+                        ReportViewer reportViewer = new ReportViewer();
+                        reportViewer.Show();
+                        ReportDocument reportDocument = (ReportDocument)report;
+                        reportViewer.viewer.ViewerCore.ReportSource = reportDocument;
+                    }
                     //----------------------------------------------------------------------
                     while (MessageBox.Show("¿Se imprimio correctamente el corte de caja?", "Corte caja", MessageBoxButton.YesNo) == MessageBoxResult.No)
                     {
-                        report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+                        if (!General.ConfiguracionApp.ImpresoraVirtual)
+                            report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+                        else
+                        {
+                            ReportViewer reportViewer = new ReportViewer();
+                            reportViewer.Show();
+                            ReportDocument reportDocument = (ReportDocument)report;
+                            reportViewer.viewer.ViewerCore.ReportSource = reportDocument;
+                        }
                     }
                     ServiceCorteCaja.SCorteCajaClient corteCajaClient = new ServiceCorteCaja.SCorteCajaClient();
                     RetiroDinero retiroDinero = new RetiroDinero();
