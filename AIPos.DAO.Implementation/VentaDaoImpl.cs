@@ -55,6 +55,12 @@ namespace AIPos.DAO.Implementation
             return cm.Database.SqlQuery<Venta>("dbo.usp_VentasSelect @Id={0}", parameters).FirstOrDefault();
         }
 
+        public Venta SelectByTipoSucursalFechaFolio(byte Tipo, int SucursalId, DateTime FechaInicio, DateTime FechaFin, int Folio)
+        {
+            object[] parameters = new object[] { Tipo, SucursalId, FechaInicio, FechaFin, Folio };
+            return cm.Database.SqlQuery<Venta>("dbo.[usp_VentasSelectByFolioTipo] @Tipo={0}, @SucursalId={1}, @FechaInicio={2}, @FechaFin={3}, @Folio={4}", parameters).FirstOrDefault();
+        }
+
         public Venta SelectBySucursalFolio(int SucursalId, int Folio)
         {
             object[] parameters = new object[] { SucursalId, Folio };

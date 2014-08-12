@@ -1,0 +1,191 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<script type="text/javascript">
+    function RecuperarVenta() {
+        $("#divDetalles").hide();
+        TextBoxVentaId.SetValue(0);
+        GridViewVentaDetalle.Refresh();
+        $.ajax({
+            url: "/Cancelaciones/RecuperarVenta",
+            type: 'POST',
+            data: { Tipo: ComboBoxTipoVenta.GetValue(), SucursalId: ComboBoxSucursales.GetValue(), Fecha: DateEditVenta.GetDate().toLocaleDateString(), Folio: TextBoxFolio.GetValue() },
+            success: function (response) {
+                if (response != null) {
+                    TextBoxVentaId.SetValue(response.Id);
+                    txtCliente.SetValue(response.Cliente.Nombre);
+                    txtUsuario.SetValue(response.Usuario.Nombre);
+                    txtTotal.SetValue(response.Total);
+                    txtRecibio.SetValue(response.Recibio);
+                    txtCambio.SetValue(response.Cambio);
+                    GridViewVentaDetalle.Refresh();
+                    $("#divDetalles").show();
+                }
+                else {
+                    alert("El ticket no fue encontrado.");
+                }
+            },
+            error: function (xhr) {
+                alert("Something went wrong, please try again");
+            }
+        });
+    }
+
+    function CancelarVenta() {
+        if (confirm("¿Esta seguro que desea cancelar el ticket?")) {
+            $.ajax({
+                url: "/Cancelaciones/CancelarVenta",
+                type: 'POST',
+                data: { VentaId: 0 },
+                success: function (response) {
+
+                },
+                error: function (xhr) {
+                    alert("Something went wrong, please try again");
+                }
+            });
+        }
+    }
+</script>
+
+<h5>Cancelaciones</h5>
+
+
+<table>
+    <tr>
+        <td>
+            <span>Sucursal:</span>
+            @Html.DevExpress().ComboBox(s =>
+            {
+                s.Name = "ComboBoxSucursales";
+                s.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+                s.Properties.DropDownStyle = DropDownStyle.DropDown;
+                s.Properties.TextField = "Nombre";
+                s.Properties.ValueField = "Id";
+                s.Properties.NullText = "Sucursal que realizo entradas";
+            }).BindList(ViewData["Sucursales"]).GetHtml()
+        </td>
+        <td>
+            <span>Tipo venta:</span>
+            @Html.DevExpress().ComboBox(settings =>
+            {
+                settings.Name = "ComboBoxTipoVenta";
+                settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+                settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+                settings.Properties.Items.Add("Venta",1);
+                settings.Properties.Items.Add("Orden",2);
+                settings.Properties.Items.Add("Domicilio",3);
+                settings.Properties.Items.Add("Servicio",4);
+                settings.Properties.Items.Add("Apartado",5);
+            }).GetHtml()
+        </td>
+        <td>
+            <span>Fecha venta:</span>
+            @Html.DevExpress().DateEdit(settings =>
+            {
+                settings.Name = "DateEditVenta";
+                settings.Properties.NullText = "Fecha del ticket";
+            }).GetHtml()
+        </td>
+        <td>
+            <span>Folio ticket:</span>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "TextBoxFolio";
+                settings.Properties.NullText = "Folio de la ticket";
+            }).GetHtml()
+        </td>
+        <td>
+            @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "ButtonBuscar";
+                settings.Text = "Buscar ticket";
+                settings.UseSubmitBehavior = false;
+                settings.ClientSideEvents.Click = "function (s,e) { RecuperarVenta(); } ";
+            }).GetHtml()
+        </td>
+    </tr>
+</table>
+
+<div id="divDetalles" style="border-top:1px solid; margin-top:20px; width:980px; display:none;">
+    <br/>
+    <span><b>Detalles del ticket</b></span>
+    <table>
+        <tr>
+            <td>
+                <span>Cliente:</span>
+                @Html.DevExpress().TextBox(settings =>
+        {
+            settings.Name = "txtCliente";
+            settings.ReadOnly = true;
+        }).GetHtml()
+            </td>
+            <td>
+                <span>Cajero:</span>
+                @Html.DevExpress().TextBox(settings =>
+        {
+            settings.Name = "txtUsuario";
+            settings.ReadOnly = true;
+        }).GetHtml()
+            </td>
+            <td>
+                <span>Total:</span>
+                @Html.DevExpress().TextBox(settings =>
+        {
+            settings.Name = "txtTotal";
+            settings.ReadOnly = true;
+        }).GetHtml()
+            </td>
+            <td>
+                <span>Recibio:</span>
+                @Html.DevExpress().TextBox(settings =>
+        {
+            settings.Name = "txtRecibio";
+            settings.ReadOnly = true;
+        }).GetHtml()
+            </td>
+            <td>
+                <span>Cambio:</span>
+                @Html.DevExpress().TextBox(settings =>
+        {
+            settings.Name = "txtCambio";
+            settings.ReadOnly = true;
+        }).GetHtml()
+            </td>
+        </tr>
+    </table>
+    <br />
+    @Html.DevExpress().Button(settings =>
+    {
+        settings.Name = "ButtonCancelar";
+        settings.Text = "Cancelar ticket";
+        settings.UseSubmitBehavior = false;
+        settings.ClientSideEvents.Click = "function (s,e) { CancelarVenta(); } ";
+    }).GetHtml()
+</div>
+@Html.DevExpress().TextBox(settings =>
+{
+    settings.Name = "TextBoxVentaId";
+    settings.ClientVisible = false;
+}).GetHtml()
+
+@Html.Action("GridViewPartialVentaDetalle")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

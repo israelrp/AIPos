@@ -245,6 +245,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministracionSeguridadController.cs" />
+    <Compile Include="Controllers\CancelacionesController.cs" />
     <Compile Include="Controllers\CatalogoClientesController.cs" />
     <Compile Include="Controllers\CatalogoProductosController.cs" />
     <Compile Include="Controllers\CatalogoProveedoresController.cs" />
@@ -1418,6 +1419,8 @@
     <Content Include="Views\ReporteEntradas\_GridViewPartialEntradas.cshtml" />
     <Content Include="Views\ReporteInventarios\Index.cshtml" />
     <Content Include="Views\ReporteInventarios\_GridViewPartialInventarios.cshtml" />
+    <Content Include="Views\Cancelaciones\Index.cshtml" />
+    <Content Include="Views\Cancelaciones\_GridViewPartialVentaDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

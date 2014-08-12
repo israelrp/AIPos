@@ -7,9 +7,11 @@ using AIPos.DAO;
 using AIPos.DAO.Implementation;
 using AIPos.Domain;
 using System.Globalization;
+using AIPos.DAO.Implementation.Enums;
 
 namespace AIPos.BusinessLayer
 {
+
     public class BOVenta
     {
         VentaDaoImpl ventaDaoImpl = new VentaDaoImpl();
@@ -46,6 +48,13 @@ namespace AIPos.BusinessLayer
         public Venta SelectById(int Id)
         {
             return ventaDaoImpl.SelectByKey(Id);
+        }
+
+        public Venta SelectByTipoFolio(TipoVenta Tipo,int SucursalId, DateTime Fecha, int Folio)
+        {
+            DateTime FechaInicio=Tools.DateTimeManager.AbsoluteStart(Fecha);
+            DateTime FechaFin=Tools.DateTimeManager.AbsoluteEnd(Fecha);
+            return ventaDaoImpl.SelectByTipoSucursalFechaFolio((byte)Tipo,SucursalId,FechaInicio,FechaFin,Folio);
         }
 
         public Venta SelectByFolio(int Folio, int SucursalId)
