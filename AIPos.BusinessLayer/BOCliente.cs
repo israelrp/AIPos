@@ -15,6 +15,7 @@ namespace AIPos.BusinessLayer
 
         public Cliente Insert(Cliente cliente)
         {
+            cliente.Codigo = this.GenerarCodigoCliente();
             cliente = clienteDaoImpl.Insert(cliente);
             return cliente;
         }
@@ -60,9 +61,14 @@ namespace AIPos.BusinessLayer
             return clienteDaoImpl.SelectByKey(id);
         }
 
-        public Cliente SelectByCodigo(string Codigo)
+        public Cliente SelectByCodigo(int Codigo)
         {
             return clienteDaoImpl.SelectByCodigo(Codigo);
+        }
+
+        public int GenerarCodigoCliente()
+        {
+            return clienteDaoImpl.GenerarCodigoCliente();
         }
     }
 }

@@ -86,5 +86,42 @@ namespace AIPos.WebLayer.Controllers
             }
             return PartialView("_GridViewPartialProductos", new BOProducto().SelectAll());
         }
+
+        [HttpPost]
+        public bool AumentarDisminuirPrecio(bool Aumentar, bool Porcentaje, decimal cantidad)
+        {
+            bool Retorno = false;
+            BOProducto boProducto = new BOProducto();
+            List<Producto> productos = boProducto.SelectAll();
+            foreach (var producto in productos)
+            {
+                if (Aumentar)
+                {
+                    if (Porcentaje)
+                    {
+                        producto.Precio += (producto.Precio * (cantidad / 100));
+                    }
+                    else//Solo se suma
+                    {
+                        producto.Precio += cantidad;
+                    }
+                }
+                else //Disminuir
+                {
+                    if (Porcentaje)
+                    {
+                        producto.Precio -= (producto.Precio * (cantidad / 100));
+                    }
+                    else//Solo restar
+                    {
+                        producto.Precio -= cantidad;
+                    }
+                }
+                boProducto.Update(producto);
+            }
+            Retorno = true;
+
+            return Retorno;
+        }
     }
 }

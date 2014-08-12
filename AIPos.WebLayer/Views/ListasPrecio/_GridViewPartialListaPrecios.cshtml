@@ -66,39 +66,39 @@
                 ViewContext.Writer.Write(
                     "<div class='fila'><table>" +
                         "<tr>" +
-                            "<td style='width:117px;'>" +
+                            "<td style='width:113px;'>" +
                                 DataBinder.Eval(c.DataItem, "Codigo") +
                             "</td>" +
-                            "<td style='width:217px;'>" +
+                            "<td style='width:231px;'>" +
                                 DataBinder.Eval(c.DataItem, "Producto") +
                             "</td>" +
-                            "<td style='width:117px;'><span class='label-table'>Precio base:</span> " +
+                            "<td style='width:116px;'>" +
                                     precioBase.ToString("c") +
                             "</td>" +
-                            "<td style='width:120px;'><span class='label-table'>Precio lista:$</span>" +
-                                Html.TextBox("PrecioLista", precioLista,
+                            "<td style='width:114px;'>" +
+                                Html.TextBox("PrecioLista", Math.Round(precioLista,2),
                                 new
                                 {
                                     id = "txtPrecioLista_" + productoId.ToString(),
                                     onkeyup = "ModificarDescuento(" + productoId + ")",
-                                    style = "width:120px;"
+                                    style = "width:114px;"
                                 }) +
                             "</td>" +
-                            "<td style='width:120px;'><span class='label-table'>Descuento:%</span> " +
-                                Html.TextBox("Descuento", descuento,
+                            "<td style='width:113px;'>" +
+                                Html.TextBox("Descuento", Math.Round(descuento,2),
                                 new
                                 {
                                     id = "txtDescuento_" + productoId.ToString(), 
                                     onkeyup = "ModificarDescuento(" + productoId + ")",
-                                    style = "width:120px;"
+                                    style = "width:113px;"
                                 }) +
                             "</td>" +
-                            "<td style='width:120px;'><span class='label-table'>Precio descuento:$</span>" +
-                                Html.TextBox("PrecioDescuento", precioDescuento, new
+                            "<td style='width:136px;'>" +
+                                Html.TextBox("PrecioDescuento", Math.Round(precioDescuento,2), new
                                 {
                                     id = "txtPrecioDescuento_" + productoId.ToString(), 
                                     onkeyup="ModificarPrecioDescuento("+productoId+")",
-                                    style="width:120px;"
+                                    style="width:136px;"
                                 }) +
                             "</td>" +
                             "<td style='width:80px; text-align:center;'>" +

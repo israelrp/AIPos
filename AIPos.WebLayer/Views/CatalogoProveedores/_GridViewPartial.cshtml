@@ -45,12 +45,7 @@
             checkBoxProperties.ValueUnchecked = false;
             checkBoxProperties.ValueUncheckedString = "false";
         });
-        settings.Columns.Add(s =>
-        {
-            s.FieldName = "DireccionId";
-            s.EditFormSettings.Visible = DefaultBoolean.False;
-
-        });
+        
 
         settings.CellEditorInitialize = (sender, e) =>
         {

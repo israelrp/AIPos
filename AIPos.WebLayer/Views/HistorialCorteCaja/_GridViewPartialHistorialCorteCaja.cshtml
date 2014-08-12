@@ -98,8 +98,24 @@
             x.Caption = "Diferencia";
             x.PropertiesEdit.DisplayFormatString = "c";
         });
+        
         settings.Columns.Add("TotalTickectsDomicilio");
         settings.Columns.Add("TotalTickectsMostrador");
+
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "TotalVentas").DisplayFormat = "c";
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "TotalMostrador").DisplayFormat = "c";
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "TotalDomicilio").DisplayFormat = "c";
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "TotalServicios").DisplayFormat = "c";
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "TotalApartados").DisplayFormat = "c";
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "TotalRetiros").DisplayFormat = "c";
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "TotalAbonosServicios").DisplayFormat = "c";
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "TotalAbonosApartados").DisplayFormat = "c";
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "TotalCancelados").DisplayFormat = "c";
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "TotalCaja").DisplayFormat = "c";
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "CorteEntregado").DisplayFormat = "c";
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "Diferencia").DisplayFormat = "c";
+        settings.Settings.ShowFooter = true;
+        
     });
 }
 @grid.Bind(Model).GetHtml()

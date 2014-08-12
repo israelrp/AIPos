@@ -89,24 +89,28 @@
     }
 
     function CopiarPrecioBase() {
+        LoadingPanel.Show();
         $.ajax({
             url: "/ListasPrecio/CopiarPrecioBaseListaPrecio",
             type: 'POST',
             data: { ListaPrecioIdSelected: cmbListasPrecio.GetValue(), Codigo: txtCodigoProducto.GetText(), Nombre: txtNombreProducto.GetText() },
             success: function (response) {
                 GridViewListaPrecios.PerformCallback();
+                LoadingPanel.Hide();
             },
             error: function (xhr) {
                 alert("Hubo un problema con aplicar el descuento a la lista de precios.");
+                LoadingPanel.Hide();
             }
         });
     }
 
     function AplicarDescuento() {
+
         var porcentaje = false;
         var cantidad = 0;
         var ejecutarAccion = false;
-        if (rbPorcentaje.GetValue() == true) {
+        if (rbPorcentajeDescuento.GetValue() == true) {
             porcentaje = true;
             cantidad = txtDescuento.GetText();
         }
@@ -117,15 +121,18 @@
             ejecutarAccion = true;
         }
         if (ejecutarAccion) {
+            LoadingPanel.Show();
             $.ajax({
                 url: "/ListasPrecio/AumentarDisminuirDescuentoLista",
                 type: 'POST',
                 data: { ListaPrecioIdSelected: cmbListasPrecio.GetValue(), Codigo: txtCodigoProducto.GetText(), Nombre: txtNombreProducto.GetText(), Porcentaje: porcentaje, cantidad: cantidad },
                 success: function (response) {
                     GridViewListaPrecios.PerformCallback();
+                    LoadingPanel.Hide();
                 },
                 error: function (xhr) {
                     alert("Hubo un problema con aplicar el descuento a la lista de precios.");
+                    LoadingPanel.Hide();
                 }
             });
         }
@@ -153,15 +160,18 @@
             ejecutarAccion = true;
         }
         if (ejecutarAccion) {
+            LoadingPanel.Show();
             $.ajax({
                 url: "/ListasPrecio/AumentarDisminuirPrecioLista",
                 type: 'POST',
                 data: { ListaPrecioIdSelected: cmbListasPrecio.GetValue(), Codigo: txtCodigoProducto.GetText(), Nombre: txtNombreProducto.GetText(), Aumentar: aumentar, Porcentaje: porcentaje, cantidad: cantidad },
                 success: function (response) {
                     GridViewListaPrecios.PerformCallback();
+                    LoadingPanel.Hide();
                 },
                 error: function (xhr) {
                     alert("Hubo un problema con aumentar o disminuir el precio de lista de los productos.");
+                    LoadingPanel.Hide();
                 }
             });
         }
@@ -211,6 +221,13 @@
     }
 </script>
 @Html.Action("ComboBoxPartialListasPrecio")
+@Html.DevExpress().Button(settings =>
+{
+    settings.Name = "btnConsultar";
+    settings.UseSubmitBehavior = false;
+    settings.Text = "Consultar";
+    settings.ClientSideEvents.Click = "function(s,e) { GridViewListaPrecios.PerformCallback(); }";
+}).GetHtml()
 <div class="contenedor-buscador">
     <div style="height:60px;">
         <h5><b>Buscar por producto:</b></h5>
@@ -239,9 +256,9 @@
         <div class="buscador-item">
             @Html.DevExpress().Button(settings =>
             {
-                settings.Name = "btnConsultar";
+                settings.Name = "btnFiltrar";
                 settings.UseSubmitBehavior = false;
-                settings.Text = "Consultar";
+                settings.Text = "Filtrar";
                 settings.ClientSideEvents.Click = "function(s,e) { GridViewListaPrecios.PerformCallback(); }";
             }).GetHtml()
         </div>
@@ -385,3 +402,8 @@
 @Html.Action("GridViewPartialListaPrecios")
 
 
+@Html.DevExpress().LoadingPanel(settings =>
+{
+    settings.Name = "LoadingPanel";
+    settings.Modal = true;
+}).GetHtml()

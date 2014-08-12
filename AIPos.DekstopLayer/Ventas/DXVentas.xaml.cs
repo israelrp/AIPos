@@ -69,7 +69,7 @@ namespace AIPos.DekstopLayer.Ventas
             if (buscador.ClienteSeleccionado != null)
             {
                 cmbClientes.SelectedItem = buscador.ClienteSeleccionado;
-                txtCodigoCliente.Text = buscador.ClienteSeleccionado.Codigo;
+                txtCodigoCliente.Text = buscador.ClienteSeleccionado.Codigo.ToString();
             }
         }
 
@@ -89,7 +89,7 @@ namespace AIPos.DekstopLayer.Ventas
             if (cmbClientes.SelectedIndex >= 0)
             {
                 Cliente cliente = (Cliente)cmbClientes.SelectedItem;
-                txtCodigoCliente.Text = cliente.Codigo;
+                txtCodigoCliente.Text = cliente.Codigo.ToString();
                 ReiniciarVenta();
                 txtCodigoProducto.Focus();
             }

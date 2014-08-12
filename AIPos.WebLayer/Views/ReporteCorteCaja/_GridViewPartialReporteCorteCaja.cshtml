@@ -64,6 +64,10 @@
             x.Caption = "Cancelado";
             x.ColumnType = MVCxGridViewColumnType.CheckBox;
         });
+
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "Total").DisplayFormat = "c";
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "Anticipo").DisplayFormat = "c";
+        settings.Settings.ShowFooter = true;
     });
 }
 @grid.Bind(Model).GetHtml()

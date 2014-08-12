@@ -19,7 +19,7 @@ namespace AIPos.Services
         Cliente SelectById(int Id);
 
         [OperationContract]
-        Cliente SelectByCodigo(string Codigo);
+        Cliente SelectByCodigo(int Codigo);
 
         [OperationContract]
         Cliente Insert(Cliente cliente);

@@ -24,7 +24,7 @@ namespace AIPos.Services
             return new BOCliente().SelectById(Id);
         }
 
-        public Domain.Cliente SelectByCodigo(string Codigo)
+        public Domain.Cliente SelectByCodigo(int Codigo)
         {
             return new BOCliente().SelectByCodigo(Codigo);
         }

@@ -15,7 +15,6 @@
         settings.Columns.Add("Usuario");
 		settings.Columns.Add("Proveedor");
 		settings.Columns.Add("Producto");
-        settings.Columns.Add("TotalPiezas");
 		settings.Columns.Add("CantidadReal");
         settings.Columns.Add("CantidadProveedor");
         settings.Columns.Add("Diferencia");
@@ -32,6 +31,9 @@
             c.Caption = "Importe";
             c.PropertiesEdit.DisplayFormatString = "c";
         });
+
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "Importe").DisplayFormat = "c";
+        settings.Settings.ShowFooter = true;
 	});
 }
 @grid.Bind(Model).GetHtml()

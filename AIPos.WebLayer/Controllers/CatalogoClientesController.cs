@@ -58,6 +58,8 @@ namespace AIPos.WebLayer.Controllers
                 {
                     // Insert here a code to update the item in your model
                     BOCliente blCliente = new BOCliente();
+                    Cliente cliente = blCliente.SelectById(item.Id);
+                    item.Codigo = cliente.Codigo;
                     blCliente.Update(item);
                 }
                 catch (Exception e)

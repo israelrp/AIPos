@@ -39,7 +39,7 @@ namespace AIPos.DekstopLayer.Ventas
             {
                 Cliente cliente = new Cliente();
                 cliente.Celular = txtCelular.Text;
-                cliente.Codigo = txtCodigo.Text;
+                cliente.Codigo = 0;
                 cliente.Descuento = 0;
                 cliente.Eliminado = false;
                 cliente.Nombre = txtNombre.Text;

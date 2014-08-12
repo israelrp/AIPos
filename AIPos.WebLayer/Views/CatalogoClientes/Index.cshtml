@@ -2,10 +2,16 @@
     ViewBag.Title = "Catálogo de clientes";
 }
 <script>
-    function MostrarDirecciones(ClienteId) {
+    function MostrarDirecciones(ClienteId, Codigo) {
         txtClienteId.SetValue(ClienteId);
+        
         GridViewDirecciones.PerformCallback();
         PopupControlDirecciones.Show();
+        
+    }
+
+    function OnGetRowValues(values) {
+        PopupControlDirecciones.SetHeaderText("Direcciones del cliente "+values);
     }
 </script>
 <h5>Catálogo de clientes</h5>

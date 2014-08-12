@@ -139,7 +139,8 @@ namespace AIPos.WebLayer.Controllers
                 }
                 else//Se calcula
                 {
-                    listaPrecioProducto.Descuento = (100 - (listaPrecioProducto.Precio / (cantidad * 100)));
+                    decimal precioDescuento=listaPrecioProducto.Precio-cantidad;
+                    listaPrecioProducto.Descuento = 100 - ((100 * precioDescuento) / listaPrecioProducto.Precio);
                 }
                 listaPrecioProducto = boListaPrecioProducto.Update(listaPrecioProducto);
             }

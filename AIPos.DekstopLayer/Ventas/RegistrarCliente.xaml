@@ -9,10 +9,8 @@
         <dxe:TextEdit x:Name="txtNombre" HorizontalAlignment="Left" Margin="72,10,0,0" VerticalAlignment="Top" Width="461"/>
         <Label Content="Telefono:" HorizontalAlignment="Left" Margin="8,42,0,0" VerticalAlignment="Top"/>
         <dxe:TextEdit x:Name="txtTelefono" HorizontalAlignment="Left" Margin="72,42,0,0" VerticalAlignment="Top" Width="187"/>
-        <Label Content="Celular:" HorizontalAlignment="Left" Margin="13,72,0,0" VerticalAlignment="Top"/>
-        <dxe:TextEdit x:Name="txtCelular" HorizontalAlignment="Left" Margin="72,76,0,0" VerticalAlignment="Top" Width="187"/>
-        <Label Content="Código:" HorizontalAlignment="Left" Margin="283,42,0,0" VerticalAlignment="Top"/>
-        <dxe:TextEdit x:Name="txtCodigo" HorizontalAlignment="Left" Margin="347,42,0,0" VerticalAlignment="Top" Width="187"/>
+        <Label Content="Celular:" HorizontalAlignment="Left" Margin="286,38,0,0" VerticalAlignment="Top"/>
+        <dxe:TextEdit x:Name="txtCelular" HorizontalAlignment="Left" Margin="345,42,0,0" VerticalAlignment="Top" Width="187"/>
         <Button x:Name="btnGuardar" HorizontalAlignment="Center" Margin="283,0,181,20" VerticalAlignment="Bottom" Width="100" Height="32" Background="Transparent" FontSize="14" FontWeight="Bold" Click="btnGuardar_Click">
             <Button.Content>
                 <Grid>
@@ -43,7 +41,7 @@
                 <dxe:TextEdit x:Name="txtRfc" HorizontalAlignment="Left" Margin="53,10,0,0" VerticalAlignment="Top" Width="205"/>
                 <Label Content="Razón social:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
                 <dxe:TextEdit x:Name="txtRazonSocial" HorizontalAlignment="Left" Margin="90,40,0,0" VerticalAlignment="Top" Width="420"/>
-                
+
                 <Label Content="Calle:" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top"/>
                 <Label Content="No. ext.:" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top"/>
                 <Label Content="No. int.:" HorizontalAlignment="Left" Margin="171,96,0,0" VerticalAlignment="Top"/>

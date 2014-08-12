@@ -29,6 +29,10 @@
                     c.PropertiesEdit.DisplayFormatString = "c";
                 });
 				settings.Columns.Add("FechaRegistro");
+                settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "Monto").DisplayFormat = "c";
+                settings.Settings.ShowFooter = true;
 			});
+            
+            
 }
 @grid.Bind(Model).GetHtml()

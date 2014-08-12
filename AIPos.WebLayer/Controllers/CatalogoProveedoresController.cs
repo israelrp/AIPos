@@ -107,9 +107,8 @@ namespace AIPos.WebLayer.Controllers
                     // Insert here a code to update the item in your model
                     BOProveedor boProveedor = new BOProveedor();
                     BODireccion boDireccion = new BODireccion();
-                    Proveedor proveedor = new Proveedor();
+                    Proveedor proveedor = boProveedor.SelectById(item.Id);
                     proveedor.Id = item.Id;
-                    proveedor.DireccionId = item.DireccionId;
                     proveedor.Codigo = item.Codigo;
                     proveedor.Contacto = item.Contacto;
                     proveedor.Eliminado = item.Eliminado;
@@ -118,7 +117,7 @@ namespace AIPos.WebLayer.Controllers
                     proveedor.Rfc = item.Rfc;
                     proveedor.Telefono = item.Telefono;
                     proveedor.Direccion = new Direccion();
-                    proveedor.Direccion.Id = item.DireccionId;
+                    proveedor.Direccion.Id = proveedor.DireccionId;
                     proveedor.Direccion.Calle = item.Calle;
                     proveedor.Direccion.Ciudad = item.Ciudad;
                     proveedor.Direccion.CodigoPostal = item.CodigoPostal;
@@ -149,8 +148,8 @@ namespace AIPos.WebLayer.Controllers
                     // Insert here a code to delete the item from your model
                     BODireccion boDireccion = new BODireccion();
                     BOProveedor boProveedor = new BOProveedor();
-                    boDireccion.Delete(boProveedor.SelectById(Id).DireccionId);
                     boProveedor.Delete(Id);
+                    boDireccion.Delete(boProveedor.SelectById(Id).DireccionId);
                 }
                 catch (Exception e)
                 {

@@ -68,6 +68,9 @@
             x.Caption = "Corte caja";
             x.ColumnType = MVCxGridViewColumnType.CheckBox;
         });
+
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "Monto").DisplayFormat = "c";
+        settings.Settings.ShowFooter = true;
     });
     if (ViewData["EditError"] != null)
     {

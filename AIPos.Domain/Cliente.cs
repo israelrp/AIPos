@@ -16,7 +16,7 @@ namespace AIPos.Domain
         public string Rfc { get; set; }
         public string Telefono { get; set; }
         public string Celular { get; set; }
-        public string Codigo { get; set; }
+        public int Codigo { get; set; }
         public bool Eliminado { get; set; }
         public decimal Descuento { get; set; }
         public string RazonSocial { get; set; }

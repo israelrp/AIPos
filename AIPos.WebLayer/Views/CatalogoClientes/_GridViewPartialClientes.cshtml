@@ -40,7 +40,11 @@
         settings.Columns.Add("RazonSocial");
         settings.Columns.Add("Telefono");
         settings.Columns.Add("Celular");
-        settings.Columns.Add("Codigo");
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "Codigo";
+            c.EditFormSettings.Visible = DefaultBoolean.False;
+        });
         settings.Columns.Add(c =>
         {
             c.ColumnType = MVCxGridViewColumnType.CheckBox;
@@ -63,7 +67,7 @@
         
 	
         settings.CommandColumn.CustomButtons.Add(new GridViewCommandColumnCustomButton() { ID = "btn", Text = "Direcciones" });
-        settings.ClientSideEvents.CustomButtonClick = "function(s, e) { if(e.buttonID == 'btn') { MostrarDirecciones(s.GetRowKey(e.visibleIndex)); }}";
+        settings.ClientSideEvents.CustomButtonClick = "function(s, e) { if(e.buttonID == 'btn') { MostrarDirecciones(s.GetRowKey(e.visibleIndex)); s.GetRowValues(e.visibleIndex, 'Nombre', OnGetRowValues) }}";
     });
     if (ViewData["EditError"] != null)
     {

@@ -46,7 +46,12 @@
             comboBoxProperties.ValueField = "Id";
         });
         settings.Columns.Add("Nombre");
-        settings.Columns.Add("Precio");
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "Precio";
+            c.Caption = "Precio base";
+            c.PropertiesEdit.DisplayFormatString = "c";
+        });
         settings.Columns.Add(c =>
         {
             c.ColumnType = MVCxGridViewColumnType.CheckBox;
