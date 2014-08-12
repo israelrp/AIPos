@@ -7,6 +7,8 @@
         $("#divDetalles").hide();
         TextBoxVentaId.SetValue(0);
         GridViewVentaDetalle.Refresh();
+        ButtonCancelar.SetVisible(false);
+        $("#divLeyenda").hide();
         $.ajax({
             url: "/Cancelaciones/RecuperarVenta",
             type: 'POST',
@@ -19,8 +21,15 @@
                     txtTotal.SetValue(response.Total);
                     txtRecibio.SetValue(response.Recibio);
                     txtCambio.SetValue(response.Cambio);
+                    if (!response.Cancelado) {
+                        ButtonCancelar.SetVisible(true);
+                    }
+                    else {
+                        $("#divLeyenda").show();
+                    }
                     GridViewVentaDetalle.Refresh();
                     $("#divDetalles").show();
+
                 }
                 else {
                     alert("El ticket no fue encontrado.");
@@ -37,9 +46,10 @@
             $.ajax({
                 url: "/Cancelaciones/CancelarVenta",
                 type: 'POST',
-                data: { VentaId: 0 },
+                data: { VentaId: TextBoxVentaId.GetValue() },
                 success: function (response) {
-
+                    ButtonCancelar.SetVisible(false);
+                    $("#divLeyenda").show();
                 },
                 error: function (xhr) {
                     alert("Something went wrong, please try again");
@@ -155,6 +165,12 @@
             </td>
         </tr>
     </table>
+    <div id="divLeyenda" style="color:red; display:none;">
+        <b>
+            Este ticket ha sido cancelado
+        </b>
+    </div>
+    
     <br />
     @Html.DevExpress().Button(settings =>
     {
@@ -162,6 +178,7 @@
         settings.Text = "Cancelar ticket";
         settings.UseSubmitBehavior = false;
         settings.ClientSideEvents.Click = "function (s,e) { CancelarVenta(); } ";
+        settings.ClientVisible = false;
     }).GetHtml()
 </div>
 @Html.DevExpress().TextBox(settings =>

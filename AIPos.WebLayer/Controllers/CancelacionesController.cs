@@ -32,6 +32,13 @@ namespace AIPos.WebLayer.Controllers
             return Json(venta, JsonRequestBehavior.AllowGet);
         }
 
+        public void CancelarVenta(int VentaId)
+        {
+            Venta venta = new BOVenta().SelectById(VentaId);
+            venta.Cancelado = true;
+            venta = new BOVenta().Update(venta);
+        }
+
 
         [ValidateInput(false)]
         public ActionResult GridViewPartialVentaDetalle(int? VentaId)

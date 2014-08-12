@@ -87,7 +87,7 @@ namespace AIPos.WebLayer.Controllers
             if(SucursalId.HasValue)
             {
                 BOPedidoSucursal boPedidoSucursal = new BOPedidoSucursal();
-                pedidos = boPedidoSucursal.SelectReporteBySucursalFechaEntrega(SucursalId.Value, DateTime.Now);
+                pedidos = boPedidoSucursal.SelectReporteBySucursalFechaEntrega(SucursalId.Value, BusinessLayer.Tools.TimeConverter.GetDateTimeNowMexico());
             }
             return PartialView(pedidos);
         }
@@ -98,7 +98,7 @@ namespace AIPos.WebLayer.Controllers
             if (SucursalId.HasValue)
             {
                 BOSeguimientoServicioApartado boSeguimiento = new BOSeguimientoServicioApartado();
-                reporte = boSeguimiento.RecuperarReporteFechaSucursal(DateTime.Now, SucursalId.Value);
+                reporte = boSeguimiento.RecuperarReporteFechaSucursal(BusinessLayer.Tools.TimeConverter.GetDateTimeNowMexico(), SucursalId.Value);
             }
             return PartialView(reporte);
         }
@@ -106,7 +106,7 @@ namespace AIPos.WebLayer.Controllers
         public PartialViewResult _RecuperarCortesCaja()
         {
             BOCorteCaja boCorteCaja = new BOCorteCaja();
-            List<CorteCaja> cortes= boCorteCaja.SelectByFecha(DateTime.Now);
+            List<CorteCaja> cortes = boCorteCaja.SelectByFecha(BusinessLayer.Tools.TimeConverter.GetDateTimeNowMexico());
             foreach (CorteCaja corte in cortes)
             {
                 corte.Sucursal = new BOSucursal().SelectById(corte.SucursalId);
@@ -121,7 +121,7 @@ namespace AIPos.WebLayer.Controllers
             if (SucursalId.HasValue)
             {
                 BOEntrada boEntrada = new BOEntrada();
-                reporte = boEntrada.SelectReporteByDay(SucursalId.Value, DateTime.Now);
+                reporte = boEntrada.SelectReporteByDay(SucursalId.Value, BusinessLayer.Tools.TimeConverter.GetDateTimeNowMexico());
             }
             return PartialView(reporte);
 
@@ -133,7 +133,7 @@ namespace AIPos.WebLayer.Controllers
             if (SucursalId.HasValue)
             {
                 BORetiroDinero boRetiroDinero = new BORetiroDinero();
-                reporte = boRetiroDinero.SelectReporteByFechaSucursal(SucursalId.Value, DateTime.Now, false);
+                reporte = boRetiroDinero.SelectReporteByFechaSucursal(SucursalId.Value, BusinessLayer.Tools.TimeConverter.GetDateTimeNowMexico(), false);
             }
             return PartialView(reporte);
         }
