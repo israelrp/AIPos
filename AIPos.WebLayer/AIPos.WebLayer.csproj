@@ -260,6 +260,7 @@
     <Compile Include="Controllers\ReportePedidosSucursalController.cs" />
     <Compile Include="Controllers\ReporteVentasProductoController.cs" />
     <Compile Include="Controllers\RetirosDineroController.cs" />
+    <Compile Include="Controllers\VentasFacturarController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1803,6 +1804,7 @@
     <Content Include="Views\ReporteInventarios\_GridViewPartialInventarios.cshtml" />
     <Content Include="Views\Cancelaciones\Index.cshtml" />
     <Content Include="Views\Cancelaciones\_GridViewPartialVentaDetalle.cshtml" />
+    <Content Include="Views\VentasFacturar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
