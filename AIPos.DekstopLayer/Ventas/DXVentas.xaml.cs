@@ -244,6 +244,38 @@ namespace AIPos.DekstopLayer.Ventas
                     LimpiarAgregarProducto();
                     CalcularTotal();
                     txtRecibi.Focus();
+                    if (producto.SePesa)
+                    {
+                        Unidad unidad = new ServiceUnidad.SUnidadClient().SelectById(producto.UnidadId);
+                        Documentos.TicketPesaje ticketPesaje = new Documentos.TicketPesaje();
+                        ticketPesaje.SetParameterValue("Producto", producto.Nombre);
+                        ticketPesaje.SetParameterValue("PrecioUnitario", ventaDetalle.PrecioUnitario.ToString("c"));
+                        decimal precioDescuento = Math.Round(ventaDetalle.PrecioUnitario - (ventaDetalle.PrecioUnitario * (ventaDetalle.Descuento / 100)), 0);
+                        ticketPesaje.SetParameterValue("PrecioDescuento", precioDescuento.ToString("c"));
+                        ticketPesaje.SetParameterValue("Cantidad", ventaDetalle.Cantidad.ToString()+" "+unidad.Nombre);
+                        ticketPesaje.SetParameterValue("Importe", ventaDetalle.Importe.ToString("c"));
+                        ticketPesaje.SetParameterValue("Usuario", General.UsuarioLogueado.Nombre+" "+General.UsuarioLogueado.Paterno+" "+General.UsuarioLogueado.Materno);
+                        //----------------------------------------------------------------------
+                        CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
+                        PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
+                        System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
+                        printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
+                        printerSettings.Copies = 2;
+                        var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
+                        //pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
+                        //report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
+                        //report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
+                        if (!General.ConfiguracionApp.ImpresoraVirtual)
+                            ticketPesaje.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+                        else
+                        {
+                            ReportViewer reportViewer = new ReportViewer();
+                            reportViewer.Show();
+                            ReportDocument reportDocument = (ReportDocument)ticketPesaje;
+                            reportViewer.viewer.ViewerCore.ReportSource = reportDocument;
+                        }
+                        //----------------------------------------------------------------------
+                    }
                 }
             }
         }

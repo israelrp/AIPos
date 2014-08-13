@@ -105,28 +105,44 @@ namespace AIPos.DekstopLayer.Entradas
         {
             if (ValidarDatos())
             {
-                Entrada entrada = new Entrada();
-                entrada.ProductoId = ((Producto)cmbProductos.SelectedItem).Id;
-                entrada.ProveedorId = ((Proveedor)cmbProveedores.SelectedItem).Id;
-                entrada.SucursalId = General.ConfiguracionApp.SucursalId;
-                entrada.TipoProductoId = ((TipoProducto)cmbTipoProducto.SelectedItem).Id;
-                entrada.UsuarioId = General.UsuarioLogueado.Id;
-                entrada.TotalPiezas = 0;
-                entrada.PrecioUnitario = decimal.Parse(txtPrecioUnitario.Text);
-                entrada.Fecha = DateTime.Now;
-                entrada.CantidadProveedor = decimal.Parse(txtCantidadDS.Text);
-                entrada.CantidadReal = decimal.Parse(txtCantidadPV.Text);
-                entrada.Importe = entrada.CantidadReal * entrada.PrecioUnitario;                
-                entrada.Diferencia = entrada.CantidadProveedor - entrada.CantidadReal;
-                ServiceEntrada.SEntradaClient sEntradaClient = new ServiceEntrada.SEntradaClient();
-                sEntradaClient.Insert(entrada);
-                gridEntradas.ItemsSource = sEntradaClient.SelectByDay(General.ConfiguracionApp.SucursalId, dateEditEntradas.DateTime.ToFileTimeUtc());
-                LimpiarControles();
+                if (ValidarUsuario())
+                {
+                    Entrada entrada = new Entrada();
+                    entrada.ProductoId = ((Producto)cmbProductos.SelectedItem).Id;
+                    entrada.ProveedorId = ((Proveedor)cmbProveedores.SelectedItem).Id;
+                    entrada.SucursalId = General.ConfiguracionApp.SucursalId;
+                    entrada.TipoProductoId = ((TipoProducto)cmbTipoProducto.SelectedItem).Id;
+                    entrada.UsuarioId = General.UsuarioLogueado.Id;
+                    entrada.TotalPiezas = 0;
+                    entrada.PrecioUnitario = decimal.Parse(txtPrecioUnitario.Text);
+                    entrada.Fecha = DateTime.Now;
+                    entrada.CantidadProveedor = decimal.Parse(txtCantidadDS.Text);
+                    entrada.CantidadReal = decimal.Parse(txtCantidadPV.Text);
+                    entrada.Importe = entrada.CantidadReal * entrada.PrecioUnitario;
+                    entrada.Diferencia = entrada.CantidadProveedor - entrada.CantidadReal;
+                    ServiceEntrada.SEntradaClient sEntradaClient = new ServiceEntrada.SEntradaClient();
+                    sEntradaClient.Insert(entrada);
+                    gridEntradas.ItemsSource = sEntradaClient.SelectByDay(General.ConfiguracionApp.SucursalId, dateEditEntradas.DateTime.ToFileTimeUtc());
+                    LimpiarControles();
+                }
+                else
+                {
+                    MessageBox.Show("El password introducido no es válido");
+                }
             }
             else
             {
                 MessageBox.Show("Debe de llenar todos los campos");
             }
+        }
+
+        bool ValidarUsuario()
+        {
+            bool retorno = false;
+            DXLoginEntrada loginEntrada = new DXLoginEntrada();
+            loginEntrada.ShowDialog();
+            retorno = loginEntrada.UsuarioValido;
+            return retorno;
         }
 
         bool ValidarDatos()
