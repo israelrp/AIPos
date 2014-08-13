@@ -223,6 +223,12 @@
       <DependentUpon>Ticket.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Documentos\TicketPesaje.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TicketPesaje.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Documentos\TicketServicioApartado.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -231,6 +237,9 @@
     </Compile>
     <Compile Include="DXSplashScreen\SplashAIPos.xaml.cs">
       <DependentUpon>SplashAIPos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\DXLoginEntrada.xaml.cs">
+      <DependentUpon>DXLoginEntrada.xaml</DependentUpon>
     </Compile>
     <Compile Include="Entradas\DXWEntradas.xaml.cs">
       <DependentUpon>DXWEntradas.xaml</DependentUpon>
@@ -431,6 +440,10 @@
     <EmbeddedResource Include="Documentos\Ticket.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Ticket.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Documentos\TicketPesaje.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TicketPesaje.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Documentos\TicketServicioApartado.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -711,6 +724,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DXSplashScreen\SplashAIPos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\DXLoginEntrada.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
