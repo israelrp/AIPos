@@ -18,9 +18,9 @@ namespace AIPos.DAO.Implementation
         public Venta Insert(Venta entity)
         {
             object[] parameters = new object[] { entity.ClienteId, entity.UsuarioId, entity.SucursalId, entity.Fecha, entity.Folio, entity.Recibio, entity.Cambio,
-                entity.FolioCancelado, entity.Cancelado , entity.Total, entity.RequiereFactura};
+                entity.FolioCancelado, entity.Cancelado , entity.Total, entity.RequiereFactura, entity.Facturado};
             return cm.Database.SqlQuery<Venta>("dbo.usp_VentasInsert @ClienteId={0}, @UsuarioId={1}, @SucursalId={2}, @Fecha={3}, @Folio={4}, @Recibio={5}, "+
-                "@Cambio={6}, @FolioCancelado={7}, @Cancelado={8}, @Total={9}, @RequiereFactura={10}", parameters).FirstOrDefault();
+                "@Cambio={6}, @FolioCancelado={7}, @Cancelado={8}, @Total={9}, @RequiereFactura={10}, @Facturado={11}", parameters).FirstOrDefault();
         }
 
         public bool Delete(int key)
@@ -38,9 +38,9 @@ namespace AIPos.DAO.Implementation
         public Venta Update(Venta entity)
         {
             object[] parameters = new object[] { entity.Id, entity.ClienteId, entity.UsuarioId, entity.SucursalId, entity.Fecha, entity.Folio, entity.Recibio, entity.Cambio,
-                entity.FolioCancelado, entity.Cancelado , entity.Total, entity.RequiereFactura };
+                entity.FolioCancelado, entity.Cancelado , entity.Total, entity.RequiereFactura, entity.Facturado };
             return cm.Database.SqlQuery<Venta>("dbo.usp_VentasUpdate @Id={0}, @ClienteId={1}, @UsuarioId={2}, @SucursalId={3}, @Fecha={4}, @Folio={5}, @Recibio={6}, " +
-                "@Cambio={7}, @FolioCancelado={8}, @Cancelado={9}, @Total={10}, @RequiereFactura={11}", parameters).FirstOrDefault();
+                "@Cambio={7}, @FolioCancelado={8}, @Cancelado={9}, @Total={10}, @RequiereFactura={11}, @Facturado={12}", parameters).FirstOrDefault();
         }
 
         public List<Venta> SelectAll()
@@ -107,6 +107,12 @@ namespace AIPos.DAO.Implementation
         {
             object[] parameters = new object[] { FechaInicio, FechaFin };
             return cm.Database.SqlQuery<ReporteCorteCaja>("dbo.usp_CorteCaja @FechaInicio={0}, @FechaFin={1} ", parameters).ToList();
+        }
+
+        public List<ReporteCorteCaja> RecuperarVentasFacturar()
+        {
+            object[] parameters = new object[] { null };
+            return cm.Database.SqlQuery<ReporteCorteCaja>("dbo.usp_VentasFacturar", parameters).ToList();
         }
 
         public List<ReporteVentasProducto> RecuperarVentasProducto(int SucursalId)

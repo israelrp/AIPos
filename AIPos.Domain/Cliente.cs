@@ -22,5 +22,6 @@ namespace AIPos.Domain
         public string RazonSocial { get; set; }
 
         public Sucursal SucursalRegistro { get; set; }
+        public Direccion DireccionFacturaion { get; set; }
     }
 }

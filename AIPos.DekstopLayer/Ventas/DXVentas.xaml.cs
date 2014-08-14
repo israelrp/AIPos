@@ -375,7 +375,7 @@ namespace AIPos.DekstopLayer.Ventas
                                     venta.FolioCancelado = 0;
                                     venta.Id = 0;
                                     venta.Recibio = recibio;
-                                    venta.RequiereFactura = false;
+                                    venta.Facturado = false;
                                     venta.SucursalId = General.ConfiguracionApp.SucursalId;
                                     ServiceSucursal.SSucursalClient sucursalClient = new ServiceSucursal.SSucursalClient();
                                     Sucursal sucursal = sucursalClient.SelectById(venta.SucursalId);

@@ -22,6 +22,7 @@ namespace AIPos.Domain
         public bool Cancelado { get; set; }
         public decimal Total { get; set; }
         public bool RequiereFactura { get; set; }
+        public bool Facturado { get; set; }
 
         public Cliente Cliente { get; set; }
         public Usuario Usuario { get; set; }
@@ -51,6 +52,8 @@ namespace AIPos.Domain
         public DateTime? FechaEntrega { get; set; }
         public string Especificaciones { get; set; }
         public string DireccionEnvio { get; set; }
+
+        public bool Facturado { get; set; }
 
     }
 

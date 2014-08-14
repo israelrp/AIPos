@@ -1,0 +1,22 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "GridViewVentaDetalle";
+        settings.CallbackRouteValues = new { Controller = "VentasFacturar", Action = "GridViewPartialVentaDetalle" };
+        settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['VentaId'] = txtVentaId.GetValue(); }";
+
+		settings.KeyFieldName = "Id";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = false;
+		settings.Settings.ShowFilterRow = false;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+				settings.Columns.Add("Cantidad");
+				settings.Columns.Add("PrecioUnitario");
+				settings.Columns.Add("Codigo");
+				settings.Columns.Add("Nombre");
+				settings.Columns.Add("Descuento");
+				settings.Columns.Add("Importe");
+			});
+}
+@grid.Bind(Model).GetHtml()

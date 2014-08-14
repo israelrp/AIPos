@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<script>
+    function MostrarDetalle(ventaId) {
+        $.ajax({
+            url: "/VentasFacturar/RecuperarDatosCliente",
+            type: 'POST',
+            data: { VentaId: ventaId },
+            success: function (response) {
+                if (response != null) {
+                    txtRazonSocial.SetText(response.RazonSocial);
+                    txtRfc.SetText(response.Rfc);
+                    txtTelefono.SetText(response.Telefono);
+                    txtCodigo.SetText(response.Codigo);
+                    txtNombre.SetText(response.Nombre);
+                    if (response.DireccionFacturaion != null) {
+                        txtCalle.SetText(response.DireccionFacturaion.Calle);
+                        txtNoExterior.SetText(response.DireccionFacturaion.NoExterior);
+                        txtNoInterior.SetText(response.DireccionFacturaion.NoInterior);
+                        txtColonia.SetText(response.DireccionFacturaion.Colonia);
+                        txtCodigoPostal.SetText(response.DireccionFacturaion.CodigoPostal);
+                        txtReferencia.SetText(response.DireccionFacturaion.Referencia);
+                        txtCiudad.SetText(response.DireccionFacturaion.Ciudad);
+                        txtEstado.SetText(response.DireccionFacturaion.Estado);
+                    }
+                    txtVentaId.SetText(ventaId);
+                    GridViewVentaDetalle.Refresh();
+                    PopupControlDetalles.Show();
+                }
+            },
+            error: function (xhr) {
+                alert("Something went wrong, please try again");
+            }
+        });
+        
+    }
+
+    function OnGetRowValues(values) {
+        PopupControlDetalles.SetHeaderText("Detalles Fecha: " + values[0].toLocaleDateString()+" Folio:"+values[1]+" Folio cancelado:"+values[2]);
+    }
+</script>
+
+<h5>Ventas para facturar</h5>
+
+@Html.Action("GridViewPartialVentas")
+
+@Html.DevExpress().PopupControl(settings =>
+{
+    settings.Name = "PopupControlDetalles";
+    settings.ShowHeader = true;
+    settings.AllowDragging = true;
+    settings.AllowResize = true;
+    settings.HeaderText = "Ver detalles";
+    settings.Modal = true;
+    settings.Width = 600;
+    settings.Height = 450;
+    settings.SetContent(() =>
+    {
+        Html.RenderPartial("~/Views/VentasFacturar/_DatosCliente.cshtml");
+        Html.RenderPartial("~/Views/VentasFacturar/_GridViewPartialVentaDetalle.cshtml");
+    });
+}).GetHtml()
+@Html.DevExpress().TextBox(settings =>
+{
+    settings.Name = "txtVentaId";
+    settings.ClientVisible = false;
+}).GetHtml()
