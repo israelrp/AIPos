@@ -7,6 +7,8 @@
     settings.BorderOptions.Visible = false;
     settings.Height = 400;
     settings.Width = 700;
+    settings.CallbackRouteValues = new { Controller = "Home", Action = "ResumenVentasFiltrado" };
+    settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['Semana']=ComboBoxSemanas.GetValue(); e.customArgs['Año']=ComboBoxAnios.GetValue(); }";
 
     settings.Titles.Add(new ChartTitle()
     {

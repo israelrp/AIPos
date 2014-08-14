@@ -162,5 +162,25 @@ namespace AIPos.BusinessLayer
             }
             return resumen;
         }
+
+        public List<ConteoVenta> RecuperarResumenSemanal(AIPos.DAO.Implementation.Enums.TipoVenta tipo, int Semana, int Año)
+        {
+            List<ConteoVenta> resumen = new List<ConteoVenta>();
+            DateTime fechaFinSemana = Tools.DateTimeManager.EndOfWeek(DateTime.Now, DayOfWeek.Saturday);
+            int DiasRecuperar = 6;
+            for (int Dia = 0; Dia <= DiasRecuperar; Dia++)
+            {
+                int quitarDia = (Dia * -1);
+                DateTime fechaInicio = Tools.DateTimeManager.AbsoluteStart(fechaFinSemana.AddDays(quitarDia));
+                DateTime fechaFin = Tools.DateTimeManager.AbsoluteEnd(fechaFinSemana.AddDays(quitarDia));
+                ConteoVenta resumenDiario = ventaDaoImpl.RecuperarResumenVenta(fechaInicio, fechaFin, tipo);
+                if (resumenDiario == null)
+                {
+                    resumenDiario = new ConteoVenta() { Conteo = 0, Fecha = fechaInicio, ImporteDia = 0 };
+                }
+                resumen.Add(resumenDiario);
+            }
+            return resumen;
+        }
     }
 }

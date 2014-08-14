@@ -88,6 +88,39 @@
     settings.Height = 480;
     settings.SetContent(() =>
     {
+        ViewContext.Writer.Write("<table><tr><td><span>Semana:</span>");
+        ViewContext.Writer.Write(
+            @Html.DevExpress().ComboBox(s =>
+            {
+                s.Name = "ComboBoxSemanas";
+                s.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+                s.Properties.DropDownStyle = DropDownStyle.DropDown;
+                s.Properties.TextField = "Nombre";
+                s.Properties.ValueField = "Numero";
+                s.SelectedIndex = ((int)ViewData["SemanaActual"]) - 1;
+            }).BindList(ViewData["Semanas"]).GetHtml()
+        );
+        ViewContext.Writer.Write("</td><td><span>Año:</span>");
+        ViewContext.Writer.Write(
+            @Html.DevExpress().ComboBox(s =>
+            {
+                s.Name = "ComboBoxAnios";
+                s.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+                s.Properties.DropDownStyle = DropDownStyle.DropDown;
+                s.SelectedIndex = (int)ViewData["AnioActual"];
+            }).BindList(ViewData["Anios"]).GetHtml()
+        );
+        ViewContext.Writer.Write("</td><td>");
+        ViewContext.Writer.Write(
+            @Html.DevExpress().Button(s =>
+            {
+                s.Name = "btnConsultar";
+                s.Text = "Consultar";
+                s.UseSubmitBehavior = false;
+                s.ClientSideEvents.Click = " function(s,e){ chart.PerformCallback(); } ";
+            }).GetHtml()
+        );
+        ViewContext.Writer.Write("</td></tr></table>");
         ViewContext.Writer.Write(Html.Action("_ResumenVentas"));
     });
 }).GetHtml()
