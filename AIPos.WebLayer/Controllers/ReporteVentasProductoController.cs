@@ -17,28 +17,38 @@ namespace AIPos.WebLayer.Controllers
 
         public ActionResult Index()
         {
+            int añoInicio = DateTime.Now.Year - 10;
+            int añoFin = DateTime.Now.Year + 10;
+            List<int> años = new List<int>();
+            for (int i = añoInicio; i <= añoFin; i++)
+            {
+                años.Add(i);
+            }
+            ViewData["Anios"] = años;
+            ViewData["AnioActual"] = 10;
+            ViewData["SemanaActual"] = new BusinessLayer.Tools.SemanaManager().SemanaActual();
             return View();
         }
 
 
         [ValidateInput(false)]
-        public ActionResult GridViewPartialVentasProducto(int? SucursalId)
+        public ActionResult GridViewPartialVentasProducto(int? SucursalId, int? Semana, int? Año)
         {
             List<Domain.ReporteVentasProducto> model = new List<Domain.ReporteVentasProducto>();
-            if (SucursalId.HasValue)
-                model = new BusinessLayer.BOVenta().RecuperarVentasProducto(SucursalId.Value);
+            if (SucursalId.HasValue && Semana.HasValue && Año.HasValue)
+                model = new BusinessLayer.BOVenta().RecuperarVentasProducto(SucursalId.Value,Semana.Value,Año.Value);
             return PartialView("_GridViewPartialVentasProducto", model);
         }
 
-        public ActionResult ExportTo(int? SucursalId_VI)
+        public ActionResult ExportTo(int? SucursalId_VI, int? Semana_VI, int? Año_VI)
         {
             foreach (string typeName in Helpers.GridViewExportHelper.ExportTypes.Keys)
             {
                 if (Request.Params[typeName] != null)
                 {
                     List<Domain.ReporteVentasProducto> model = new List<Domain.ReporteVentasProducto>();
-                    if (SucursalId_VI.HasValue)
-                        model = new BusinessLayer.BOVenta().RecuperarVentasProducto(SucursalId_VI.Value);
+                    if (SucursalId_VI.HasValue && Semana_VI.HasValue && Año_VI.HasValue)
+                        model = new BusinessLayer.BOVenta().RecuperarVentasProducto(SucursalId_VI.Value, Semana_VI.Value, Año_VI.Value);
                     ReporteVentasProductoExport export = new ReporteVentasProductoExport();
                     return Helpers.GridViewExportHelper.ExportTypes[typeName].Method(export.ExportGridViewSettings, model);
                 }

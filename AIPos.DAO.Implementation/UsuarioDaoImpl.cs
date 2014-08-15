@@ -52,5 +52,11 @@ namespace AIPos.DAO.Implementation
             object[] parameters = new object[] { key };
             return cm.Database.SqlQuery<Usuario>("dbo.usp_UsuariosSelect @Id={0}", parameters).FirstOrDefault();
         }
+
+        public Usuario SelectByUsername(string Username)
+        {
+            object[] parameters = new object[] { Username };
+            return cm.Database.SqlQuery<Usuario>("dbo.usp_UsuariosSelectByUsername @Username={0}", parameters).FirstOrDefault();
+        }
     }
 }

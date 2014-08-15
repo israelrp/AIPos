@@ -37,10 +37,9 @@ namespace AIPos.WebLayer.Controllers
         {
             BOUsuario boUsuario = new BOUsuario();
             Usuario usuario = boUsuario.Login(model.UserName, model.Password);
-            if (ModelState.IsValid && usuario!=null)
+            if (ModelState.IsValid && usuario!=null && usuario.NivelId>1)
             {
                 FormsAuthentication.SetAuthCookie(model.UserName, false);
-
                 return RedirectToAction("Index", "Home");
             }
 

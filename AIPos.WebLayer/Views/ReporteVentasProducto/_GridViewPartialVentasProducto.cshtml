@@ -2,7 +2,7 @@
 	var grid = Html.DevExpress().GridView(settings => {
         settings.Name = "GridViewVentasProducto";
         settings.CallbackRouteValues = new { Controller = "ReporteVentasProducto", Action = "GridViewPartialVentasProducto" };
-        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=SucursalId.GetValue(); }";
+        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=SucursalId.GetValue(); e.customArgs['Semana']=Semana.GetValue(); e.customArgs['Año']=Año.GetValue(); }";
 
 		settings.KeyFieldName = "ProductoId";
 

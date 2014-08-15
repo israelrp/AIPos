@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .content-config {
+        border: 1px solid #cccccc;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+    }
+
+        .content-config .content-data {
+            margin: 10px;
+        }
+
+    .titulo {
+        padding:5px;
+        background-color: #EF643C;
+        color: white;
+        -webkit-border-top-left-radius: 8px;
+        -webkit-border-top-right-radius: 8px;
+        -moz-border-radius-topleft: 8px;
+        -moz-border-radius-topright: 8px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+</style>
+<h5>Configuración</h5>
+<br /><br />
+@using (Ajax.BeginForm("GuardarConfiguracionTicket", new AjaxOptions { OnSuccess = "alert('Configuración ticket guardada')" }))
+{
+    <div class="content-config">
+        <label class="titulo">Configración ticket</label>
+        <div class="content-data">
+            @Html.Action("_ConfiguracionTicket")
+        </div>
+    </div>
+}
+        
+    
+

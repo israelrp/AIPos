@@ -45,6 +45,11 @@ namespace AIPos.BusinessLayer
             return usuarioDaoImpl.SelectByKey(id);
         }
 
+        public Usuario SelectByUsername(string Username)
+        {
+            return usuarioDaoImpl.SelectByUsername(Username);
+        }
+
         public List<Usuario> SelectAllWithPasswordDecrypt()
         {
             List<Usuario> usuarios = usuarioDaoImpl.SelectAll();

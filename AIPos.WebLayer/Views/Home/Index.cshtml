@@ -75,7 +75,49 @@
     </div>
 </div>
 
+@{
+    MenuSettings menusettings = new MenuSettings();
+    menusettings.Name = "toolbar";
+    menusettings.ShowAsToolbar = true;
 
+    menusettings.Items.Add(new MVCxMenuItem(string.Empty, "mnuPrint", "~/Images/BtnPrint.png")
+    {
+        ToolTip = "Print the chart"
+    });
+
+    menusettings.Items.Add(new MVCxMenuItem(string.Empty, "mnuSaveToDisk", "~/Images/BtnSave.png")
+    {
+        ToolTip = "Export a chart and save it to the disk",
+        BeginGroup = true
+    });
+
+    menusettings.Items.Add(new MVCxMenuItem(string.Empty, "mnuSaveToWindow", "~/Images/BtnSaveWindow.png")
+    {
+        ToolTip = "Export a chart and show it in a new window"
+    });
+
+    MVCxMenuItem mnuFormat = new MVCxMenuItem();
+    mnuFormat.Name = "mnuFormat";
+    ComboBoxSettings cbFormatSettings = new ComboBoxSettings();
+    cbFormatSettings.Name = "cbFormat";
+    cbFormatSettings.SelectedIndex = 0;
+    cbFormatSettings.Width = 60;
+    
+    cbFormatSettings.Properties.Items.Add("pdf");
+    cbFormatSettings.Properties.Items.Add("xls");
+    cbFormatSettings.Properties.Items.Add("png");
+    
+    mnuFormat.SetTextTemplateContent(c =>
+    {
+        Html.DevExpress().ComboBox(cbFormatSettings).Render();
+    });
+    DevExpress.Web.ASPxMenu.MenuItemStyle itemStyle = new DevExpress.Web.ASPxMenu.MenuItemStyle();
+    itemStyle.Assign(mnuFormat.ItemStyle);
+    mnuFormat.ItemStyle.Assign(itemStyle);
+    menusettings.Items.Add(mnuFormat);
+
+    menusettings.ClientSideEvents.ItemClick = "function(s, e) { if (e.item.name == 'mnuPrint') chart.Print(); if (e.item.name == 'mnuSaveToDisk') chart.SaveToDisk(cbFormat.GetText()); if (e.item.name == 'mnuSaveToWindow') chart.SaveToWindow(cbFormat.GetText()); }";
+}
 
 
 @Html.DevExpress().DockPanel(settings =>
@@ -85,9 +127,10 @@
     settings.AllowedDockState = AllowedDockState.DockedOnly;
     settings.OwnerZoneUID = "Zone1";
     settings.ShowCloseButton = false;
-    settings.Height = 480;
+    settings.Height = 540;
     settings.SetContent(() =>
     {
+        ViewContext.Writer.Write(Html.DevExpress().Menu(menusettings).GetHtml());
         ViewContext.Writer.Write("<table><tr><td><span>Semana:</span>");
         ViewContext.Writer.Write(
             @Html.DevExpress().ComboBox(s =>

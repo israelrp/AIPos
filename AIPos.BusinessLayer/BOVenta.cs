@@ -133,9 +133,13 @@ namespace AIPos.BusinessLayer
             return ventaDaoImpl.RecuperarVentasFacturar();
         }
 
-        public List<ReporteVentasProducto> RecuperarVentasProducto(int SucursalId)
+        public List<ReporteVentasProducto> RecuperarVentasProducto(int SucursalId, int Semana, int Año)
         {
-            return ventaDaoImpl.RecuperarVentasProducto(SucursalId);
+            DateTime fechaInicioAño = new DateTime(Año, 1, 1);
+            int numeroDias = Semana * 7;
+            DateTime fechaFinSemana = fechaInicioAño.AddDays(numeroDias - 4);
+            DateTime fechaInicioSemana = fechaFinSemana.AddDays(-6);
+            return ventaDaoImpl.RecuperarVentasProducto(SucursalId, fechaInicioSemana, fechaFinSemana);
         }
 
         /// <summary>
@@ -166,7 +170,9 @@ namespace AIPos.BusinessLayer
         public List<ConteoVenta> RecuperarResumenSemanal(AIPos.DAO.Implementation.Enums.TipoVenta tipo, int Semana, int Año)
         {
             List<ConteoVenta> resumen = new List<ConteoVenta>();
-            DateTime fechaFinSemana = Tools.DateTimeManager.EndOfWeek(DateTime.Now, DayOfWeek.Saturday);
+            DateTime fechaInicioAño = new DateTime(Año, 1, 1);
+            int numeroDias = Semana * 7;
+            DateTime fechaFinSemana = fechaInicioAño.AddDays(numeroDias-4);
             int DiasRecuperar = 6;
             for (int Dia = 0; Dia <= DiasRecuperar; Dia++)
             {

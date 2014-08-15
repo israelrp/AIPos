@@ -251,6 +251,7 @@
     <Compile Include="Controllers\CatalogoProveedoresController.cs" />
     <Compile Include="Controllers\CatalogoSucursalesController.cs" />
     <Compile Include="Controllers\CatalogoTiposController.cs" />
+    <Compile Include="Controllers\ConfiguracionController.cs" />
     <Compile Include="Controllers\HistorialCorteCajaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListasPrecioController.cs" />
@@ -1117,6 +1118,9 @@
     <Content Include="App_Theme\Youthful\MVCxTreeView.skin" />
     <Content Include="App_Theme\Youthful\MVCxUploadControl.skin" />
     <Content Include="App_Theme\Youthful\MVCxValidationSummary.skin" />
+    <Content Include="Images\BtnPrint.png" />
+    <Content Include="Images\BtnSave.png" />
+    <Content Include="Images\BtnSaveWindow.png" />
     <Content Include="Instalador\AIPos Desk.application" />
     <Content Include="Instalador\CRRuntime_32bit_13_0_9.msi" />
     <Content Include="Instalador\CRRuntime_64bit_13_0_9.msi" />
@@ -1808,6 +1812,8 @@
     <Content Include="Views\VentasFacturar\_GridViewPartialVentas.cshtml" />
     <Content Include="Views\VentasFacturar\_GridViewPartialVentaDetalle.cshtml" />
     <Content Include="Views\VentasFacturar\_DatosCliente.cshtml" />
+    <Content Include="Views\Configuracion\Index.cshtml" />
+    <Content Include="Views\Configuracion\_ConfiguracionTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

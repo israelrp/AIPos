@@ -1,0 +1,52 @@
+﻿
+@Html.DevExpress().Label(settings =>
+{
+    settings.Name = "lblLogo";
+    settings.Text = "Logo:";
+    settings.ControlStyle.Font.Bold = true;
+    settings.AssociatedControlName = "ucLogoTicket";
+}).GetHtml()
+
+
+@using (Html.BeginForm("ucLogoTicketForm", "UploadControl", FormMethod.Post))
+{
+    @Html.DevExpress().UploadControl(settings =>
+    {
+        settings.Name = "ucLogoTicket";
+        settings.CallbackRouteValues = new { Controller = "Configuracion", Action = "ucLogoTicketUpload" };
+        settings.ShowUploadButton = true;
+        settings.ShowProgressPanel = true;
+        settings.ValidationSettings.Assign(AIPos.WebLayer.Controllers.ConfiguracionControllerucLogoTicketSettings.ValidationSettings);
+    }).GetHtml()
+}
+
+@Html.DevExpress().Label(settings =>
+{
+    settings.Name = "lblGracias";
+    settings.Text = "Agradecimiento:";
+    settings.ControlStyle.Font.Bold = true;
+    settings.AssociatedControlName = "txtGracias";
+}).GetHtml()
+
+@Html.DevExpress().TextBox(settings =>
+{
+    settings.Name="txtGracias";
+    settings.Width = 500;
+}).GetHtml()
+
+@Html.DevExpress().CheckBox(settings =>
+{
+    settings.Name = "chkFechaHora";
+    settings.Text = "Imprimir fecha y hora de la operación.";
+    settings.ControlStyle.Font.Bold = true;
+}).GetHtml()
+
+<br /><br />
+
+@Html.DevExpress().Button(settings => {
+    settings.Name = "btnGuardarTicket";
+	settings.UseSubmitBehavior = true;
+    settings.Text = "Guardar";
+		}).GetHtml()
+
+

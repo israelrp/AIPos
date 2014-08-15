@@ -115,10 +115,10 @@ namespace AIPos.DAO.Implementation
             return cm.Database.SqlQuery<ReporteCorteCaja>("dbo.usp_VentasFacturar", parameters).ToList();
         }
 
-        public List<ReporteVentasProducto> RecuperarVentasProducto(int SucursalId)
+        public List<ReporteVentasProducto> RecuperarVentasProducto(int SucursalId, DateTime FechaInicio, DateTime FechaFin)
         {
-            object[] parameters = new object[] { SucursalId };
-            return cm.Database.SqlQuery<ReporteVentasProducto>("dbo.usp_ReporteVentasProducto @SucursalId={0}", parameters).ToList();
+            object[] parameters = new object[] { SucursalId, FechaInicio, FechaFin };
+            return cm.Database.SqlQuery<ReporteVentasProducto>("dbo.usp_ReporteVentasProducto @SucursalId={0}, @FechaInicio={1}, @FechaFin={2}", parameters).ToList();
         }
 
 

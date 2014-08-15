@@ -9,6 +9,26 @@
     <table>
         <tr>
             <td>
+                @Html.DevExpress().ComboBox(s =>
+                {
+                    s.Name = "Semana";
+                    s.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+                    s.Properties.DropDownStyle = DropDownStyle.DropDown;
+                    s.Properties.TextField = "Nombre";
+                    s.Properties.ValueField = "Numero";
+                    s.SelectedIndex = ((int)ViewData["SemanaActual"]) - 1;
+                }).BindList(new AIPos.BusinessLayer.Tools.SemanaManager().RecuperarSemanaAnio()).GetHtml()
+            </td>
+            <td>
+                @Html.DevExpress().ComboBox(s =>
+                {
+                    s.Name = "Año";
+                    s.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+                    s.Properties.DropDownStyle = DropDownStyle.DropDown;
+                    s.SelectedIndex = (int)ViewData["AnioActual"];
+                }).BindList(ViewData["Anios"]).GetHtml()
+            </td>
+            <td>
                 @Html.DevExpress().ComboBox(settings =>
                 {
                     settings.Name = "SucursalId";
