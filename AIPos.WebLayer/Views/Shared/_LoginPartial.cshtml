@@ -11,6 +11,13 @@
             <button class="btn btn-default" type="submit">Cerrar sesión</button>
         }
     </li>
-} else {
+    <li style="padding-top:10px;">
+        <form action="~/Configuracion" method="post">
+            <button class="btn btn-default" type="submit">Configuración</button>
+        </form>
+    </li>
+}
+else
+{
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
 }

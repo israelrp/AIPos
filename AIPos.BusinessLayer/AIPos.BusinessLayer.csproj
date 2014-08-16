@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="BOCliente.cs" />
     <Compile Include="BOClienteListaPrecio.cs" />
+    <Compile Include="BOConfiguracionGeneral.cs" />
     <Compile Include="BOCorteCaja.cs" />
     <Compile Include="BODireccion.cs" />
     <Compile Include="BODireccionEnvio.cs" />

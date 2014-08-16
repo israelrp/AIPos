@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Cliente.cs" />
     <Compile Include="ClienteListaPrecio.cs" />
+    <Compile Include="ConfiguracionGeneral.cs" />
     <Compile Include="CorteCaja.cs" />
     <Compile Include="Direccion.cs" />
     <Compile Include="DireccionEnvio.cs" />

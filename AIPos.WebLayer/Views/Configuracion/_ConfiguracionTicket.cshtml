@@ -1,4 +1,9 @@
-﻿
+﻿@model  AIPos.Domain.ConfiguracionGeneral
+
+<div style="float:right;">
+    <img src="~/Images/ticketPreview.png" />
+</div>
+
 @Html.DevExpress().Label(settings =>
 {
     settings.Name = "lblLogo";
@@ -7,19 +12,42 @@
     settings.AssociatedControlName = "ucLogoTicket";
 }).GetHtml()
 
-
-@using (Html.BeginForm("ucLogoTicketForm", "UploadControl", FormMethod.Post))
-{
-    @Html.DevExpress().UploadControl(settings =>
+<div style="float:left;">
+    @using (Html.BeginForm("ucLogoTicketForm", "UploadControl", FormMethod.Post))
+    {
+        @Html.DevExpress().UploadControl(settings =>
     {
         settings.Name = "ucLogoTicket";
         settings.CallbackRouteValues = new { Controller = "Configuracion", Action = "ucLogoTicketUpload" };
-        settings.ShowUploadButton = true;
+        settings.ShowUploadButton = false;
         settings.ShowProgressPanel = true;
         settings.ValidationSettings.Assign(AIPos.WebLayer.Controllers.ConfiguracionControllerucLogoTicketSettings.ValidationSettings);
+        settings.ClientSideEvents.FileUploadComplete = "function(s,e){ if(e.callbackData != '') $('#imgPreview').attr('src', e.callbackData); }";
     }).GetHtml()
-}
+    }
+</div>
+<div style="float:left; margin-top:15px;">
+    <button class="btn btn-primary" onclick="ucLogoTicket.Upload()" type="button">Subir logo</button>
+</div>
+<div style="padding-top:3px;">
+    <img id="imgPreview" src="" alt="" style="width:85px; height:46px;" />
+</div>
+<br />
 
+@Html.DevExpress().Label(settings =>
+{
+    settings.Name = "lblTitulo";
+    settings.Text = "Titulo:";
+    settings.ControlStyle.Font.Bold = true;
+    settings.AssociatedControlName = "txtTitulo";
+}).GetHtml()
+
+@Html.DevExpress().TextBox(settings =>
+{
+    settings.Name = "txtTitulo";
+    settings.Width = 500;
+}).GetHtml()
+<br />
 @Html.DevExpress().Label(settings =>
 {
     settings.Name = "lblGracias";
@@ -31,6 +59,20 @@
 @Html.DevExpress().TextBox(settings =>
 {
     settings.Name="txtGracias";
+    settings.Width = 500;
+}).GetHtml()
+<br />
+@Html.DevExpress().Label(settings =>
+{
+    settings.Name = "lblLeyendaFiscal";
+    settings.Text = "Leyenda fiscal:";
+    settings.ControlStyle.Font.Bold = true;
+    settings.AssociatedControlName = "txtLeyendaFiscal";
+}).GetHtml()
+
+@Html.DevExpress().TextBox(settings =>
+{
+    settings.Name = "txtLeyendaFiscal";
     settings.Width = 500;
 }).GetHtml()
 

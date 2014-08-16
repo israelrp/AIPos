@@ -1,0 +1,54 @@
+﻿@model  AIPos.Domain.ConfiguracionGeneral
+
+
+@Html.DevExpress().Label(settings =>
+{
+    settings.Name = "lblDecimalesPrecios";
+    settings.Text = "Decimales para los precios de productos: (Min: 0 Max: 16)";
+    settings.ControlStyle.Font.Bold = true;
+    settings.AssociatedControlName = "txtDecimalesPrecios";
+}).GetHtml()
+<div style="float:left; margin-right:10px;">
+    @Html.DevExpress().SpinEdit(settings =>
+    {
+        settings.Name = "txtDecimalesPrecios";
+        settings.Properties.MinValue = 0;
+        settings.Properties.MaxValue = 16;
+        settings.Properties.NumberFormat = SpinEditNumberFormat.Number;
+        settings.Properties.NumberType = SpinEditNumberType.Integer;
+        settings.Properties.AllowNull = false;
+    }).GetHtml()
+</div>
+<div style="margin-top:15px;">
+    <label id="lblEjemploDecimalesPrecios">Ejemplo: 100.000</label>
+</div>
+<br/>
+@Html.DevExpress().Label(settings =>
+{
+    settings.Name = "lblDecimalesCantidad";
+    settings.Text = "Decimales para las cantidades: (Min: 0 Max: 16)";
+    settings.ControlStyle.Font.Bold = true;
+    settings.AssociatedControlName = "txtDecimalesCantidad";
+}).GetHtml()
+<div style="float:left; margin-right:10px;">
+    @Html.DevExpress().SpinEdit(settings =>
+    {
+        settings.Name = "txtDecimalesCantidad";
+        settings.Properties.MinValue = 0;
+        settings.Properties.MaxValue = 16;
+        settings.Properties.NumberFormat = SpinEditNumberFormat.Number;
+        settings.Properties.NumberType = SpinEditNumberType.Integer;
+        settings.Properties.AllowNull = false;
+    }).GetHtml()
+</div>
+<div style="margin-top:15px;">
+    <label id="lblEjemploDecimalesCantidad">Ejemplo: 100.000</label>
+</div>
+<br /><br />
+
+@Html.DevExpress().Button(settings =>
+{
+    settings.Name = "btnGuardarRedondeo";
+    settings.UseSubmitBehavior = true;
+    settings.Text = "Guardar";
+}).GetHtml()

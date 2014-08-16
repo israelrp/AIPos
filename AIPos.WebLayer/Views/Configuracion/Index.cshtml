@@ -1,5 +1,7 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model AIPos.Domain.ConfiguracionGeneral
+
+@{
+    ViewBag.Title = "Configuración de la plataforma";
 }
 <style>
     .content-config {
@@ -27,12 +29,32 @@
 </style>
 <h5>Configuración</h5>
 <br /><br />
+@using (Ajax.BeginForm("GuardarConfiguracionPOS", new AjaxOptions { OnSuccess = "alert('Configuración POS guardada')" }))
+{
+    <div class="content-config">
+        <label class="titulo">Configuración del POS</label>
+        <div class="content-data">
+            @Html.Action("_ConfiguracionPOS", Model)
+        </div>
+    </div>
+}
+<br />
+@using (Ajax.BeginForm("GuardarConfiguracionRedondeo", new AjaxOptions { OnSuccess = "alert('Configuración redondeo guardada')" }))
+{
+    <div class="content-config">
+        <label class="titulo">Configuración redondeo decimales</label>
+        <div class="content-data">
+            @Html.Action("_ConfiguracionRedondeo", Model)
+        </div>
+    </div>
+}
+<br />
 @using (Ajax.BeginForm("GuardarConfiguracionTicket", new AjaxOptions { OnSuccess = "alert('Configuración ticket guardada')" }))
 {
     <div class="content-config">
         <label class="titulo">Configración ticket</label>
         <div class="content-data">
-            @Html.Action("_ConfiguracionTicket")
+            @Html.Action("_ConfiguracionTicket", Model)
         </div>
     </div>
 }

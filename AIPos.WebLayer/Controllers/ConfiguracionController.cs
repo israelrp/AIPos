@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
+using System.Web.UI;
+using AIPos.Domain;
+using AIPos.BusinessLayer;
 
 namespace AIPos.WebLayer.Controllers
 {
@@ -14,12 +17,24 @@ namespace AIPos.WebLayer.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            ConfiguracionGeneral configuracion = new BOConfiguracionGeneral().ObtenerConfiguracion();
+            return View(configuracion);
         }
 
         public ActionResult _ConfiguracionTicket()
         {
             return PartialView();
+        }
+
+        public ActionResult _ConfiguracionRedondeo()
+        {
+            return PartialView();
+        }
+
+        public ActionResult _ConfiguracionPOS()
+        {
+            ConfiguracionGeneral configuracion = new BOConfiguracionGeneral().ObtenerConfiguracion();
+            return PartialView(configuracion);
         }
 
 
@@ -31,16 +46,24 @@ namespace AIPos.WebLayer.Controllers
     }
     public class ConfiguracionControllerucLogoTicketSettings
     {
+        public const string UploadDirectory = "~/Content/UploadControl/UploadFolder/";
+
         public static DevExpress.Web.ASPxUploadControl.ValidationSettings ValidationSettings = new DevExpress.Web.ASPxUploadControl.ValidationSettings()
         {
             AllowedFileExtensions = new string[] { ".jpg", ".jpeg" },
-            MaxFileSize = 4000000
+            MaxFileSize = 20971520
         };
         public static void FileUploadComplete(object sender, DevExpress.Web.ASPxUploadControl.FileUploadCompleteEventArgs e)
         {
             if (e.UploadedFile.IsValid)
             {
-                // Save uploaded file to some location
+                 string resultFilePath = HttpContext.Current.Request.MapPath(UploadDirectory + e.UploadedFile.FileName);
+                 e.UploadedFile.SaveAs(resultFilePath, true);//Code Central Mode - Uncomment This Line
+                IUrlResolutionService urlResolver = sender as IUrlResolutionService;
+                if (urlResolver != null)
+                {
+                    e.CallbackData = urlResolver.ResolveClientUrl(UploadDirectory + e.UploadedFile.FileName);
+                }
             }
         }
     }

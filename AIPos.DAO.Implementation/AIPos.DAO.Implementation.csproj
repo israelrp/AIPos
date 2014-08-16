@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="ClienteDaoImpl.cs" />
     <Compile Include="ClienteListaPrecioDaoImpl.cs" />
+    <Compile Include="ConfiguracionGeneralDaoImpl.cs" />
     <Compile Include="CorteCajaDaoImpl.cs" />
     <Compile Include="DireccionDaoImpl.cs" />
     <Compile Include="DireccionEnvioDaoImpl.cs" />

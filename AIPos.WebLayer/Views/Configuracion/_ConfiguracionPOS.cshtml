@@ -1,0 +1,43 @@
+﻿@model  AIPos.Domain.ConfiguracionGeneral
+
+@Html.DevExpress().CheckBoxFor(m=>m.ActivarBascula, settings =>
+{
+    settings.Text = "Activar el pesaje con báscula conectada al POS";
+    settings.ControlStyle.Font.Bold = true;
+}).GetHtml()
+
+@Html.DevExpress().CheckBoxFor(m => m.ActivarTicketPesaje, settings =>
+{
+    settings.Text = "Activar impresión del pesaje con los productos que marcan \"Se pesa\"";
+    settings.ControlStyle.Font.Bold = true;
+}).GetHtml()
+
+@Html.DevExpress().CheckBoxFor(m => m.ActivarFotoProductoPOS, settings =>
+{
+    settings.Text = "Activar mostrar foto del producto en el POS (Esto puede ocasionar un tiempo de espera en el POS)";
+    settings.ControlStyle.Font.Bold = true;
+}).GetHtml()
+<br />
+@Html.DevExpress().LabelFor(m => m.NumeroCopiasTicketVenta, settings =>
+{
+    settings.Text = "Número de copias a imprimir del ticket de venta: (Min: 1 Max: 4)";
+    settings.ControlStyle.Font.Bold = true;
+    settings.AssociatedControlName = "txtNumeroTickets";
+}).GetHtml()
+    @Html.DevExpress().SpinEditFor(m => m.NumeroCopiasTicketVenta, settings =>
+    {
+        settings.Properties.MinValue = 0;
+        settings.Properties.MaxValue = 4;
+        settings.Properties.NumberFormat = SpinEditNumberFormat.Number;
+        settings.Properties.NumberType = SpinEditNumberType.Integer;
+        settings.Properties.AllowNull = false;
+    }).GetHtml()
+<br /><br />
+@Html.DevExpress().Button(settings =>
+{
+    settings.Name = "btnGuardarPOS";
+    settings.UseSubmitBehavior = true;
+    settings.Text = "Guardar";
+}).GetHtml()
+
+
