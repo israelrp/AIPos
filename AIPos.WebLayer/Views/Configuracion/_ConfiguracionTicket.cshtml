@@ -34,51 +34,44 @@
 </div>
 <br />
 
-@Html.DevExpress().Label(settings =>
+@Html.DevExpress().LabelFor(m => m.TituloTicket, settings =>
 {
-    settings.Name = "lblTitulo";
     settings.Text = "Titulo:";
     settings.ControlStyle.Font.Bold = true;
     settings.AssociatedControlName = "txtTitulo";
 }).GetHtml()
 
-@Html.DevExpress().TextBox(settings =>
-{
-    settings.Name = "txtTitulo";
+@Html.DevExpress().TextBoxFor(m => m.TituloTicket, settings =>
+{    
     settings.Width = 500;
 }).GetHtml()
 <br />
-@Html.DevExpress().Label(settings =>
-{
-    settings.Name = "lblGracias";
+@Html.DevExpress().LabelFor(m => m.AgradecimientoTicket, settings =>
+{    
     settings.Text = "Agradecimiento:";
     settings.ControlStyle.Font.Bold = true;
     settings.AssociatedControlName = "txtGracias";
 }).GetHtml()
 
-@Html.DevExpress().TextBox(settings =>
-{
-    settings.Name="txtGracias";
+@Html.DevExpress().TextBoxFor(m => m.AgradecimientoTicket, settings =>
+{    
     settings.Width = 500;
 }).GetHtml()
 <br />
-@Html.DevExpress().Label(settings =>
-{
-    settings.Name = "lblLeyendaFiscal";
+@Html.DevExpress().LabelFor(m => m.LeyendaFicalTicket, settings =>
+{    
     settings.Text = "Leyenda fiscal:";
     settings.ControlStyle.Font.Bold = true;
     settings.AssociatedControlName = "txtLeyendaFiscal";
 }).GetHtml()
 
-@Html.DevExpress().TextBox(settings =>
-{
-    settings.Name = "txtLeyendaFiscal";
+@Html.DevExpress().TextBoxFor(m => m.LeyendaFicalTicket, settings =>
+{    
     settings.Width = 500;
 }).GetHtml()
 
-@Html.DevExpress().CheckBox(settings =>
+@Html.DevExpress().CheckBoxFor(m => m.ActivarImprimirFechaHoraTicket, settings =>
 {
-    settings.Name = "chkFechaHora";
     settings.Text = "Imprimir fecha y hora de la operación.";
     settings.ControlStyle.Font.Bold = true;
 }).GetHtml()

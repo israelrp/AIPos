@@ -33,8 +33,7 @@ namespace AIPos.WebLayer.Controllers
 
         public ActionResult _ConfiguracionPOS()
         {
-            ConfiguracionGeneral configuracion = new BOConfiguracionGeneral().ObtenerConfiguracion();
-            return PartialView(configuracion);
+            return PartialView();
         }
 
 

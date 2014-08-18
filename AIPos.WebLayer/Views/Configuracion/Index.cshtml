@@ -34,7 +34,7 @@
     <div class="content-config">
         <label class="titulo">Configuración del POS</label>
         <div class="content-data">
-            @Html.Action("_ConfiguracionPOS", Model)
+            @{ Html.RenderPartial("_ConfiguracionPOS", Model); }
         </div>
     </div>
 }
@@ -44,7 +44,7 @@
     <div class="content-config">
         <label class="titulo">Configuración redondeo decimales</label>
         <div class="content-data">
-            @Html.Action("_ConfiguracionRedondeo", Model)
+            @{ Html.RenderPartial("_ConfiguracionRedondeo", Model); }
         </div>
     </div>
 }
@@ -54,7 +54,7 @@
     <div class="content-config">
         <label class="titulo">Configración ticket</label>
         <div class="content-data">
-            @Html.Action("_ConfiguracionTicket", Model)
+            @{ Html.RenderPartial("_ConfiguracionTicket", Model); }
         </div>
     </div>
 }

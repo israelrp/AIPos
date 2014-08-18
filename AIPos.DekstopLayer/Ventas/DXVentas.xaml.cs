@@ -140,15 +140,12 @@ namespace AIPos.DekstopLayer.Ventas
                 {
                     if (producto.SePesa)
                     {
-                        if (General.ConfiguracionApp.PuertoBascula != "")
+                        if (InicializaPuertoBascula(General.ConfiguracionApp.PuertoBascula, 9600))
                         {
-                            if (InicializaPuertoBascula(General.ConfiguracionApp.PuertoBascula, 19200))
-                            {
-                                RecuperarPesoBascula();
-                                Thread.Sleep(5000);
-                                txtCantidad.Text = peso;
-                                PuertoSerieBascula.Close();
-                            }
+                            RecuperarPesoBascula();
+                            Thread.Sleep(5000);
+                            txtCantidad.Text = peso;
+                            PuertoSerieBascula.Close();
                         }                        
                     }
                 }

@@ -19,7 +19,7 @@
             settings.Name = "DockZone1";
             settings.ZoneUID = "Zone1";
             settings.AllowGrowing = true;
-            settings.Width = 760;
+            settings.Width = 780;
         }).GetHtml()
     </div>
     <div class="contenedor-dockzone">
@@ -127,7 +127,7 @@
     settings.AllowedDockState = AllowedDockState.DockedOnly;
     settings.OwnerZoneUID = "Zone1";
     settings.ShowCloseButton = false;
-    settings.Height = 540;
+    settings.Height = 600;
     settings.SetContent(() =>
     {
         ViewContext.Writer.Write(Html.DevExpress().Menu(menusettings).GetHtml());
