@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_ISInventario" contract="ServiceInventario.ISInventario" bindingType="basicHttpBinding" address="http://serveraplicaciones.cloudapp.net:66/SInventario.svc" bindingConfiguration="BasicHttpBinding_ISInventario">
+    <endpoint name="BasicHttpBinding_ISInventario" contract="ServiceInventario.ISInventario" bindingType="basicHttpBinding" address="http://sanagustinservices.azurewebsites.net/SInventario.svc" bindingConfiguration="BasicHttpBinding_ISInventario">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://serveraplicaciones.cloudapp.net:66/SInventario.svc</serializedValue>
+          <serializedValue>http://sanagustinservices.azurewebsites.net/SInventario.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

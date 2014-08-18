@@ -13,22 +13,20 @@
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
-    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
-    <ReferencedAssemblies>
-      <ReferencedAssembly AssemblyName="AIPos.Domain" />
-    </ReferencedAssemblies>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
     <ReferencedDataContractTypes />
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/SServicioApartado.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://sanagustinservices.azurewebsites.net/SServicioApartado.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SServicioApartado.xsd" MetadataType="Schema" ID="601005b2-c00e-422f-996e-e8c50672eb09" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SServicioApartado.svc?xsd=xsd2" />
-    <MetadataFile FileName="SServicioApartado1.xsd" MetadataType="Schema" ID="366fc5ba-40cf-42ea-90f8-703ebfdfbb4b" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SServicioApartado.svc?xsd=xsd1" />
-    <MetadataFile FileName="SServicioApartado.wsdl" MetadataType="Wsdl" ID="b69fe18f-acd2-4050-831c-81b8977d633f" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SServicioApartado.svc?wsdl" />
-    <MetadataFile FileName="SServicioApartado2.xsd" MetadataType="Schema" ID="4ca69737-d8d6-4273-b57f-1643f529713f" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SServicioApartado.svc?xsd=xsd0" />
-    <MetadataFile FileName="SServicioApartado.disco" MetadataType="Disco" ID="3794f91f-9333-4b8e-bde0-69971196d600" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SServicioApartado.svc?disco" />
+    <MetadataFile FileName="SServicioApartado2.xsd" MetadataType="Schema" ID="4ca69737-d8d6-4273-b57f-1643f529713f" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SServicioApartado.svc?xsd=xsd0" />
+    <MetadataFile FileName="SServicioApartado.xsd" MetadataType="Schema" ID="601005b2-c00e-422f-996e-e8c50672eb09" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SServicioApartado.svc?xsd=xsd2" />
+    <MetadataFile FileName="SServicioApartado.wsdl" MetadataType="Wsdl" ID="b69fe18f-acd2-4050-831c-81b8977d633f" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SServicioApartado.svc?wsdl" />
+    <MetadataFile FileName="SServicioApartado1.xsd" MetadataType="Schema" ID="366fc5ba-40cf-42ea-90f8-703ebfdfbb4b" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SServicioApartado.svc?xsd=xsd1" />
+    <MetadataFile FileName="SServicioApartado.disco" MetadataType="Disco" ID="3794f91f-9333-4b8e-bde0-69971196d600" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SServicioApartado.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

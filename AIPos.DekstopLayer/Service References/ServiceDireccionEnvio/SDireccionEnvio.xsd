@@ -12,11 +12,12 @@
   <xs:complexType name="Cliente">
     <xs:sequence>
       <xs:element minOccurs="0" name="Celular" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Codigo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Codigo" type="xs:int" />
       <xs:element minOccurs="0" name="Descuento" type="xs:decimal" />
       <xs:element minOccurs="0" name="Eliminado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RazonSocial" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Rfc" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SucursalRegistro" nillable="true" type="tns:Sucursal" />
       <xs:element minOccurs="0" name="SucursalRegistroId" type="xs:int" />
@@ -28,8 +29,10 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Direccion" nillable="true" type="tns:Direccion" />
       <xs:element minOccurs="0" name="DireccionId" type="xs:int" />
+      <xs:element minOccurs="0" name="FraseTicket" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Sucursal" nillable="true" type="tns:Sucursal" />

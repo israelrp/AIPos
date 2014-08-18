@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/SDireccion.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://sanagustinservices.azurewebsites.net/SDireccion.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SDireccion.disco" MetadataType="Disco" ID="dd9227cf-9e2e-4e54-8c08-751468ed86fe" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SDireccion.svc?disco" />
-    <MetadataFile FileName="SDireccion.xsd" MetadataType="Schema" ID="7ff32434-2cac-473c-a80c-409df841ccc2" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SDireccion.svc?xsd=xsd0" />
-    <MetadataFile FileName="SDireccion1.xsd" MetadataType="Schema" ID="2f7faeb5-7b61-4437-b248-c4ec6f2fe8cf" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SDireccion.svc?xsd=xsd1" />
-    <MetadataFile FileName="SDireccion2.xsd" MetadataType="Schema" ID="c6b0a7d4-ef69-478e-8bef-9976604ef632" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SDireccion.svc?xsd=xsd2" />
-    <MetadataFile FileName="SDireccion.wsdl" MetadataType="Wsdl" ID="30730f1b-4d95-4b4d-8f6b-62fac61626ab" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SDireccion.svc?wsdl" />
+    <MetadataFile FileName="SDireccion.disco" MetadataType="Disco" ID="dd9227cf-9e2e-4e54-8c08-751468ed86fe" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SDireccion.svc?disco" />
+    <MetadataFile FileName="SDireccion.xsd" MetadataType="Schema" ID="7ff32434-2cac-473c-a80c-409df841ccc2" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SDireccion.svc?xsd=xsd0" />
+    <MetadataFile FileName="SDireccion1.xsd" MetadataType="Schema" ID="2f7faeb5-7b61-4437-b248-c4ec6f2fe8cf" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SDireccion.svc?xsd=xsd1" />
+    <MetadataFile FileName="SDireccion2.xsd" MetadataType="Schema" ID="c6b0a7d4-ef69-478e-8bef-9976604ef632" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SDireccion.svc?xsd=xsd2" />
+    <MetadataFile FileName="SDireccion.wsdl" MetadataType="Wsdl" ID="30730f1b-4d95-4b4d-8f6b-62fac61626ab" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SDireccion.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
