@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/SSucursal.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://sanagustinservices.azurewebsites.net/SSucursal.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SSucursal1.disco" MetadataType="Disco" ID="dd3035b1-3e75-4f6f-a1bc-ed6eff125e0b" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SSucursal.svc?disco" />
-    <MetadataFile FileName="SSucursal3.xsd" MetadataType="Schema" ID="52a90419-f5d6-430b-afb2-f82c6cdc5e71" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SSucursal.svc?xsd=xsd0" />
-    <MetadataFile FileName="SSucursal31.xsd" MetadataType="Schema" ID="8fecfd1e-d4da-4561-8132-3f2af6ea9b0b" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SSucursal.svc?xsd=xsd1" />
-    <MetadataFile FileName="SSucursal32.xsd" MetadataType="Schema" ID="d53afec4-a724-4936-bd8d-6b775d980858" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SSucursal.svc?xsd=xsd2" />
-    <MetadataFile FileName="SSucursal1.wsdl" MetadataType="Wsdl" ID="f0c79cdd-e51e-4b9a-89f1-b4dc5b373532" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SSucursal.svc?wsdl" />
+    <MetadataFile FileName="SSucursal1.disco" MetadataType="Disco" ID="dd3035b1-3e75-4f6f-a1bc-ed6eff125e0b" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SSucursal.svc?disco" />
+    <MetadataFile FileName="SSucursal3.xsd" MetadataType="Schema" ID="52a90419-f5d6-430b-afb2-f82c6cdc5e71" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SSucursal.svc?xsd=xsd0" />
+    <MetadataFile FileName="SSucursal31.xsd" MetadataType="Schema" ID="8fecfd1e-d4da-4561-8132-3f2af6ea9b0b" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SSucursal.svc?xsd=xsd1" />
+    <MetadataFile FileName="SSucursal32.xsd" MetadataType="Schema" ID="d53afec4-a724-4936-bd8d-6b775d980858" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SSucursal.svc?xsd=xsd2" />
+    <MetadataFile FileName="SSucursal1.wsdl" MetadataType="Wsdl" ID="f0c79cdd-e51e-4b9a-89f1-b4dc5b373532" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SSucursal.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

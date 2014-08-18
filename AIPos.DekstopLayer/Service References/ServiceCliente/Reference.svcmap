@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/SCliente.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://sanagustinservices.azurewebsites.net/SCliente.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SCliente1.wsdl" MetadataType="Wsdl" ID="c754204b-7b88-4096-8146-9b3355329a60" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SCliente.svc?wsdl" />
-    <MetadataFile FileName="SCliente3.xsd" MetadataType="Schema" ID="499edfcf-9777-4545-b634-527547d617a1" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SCliente.svc?xsd=xsd2" />
-    <MetadataFile FileName="SCliente31.xsd" MetadataType="Schema" ID="5ab6e3da-b618-48ce-b45f-8b9195104502" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SCliente.svc?xsd=xsd1" />
-    <MetadataFile FileName="SCliente32.xsd" MetadataType="Schema" ID="fb093539-79f4-476b-a77a-a2b4710daa24" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SCliente.svc?xsd=xsd0" />
-    <MetadataFile FileName="SCliente1.disco" MetadataType="Disco" ID="1dea2eab-8ad0-48af-9995-bf0b8b8de7ea" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SCliente.svc?disco" />
+    <MetadataFile FileName="SCliente32.xsd" MetadataType="Schema" ID="fb093539-79f4-476b-a77a-a2b4710daa24" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SCliente.svc?xsd=xsd0" />
+    <MetadataFile FileName="SCliente31.xsd" MetadataType="Schema" ID="5ab6e3da-b618-48ce-b45f-8b9195104502" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SCliente.svc?xsd=xsd1" />
+    <MetadataFile FileName="SCliente1.wsdl" MetadataType="Wsdl" ID="c754204b-7b88-4096-8146-9b3355329a60" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SCliente.svc?wsdl" />
+    <MetadataFile FileName="SCliente1.disco" MetadataType="Disco" ID="1dea2eab-8ad0-48af-9995-bf0b8b8de7ea" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SCliente.svc?disco" />
+    <MetadataFile FileName="SCliente3.xsd" MetadataType="Schema" ID="499edfcf-9777-4545-b634-527547d617a1" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SCliente.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

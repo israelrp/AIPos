@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/ISListaPrecioProducto.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://sanagustinservices.azurewebsites.net/ISListaPrecioProducto.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ISListaPrecioProducto.xsd" MetadataType="Schema" ID="039c388f-279b-4bbb-bfa3-3fb9ff50851c" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISListaPrecioProducto.svc?xsd=xsd2" />
-    <MetadataFile FileName="ISListaPrecioProducto.disco" MetadataType="Disco" ID="046e84f8-e73b-4f10-b990-649683429c71" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISListaPrecioProducto.svc?disco" />
-    <MetadataFile FileName="ISListaPrecioProducto1.xsd" MetadataType="Schema" ID="cc2436fe-19a8-43a7-ab0b-0273cbc19fb5" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISListaPrecioProducto.svc?xsd=xsd0" />
-    <MetadataFile FileName="ISListaPrecioProducto.wsdl" MetadataType="Wsdl" ID="03764d80-6714-4f3f-a14d-76cefea4a4dc" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISListaPrecioProducto.svc?wsdl" />
-    <MetadataFile FileName="ISListaPrecioProducto2.xsd" MetadataType="Schema" ID="6cb033d3-5549-4ef9-be8c-9d7c644afb58" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/ISListaPrecioProducto.svc?xsd=xsd1" />
+    <MetadataFile FileName="ISListaPrecioProducto.xsd" MetadataType="Schema" ID="039c388f-279b-4bbb-bfa3-3fb9ff50851c" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/ISListaPrecioProducto.svc?xsd=xsd2" />
+    <MetadataFile FileName="ISListaPrecioProducto.disco" MetadataType="Disco" ID="046e84f8-e73b-4f10-b990-649683429c71" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/ISListaPrecioProducto.svc?disco" />
+    <MetadataFile FileName="ISListaPrecioProducto1.xsd" MetadataType="Schema" ID="cc2436fe-19a8-43a7-ab0b-0273cbc19fb5" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/ISListaPrecioProducto.svc?xsd=xsd0" />
+    <MetadataFile FileName="ISListaPrecioProducto.wsdl" MetadataType="Wsdl" ID="03764d80-6714-4f3f-a14d-76cefea4a4dc" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/ISListaPrecioProducto.svc?wsdl" />
+    <MetadataFile FileName="ISListaPrecioProducto2.xsd" MetadataType="Schema" ID="6cb033d3-5549-4ef9-be8c-9d7c644afb58" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/ISListaPrecioProducto.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

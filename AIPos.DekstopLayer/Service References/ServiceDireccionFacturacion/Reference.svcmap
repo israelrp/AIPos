@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/SDireccionFacturacion.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://sanagustinservices.azurewebsites.net/SDireccionFacturacion.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SDireccionFacturacion.disco" MetadataType="Disco" ID="b0e640f5-4117-4754-b44e-926f1dfeb70c" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SDireccionFacturacion.svc?disco" />
-    <MetadataFile FileName="SDireccionFacturacion.xsd" MetadataType="Schema" ID="b550d8bd-bfd1-4175-bbb4-9333ffd6b05c" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SDireccionFacturacion.svc?xsd=xsd1" />
-    <MetadataFile FileName="SDireccionFacturacion1.xsd" MetadataType="Schema" ID="c4f5ed62-94e7-45cf-b3d5-41cad56a786c" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SDireccionFacturacion.svc?xsd=xsd2" />
-    <MetadataFile FileName="SDireccionFacturacion.wsdl" MetadataType="Wsdl" ID="8bc257d7-0ae7-4bc2-8f1c-c19d197e217b" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SDireccionFacturacion.svc?wsdl" />
-    <MetadataFile FileName="SDireccionFacturacion2.xsd" MetadataType="Schema" ID="36d8ec85-99f5-4b69-b90d-46e2566c3506" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SDireccionFacturacion.svc?xsd=xsd0" />
+    <MetadataFile FileName="SDireccionFacturacion.disco" MetadataType="Disco" ID="b0e640f5-4117-4754-b44e-926f1dfeb70c" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SDireccionFacturacion.svc?disco" />
+    <MetadataFile FileName="SDireccionFacturacion.xsd" MetadataType="Schema" ID="b550d8bd-bfd1-4175-bbb4-9333ffd6b05c" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SDireccionFacturacion.svc?xsd=xsd1" />
+    <MetadataFile FileName="SDireccionFacturacion.wsdl" MetadataType="Wsdl" ID="8bc257d7-0ae7-4bc2-8f1c-c19d197e217b" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SDireccionFacturacion.svc?wsdl" />
+    <MetadataFile FileName="SDireccionFacturacion2.xsd" MetadataType="Schema" ID="36d8ec85-99f5-4b69-b90d-46e2566c3506" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SDireccionFacturacion.svc?xsd=xsd0" />
+    <MetadataFile FileName="SDireccionFacturacion1.xsd" MetadataType="Schema" ID="c4f5ed62-94e7-45cf-b3d5-41cad56a786c" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SDireccionFacturacion.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

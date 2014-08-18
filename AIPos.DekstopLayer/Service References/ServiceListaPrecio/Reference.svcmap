@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/SListaPrecio.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://sanagustinservices.azurewebsites.net/SListaPrecio.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SListaPrecio.xsd" MetadataType="Schema" ID="26512b9d-3950-4232-906f-02b9f316d7be" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SListaPrecio.svc?xsd=xsd1" />
-    <MetadataFile FileName="SListaPrecio.wsdl" MetadataType="Wsdl" ID="ec886d36-c7dd-45b2-8739-e7c7330e4d78" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SListaPrecio.svc?wsdl" />
-    <MetadataFile FileName="SListaPrecio1.xsd" MetadataType="Schema" ID="d68a5df4-859f-494e-8488-fb63b2fff4a5" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SListaPrecio.svc?xsd=xsd0" />
-    <MetadataFile FileName="SListaPrecio2.xsd" MetadataType="Schema" ID="c8edfea8-5ead-480b-8f4d-d6ad4f08a38f" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SListaPrecio.svc?xsd=xsd2" />
-    <MetadataFile FileName="SListaPrecio.disco" MetadataType="Disco" ID="476a00d7-0ab8-45c9-8a82-ef9485fb472f" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SListaPrecio.svc?disco" />
+    <MetadataFile FileName="SListaPrecio.xsd" MetadataType="Schema" ID="26512b9d-3950-4232-906f-02b9f316d7be" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SListaPrecio.svc?xsd=xsd1" />
+    <MetadataFile FileName="SListaPrecio.wsdl" MetadataType="Wsdl" ID="ec886d36-c7dd-45b2-8739-e7c7330e4d78" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SListaPrecio.svc?wsdl" />
+    <MetadataFile FileName="SListaPrecio1.xsd" MetadataType="Schema" ID="d68a5df4-859f-494e-8488-fb63b2fff4a5" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SListaPrecio.svc?xsd=xsd0" />
+    <MetadataFile FileName="SListaPrecio2.xsd" MetadataType="Schema" ID="c8edfea8-5ead-480b-8f4d-d6ad4f08a38f" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SListaPrecio.svc?xsd=xsd2" />
+    <MetadataFile FileName="SListaPrecio.disco" MetadataType="Disco" ID="476a00d7-0ab8-45c9-8a82-ef9485fb472f" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SListaPrecio.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

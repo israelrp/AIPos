@@ -45,7 +45,7 @@ namespace AIPos.DekstopLayer.Ventas
             {
                 ServiceCliente.SClienteClient sClienteClient = new ServiceCliente.SClienteClient();
                 cmbClientes.ItemsSource = sClienteClient.SelectAll();
-                Cliente cliente = sClienteClient.SelectByCodigo("0");
+                Cliente cliente = sClienteClient.SelectByCodigo(0);
                 cmbClientes.SelectedItem = cliente;
                 ServiceProducto.SProductoClient sProductoClient = new ServiceProducto.SProductoClient();
                 cmbProductos.ItemsSource = sProductoClient.SelectAllProductos();
@@ -181,7 +181,7 @@ namespace AIPos.DekstopLayer.Ventas
         {
             if (e.Key == Key.Enter && txtCodigoCliente.Text.Trim() != "")
             {
-                Cliente cliente = new ServiceCliente.SClienteClient().SelectByCodigo(txtCodigoCliente.Text);
+                Cliente cliente = new ServiceCliente.SClienteClient().SelectByCodigo(int.Parse(txtCodigoCliente.Text));
                 if (cliente != null)
                 {
                     cmbClientes.SelectedItem = cliente;

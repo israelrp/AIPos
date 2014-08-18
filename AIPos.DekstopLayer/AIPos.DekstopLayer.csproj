@@ -14,7 +14,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>C:\Users\developerApps\Desktop\iNSTALADOR\</PublishUrl>
+    <PublishUrl>ftp://waws-prod-blu-011.ftp.azurewebsites.windows.net/site/wwwroot/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -24,11 +24,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://sanagustin.azurewebsites.net/Instalador/</InstallUrl>
-    <UpdateUrl>http://sanagustin.azurewebsites.net/Instalador/</UpdateUrl>
+    <InstallUrl>http://sanagustinupdates.azurewebsites.net/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>39</ApplicationRevision>
+    <ApplicationRevision>37</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -1055,14 +1054,24 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <PublishFile Include="CrystalDecisions.ReportAppServer.ClientDoc">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.CommLayer">
       <Visible>False</Visible>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.CommonControls">
@@ -1071,8 +1080,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.CommonObjectModel">
@@ -1081,8 +1090,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.Controllers">
@@ -1091,8 +1100,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.CubeDefModel">
@@ -1101,8 +1110,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.DataDefModel">
@@ -1111,8 +1120,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.DataSetConversion">
@@ -1121,8 +1130,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.ObjectFactory">
@@ -1131,8 +1140,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.Prompting">
@@ -1141,8 +1150,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.ReportDefModel">
@@ -1151,8 +1160,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.XmlSerialize">
@@ -1161,8 +1170,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="DevExpress.CodeParser.v13.2">
@@ -1171,8 +1180,38 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.DataAccess.v13.2">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.DataAccess.v13.2.UI">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.Xpo.v13.2">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="DevExpress.XtraBars.v13.2">
@@ -1181,8 +1220,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="DevExpress.XtraCharts.v13.2.Extensions">
@@ -1191,8 +1230,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="DevExpress.XtraCharts.v13.2.Wizard">
@@ -1201,8 +1240,28 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraGrid.v13.2">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraLayout.v13.2">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="DevExpress.XtraNavBar.v13.2">
@@ -1211,8 +1270,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="DevExpress.XtraPivotGrid.v13.2">
@@ -1221,8 +1280,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="DevExpress.XtraRichEdit.v13.2">
@@ -1231,8 +1290,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="DevExpress.XtraTreeList.v13.2">
@@ -1241,8 +1300,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="DevExpress.XtraVerticalGrid.v13.2">
@@ -1251,8 +1310,18 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraWizard.v13.2">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="FlashControlV71">
@@ -1261,8 +1330,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="log4net">
@@ -1271,8 +1340,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="SAPBusinessObjects.WPF.Viewer">
@@ -1281,8 +1350,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="SAPBusinessObjects.WPF.ViewerShared">
@@ -1291,8 +1360,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="ShockwaveFlashObjects">
@@ -1301,8 +1370,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="stdole">
@@ -1311,8 +1380,8 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>

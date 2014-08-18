@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://serveraplicaciones.cloudapp.net:66/SProveedor.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://sanagustinservices.azurewebsites.net/SProveedor.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SProveedor3.xsd" MetadataType="Schema" ID="85e1705c-86bf-4396-99ce-8ccc07561eb8" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SProveedor.svc?xsd=xsd1" />
-    <MetadataFile FileName="SProveedor31.xsd" MetadataType="Schema" ID="47e53131-2c82-41cf-87d3-a080719a4d56" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SProveedor.svc?xsd=xsd0" />
-    <MetadataFile FileName="SProveedor1.wsdl" MetadataType="Wsdl" ID="f131ae9e-2104-4185-a443-9be971ac0634" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SProveedor.svc?wsdl" />
-    <MetadataFile FileName="SProveedor1.disco" MetadataType="Disco" ID="c20f2d94-0ed5-4be5-8288-32b7f6a23dd8" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SProveedor.svc?disco" />
-    <MetadataFile FileName="SProveedor32.xsd" MetadataType="Schema" ID="a7dec806-5a6d-4c8b-84f3-af596796a7bc" SourceId="1" SourceUrl="http://serveraplicaciones.cloudapp.net:66/SProveedor.svc?xsd=xsd2" />
+    <MetadataFile FileName="SProveedor3.xsd" MetadataType="Schema" ID="85e1705c-86bf-4396-99ce-8ccc07561eb8" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SProveedor.svc?xsd=xsd1" />
+    <MetadataFile FileName="SProveedor31.xsd" MetadataType="Schema" ID="47e53131-2c82-41cf-87d3-a080719a4d56" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SProveedor.svc?xsd=xsd0" />
+    <MetadataFile FileName="SProveedor1.wsdl" MetadataType="Wsdl" ID="f131ae9e-2104-4185-a443-9be971ac0634" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SProveedor.svc?wsdl" />
+    <MetadataFile FileName="SProveedor1.disco" MetadataType="Disco" ID="c20f2d94-0ed5-4be5-8288-32b7f6a23dd8" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SProveedor.svc?disco" />
+    <MetadataFile FileName="SProveedor32.xsd" MetadataType="Schema" ID="a7dec806-5a6d-4c8b-84f3-af596796a7bc" SourceId="1" SourceUrl="http://sanagustinservices.azurewebsites.net/SProveedor.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
