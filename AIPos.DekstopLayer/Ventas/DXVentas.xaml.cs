@@ -27,9 +27,8 @@ namespace AIPos.DekstopLayer.Ventas
     /// </summary>
     public partial class DXVentas : DXWindow
     {
-        public System.IO.Ports.SerialPort PuertoSerieBascula;
-        public delegate void DelegateSetCantidad(string peso);
-        string peso = "0";
+        public System.IO.Ports.SerialPort PuertoSerieBascula=new SerialPort();
+        private delegate void DelegateSetCantidad(string peso);
         private decimal descuento = 0;
 
         public DXVentas()
@@ -143,9 +142,6 @@ namespace AIPos.DekstopLayer.Ventas
                         if (InicializaPuertoBascula(General.ConfiguracionApp.PuertoBascula, 9600))
                         {
                             RecuperarPesoBascula();
-                            Thread.Sleep(5000);
-                            txtCantidad.Text = peso;
-                            PuertoSerieBascula.Close();
                         }                        
                     }
                 }
@@ -659,7 +655,7 @@ namespace AIPos.DekstopLayer.Ventas
         public bool InicializaPuertoBascula(string puerto, int baud)
         {
             bool retorno=false;
-            if (puerto != "" && puerto != string.Empty)
+            if (puerto != "" && puerto != string.Empty && !PuertoSerieBascula.IsOpen)
             {
                 PuertoSerieBascula = new SerialPort(puerto, baud);
                 // ComPort.PortName = port; 
@@ -717,12 +713,24 @@ namespace AIPos.DekstopLayer.Ventas
         {
             try
             {
-                peso = PuertoSerieBascula.ReadExisting().Replace("Info:","").Replace("LSQ N/S:K121931","").Replace("kg","").Replace("N/S:K121931","").Trim();
+                string peso = PuertoSerieBascula.ReadExisting().Replace("Info:","").Replace("LSQ N/S:K121931","").Replace("kg","").Replace("N/S:K121931","").Trim();
+                
+                this.txtCantidad.Dispatcher.Invoke(
+                    System.Windows.Threading.DispatcherPriority.Normal,
+                    new DelegateSetCantidad(this.ponteTextoBascula), peso);
+                PuertoSerieBascula.Close();
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message + " " + ex.Source+" info: "+peso,"Data received");
+                MessageBox.Show("Error: " + ex.Message + " " + ex.Source+" info: "+ ex.InnerException,"Data received");
             }
+        }
+
+        private void ponteTextoBascula(string peso)
+        {
+
+            txtCantidad.Text = peso;
         }
 
 
