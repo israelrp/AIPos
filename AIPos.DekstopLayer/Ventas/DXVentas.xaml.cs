@@ -153,7 +153,9 @@ namespace AIPos.DekstopLayer.Ventas
         {
             try
             {
-                PuertoSerieBascula.Write("P");
+                //PuertoSerieBascula.Write("P");
+                byte[] inBuffer = new byte[] { 80 };
+                PuertoSerieBascula.Write(inBuffer, 0, inBuffer.Length);
             }
             catch (InvalidOperationException ex)
             {
@@ -713,7 +715,7 @@ namespace AIPos.DekstopLayer.Ventas
         {
             try
             {
-                string peso = PuertoSerieBascula.ReadExisting().Replace("Info:","").Replace("LSQ N/S:K121931","").Replace("kg","").Replace("N/S:K121931","").Trim();
+                string peso = PuertoSerieBascula.ReadExisting();
                 
                 this.txtCantidad.Dispatcher.Invoke(
                     System.Windows.Threading.DispatcherPriority.Normal,
@@ -730,7 +732,7 @@ namespace AIPos.DekstopLayer.Ventas
         private void ponteTextoBascula(string peso)
         {
 
-            txtCantidad.Text = peso;
+            txtCantidad.Text = peso.Replace("F", "").Replace("kg","") + Convert.ToChar(13);
         }
 
 
@@ -821,6 +823,13 @@ namespace AIPos.DekstopLayer.Ventas
         private void txtCantidad_MouseUp(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DXVentaSeparada ventaseparada = new DXVentaSeparada();
+            ventaseparada.Content = this.Content;
+            ventaseparada.Show();            
         }
 
 

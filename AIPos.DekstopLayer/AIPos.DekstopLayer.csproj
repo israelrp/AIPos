@@ -390,6 +390,9 @@
     <Compile Include="Ventas\DXVentas.xaml.cs">
       <DependentUpon>DXVentas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventas\DXVentaSeparada.xaml.cs">
+      <DependentUpon>DXVentaSeparada.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventas\RegistrarCliente.xaml.cs">
       <DependentUpon>RegistrarCliente.xaml</DependentUpon>
     </Compile>
@@ -780,6 +783,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventas\DXVentas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventas\DXVentaSeparada.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

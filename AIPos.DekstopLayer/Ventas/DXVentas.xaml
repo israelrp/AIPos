@@ -202,6 +202,7 @@
         </Label>
         <dxe:TextEdit  IsReadOnly="True" x:Name="txtDescuento" HorizontalAlignment="Left" Margin="328,114,0,0" VerticalAlignment="Top" Width="235" Height="40" NullText="Descuento %" HorizontalContentAlignment="Center" FontSize="20" ToolTip="Porcentaje de descuento aplicado por alguna politica de la distribuidora."/>
         <CheckBox x:Name="chkFacturar" Content="Requiere factura" HorizontalAlignment="Left" Margin="894,472,0,0" VerticalAlignment="Top" FontSize="20" Foreground="Red" FontWeight="Bold" HorizontalContentAlignment="Center" Width="235" VerticalContentAlignment="Center" BorderBrush="Red" BorderThickness="3" ToolTip="Marca la casilla para solicitar factura para esta venta." Cursor="Hand"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="818,98,0,0" VerticalAlignment="Top" Width="54" Click="Button_Click"/>
 
     </Grid>
 </dx:DXWindow>
