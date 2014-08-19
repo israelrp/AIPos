@@ -6,7 +6,7 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     x:Class="AIPos.DekstopLayer.Ventas.DXVentas"
-    Title="DXVentas" Height="590" Width="1180"
+    Title="DXVentas" Height="530" Width="1180"
     >
 
     <Grid>
@@ -140,7 +140,7 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <Button x:Name="btnVenta" HorizontalAlignment="Left" Margin="894,379,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnVenta_Click" Background="{x:Null}" Cursor="Hand" ToolTip="Imprime ticket y cierra la venta actual.">
+        <Button x:Name="btnVenta" HorizontalAlignment="Left" Margin="894,337,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnVenta_Click" Background="{x:Null}" Cursor="Hand" ToolTip="Imprime ticket y cierra la venta actual.">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -152,7 +152,7 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <Button x:Name="btnDomicilio" HorizontalAlignment="Left" Margin="894,419,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnDomicilio_Click" Background="{x:Null}" Cursor="Hand" ToolTip="La venta actual será enviada al domicilio del cliente seleccionado en la parte superior e imprime el ticket de la venta.">
+        <Button x:Name="btnDomicilio" HorizontalAlignment="Left" Margin="894,375,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnDomicilio_Click" Background="{x:Null}" Cursor="Hand" ToolTip="La venta actual será enviada al domicilio del cliente seleccionado en la parte superior e imprime el ticket de la venta.">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -164,7 +164,7 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <Button x:Name="btnApartar" HorizontalAlignment="Left" Margin="894,339,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnApartar_Click" Background="{x:Null}" Cursor="Hand" ToolTip="Genera un apartado o un servicio para el cliente seleccionado en la parte superior e imprime el ticket de la venta.">
+        <Button x:Name="btnApartar" HorizontalAlignment="Left" Margin="894,299,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnApartar_Click" Background="{x:Null}" Cursor="Hand" ToolTip="Genera un apartado o un servicio para el cliente seleccionado en la parte superior e imprime el ticket de la venta.">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -176,10 +176,10 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <Label x:Name="lblTotal" Content="TOTAL" HorizontalAlignment="Left" Margin="891,85,0,0" VerticalAlignment="Top" Width="235" Height="60" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" Foreground="#FF1A4C7D" FontWeight="SemiBold"/>
-        <Label x:Name="lblCambio" Content="CAMBIO" HorizontalAlignment="Left" Margin="891,205,0,0" VerticalAlignment="Top" Width="235" Height="60" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" Foreground="Red" FontWeight="SemiBold"/>
-        <TextBox x:Name="txtRecibi" HorizontalAlignment="Left" Height="60" Margin="891,145,0,0" TextWrapping="Wrap" Text="RECIBÍ" VerticalAlignment="Top" Width="235" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextAlignment="Center" FontSize="40" FontWeight="SemiBold" TextChanged="txtRecibi_TextChanged" GotFocus="txtRecibi_GotFocus" KeyUp="txtRecibi_KeyUp" ToolTip="Escribe la cantidad de dinero que recibiste por parte del cliente."/>
-        <Button x:Name="btnOrden" HorizontalAlignment="Left" Margin="891,265,0,0" VerticalAlignment="Top" Width="235" Height="70" Click="btnOrden_Click" Background="{x:Null}" Cursor="Hand" BorderThickness="2" ToolTip="Cerrar la venta actual e imprime el ticket de la orden.">
+        <Label x:Name="lblTotal" Content="TOTAL" HorizontalAlignment="Left" Margin="894,85,0,0" VerticalAlignment="Top" Width="235" Height="50" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" Foreground="#FF1A4C7D" FontWeight="SemiBold"/>
+        <Label x:Name="lblCambio" Content="CAMBIO" HorizontalAlignment="Left" Margin="894,176,0,0" VerticalAlignment="Top" Width="235" Height="50" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" Foreground="Red" FontWeight="SemiBold" />
+        <TextBox x:Name="txtRecibi" HorizontalAlignment="Left" Height="40" Margin="894,135,0,0" TextWrapping="Wrap" Text="RECIBÍ" VerticalAlignment="Top" Width="235" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextAlignment="Center" FontSize="30" FontWeight="SemiBold" TextChanged="txtRecibi_TextChanged" GotFocus="txtRecibi_GotFocus" KeyUp="txtRecibi_KeyUp" ToolTip="Escribe la cantidad de dinero que recibiste por parte del cliente."/>
+        <Button x:Name="btnOrden" HorizontalAlignment="Left" Margin="894,227,0,0" VerticalAlignment="Top" Width="235" Height="70" Click="btnOrden_Click" Background="{x:Null}" Cursor="Hand" BorderThickness="2" ToolTip="Cerrar la venta actual e imprime el ticket de la orden.">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -201,8 +201,8 @@
             </Label.Background>
         </Label>
         <dxe:TextEdit  IsReadOnly="True" x:Name="txtDescuento" HorizontalAlignment="Left" Margin="328,114,0,0" VerticalAlignment="Top" Width="235" Height="40" NullText="Descuento %" HorizontalContentAlignment="Center" FontSize="20" ToolTip="Porcentaje de descuento aplicado por alguna politica de la distribuidora."/>
-        <CheckBox x:Name="chkFacturar" Content="Requiere factura" HorizontalAlignment="Left" Margin="894,525,0,0" VerticalAlignment="Top" FontSize="20" Foreground="Red" FontWeight="Bold" HorizontalContentAlignment="Center" Width="235" VerticalContentAlignment="Center" BorderBrush="Red" BorderThickness="3" ToolTip="Marca la casilla para solicitar factura para esta venta." Cursor="Hand"/>
-        <Button Name="btnRecuperarVenta" HorizontalAlignment="Left" Margin="894,462,0,0" VerticalAlignment="Top" Width="235" Height="29" Click="btnRecuperarVenta_Click" Background="Transparent">
+        <CheckBox x:Name="chkFacturar" Content="Requiere factura" HorizontalAlignment="Left" Margin="894,475,0,0" VerticalAlignment="Top" FontSize="20" Foreground="Red" FontWeight="Bold" HorizontalContentAlignment="Center" Width="235" VerticalContentAlignment="Center" BorderBrush="Red" BorderThickness="3" ToolTip="Marca la casilla para solicitar factura para esta venta." Cursor="Hand"/>
+        <Button Name="btnRecuperarVenta" HorizontalAlignment="Left" Margin="894,413,0,0" VerticalAlignment="Top" Width="235" Height="29" Click="btnRecuperarVenta_Click" Background="Transparent">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -212,7 +212,7 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <Button x:Name="btnCerrarVenta" HorizontalAlignment="Left" Margin="894,496,0,0" VerticalAlignment="Top" Width="235" Height="29" Click="btnCerrarVenta_Click" Background="Transparent">
+        <Button x:Name="btnCerrarVenta" HorizontalAlignment="Left" Margin="894,445,0,0" VerticalAlignment="Top" Width="235" Height="29" Click="btnCerrarVenta_Click" Background="Transparent">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="102"/>

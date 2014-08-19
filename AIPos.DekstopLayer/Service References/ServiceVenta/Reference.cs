@@ -21,6 +21,12 @@ namespace AIPos.DekstopLayer.ServiceVenta {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IISVenta/Insert", ReplyAction="http://tempuri.org/IISVenta/InsertResponse")]
         System.Threading.Tasks.Task<AIPos.Domain.Venta> InsertAsync(AIPos.Domain.Venta venta);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IISVenta/Update", ReplyAction="http://tempuri.org/IISVenta/UpdateResponse")]
+        AIPos.Domain.Venta Update(AIPos.Domain.Venta venta);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IISVenta/Update", ReplyAction="http://tempuri.org/IISVenta/UpdateResponse")]
+        System.Threading.Tasks.Task<AIPos.Domain.Venta> UpdateAsync(AIPos.Domain.Venta venta);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IISVenta/GenerarFolioVenta", ReplyAction="http://tempuri.org/IISVenta/GenerarFolioVentaResponse")]
         int GenerarFolioVenta(int SucursalId);
         
@@ -62,6 +68,12 @@ namespace AIPos.DekstopLayer.ServiceVenta {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IISVenta/RecuperarVentaDetalle", ReplyAction="http://tempuri.org/IISVenta/RecuperarVentaDetalleResponse")]
         System.Threading.Tasks.Task<AIPos.Domain.VentaDetalle[]> RecuperarVentaDetalleAsync(int VentaId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IISVenta/RecuperarVenta", ReplyAction="http://tempuri.org/IISVenta/RecuperarVentaResponse")]
+        AIPos.Domain.Venta RecuperarVenta(int VentaId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IISVenta/RecuperarVenta", ReplyAction="http://tempuri.org/IISVenta/RecuperarVentaResponse")]
+        System.Threading.Tasks.Task<AIPos.Domain.Venta> RecuperarVentaAsync(int VentaId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -97,6 +109,14 @@ namespace AIPos.DekstopLayer.ServiceVenta {
         
         public System.Threading.Tasks.Task<AIPos.Domain.Venta> InsertAsync(AIPos.Domain.Venta venta) {
             return base.Channel.InsertAsync(venta);
+        }
+        
+        public AIPos.Domain.Venta Update(AIPos.Domain.Venta venta) {
+            return base.Channel.Update(venta);
+        }
+        
+        public System.Threading.Tasks.Task<AIPos.Domain.Venta> UpdateAsync(AIPos.Domain.Venta venta) {
+            return base.Channel.UpdateAsync(venta);
         }
         
         public int GenerarFolioVenta(int SucursalId) {
@@ -153,6 +173,14 @@ namespace AIPos.DekstopLayer.ServiceVenta {
         
         public System.Threading.Tasks.Task<AIPos.Domain.VentaDetalle[]> RecuperarVentaDetalleAsync(int VentaId) {
             return base.Channel.RecuperarVentaDetalleAsync(VentaId);
+        }
+        
+        public AIPos.Domain.Venta RecuperarVenta(int VentaId) {
+            return base.Channel.RecuperarVenta(VentaId);
+        }
+        
+        public System.Threading.Tasks.Task<AIPos.Domain.Venta> RecuperarVentaAsync(int VentaId) {
+            return base.Channel.RecuperarVentaAsync(VentaId);
         }
     }
 }

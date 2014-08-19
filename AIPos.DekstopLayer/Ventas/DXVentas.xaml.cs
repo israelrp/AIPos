@@ -30,6 +30,7 @@ namespace AIPos.DekstopLayer.Ventas
         public System.IO.Ports.SerialPort PuertoSerieBascula=new SerialPort();
         private delegate void DelegateSetCantidad(string peso);
         private decimal descuento = 0;
+        private Venta ventaActual = null;
 
         public DXVentas()
         {
@@ -349,6 +350,177 @@ namespace AIPos.DekstopLayer.Ventas
             chkFacturar.IsChecked = false;
         }
 
+        private void CerrarVenta()
+        {
+            decimal cambio = 0;
+            decimal recibio = 0;
+            decimal total = 0;
+            try
+            {
+                if (cmbClientes.SelectedItem != null)
+                {
+                    if (gridVenta.VisibleRowCount > 0)
+                    {
+                        Venta venta = new Venta();
+                        venta.Cambio = cambio;
+                        venta.Cancelado = false;
+                        venta.ClienteId = ((Cliente)cmbClientes.SelectedItem).Id;
+                        venta.Cliente = (Cliente)cmbClientes.SelectedItem;
+                        venta.Fecha = DateTime.Now;
+                        venta.Folio = 0;
+                        venta.FolioCancelado = 0;
+                        venta.Id = 0;
+                        venta.Recibio = recibio;
+                        venta.Facturado = false;
+                        venta.Estatus = 0;
+                        venta.SucursalId = General.ConfiguracionApp.SucursalId;
+                        ServiceSucursal.SSucursalClient sucursalClient = new ServiceSucursal.SSucursalClient();
+                        Sucursal sucursal = sucursalClient.SelectById(venta.SucursalId);
+                        venta.Sucursal = new Sucursal();
+                        venta.Sucursal.Id = sucursal.Id;
+                        venta.Sucursal.Nombre = sucursal.Nombre;
+                        venta.Sucursal.DireccionId = sucursal.DireccionId;
+                        venta.Sucursal.FraseTicket = sucursal.FraseTicket;
+                        venta.Total = total;
+                        venta.UsuarioId = General.UsuarioLogueado.Id;
+                        venta.Usuario = new Usuario();
+                        venta.Usuario.Nombre = General.UsuarioLogueado.Nombre;
+                        venta.Usuario.Id = General.UsuarioLogueado.Id;
+                        venta.Usuario.Paterno = General.UsuarioLogueado.Paterno;
+                        venta.Usuario.Materno = General.UsuarioLogueado.Materno;
+                        venta.VentasDetalle = (List<VentaDetalle>)gridVenta.ItemsSource;
+                        ServiceVenta.ISVentaClient ventaClient = new ServiceVenta.ISVentaClient();
+                        Venta ventaInsertada = ventaClient.Insert(venta);
+                        //ImprimirTicket(venta);
+                        MessageBox.Show("¡EL ID DE LA VENTA FUE EL " + ventaInsertada.Id.ToString() + "!");
+                        ReiniciarVenta();
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Debes de agregar produtos a la venta");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debes de seleccionar un cliente");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message + " " + ex.Source);
+            }
+        }
+
+        private void ActualizarVenta(ServicioApartado ServicioApartadoVenta, bool EsOrden)
+        {
+            decimal cambio = 0;
+            decimal recibio = 0;
+            decimal total = 0;
+            try
+            {
+                if (cmbClientes.SelectedItem != null)
+                {
+                    if (gridVenta.VisibleRowCount > 0)
+                    {
+                        if (decimal.TryParse(lblCambio.Content.ToString().Replace("$", "").Replace(",", ""), out cambio))
+                        {
+                            if (decimal.TryParse(txtRecibi.Text.Replace("$", "").Replace(",", ""), out recibio))
+                            {
+                                if (decimal.TryParse(lblTotal.Content.ToString().Replace("$", "").Replace(",", ""), out total))
+                                {
+
+                                    ventaActual.Cambio = cambio;
+                                    ventaActual.Cancelado = false;
+                                    ventaActual.ClienteId = ((Cliente)cmbClientes.SelectedItem).Id;
+                                    ventaActual.Cliente = (Cliente)cmbClientes.SelectedItem;
+                                    ventaActual.Fecha = DateTime.Now;
+                                    ventaActual.Folio = 0;
+                                    ventaActual.FolioCancelado = 0;
+                                    ventaActual.Recibio = recibio;
+                                    ventaActual.Facturado = false;
+                                    ventaActual.Estatus = 1;
+                                    ventaActual.SucursalId = General.ConfiguracionApp.SucursalId;
+                                    ServiceSucursal.SSucursalClient sucursalClient = new ServiceSucursal.SSucursalClient();
+                                    Sucursal sucursal = sucursalClient.SelectById(ventaActual.SucursalId);
+                                    ventaActual.Sucursal = new Sucursal();
+                                    ventaActual.Sucursal.Id = sucursal.Id;
+                                    ventaActual.Sucursal.Nombre = sucursal.Nombre;
+                                    ventaActual.Sucursal.DireccionId = sucursal.DireccionId;
+                                    ventaActual.Sucursal.FraseTicket = sucursal.FraseTicket;
+                                    ventaActual.Total = total;
+                                    ventaActual.UsuarioId = General.UsuarioLogueado.Id;
+                                    ventaActual.Usuario = new Usuario();
+                                    ventaActual.Usuario.Nombre = General.UsuarioLogueado.Nombre;
+                                    ventaActual.Usuario.Id = General.UsuarioLogueado.Id;
+                                    ventaActual.Usuario.Paterno = General.UsuarioLogueado.Paterno;
+                                    ventaActual.Usuario.Materno = General.UsuarioLogueado.Materno;
+                                    ventaActual.VentasDetalle = (List<VentaDetalle>)gridVenta.ItemsSource;
+                                    ServiceVenta.ISVentaClient ventaClient = new ServiceVenta.ISVentaClient();
+                                    if (EsOrden)
+                                        ventaActual.FolioCancelado = ventaClient.GenerarFolioCancelado(ventaActual.SucursalId, DateTime.Now.ToFileTimeUtc());
+                                    else
+                                        ventaActual.Folio = ventaClient.GenerarFolioVenta(ventaActual.SucursalId);
+                                    if (ServicioApartadoVenta != null)
+                                    {
+                                        switch (ServicioApartadoVenta.Tipo)
+                                        {
+                                            case 0:
+                                                ventaActual.FolioCancelado = ventaClient.GenerarFolioCanceladoDomicilio(ventaActual.SucursalId, DateTime.Now.ToFileTimeUtc());
+                                                break;
+                                            case 1:
+                                                ventaActual.FolioCancelado = ventaClient.GenerarFolioCanceladoApartado(ventaActual.SucursalId, DateTime.Now.ToFileTimeUtc());
+                                                break;
+                                            case 2:
+                                                ventaActual.FolioCancelado = ventaClient.GenerarFolioCanceladoServicio(ventaActual.SucursalId, DateTime.Now.ToFileTimeUtc());
+                                                break;
+                                        }
+                                    }
+                                    if (chkFacturar.IsChecked.HasValue)
+                                        ventaActual.RequiereFactura = chkFacturar.IsChecked.Value;
+                                    else
+                                        ventaActual.RequiereFactura = false;
+                                    Venta ventaInsertada = ventaClient.Update(ventaActual);
+                                    if (ServicioApartadoVenta != null)
+                                    {
+                                        ServicioApartadoVenta.VentaId = ventaInsertada.Id;
+                                        ServiceServicioApartado.SServicioApartadoClient servicioApartadoClient = new ServiceServicioApartado.SServicioApartadoClient();
+                                        ServicioApartadoVenta = servicioApartadoClient.Insert(ServicioApartadoVenta);
+                                        ServicioApartadoVenta.DireccionEnvio = new ServiceDireccion.SDireccionClient().SelectById(ServicioApartadoVenta.DireccionEnvioId);
+                                        ImprimirApartadosServicio(ventaActual, ServicioApartadoVenta);
+                                    }
+                                    else
+                                    {
+                                        ImprimirTicket(ventaActual);
+                                    }
+                                    MessageBox.Show("¡GRACIAS POR SU COMPRA!");
+                                    ventaActual = null;
+
+                                    ReiniciarVenta();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Debe escribir con números la cantidad recibida de dinero");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debes de agregar produtos a la venta");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debes de seleccionar un cliente");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message + " " + ex.Source);
+            }
+        }
+
 
         private void GenerarVenta(ServicioApartado ServicioApartadoVenta, bool EsOrden)
         {
@@ -378,6 +550,7 @@ namespace AIPos.DekstopLayer.Ventas
                                     venta.Id = 0;
                                     venta.Recibio = recibio;
                                     venta.Facturado = false;
+                                    venta.Estatus = 1;
                                     venta.SucursalId = General.ConfiguracionApp.SucursalId;
                                     ServiceSucursal.SSucursalClient sucursalClient = new ServiceSucursal.SSucursalClient();
                                     Sucursal sucursal = sucursalClient.SelectById(venta.SucursalId);
@@ -432,6 +605,8 @@ namespace AIPos.DekstopLayer.Ventas
                                         ImprimirTicket(venta);
                                     }
                                     MessageBox.Show("¡GRACIAS POR SU COMPRA!");
+                                    ventaActual = null;
+
                                     ReiniciarVenta();
                                 }
                             }
@@ -459,7 +634,10 @@ namespace AIPos.DekstopLayer.Ventas
 
         private void btnOrden_Click(object sender, RoutedEventArgs e)
         {
-            GenerarVenta(null, true);
+            if (ventaActual != null)
+                ActualizarVenta(null, true);
+            else
+                GenerarVenta(null, true);
         }
 
         private void ImprimirTicket(Venta venta)
@@ -566,7 +744,10 @@ namespace AIPos.DekstopLayer.Ventas
         {
             if (e.Key == Key.Enter)
             {
-                GenerarVenta(null,true);
+                if (ventaActual != null)
+                    ActualizarVenta(null, true);
+                else
+                    GenerarVenta(null,true);
             }
         }
 
@@ -595,7 +776,10 @@ namespace AIPos.DekstopLayer.Ventas
                 if (registroApartadoServicio.ServicioApartadoVenta != null)
                 {
                     //Se hacer persistente la venta y el servicio o apartado
-                    GenerarVenta(registroApartadoServicio.ServicioApartadoVenta, true);
+                    if (ventaActual != null)
+                        ActualizarVenta(registroApartadoServicio.ServicioApartadoVenta, true);
+                    else
+                        GenerarVenta(registroApartadoServicio.ServicioApartadoVenta, true);
                 }
             }
             else
@@ -606,7 +790,10 @@ namespace AIPos.DekstopLayer.Ventas
 
         private void btnVenta_Click(object sender, RoutedEventArgs e)
         {
-            GenerarVenta(null, false);
+            if (ventaActual != null)
+                ActualizarVenta(null, false);
+            else
+                GenerarVenta(null, false);
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
@@ -638,7 +825,10 @@ namespace AIPos.DekstopLayer.Ventas
                 {
                     //Se guarda la venta y el domicilio de envio
                     registroVentaDomicilio.ServicioApartadoVenta.Anticipo = recibio;
-                    GenerarVenta(registroVentaDomicilio.ServicioApartadoVenta, true);
+                    if (ventaActual != null)
+                        ActualizarVenta(registroVentaDomicilio.ServicioApartadoVenta, true);
+                    else
+                        GenerarVenta(registroVentaDomicilio.ServicioApartadoVenta, true);
                 }
             }
             else
@@ -828,11 +1018,21 @@ namespace AIPos.DekstopLayer.Ventas
 
         private void btnCerrarVenta_Click(object sender, RoutedEventArgs e)
         {
-
+            CerrarVenta();
         }
 
         private void btnRecuperarVenta_Click(object sender, RoutedEventArgs e)
         {
+            DXVentaId dxVentaId = new DXVentaId();
+            dxVentaId.ShowDialog();
+            if (dxVentaId.VentaRecuperada != null)
+            {
+                ventaActual = dxVentaId.VentaRecuperada;
+                Cliente cliente = new ServiceCliente.SClienteClient().SelectById(ventaActual.ClienteId);
+                cmbClientes.SelectedItem = cliente;
+                gridVenta.ItemsSource = ventaActual.VentasDetalle;
+                CalcularTotal();
+            }
 
         }
 

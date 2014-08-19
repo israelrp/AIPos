@@ -23,6 +23,9 @@ namespace AIPos.Domain
         public decimal Total { get; set; }
         public bool RequiereFactura { get; set; }
         public bool Facturado { get; set; }
+        //0.- Pesaje 1.- Cerrada
+        public byte Estatus { get; set; }
+
 
         public Cliente Cliente { get; set; }
         public Usuario Usuario { get; set; }

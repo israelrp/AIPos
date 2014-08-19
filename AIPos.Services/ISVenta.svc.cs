@@ -68,5 +68,15 @@ namespace AIPos.Services
         {
             return new BOVentaDetalle().SelectByVentaId(VentaId);
         }
+
+        public Venta RecuperarVenta(int VentaId)
+        {
+            return new BOVenta().SelectById(VentaId);
+        }
+
+        public Venta Update(Venta venta)
+        {
+            return new BOVenta().Update(venta);
+        }
     }
 }
