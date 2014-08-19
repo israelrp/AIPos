@@ -825,11 +825,15 @@ namespace AIPos.DekstopLayer.Ventas
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void btnCerrarVenta_Click(object sender, RoutedEventArgs e)
         {
-            DXVentaSeparada ventaseparada = new DXVentaSeparada();
-            ventaseparada.Content = this.Content;
-            ventaseparada.Show();            
+
+        }
+
+        private void btnRecuperarVenta_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
 

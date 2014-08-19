@@ -6,7 +6,7 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     x:Class="AIPos.DekstopLayer.Ventas.DXVentas"
-    Title="DXVentas" Height="550" Width="1180"
+    Title="DXVentas" Height="590" Width="1180"
     >
 
     <Grid>
@@ -140,7 +140,7 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <Button x:Name="btnVenta" HorizontalAlignment="Left" Margin="894,389,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnVenta_Click" Background="{x:Null}" Cursor="Hand" ToolTip="Imprime ticket y cierra la venta actual.">
+        <Button x:Name="btnVenta" HorizontalAlignment="Left" Margin="894,379,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnVenta_Click" Background="{x:Null}" Cursor="Hand" ToolTip="Imprime ticket y cierra la venta actual.">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -152,7 +152,7 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <Button x:Name="btnDomicilio" HorizontalAlignment="Left" Margin="894,433,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnDomicilio_Click" Background="{x:Null}" Cursor="Hand" ToolTip="La venta actual será enviada al domicilio del cliente seleccionado en la parte superior e imprime el ticket de la venta.">
+        <Button x:Name="btnDomicilio" HorizontalAlignment="Left" Margin="894,419,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnDomicilio_Click" Background="{x:Null}" Cursor="Hand" ToolTip="La venta actual será enviada al domicilio del cliente seleccionado en la parte superior e imprime el ticket de la venta.">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -164,7 +164,7 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <Button x:Name="btnApartar" HorizontalAlignment="Left" Margin="894,344,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnApartar_Click" Background="{x:Null}" Cursor="Hand" ToolTip="Genera un apartado o un servicio para el cliente seleccionado en la parte superior e imprime el ticket de la venta.">
+        <Button x:Name="btnApartar" HorizontalAlignment="Left" Margin="894,339,0,0" VerticalAlignment="Top" Width="235" Height="35" Click="btnApartar_Click" Background="{x:Null}" Cursor="Hand" ToolTip="Genera un apartado o un servicio para el cliente seleccionado en la parte superior e imprime el ticket de la venta.">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -191,7 +191,7 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <dxe:CheckEdit x:Name="chkPrecioMayoreo" HorizontalAlignment="Left" Margin="578,90,0,0" VerticalAlignment="Top" Width="235" Content="Aplicar precio de mayoreo  " FontWeight="SemiBold" Foreground="Red" FontSize="14" EditValueChanged="chkPrecioMayoreo_EditValueChanged" ToolTip="Si el administrador aplico la politica de mayoreo se aplicara el descuento establecido."/>
+        <dxe:CheckEdit x:Name="chkPrecioMayoreo" HorizontalAlignment="Left" Margin="578,90,0,0" VerticalAlignment="Top" Width="187" Content="Aplicar precio de mayoreo  " FontWeight="SemiBold" Foreground="Red" FontSize="14" EditValueChanged="chkPrecioMayoreo_EditValueChanged" ToolTip="Si el administrador aplico la politica de mayoreo se aplicara el descuento establecido."/>
         <Label Content="Descuento" HorizontalAlignment="Left" Margin="328,88,0,0" VerticalAlignment="Top" Width="235" FontSize="18" FontWeight="SemiBold" HorizontalContentAlignment="Center">
             <Label.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -201,8 +201,25 @@
             </Label.Background>
         </Label>
         <dxe:TextEdit  IsReadOnly="True" x:Name="txtDescuento" HorizontalAlignment="Left" Margin="328,114,0,0" VerticalAlignment="Top" Width="235" Height="40" NullText="Descuento %" HorizontalContentAlignment="Center" FontSize="20" ToolTip="Porcentaje de descuento aplicado por alguna politica de la distribuidora."/>
-        <CheckBox x:Name="chkFacturar" Content="Requiere factura" HorizontalAlignment="Left" Margin="894,472,0,0" VerticalAlignment="Top" FontSize="20" Foreground="Red" FontWeight="Bold" HorizontalContentAlignment="Center" Width="235" VerticalContentAlignment="Center" BorderBrush="Red" BorderThickness="3" ToolTip="Marca la casilla para solicitar factura para esta venta." Cursor="Hand"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="818,98,0,0" VerticalAlignment="Top" Width="54" Click="Button_Click"/>
+        <CheckBox x:Name="chkFacturar" Content="Requiere factura" HorizontalAlignment="Left" Margin="894,525,0,0" VerticalAlignment="Top" FontSize="20" Foreground="Red" FontWeight="Bold" HorizontalContentAlignment="Center" Width="235" VerticalContentAlignment="Center" BorderBrush="Red" BorderThickness="3" ToolTip="Marca la casilla para solicitar factura para esta venta." Cursor="Hand"/>
+        <Button Name="btnRecuperarVenta" HorizontalAlignment="Left" Margin="894,462,0,0" VerticalAlignment="Top" Width="235" Height="29" Click="btnRecuperarVenta_Click" Background="Transparent">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="119"/>                        
+                    </Grid.ColumnDefinitions>
+                    <Label Content="RECUPERAR VENTA" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="Bold" Foreground="Brown"></Label>                    
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btnCerrarVenta" HorizontalAlignment="Left" Margin="894,496,0,0" VerticalAlignment="Top" Width="235" Height="29" Click="btnCerrarVenta_Click" Background="Transparent">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="102"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="CERRAR VENTA" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="Bold" Foreground="Red"/>
+            </Grid>
+        </Button>
 
     </Grid>
 </dx:DXWindow>
