@@ -26,6 +26,7 @@ namespace AIPos.DekstopLayer.Ventas
         {
             this.VentaRecuperada = null;
             InitializeComponent();
+            txtVentaId.Focus();
         }
 
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
@@ -63,6 +64,14 @@ namespace AIPos.DekstopLayer.Ventas
         {
             this.VentaRecuperada = null;
             this.Close();
+        }
+
+        private void txtVentaId_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                btnAceptar.Focus();
+            }
         }
     }
 }

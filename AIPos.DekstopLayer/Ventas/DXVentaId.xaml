@@ -10,7 +10,7 @@
     <Grid>
         <Label Content="Ingresa el Id de la venta que desea recuperar." FontSize="18" FontWeight="Bold" Background="#FF007FD6" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-        <dxe:TextEdit Name="txtVentaId" HorizontalAlignment="Left" Margin="1,40,0,0" VerticalAlignment="Top" Width="390" Text="" FontSize="50"/>
+        <dxe:TextEdit Name="txtVentaId" HorizontalAlignment="Left" Margin="1,40,0,0" VerticalAlignment="Top" Width="390" Text="" FontSize="50" KeyUp="txtVentaId_KeyUp"/>
         <Button Name="btnAceptar" Click="btnAceptar_Click" HorizontalAlignment="Left" Margin="75,120,0,0" VerticalAlignment="Top" Width="100" Height="29" Background="Transparent" Cursor="Hand">
             <Button.Content>
                 <Grid>
