@@ -16,6 +16,9 @@ namespace AIPos.Services
         Venta Insert(Venta venta);
 
         [OperationContract]
+        Venta Update(Venta venta);
+
+        [OperationContract]
         int GenerarFolioVenta(int SucursalId);
 
         [OperationContract]
@@ -35,5 +38,8 @@ namespace AIPos.Services
 
         [OperationContract]
         List<VentaDetalle> RecuperarVentaDetalle(int VentaId);
+
+        [OperationContract]
+        Venta RecuperarVenta(int VentaId);
     }
 }

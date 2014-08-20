@@ -387,6 +387,9 @@
     <Compile Include="Ventas\DXCancelaciones.xaml.cs">
       <DependentUpon>DXCancelaciones.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventas\DXVentaId.xaml.cs">
+      <DependentUpon>DXVentaId.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventas\DXVentas.xaml.cs">
       <DependentUpon>DXVentas.xaml</DependentUpon>
     </Compile>
@@ -779,6 +782,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventas\DXCancelaciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventas\DXVentaId.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

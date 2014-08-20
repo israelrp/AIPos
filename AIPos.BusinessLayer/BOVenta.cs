@@ -37,7 +37,12 @@ namespace AIPos.BusinessLayer
         public Venta Update(Venta venta)
         {
             venta.Fecha = Tools.TimeConverter.GetDateTimeNowMexico();
-            return ventaDaoImpl.Update(venta);
+            Venta ventaActualizada = ventaDaoImpl.Update(venta);
+            ventaActualizada.VentasDetalle = venta.VentasDetalle;
+            ventaActualizada.Usuario = venta.Usuario;
+            ventaActualizada.Sucursal = venta.Sucursal;
+            ventaActualizada.Cliente = venta.Cliente;
+            return ventaActualizada;
         }
 
         public void Delete(int Id)
