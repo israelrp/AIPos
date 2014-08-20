@@ -193,5 +193,39 @@ namespace AIPos.BusinessLayer
             }
             return resumen;
         }
+
+        public List<ConteoVenta> RecuperarResumenSemanal(AIPos.DAO.Implementation.Enums.TipoVenta tipo, int Semana, int Año, string SucursalIds)
+        {
+            List<ConteoVenta> resumen = new List<ConteoVenta>();
+            DateTime fechaInicioAño = new DateTime(Año, 1, 1);
+            int numeroDias = Semana * 7;
+            DateTime fechaFinSemana = fechaInicioAño.AddDays(numeroDias - 4);
+            int DiasRecuperar = 6;
+            int indexSucursal = 0;
+            string sqlStrWhere = " AND ";
+            List<string> sucursales = SucursalIds.Split(',').ToList();
+            foreach (string id in sucursales)
+            {
+                if(indexSucursal==0)
+                    sqlStrWhere += " (Ventas.SucursalId=" + id;
+                else
+                    sqlStrWhere += " OR Ventas.SucursalId=" + id;
+                indexSucursal += 1;
+            }
+            sqlStrWhere += ")";
+            for (int Dia = 0; Dia <= DiasRecuperar; Dia++)
+            {
+                int quitarDia = (Dia * -1);
+                DateTime fechaInicio = Tools.DateTimeManager.AbsoluteStart(fechaFinSemana.AddDays(quitarDia));
+                DateTime fechaFin = Tools.DateTimeManager.AbsoluteEnd(fechaFinSemana.AddDays(quitarDia));
+                ConteoVenta resumenDiario = ventaDaoImpl.RecuperarResumenVentaBySucursal(fechaInicio, fechaFin, tipo,sqlStrWhere);
+                if (resumenDiario == null)
+                {
+                    resumenDiario = new ConteoVenta() { Conteo = 0, Fecha = fechaInicio, ImporteDia = 0 };
+                }
+                resumen.Add(resumenDiario);
+            }
+            return resumen;
+        }
     }
 }

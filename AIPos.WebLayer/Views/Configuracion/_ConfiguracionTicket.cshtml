@@ -30,7 +30,7 @@
     <button class="btn btn-primary" onclick="ucLogoTicket.Upload()" type="button">Subir logo</button>
 </div>
 <div style="padding-top:3px;">
-    <img id="imgPreview" src="" alt="" style="width:85px; height:46px;" />
+    <img id="imgPreview" src="data:image/png;base64,@System.Convert.ToBase64String(Model.LogoTicket)" alt="" style="width:85px; height:46px;" />
 </div>
 <br />
 
@@ -58,14 +58,14 @@
     settings.Width = 500;
 }).GetHtml()
 <br />
-@Html.DevExpress().LabelFor(m => m.LeyendaFicalTicket, settings =>
+@Html.DevExpress().LabelFor(m => m.LeyendaFisalTicket, settings =>
 {    
     settings.Text = "Leyenda fiscal:";
     settings.ControlStyle.Font.Bold = true;
     settings.AssociatedControlName = "txtLeyendaFiscal";
 }).GetHtml()
 
-@Html.DevExpress().TextBoxFor(m => m.LeyendaFicalTicket, settings =>
+@Html.DevExpress().TextBoxFor(m => m.LeyendaFisalTicket, settings =>
 {    
     settings.Width = 500;
 }).GetHtml()

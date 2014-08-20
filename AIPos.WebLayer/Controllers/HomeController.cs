@@ -85,15 +85,15 @@ namespace AIPos.WebLayer.Controllers
             return PartialView("_ResumenVentas", resumenChartData);
         }
 
-        public PartialViewResult ResumenVentasFiltrado(int Semana, int Año)
+        public PartialViewResult ResumenVentasFiltrado(int Semana, int Año, string SucursalId)
         {
             BOVenta boVenta = new BOVenta();
             ResumenVentasModel resumen = new ResumenVentasModel();
-            resumen.Ventas = boVenta.RecuperarResumenSemanal(TipoVenta.Venta, Semana, Año);
-            resumen.Ordenes = boVenta.RecuperarResumenSemanal(TipoVenta.Orden, Semana, Año);
-            resumen.Domiciolio = boVenta.RecuperarResumenSemanal(TipoVenta.Domicilio, Semana, Año);
-            resumen.Apartados = boVenta.RecuperarResumenSemanal(TipoVenta.Apartado, Semana, Año);
-            resumen.Servicios = boVenta.RecuperarResumenSemanal(TipoVenta.Servicio, Semana, Año);
+            resumen.Ventas = boVenta.RecuperarResumenSemanal(TipoVenta.Venta, Semana, Año, SucursalId);
+            resumen.Ordenes = boVenta.RecuperarResumenSemanal(TipoVenta.Orden, Semana, Año,SucursalId);
+            resumen.Domiciolio = boVenta.RecuperarResumenSemanal(TipoVenta.Domicilio, Semana, Año, SucursalId);
+            resumen.Apartados = boVenta.RecuperarResumenSemanal(TipoVenta.Apartado, Semana, Año, SucursalId);
+            resumen.Servicios = boVenta.RecuperarResumenSemanal(TipoVenta.Servicio, Semana, Año, SucursalId);
             return ArmarGraficar(resumen);
         }
 

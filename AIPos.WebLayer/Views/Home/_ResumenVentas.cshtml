@@ -8,7 +8,7 @@
     settings.Height = 400;
     settings.Width = 700;
     settings.CallbackRouteValues = new { Controller = "Home", Action = "ResumenVentasFiltrado" };
-    settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['Semana']=ComboBoxSemanas.GetValue(); e.customArgs['Año']=ComboBoxAnios.GetValue(); }";
+    settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['Semana']=ComboBoxSemanas.GetValue(); e.customArgs['Año']=ComboBoxAnios.GetValue(); e.customArgs['SucursalId']=checkListBox.GetSelectedValues().toString();}";
 
     settings.Titles.Add(new ChartTitle()
     {

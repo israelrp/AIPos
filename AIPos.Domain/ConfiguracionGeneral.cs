@@ -20,7 +20,7 @@ namespace AIPos.Domain
         public byte[] LogoTicket { get; set; }
         public string TituloTicket { get; set; }
         public string AgradecimientoTicket { get; set; }
-        public string LeyendaFicalTicket { get; set; }
+        public string LeyendaFisalTicket { get; set; }
         public bool ActivarImprimirFechaHoraTicket { get; set; }
     }
 }

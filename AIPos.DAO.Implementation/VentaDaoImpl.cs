@@ -127,6 +127,14 @@ namespace AIPos.DAO.Implementation
             object[] parameters = new object[] { FechaInicio, FechaFin, TipoVenta };
             return cm.Database.SqlQuery<ConteoVenta>("dbo.usp_VentasRecuperarResumen @FechaInicio={0}, @FechaFin={1}, @Tipo={2}", parameters).FirstOrDefault();
         }
+
+        public ConteoVenta RecuperarResumenVentaBySucursal(DateTime FechaInicio, DateTime FechaFin, TipoVenta TipoVenta, string Sucursales)
+        {
+            object[] parameters = new object[] { FechaInicio, FechaFin, TipoVenta, Sucursales };
+            return cm.Database.SqlQuery<ConteoVenta>("dbo.usp_VentasRecuperarResumenPorSucursal @FechaInicio={0}, @FechaFin={1}, @Tipo={2}, @SucursalesId={3}", parameters).FirstOrDefault();
+        }
+
+        
     }
 
 

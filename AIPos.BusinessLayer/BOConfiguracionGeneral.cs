@@ -26,6 +26,8 @@ namespace AIPos.BusinessLayer
 
         public ConfiguracionGeneral ActualizarConfiguracion(ConfiguracionGeneral item)
         {
+            if(item.LogoTicket==null)
+                item.LogoTicket=new byte[0];
             return dao.Update(item);
         }
     }
