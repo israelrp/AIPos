@@ -41,6 +41,7 @@ namespace AIPos.DekstopLayer
                 General.SucursalActual = sucursalClient.SelectById(General.ConfiguracionApp.SucursalId);
                 General.SucursalActual.Direccion = direccionClient.SelectById(General.SucursalActual.DireccionId);
                 General.ConfiguracionWeb = configuracionClient.RecuperarConfiguracion();
+                DescargarLogoTicket();
                 var login = new Login.Login();
                 login.Show();
             }
@@ -164,6 +165,15 @@ namespace AIPos.DekstopLayer
                 FaltaConfiguracion = true;
             }
             textReader.Close();
+        }
+
+        private void DescargarLogoTicket()
+        {
+            if (File.Exists("logoTicket.png"))
+                File.Delete("logoTicket.png");
+            var fs = new BinaryWriter(new FileStream("logoTicket.png", FileMode.Append, FileAccess.Write));
+            fs.Write(General.ConfiguracionWeb.LogoTicket);
+            fs.Close();
         }
 
         #region ISplashScreen

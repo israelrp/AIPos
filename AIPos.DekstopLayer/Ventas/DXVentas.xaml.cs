@@ -136,14 +136,17 @@ namespace AIPos.DekstopLayer.Ventas
                     descuento=listaPrecioProducto.Descuento;
                 }
 
-                if (General.ConfiguracionApp.PuertoBascula != "")
+                if (General.ConfiguracionWeb.ActivarBascula)
                 {
-                    if (producto.SePesa)
+                    if (General.ConfiguracionApp.PuertoBascula != "")
                     {
-                        if (InicializaPuertoBascula(General.ConfiguracionApp.PuertoBascula, 9600))
+                        if (producto.SePesa)
                         {
-                            RecuperarPesoBascula();
-                        }                        
+                            if (InicializaPuertoBascula(General.ConfiguracionApp.PuertoBascula, 9600))
+                            {
+                                RecuperarPesoBascula();
+                            }
+                        }
                     }
                 }
                 txtCantidad.Focus();
@@ -221,17 +224,17 @@ namespace AIPos.DekstopLayer.Ventas
                     ventaDetalle.Id = 0;
                     ventaDetalle.VentaId = 0;
                     ventaDetalle.ProductoId = producto.Id;
-                    ventaDetalle.Cantidad = cantidad;
+                    ventaDetalle.Cantidad = Math.Round(cantidad,General.ConfiguracionWeb.DecimalesCantidad);
                     ventaDetalle.PrecioUnitario = decimal.Parse(txtPrecioUnitario.Text);
                     ventaDetalle.Codigo = producto.Codigo;
                     ventaDetalle.Nombre = producto.Nombre;
                     ventaDetalle.Fecha = DateTime.Now;
                     ventaDetalle.Descuento = descuento;
-                    ventaDetalle.Importe =Math.Round( ventaDetalle.Cantidad * ventaDetalle.PrecioUnitario,0);
+                    ventaDetalle.Importe =Math.Round( ventaDetalle.Cantidad * ventaDetalle.PrecioUnitario,General.ConfiguracionWeb.DecimalesPrecioProducto);
                     
                     if (ventaDetalle.Descuento > 0)
                     {
-                        ventaDetalle.Importe = Math.Round(ventaDetalle.Importe - ((ventaDetalle.Descuento / 100) * ventaDetalle.Importe), 0);
+                        ventaDetalle.Importe = Math.Round(ventaDetalle.Importe - ((ventaDetalle.Descuento / 100) * ventaDetalle.Importe), General.ConfiguracionWeb.DecimalesPrecioProducto);
                     }
                     List<VentaDetalle> ventasDetalle = (List<VentaDetalle>)gridVenta.ItemsSource;
                     ventasDetalle.Add(ventaDetalle);
@@ -240,7 +243,7 @@ namespace AIPos.DekstopLayer.Ventas
                     LimpiarAgregarProducto();
                     CalcularTotal();
                     txtRecibi.Focus();
-                    if (producto.SePesa)
+                    if (producto.SePesa && General.ConfiguracionWeb.ActivarTicketPesaje)
                     {
                         try
                         {
@@ -248,11 +251,12 @@ namespace AIPos.DekstopLayer.Ventas
                             Documentos.TicketPesaje ticketPesaje = new Documentos.TicketPesaje();
                             ticketPesaje.SetParameterValue("Producto", producto.Nombre);
                             ticketPesaje.SetParameterValue("PrecioUnitario", ventaDetalle.PrecioUnitario.ToString("c"));
-                            decimal precioDescuento = Math.Round(ventaDetalle.PrecioUnitario - (ventaDetalle.PrecioUnitario * (ventaDetalle.Descuento / 100)), 0);
+                            decimal precioDescuento = Math.Round(ventaDetalle.PrecioUnitario - (ventaDetalle.PrecioUnitario * (ventaDetalle.Descuento / 100)), General.ConfiguracionWeb.DecimalesPrecioProducto);
                             ticketPesaje.SetParameterValue("PrecioDescuento", precioDescuento.ToString("c"));
                             ticketPesaje.SetParameterValue("Cantidad", ventaDetalle.Cantidad.ToString() + " " + unidad.Nombre);
                             ticketPesaje.SetParameterValue("Importe", ventaDetalle.Importe.ToString("c"));
                             ticketPesaje.SetParameterValue("Usuario", General.UsuarioLogueado.Nombre + " " + General.UsuarioLogueado.Paterno + " " + General.UsuarioLogueado.Materno);
+                            ticketPesaje.SetParameterValue("LogoUrl", System.AppDomain.CurrentDomain.BaseDirectory + @"\logoTicket.png");
                             //----------------------------------------------------------------------
                             CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
                             PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
@@ -286,7 +290,7 @@ namespace AIPos.DekstopLayer.Ventas
         decimal CalcularDescuentoEnPesos(decimal precio, decimal descuento)
         {
             decimal precioConDescuento = 0;
-            precioConDescuento = Math.Round(((descuento / 100) * precio), 0);
+            precioConDescuento = Math.Round(((descuento / 100) * precio), General.ConfiguracionWeb.DecimalesPrecioProducto);
             return precioConDescuento;
         }
 
@@ -650,13 +654,18 @@ namespace AIPos.DekstopLayer.Ventas
             report.Database.Tables[3].SetDataSource(venta.VentasDetalle);
             report.Database.Tables[4].SetDataSource(new List<Venta>() {venta});
             report.Database.Tables[5].SetDataSource(new List<Direccion>() { venta.Sucursal.Direccion });
+            report.SetParameterValue("LogoUrl", System.AppDomain.CurrentDomain.BaseDirectory + @"\logoTicket.png");
+            report.SetParameterValue("TituloTicket",General.ConfiguracionWeb.TituloTicket);
+            report.SetParameterValue("AgradecimientoTicket", General.ConfiguracionWeb.AgradecimientoTicket);
+            report.SetParameterValue("LeyendaFiscalTciket", General.ConfiguracionWeb.LeyendaFisalTicket);
+            report.SetParameterValue("FechaHoraTicket", DateTime.Now.ToString());
             report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
             //----------------------------------------------------------------------
             CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
             PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
             System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
             printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
-            printerSettings.Copies = 2;
+            printerSettings.Copies = General.ConfiguracionWeb.NumeroCopiasTicketVenta;
             var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
             //pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
             //report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
@@ -687,6 +696,11 @@ namespace AIPos.DekstopLayer.Ventas
             report.Database.Tables[4].SetDataSource(new List<Usuario>() { venta.Usuario });
             report.Database.Tables[5].SetDataSource(venta.VentasDetalle);
             report.Database.Tables[6].SetDataSource(new List<Venta>() { venta });
+            report.SetParameterValue("LogoUrl", System.AppDomain.CurrentDomain.BaseDirectory + @"\logoTicket.png");
+            report.SetParameterValue("TituloTicket", General.ConfiguracionWeb.TituloTicket);
+            report.SetParameterValue("AgradecimientoTicket", General.ConfiguracionWeb.AgradecimientoTicket);
+            report.SetParameterValue("LeyendaFiscalTciket", General.ConfiguracionWeb.LeyendaFisalTicket);
+            report.SetParameterValue("FechaHoraTicket", DateTime.Now.ToString());
             report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
             report.SetParameterValue(0, direccionSucursal);
             //----------------------------------------------------------------------
@@ -694,7 +708,7 @@ namespace AIPos.DekstopLayer.Ventas
             PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
             System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
             printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
-            printerSettings.Copies = 2;
+            printerSettings.Copies = General.ConfiguracionWeb.NumeroCopiasTicketVenta;
             var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
             //pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
             //report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
