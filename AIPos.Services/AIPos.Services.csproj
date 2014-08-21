@@ -84,6 +84,7 @@
     <Content Include="ISRetiroDinero.svc" />
     <Content Include="ISVenta.svc" />
     <Content Include="SCliente.svc" />
+    <Content Include="SConfiguracionGeneral.svc" />
     <Content Include="SCorteCaja.svc" />
     <Content Include="SDireccion.svc" />
     <Content Include="SDireccionEnvio.svc" />
@@ -109,6 +110,7 @@
     <Compile Include="IISRetiroDinero.cs" />
     <Compile Include="IISVenta.cs" />
     <Compile Include="ISCliente.cs" />
+    <Compile Include="ISConfiguracionGeneral.cs" />
     <Compile Include="ISCorteCaja.cs" />
     <Compile Include="ISDireccion.cs" />
     <Compile Include="ISDireccionEnvio.cs" />
@@ -138,6 +140,9 @@
     </Compile>
     <Compile Include="SCliente.svc.cs">
       <DependentUpon>SCliente.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SConfiguracionGeneral.svc.cs">
+      <DependentUpon>SConfiguracionGeneral.svc</DependentUpon>
     </Compile>
     <Compile Include="SCorteCaja.svc.cs">
       <DependentUpon>SCorteCaja.svc</DependentUpon>

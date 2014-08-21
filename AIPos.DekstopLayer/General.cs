@@ -11,6 +11,7 @@ namespace AIPos.DekstopLayer
     {
         public static Usuario UsuarioLogueado;
         public static Configuracion.Configuracion ConfiguracionApp;
+        public static ConfiguracionGeneral ConfiguracionWeb;
         public static Sucursal SucursalActual;
     }
 }

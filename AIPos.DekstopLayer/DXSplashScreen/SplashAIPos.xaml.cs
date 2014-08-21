@@ -37,8 +37,10 @@ namespace AIPos.DekstopLayer
             {
                 ServiceSucursal.SSucursalClient sucursalClient = new ServiceSucursal.SSucursalClient();
                 ServiceDireccion.SDireccionClient direccionClient = new ServiceDireccion.SDireccionClient();
+                ServiceConfiguracion.SConfiguracionGeneralClient configuracionClient = new ServiceConfiguracion.SConfiguracionGeneralClient();
                 General.SucursalActual = sucursalClient.SelectById(General.ConfiguracionApp.SucursalId);
                 General.SucursalActual.Direccion = direccionClient.SelectById(General.SucursalActual.DireccionId);
+                General.ConfiguracionWeb = configuracionClient.RecuperarConfiguracion();
                 var login = new Login.Login();
                 login.Show();
             }

@@ -273,6 +273,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ServiceConfiguracion\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ServiceCorteCaja\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -462,6 +467,7 @@
     </EmbeddedResource>
     <None Include="AIPos.DekstopLayer_TemporaryKey.pfx" />
     <None Include="Properties\DataSources\AIPos.Domain.Cliente.datasource" />
+    <None Include="Properties\DataSources\AIPos.Domain.ConfiguracionGeneral.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.CorteCaja.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.Direccion.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.DireccionEnvio.datasource" />
@@ -499,6 +505,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceCliente\SCliente32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConfiguracion\SConfiguracionGeneral.wsdl" />
+    <None Include="Service References\ServiceConfiguracion\SConfiguracionGeneral.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConfiguracion\SConfiguracionGeneral1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConfiguracion\SConfiguracionGeneral2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceCorteCaja\SCorteCaja.wsdl" />
@@ -826,6 +842,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceCliente\" />
+    <WCFMetadataStorage Include="Service References\ServiceConfiguracion\" />
     <WCFMetadataStorage Include="Service References\ServiceCorteCaja\" />
     <WCFMetadataStorage Include="Service References\ServiceDireccionEnvio\" />
     <WCFMetadataStorage Include="Service References\ServiceDireccionFacturacion\" />
@@ -1581,6 +1598,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceConfiguracion\SConfiguracionGeneral.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceConfiguracion\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceConfiguracion\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceConfiguracion\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
