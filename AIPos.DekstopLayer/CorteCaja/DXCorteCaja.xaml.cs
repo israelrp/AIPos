@@ -49,7 +49,7 @@ namespace AIPos.DekstopLayer.CorteCaja
             ServiceVenta.ISVentaClient ventaClient = new ServiceVenta.ISVentaClient();
             Domain.Usuario usuario = (Domain.Usuario)cmbUsuarios.SelectedItem;
             List<Domain.ReporteCorteCaja> reporte = ventaClient.RecuperarCorteCaja(deFechaInicio.DateTime.ToFileTimeUtc(), deFechaInicio.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId).ToList().Where(x => x.Usuario == usuario.Nombre).ToList();
-            List<Domain.RetiroDinero> retiros = new ServiceRetiroDinero.ISRetiroDineroClient().SelectAllByFechaSucursal(deFechaInicio.DateTime, General.ConfiguracionApp.SucursalId).ToList();
+            List<Domain.RetiroDinero> retiros = new ServiceRetiroDinero.ISRetiroDineroClient().SelectAllByFechaSucursal(deFechaInicio.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId).ToList();
             corteCaja.UsuarioId = usuario.Id;
             corteCaja.SucursalId = General.ConfiguracionApp.SucursalId;
             corteCaja.Fecha = deFechaInicio.DateTime;
@@ -73,8 +73,8 @@ namespace AIPos.DekstopLayer.CorteCaja
             Domain.CorteCaja corteCaja = new Domain.CorteCaja();
             ServiceVenta.ISVentaClient ventaClient = new ServiceVenta.ISVentaClient();
             Domain.Usuario usuario = (Domain.Usuario)cmbUsuarios.SelectedItem;
-            List<Domain.ReporteCorteCaja> reporte = ventaClient.RecuperarCorteCaja(deFechaInicio.DateTime.ToFileTimeUtc(), deFechaInicio.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId).ToList().Where(x => x.Usuario == usuario.Nombre).ToList(); 
-            List<Domain.RetiroDinero> retiros = new ServiceRetiroDinero.ISRetiroDineroClient().SelectAllByFechaSucursal(deFechaInicio.DateTime, General.ConfiguracionApp.SucursalId).ToList();
+            List<Domain.ReporteCorteCaja> reporte = ventaClient.RecuperarCorteCaja(deFechaInicio.DateTime.ToFileTimeUtc(), deFechaInicio.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId).ToList().Where(x => x.Usuario == usuario.Nombre).ToList();
+            List<Domain.RetiroDinero> retiros = new ServiceRetiroDinero.ISRetiroDineroClient().SelectAllByFechaSucursal(deFechaInicio.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId).ToList();
             corteCaja.UsuarioId = usuario.Id;
             corteCaja.SucursalId = General.ConfiguracionApp.SucursalId;
             corteCaja.Fecha = deFechaInicio.DateTime;

@@ -32,10 +32,10 @@ namespace AIPos.Services
             return boRetiroDinero.Update(retiroDinero);
         }
 
-        public List<Domain.RetiroDinero> SelectAllByFechaSucursal(DateTime Fecha, int SucursalId)
+        public List<Domain.RetiroDinero> SelectAllByFechaSucursal(long Dia, int SucursalId)
         {
             BORetiroDinero boRetiroDinero = new BORetiroDinero();
-            return boRetiroDinero.SelectAllByFechaSucursal(SucursalId, Fecha);
+            return boRetiroDinero.SelectAllByFechaSucursal(SucursalId, BusinessLayer.Tools.TimeConverter.GetDateTimeMexico( DateTime.FromFileTimeUtc(Dia)));
         }
     }
 }

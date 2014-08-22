@@ -26,7 +26,7 @@ namespace AIPos.DekstopLayer.Retiros
             deFechaConsulta.DateTime = DateTime.Now.Date;
             deFechaConsulta.EditValue = DateTime.Now.Date;
             ServiceRetiroDinero.ISRetiroDineroClient retiroClient = new ServiceRetiroDinero.ISRetiroDineroClient();
-            gridRetiros.ItemsSource = retiroClient.SelectAllByFechaSucursal(deFechaConsulta.DateTime, General.ConfiguracionApp.SucursalId);
+            gridRetiros.ItemsSource = retiroClient.SelectAllByFechaSucursal(deFechaConsulta.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId);
         }
 
 
@@ -47,7 +47,7 @@ namespace AIPos.DekstopLayer.Retiros
                 retiroClient.Insert(retiroDinero);
                 txtDescripcion.Text = "";
                 txtMonto.Text = "";
-                gridRetiros.ItemsSource = retiroClient.SelectAllByFechaSucursal(deFechaConsulta.DateTime, General.ConfiguracionApp.SucursalId);
+                gridRetiros.ItemsSource = retiroClient.SelectAllByFechaSucursal(deFechaConsulta.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId);
             }
             else
             {
@@ -58,7 +58,7 @@ namespace AIPos.DekstopLayer.Retiros
         private void deFechaConsulta_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
         {
             ServiceRetiroDinero.ISRetiroDineroClient retiroClient = new ServiceRetiroDinero.ISRetiroDineroClient();
-            gridRetiros.ItemsSource = retiroClient.SelectAllByFechaSucursal(deFechaConsulta.DateTime, General.ConfiguracionApp.SucursalId);
+            gridRetiros.ItemsSource = retiroClient.SelectAllByFechaSucursal(deFechaConsulta.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId);
         }
 
         private void txtDescripcion_KeyUp(object sender, KeyEventArgs e)

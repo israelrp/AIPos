@@ -59,8 +59,8 @@ namespace AIPos.Services
         public List<ReporteCorteCaja> RecuperarCorteCaja(long FechaInicio, long FechaFin, int? SucursalId)
         {
             BOVenta boVenta = new BOVenta();
-            DateTime fechaInicio = DateTime.FromFileTimeUtc(FechaInicio);
-            DateTime fechaFin = DateTime.FromFileTimeUtc(FechaFin);
+            DateTime fechaInicio = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(DateTime.FromFileTimeUtc(FechaInicio));
+            DateTime fechaFin = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(DateTime.FromFileTimeUtc(FechaFin));
             return boVenta.RecuperarCorteCaja(fechaInicio, fechaFin, SucursalId);
         }
 

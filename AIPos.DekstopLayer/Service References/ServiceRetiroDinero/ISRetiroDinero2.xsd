@@ -44,7 +44,7 @@
   <xs:element name="SelectAllByFechaSucursal">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="Dia" type="xs:long" />
         <xs:element minOccurs="0" name="SucursalId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>

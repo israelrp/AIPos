@@ -18,8 +18,10 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Direccion" nillable="true" type="tns:Direccion" />
       <xs:element minOccurs="0" name="DireccionId" type="xs:int" />
+      <xs:element minOccurs="0" name="FraseTicket" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Sucursal" nillable="true" type="tns:Sucursal" />

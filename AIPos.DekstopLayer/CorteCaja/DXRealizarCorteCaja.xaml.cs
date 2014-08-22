@@ -37,7 +37,7 @@ namespace AIPos.DekstopLayer.CorteCaja
                 if (decimal.TryParse(txtDejaCambio.Text, out dejaCambio))
                 {
                     ServiceRetiroDinero.ISRetiroDineroClient retiroDineroClient = new ServiceRetiroDinero.ISRetiroDineroClient();
-                    List<Domain.RetiroDinero> retiros = retiroDineroClient.SelectAllByFechaSucursal(CorteCaja.Fecha, General.ConfiguracionApp.SucursalId).ToList();
+                    List<Domain.RetiroDinero> retiros = retiroDineroClient.SelectAllByFechaSucursal(CorteCaja.Fecha.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId).ToList();
                     Usuario usuario = new ServiceUsuario.SUsuarioClient().SelectById(CorteCaja.UsuarioId);
                     CorteCaja.CorteEntregado = corteEntregado;
                     CorteCaja.QuienRetira = txtQuienRetira.Text;
@@ -50,6 +50,8 @@ namespace AIPos.DekstopLayer.CorteCaja
                     report.Database.Tables[2].SetDataSource(new List<Domain.CorteCaja>() { CorteCaja });
                     report.Database.Tables[3].SetDataSource(new List<Domain.Usuario>() { usuario });
                     report.Database.Tables[4].SetDataSource(retiros);
+                    report.SetParameterValue("LogoUrl", System.AppDomain.CurrentDomain.BaseDirectory + @"\logoTicket.png");
+                    report.SetParameterValue("TituloTicket", General.ConfiguracionWeb.TituloTicket);
                     report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
                     //----------------------------------------------------------------------
                     CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();

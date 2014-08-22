@@ -34,10 +34,10 @@ namespace AIPos.DekstopLayer.ServiceRetiroDinero {
         System.Threading.Tasks.Task<AIPos.Domain.RetiroDinero> UpdateAsync(AIPos.Domain.RetiroDinero retiroDinero);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IISRetiroDinero/SelectAllByFechaSucursal", ReplyAction="http://tempuri.org/IISRetiroDinero/SelectAllByFechaSucursalResponse")]
-        AIPos.Domain.RetiroDinero[] SelectAllByFechaSucursal(System.DateTime Fecha, int SucursalId);
+        AIPos.Domain.RetiroDinero[] SelectAllByFechaSucursal(long Dia, int SucursalId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IISRetiroDinero/SelectAllByFechaSucursal", ReplyAction="http://tempuri.org/IISRetiroDinero/SelectAllByFechaSucursalResponse")]
-        System.Threading.Tasks.Task<AIPos.Domain.RetiroDinero[]> SelectAllByFechaSucursalAsync(System.DateTime Fecha, int SucursalId);
+        System.Threading.Tasks.Task<AIPos.Domain.RetiroDinero[]> SelectAllByFechaSucursalAsync(long Dia, int SucursalId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -91,12 +91,12 @@ namespace AIPos.DekstopLayer.ServiceRetiroDinero {
             return base.Channel.UpdateAsync(retiroDinero);
         }
         
-        public AIPos.Domain.RetiroDinero[] SelectAllByFechaSucursal(System.DateTime Fecha, int SucursalId) {
-            return base.Channel.SelectAllByFechaSucursal(Fecha, SucursalId);
+        public AIPos.Domain.RetiroDinero[] SelectAllByFechaSucursal(long Dia, int SucursalId) {
+            return base.Channel.SelectAllByFechaSucursal(Dia, SucursalId);
         }
         
-        public System.Threading.Tasks.Task<AIPos.Domain.RetiroDinero[]> SelectAllByFechaSucursalAsync(System.DateTime Fecha, int SucursalId) {
-            return base.Channel.SelectAllByFechaSucursalAsync(Fecha, SucursalId);
+        public System.Threading.Tasks.Task<AIPos.Domain.RetiroDinero[]> SelectAllByFechaSucursalAsync(long Dia, int SucursalId) {
+            return base.Channel.SelectAllByFechaSucursalAsync(Dia, SucursalId);
         }
     }
 }

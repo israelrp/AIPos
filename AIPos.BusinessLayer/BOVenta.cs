@@ -120,17 +120,13 @@ namespace AIPos.BusinessLayer
 
         public List<ReporteCorteCaja> RecuperarCorteCaja(DateTime FechaInicio, DateTime FechaFin, int? SucursalId)
         {
-            int hoursInicio = FechaInicio.Hour;
-            int minutesInicio = FechaInicio.Minute;
-            int hoursFin = FechaFin.Hour;
-            int minutesFin = FechaFin.Minute;
-            DateTime fechaInicio = FechaInicio.AddHours(hoursInicio * -1).AddMinutes(minutesInicio * -1);
-            DateTime fechaFin = FechaFin.AddHours(23 - hoursFin).AddMinutes(59 - minutesFin);
+            FechaInicio = Tools.DateTimeManager.AbsoluteStart(FechaInicio);
+            FechaFin = Tools.DateTimeManager.AbsoluteEnd(FechaFin);
             if (SucursalId.HasValue)
             {
-                return ventaDaoImpl.RecuperarCorteCaja(fechaInicio, fechaFin).Where(x=>x.SucursalId==SucursalId).ToList();
+                return ventaDaoImpl.RecuperarCorteCaja(FechaInicio, FechaFin).Where(x => x.SucursalId == SucursalId).ToList();
             }
-            return ventaDaoImpl.RecuperarCorteCaja(fechaInicio, fechaFin);
+            return ventaDaoImpl.RecuperarCorteCaja(FechaInicio, FechaFin);
         }
 
         public List<ReporteCorteCaja> RecuperarVentasFacturar()

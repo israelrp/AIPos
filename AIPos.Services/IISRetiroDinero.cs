@@ -22,7 +22,7 @@ namespace AIPos.Services
         RetiroDinero Update(RetiroDinero retiroDinero);
 
         [OperationContract]
-        List<RetiroDinero> SelectAllByFechaSucursal(DateTime Fecha, int SucursalId);
+        List<RetiroDinero> SelectAllByFechaSucursal(long Dia, int SucursalId);
 
 
     }
