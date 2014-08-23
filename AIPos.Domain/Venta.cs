@@ -85,4 +85,18 @@ namespace AIPos.Domain
         public decimal ImporteDia { get; set; }
         public int Conteo { get; set; }
     }
+
+    public class ReporteUtilidad
+    {
+        public int ProductoId { get; set; }
+        public string Producto { get; set; }
+        public decimal EntradasCantidad { get; set; }
+        public decimal InventariosAnteriorCantidad { get; set; }
+        public decimal InventariosActualCantidad { get; set; }
+        public decimal VentasCantidad {  get; set;}
+        public decimal EntradasImporte { get; set;}
+        public decimal InventariosAnteriorImporte { get; set;}
+        public decimal InventariosActualImporte { get; set;}
+        public decimal VentasImporte { get; set; }
+    }
 }

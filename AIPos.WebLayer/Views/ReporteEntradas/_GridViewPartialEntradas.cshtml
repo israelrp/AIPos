@@ -22,17 +22,36 @@
         settings.Columns.Add(c =>
         {
             c.FieldName = "PrecioUnitario";
-            c.Caption = "Precio unitario";
+            c.Caption = "Precio costo";
             c.PropertiesEdit.DisplayFormatString = "c";
         });
         settings.Columns.Add(c =>
         {
             c.FieldName = "Importe";
-            c.Caption = "Importe";
+            c.Caption = "Importe costo";
             c.PropertiesEdit.DisplayFormatString = "c";
         });
-
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "PrecioVenta";
+            c.Caption = "Precio venta";
+            c.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "ImporteVenta";
+            c.Caption = "Importe venta";
+            c.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "UtilidadEstimada";
+            c.Caption = "Utilidad estimada";
+            c.PropertiesEdit.DisplayFormatString = "c";
+        });
         settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "Importe").DisplayFormat = "c";
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "ImporteVenta").DisplayFormat = "c";
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "UtilidadEstimada").DisplayFormat = "c";
         settings.Settings.ShowFooter = true;
 	});
 }

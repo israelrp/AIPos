@@ -223,5 +223,12 @@ namespace AIPos.BusinessLayer
             }
             return resumen;
         }
+
+        public List<ReporteUtilidad> RecuperarUtilidadesProducto(int SucursalId, DateTime Fecha)
+        {
+            DateTime FechaInicio = Tools.DateTimeManager.AbsoluteStart(Fecha);
+            DateTime FechaFin = Tools.DateTimeManager.AbsoluteEnd(Fecha);
+            return ventaDaoImpl.RecuperarUtilidadesProducto(SucursalId, FechaInicio, FechaFin);
+        }
     }
 }

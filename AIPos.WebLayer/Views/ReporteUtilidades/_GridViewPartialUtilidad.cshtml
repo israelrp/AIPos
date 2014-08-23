@@ -1,0 +1,25 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "GridViewUtilidad";
+        settings.CallbackRouteValues = new { Controller = "ReporteUtilidades", Action = "GridViewPartialUtilidad" };
+        settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=SucursalId.GetValue(); e.customArgs['Fecha']=Fecha.GetDate().toLocaleDateString();  }";
+
+		settings.KeyFieldName = "ProductoId";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = true;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+				settings.Columns.Add("Producto");
+				settings.Columns.Add("EntradasCantidad");
+				settings.Columns.Add("InventariosAnteriorCantidad");
+				settings.Columns.Add("InventariosActualCantidad");
+				settings.Columns.Add("VentasCantidad");
+				settings.Columns.Add("EntradasImporte");
+				settings.Columns.Add("InventariosAnteriorImporte");
+				settings.Columns.Add("InventariosActualImporte");
+				settings.Columns.Add("VentasImporte");
+			});
+}
+@grid.Bind(Model).GetHtml()

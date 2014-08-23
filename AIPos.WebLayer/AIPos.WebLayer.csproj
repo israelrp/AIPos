@@ -259,6 +259,7 @@
     <Compile Include="Controllers\ReporteEntradasController.cs" />
     <Compile Include="Controllers\ReporteInventariosController.cs" />
     <Compile Include="Controllers\ReportePedidosSucursalController.cs" />
+    <Compile Include="Controllers\ReporteUtilidadesController.cs" />
     <Compile Include="Controllers\ReporteVentasProductoController.cs" />
     <Compile Include="Controllers\RetirosDineroController.cs" />
     <Compile Include="Controllers\VentasFacturarController.cs" />
@@ -502,6 +503,8 @@
     <Content Include="Views\Configuracion\_ConfiguracionTicket.cshtml" />
     <Content Include="Views\Configuracion\_ConfiguracionRedondeo.cshtml" />
     <Content Include="Views\Configuracion\_ConfiguracionPOS.cshtml" />
+    <Content Include="Views\ReporteUtilidades\Index.cshtml" />
+    <Content Include="Views\ReporteUtilidades\_GridViewPartialUtilidad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

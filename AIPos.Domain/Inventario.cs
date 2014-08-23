@@ -36,4 +36,19 @@ namespace AIPos.Domain
         public decimal Monto { get; set; }
         public DateTime FechaRegistro { get; set; }
     }
+
+    public class ReporteInventarioUtilidad
+    {
+        public int Id { get; set; }
+        public string Usuario { get; set; }
+        public string Producto { get; set; }
+        public decimal CantidadReal { get; set; }
+        public decimal CantidadSistema { get; set; }
+        public decimal PrecioUnitario { get; set; }
+        public decimal Monto { get; set; }
+        public DateTime FechaRegistro { get; set; }
+        public decimal PrecioVenta { get; set; }
+        public decimal ImporteVenta { get; set; }
+        public decimal UtilidadEstimada { get; set; }
+    }
 }

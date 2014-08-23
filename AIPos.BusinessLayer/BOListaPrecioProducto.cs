@@ -77,16 +77,23 @@ namespace AIPos.BusinessLayer
             return listaPrecioProductoDaoImpl.SelectByKey(new ListaPrecioProducto() { ListaPrecioId = clienteListaPrecio.ListaPrecioId, ProductoId = ProductoId });
         }
 
-        public List<ListaPrecioProductoModel> SelectByListaPrecio(int ListaPrecioId, string Codigo, string Nombre)
+        public List<ListaPrecioProductoModel> SelectByListaPrecio(int ListaPrecioId, string Codigo, string Nombre, int? TipoId)
         {
             List<ListaPrecioProductoModel> datos = listaPrecioProductoDaoImpl.SelectByListaPrecio(ListaPrecioId);
             if (Codigo != "")
             {
-                datos = datos.Where(x => x.Codigo.ToLower() == Codigo.ToLower()).ToList();
+                datos = datos.Where(x => x.Codigo.ToLower().Contains(Codigo.ToLower())).ToList();
             }
             if (Nombre != "")
             {
-                datos = datos.Where(x => x.Producto.ToLower() == Nombre.ToLower()).ToList();
+                datos = datos.Where(x => x.Producto.ToLower().Contains( Nombre.ToLower())).ToList();
+            }
+            if (TipoId.HasValue)
+            {
+                if (TipoId > 0)
+                {
+                    datos = datos.Where(x => x.TipoId == TipoId.Value).ToList();
+                }
             }
             return datos;
         }

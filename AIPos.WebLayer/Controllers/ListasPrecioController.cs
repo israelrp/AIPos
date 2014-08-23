@@ -99,30 +99,36 @@ namespace AIPos.WebLayer.Controllers
 
         public ActionResult ListaPreciosProductos()
         {
+            List<Tipo> tiposProductos = new List<Tipo>();
+            tiposProductos = new BOTipo().SelectAll();
+            tiposProductos.Add(new Tipo { Id = 0, Nombre = "Todos" });
+            ViewData["tipos"] = tiposProductos;
             return View();
         }
 
 
 
         [HttpPost]
-        public bool AumentarDisminuirDescuentoLista(int ListaPrecioIdSelected, string Codigo, string Nombre, bool Porcentaje, decimal cantidad)
+        public bool AumentarDisminuirDescuentoLista(int ListaPrecioIdSelected, string Codigo, string Nombre, bool Porcentaje, decimal cantidad, int? TipoId)
         {
             bool Retorno = false;
             List<ListaPrecioProductoModel> listaPreciosProductos = new List<ListaPrecioProductoModel>();
             List<Producto> productos = new List<Producto>();
-            if (Codigo == "" && Nombre == "")
+            productos = new BOProducto().SelectAll();
+            if (Codigo != "")
             {
-                productos = new BOProducto().SelectAll();
+                productos = productos.Where(x => x.Codigo.Contains(Codigo)).ToList();
             }
-            else if (Codigo != "")
+            if (Nombre != "")
             {
-                var producto = new BOProducto().SelectByCodigo(Codigo);
-                if (producto != null)
-                    productos.Add(producto);
+                productos = productos.Where(x => x.Nombre.ToLower().Contains(Nombre.ToLower())).ToList();
             }
-            else if (Nombre != "")
+            if (TipoId.HasValue)
             {
-                productos = new BOProducto().SelectAll().Where(x => x.Nombre.ToLower().Contains(Nombre.ToLower())).ToList();
+                if (TipoId.Value > 0)
+                {
+                    productos = productos.Where(x => x.TipoId == TipoId.Value).ToList();
+                }
             }
             productos.OrderBy(x => x.Codigo);
             foreach (var producto in productos)
@@ -149,25 +155,27 @@ namespace AIPos.WebLayer.Controllers
         }
 
         [HttpPost]
-        public bool AumentarDisminuirPrecioLista(int ListaPrecioIdSelected, string Codigo, string Nombre, bool Aumentar, bool Porcentaje, decimal cantidad)
+        public bool AumentarDisminuirPrecioLista(int ListaPrecioIdSelected, string Codigo, string Nombre, bool Aumentar, bool Porcentaje, decimal cantidad, int? TipoId)
         {
             bool Retorno = false;
             List<ListaPrecioProductoModel> listaPreciosProductos = new List<ListaPrecioProductoModel>();
             
             List<Producto> productos = new List<Producto>();
-            if (Codigo == "" && Nombre == "")
+            productos = new BOProducto().SelectAll();
+            if (Codigo != "")
             {
-                productos = new BOProducto().SelectAll();
+                productos = productos.Where(x => x.Codigo.Contains(Codigo)).ToList();
             }
-            else if (Codigo != "")
+            if (Nombre != "")
             {
-                var producto = new BOProducto().SelectByCodigo(Codigo);
-                if (producto != null)
-                    productos.Add(producto);
+                productos = productos.Where(x => x.Nombre.ToLower().Contains(Nombre.ToLower())).ToList();
             }
-            else if (Nombre != "")
+            if (TipoId.HasValue)
             {
-                productos = new BOProducto().SelectAll().Where(x => x.Nombre.ToLower().Contains(Nombre.ToLower())).ToList();
+                if (TipoId.Value > 0)
+                {
+                    productos = productos.Where(x => x.TipoId == TipoId.Value).ToList();
+                }
             }
             productos.OrderBy(x => x.Codigo);
             foreach (var producto in productos)
@@ -208,25 +216,27 @@ namespace AIPos.WebLayer.Controllers
         }
 
         [HttpPost]
-        public bool CopiarPrecioBaseListaPrecio(int ListaPrecioIdSelected, string Codigo, string Nombre)
+        public bool CopiarPrecioBaseListaPrecio(int ListaPrecioIdSelected, string Codigo, string Nombre, int? TipoId)
         {
             bool Retorno = false;
             List<ListaPrecioProductoModel> listaPreciosProductos = new List<ListaPrecioProductoModel>();
             
             List<Producto> productos = new List<Producto>();
-            if (Codigo == "" && Nombre == "")
+            productos = new BOProducto().SelectAll();
+            if (Codigo != "")
             {
-                productos = new BOProducto().SelectAll();
+                productos = productos.Where(x => x.Codigo.Contains(Codigo)).ToList();
             }
-            else if (Codigo != "")
+            if (Nombre != "")
             {
-                var producto = new BOProducto().SelectByCodigo(Codigo);
-                if (producto != null)
-                    productos.Add(producto);
+                productos = productos.Where(x => x.Nombre.ToLower().Contains(Nombre.ToLower())).ToList();
             }
-            else if (Nombre != "")
+            if (TipoId.HasValue)
             {
-                productos = new BOProducto().SelectAll().Where(x => x.Nombre.ToLower().Contains(Nombre.ToLower())).ToList();
+                if (TipoId.Value > 0)
+                {
+                    productos = productos.Where(x => x.TipoId == TipoId.Value).ToList();
+                }
             }
             productos.OrderBy(x => x.Codigo);
             foreach (var producto in productos)
@@ -260,12 +270,12 @@ namespace AIPos.WebLayer.Controllers
         }
 
         [ValidateInput(false)]
-        public ActionResult GridViewPartialListaPrecios(int? ListaPrecioIdSelected, string Codigo, string Nombre)
+        public ActionResult GridViewPartialListaPrecios(int? ListaPrecioIdSelected, string Codigo, string Nombre, int? TipoId)
         {
             List<ListaPrecioProductoModel> listaPreciosProductos = new List<ListaPrecioProductoModel>();
             if (ListaPrecioIdSelected.HasValue)
             {
-                listaPreciosProductos = new BOListaPrecioProducto().SelectByListaPrecio(ListaPrecioIdSelected.Value, Codigo, Nombre);
+                listaPreciosProductos = new BOListaPrecioProducto().SelectByListaPrecio(ListaPrecioIdSelected.Value, Codigo, Nombre, TipoId);
             }
             return PartialView("_GridViewPartialListaPrecios", listaPreciosProductos);
         }

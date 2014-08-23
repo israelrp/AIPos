@@ -26,10 +26,10 @@ namespace AIPos.WebLayer.Controllers
         [ValidateInput(false)]
         public ActionResult GridViewPartialInventarios(int? SucursalId, DateTime? Fecha)
         {
-            List<ReporteInventario> model = new List<ReporteInventario>();
+            List<ReporteInventarioUtilidad> model = new List<ReporteInventarioUtilidad>();
             if (SucursalId.HasValue && Fecha.HasValue)
             {
-                model = new BOInventario().SelectReporteSucursalFecha(SucursalId.Value, Fecha.Value);
+                model = new BOInventario().SelectReporteUtilidadSucursalFecha(SucursalId.Value, Fecha.Value);
             }
             return PartialView("_GridViewPartialInventarios", model);
         }
@@ -40,10 +40,10 @@ namespace AIPos.WebLayer.Controllers
             {
                 if (Request.Params[typeName] != null)
                 {
-                    List<ReporteInventario> model = new List<ReporteInventario>();
+                    List<ReporteInventarioUtilidad> model = new List<ReporteInventarioUtilidad>();
                     if (ComboBoxSucursales_VI.HasValue && DateEditFecha.HasValue)
                     {
-                        model = new BOInventario().SelectReporteSucursalFecha(ComboBoxSucursales_VI.Value, DateEditFecha.Value);
+                        model = new BOInventario().SelectReporteUtilidadSucursalFecha(ComboBoxSucursales_VI.Value, DateEditFecha.Value);
                     }
                     ReporteInventariosExport export = new ReporteInventariosExport();
                     return Helpers.GridViewExportHelper.ExportTypes[typeName].Method(export.ExportGridViewSettings, model);

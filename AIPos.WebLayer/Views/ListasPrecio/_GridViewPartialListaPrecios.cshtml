@@ -6,7 +6,8 @@
         settings.ClientSideEvents.BeginCallback = "function(s, e) { "+
             "e.customArgs['ListaPrecioIdSelected'] = cmbListasPrecio.GetValue(); "+
             "e.customArgs['Codigo'] = txtCodigoProducto.GetText(); "+
-            "e.customArgs['Nombre'] = txtNombreProducto.GetText(); }";
+            "e.customArgs['Nombre'] = txtNombreProducto.GetText();"+
+            "e.customArgs['TipoId'] = cmbTipo.GetValue(); }";
 
         settings.KeyFieldName = "ProductoId";
 
@@ -27,6 +28,7 @@
         settings.Columns.Add(col =>
         {
             col.FieldName = "PrecioBase";
+            col.Caption = "Precio costo";
             col.Width = 100;
         });
         settings.Columns.Add(col =>

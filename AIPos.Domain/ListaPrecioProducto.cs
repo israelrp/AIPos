@@ -31,5 +31,7 @@ namespace AIPos.Domain
         public decimal PrecioDescuento { get; set; }
         public int ListaPrecioId { get; set; }
         public bool EsNuevo { get; set; }
+
+        public int TipoId { get; set; }
     }
 }

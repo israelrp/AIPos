@@ -61,7 +61,7 @@
         border: 1px solid #e2e2e2;
         margin-top: 10px;
         padding: 10px;
-        width: 740px;
+        width: 980px;
     }
 </style>
 <script>
@@ -93,7 +93,7 @@
         $.ajax({
             url: "/ListasPrecio/CopiarPrecioBaseListaPrecio",
             type: 'POST',
-            data: { ListaPrecioIdSelected: cmbListasPrecio.GetValue(), Codigo: txtCodigoProducto.GetText(), Nombre: txtNombreProducto.GetText() },
+            data: { ListaPrecioIdSelected: cmbListasPrecio.GetValue(), Codigo: txtCodigoProducto.GetText(), Nombre: txtNombreProducto.GetText(), TipoId: cmbTipo.GetValue() },
             success: function (response) {
                 GridViewListaPrecios.PerformCallback();
                 LoadingPanel.Hide();
@@ -125,7 +125,7 @@
             $.ajax({
                 url: "/ListasPrecio/AumentarDisminuirDescuentoLista",
                 type: 'POST',
-                data: { ListaPrecioIdSelected: cmbListasPrecio.GetValue(), Codigo: txtCodigoProducto.GetText(), Nombre: txtNombreProducto.GetText(), Porcentaje: porcentaje, cantidad: cantidad },
+                data: { ListaPrecioIdSelected: cmbListasPrecio.GetValue(), Codigo: txtCodigoProducto.GetText(), Nombre: txtNombreProducto.GetText(), Porcentaje: porcentaje, cantidad: cantidad, TipoId: cmbTipo.GetValue() },
                 success: function (response) {
                     GridViewListaPrecios.PerformCallback();
                     LoadingPanel.Hide();
@@ -164,7 +164,7 @@
             $.ajax({
                 url: "/ListasPrecio/AumentarDisminuirPrecioLista",
                 type: 'POST',
-                data: { ListaPrecioIdSelected: cmbListasPrecio.GetValue(), Codigo: txtCodigoProducto.GetText(), Nombre: txtNombreProducto.GetText(), Aumentar: aumentar, Porcentaje: porcentaje, cantidad: cantidad },
+                data: { ListaPrecioIdSelected: cmbListasPrecio.GetValue(), Codigo: txtCodigoProducto.GetText(), Nombre: txtNombreProducto.GetText(), Aumentar: aumentar, Porcentaje: porcentaje, cantidad: cantidad, TipoId: cmbTipo.GetValue() },
                 success: function (response) {
                     GridViewListaPrecios.PerformCallback();
                     LoadingPanel.Hide();
@@ -252,6 +252,17 @@
                 settings.Width = 300;
                 settings.Properties.NullText = "Nombre del producto";
             }).GetHtml()
+        </div>
+        <div class="buscador-item">
+            <label>Tipo:</label>
+        </div>
+        <div class="buscador-item">
+            @Html.DevExpress().ComboBox(settings =>
+            {
+                settings.Name = "cmbTipo";
+                settings.Properties.ValueField = "Id";
+                settings.Properties.TextField = "Nombre";
+            }).BindList(ViewData["tipos"]).GetHtml()
         </div>
         <div class="buscador-item">
             @Html.DevExpress().Button(settings =>

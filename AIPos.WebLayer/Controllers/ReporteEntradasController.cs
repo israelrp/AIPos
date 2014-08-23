@@ -26,11 +26,11 @@ namespace AIPos.WebLayer.Controllers
         [ValidateInput(false)]
         public ActionResult GridViewPartialEntradas(int? SucursalId, DateTime? Fecha)
         {
-            List<ReporteEntrada> model = new List<ReporteEntrada>();
+            List<ReporteEntradaUtilidad> model = new List<ReporteEntradaUtilidad>();
             if (SucursalId.HasValue && Fecha.HasValue)
             {
                 BOEntrada boEntrada = new BOEntrada();
-                model = boEntrada.SelectReporteByDay(SucursalId.Value, Fecha.Value);
+                model = boEntrada.SelectReporteUtilidadByDay(SucursalId.Value, Fecha.Value);
             }
             return PartialView("_GridViewPartialEntradas", model);
         }
@@ -41,11 +41,11 @@ namespace AIPos.WebLayer.Controllers
             {
                 if (Request.Params[typeName] != null)
                 {
-                    List<ReporteEntrada> model = new List<ReporteEntrada>();
+                    List<ReporteEntradaUtilidad> model = new List<ReporteEntradaUtilidad>();
                     if (ComboBoxSucursales_VI.HasValue && DateEditFecha.HasValue)
                     {
                         BOEntrada boEntrada = new BOEntrada();
-                        model = boEntrada.SelectReporteByDay(ComboBoxSucursales_VI.Value, DateEditFecha.Value);
+                        model = boEntrada.SelectReporteUtilidadByDay(ComboBoxSucursales_VI.Value, DateEditFecha.Value);
                     }
                     ReporteEntradasExport export = new ReporteEntradasExport();
                     return Helpers.GridViewExportHelper.ExportTypes[typeName].Method(export.ExportGridViewSettings, model);
