@@ -96,7 +96,7 @@ namespace AIPos.DekstopLayer.Ventas
         }
 
         private void cmbProductos_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
-        {
+        {            
             if (cmbProductos.SelectedIndex >= 0)
             {
                 Producto producto = (Producto)cmbProductos.SelectedItem;
@@ -135,7 +135,6 @@ namespace AIPos.DekstopLayer.Ventas
                     txtDescuento.Text = CalcularDescuentoEnPesos(listaPrecioProducto.Precio,listaPrecioProducto.Descuento).ToString("c");
                     descuento=listaPrecioProducto.Descuento;
                 }
-
                 if (General.ConfiguracionWeb.ActivarBascula)
                 {
                     if (General.ConfiguracionApp.PuertoBascula != "")
@@ -158,7 +157,7 @@ namespace AIPos.DekstopLayer.Ventas
             try
             {
                 //PuertoSerieBascula.Write("P");
-                byte[] inBuffer = new byte[] { 80 };
+                byte[] inBuffer = new byte[] { 80 };                
                 PuertoSerieBascula.Write(inBuffer, 0, inBuffer.Length);
             }
             catch (InvalidOperationException ex)
@@ -918,7 +917,8 @@ namespace AIPos.DekstopLayer.Ventas
         void PuertoSerieBascula_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             try
-            {
+            {                
+                Thread.Sleep(1000);
                 string peso = PuertoSerieBascula.ReadExisting();
                 
                 this.txtCantidad.Dispatcher.Invoke(
@@ -1049,6 +1049,8 @@ namespace AIPos.DekstopLayer.Ventas
             }
 
         }
+
+
 
 
 

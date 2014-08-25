@@ -206,9 +206,9 @@
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="119"/>                        
+                        <ColumnDefinition Width="119"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="RECUPERAR VENTA" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="Bold" Foreground="Brown"></Label>                    
+                    <Label Content="RECUPERAR VENTA" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="Bold" Foreground="Brown"></Label>
                 </Grid>
             </Button.Content>
         </Button>
@@ -220,6 +220,7 @@
                 <Label Content="CERRAR VENTA" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="Bold" Foreground="Red"/>
             </Grid>
         </Button>
+        
 
     </Grid>
 </dx:DXWindow>
