@@ -5,21 +5,78 @@
         settings.ClientSideEvents.BeginCallback = "function(s,e){ e.customArgs['SucursalId']=SucursalId.GetValue(); e.customArgs['Fecha']=Fecha.GetDate().toLocaleDateString();  }";
 
 		settings.KeyFieldName = "ProductoId";
-
+        
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
 		settings.SettingsPager.Visible = true;
 		settings.Settings.ShowGroupPanel = true;
 		settings.Settings.ShowFilterRow = true;
 		settings.SettingsBehavior.AllowSelectByRowClick = true;
 
 				settings.Columns.Add("Producto");
-				settings.Columns.Add("EntradasCantidad");
-				settings.Columns.Add("InventariosAnteriorCantidad");
-				settings.Columns.Add("InventariosActualCantidad");
-				settings.Columns.Add("VentasCantidad");
-				settings.Columns.Add("EntradasImporte");
-				settings.Columns.Add("InventariosAnteriorImporte");
-				settings.Columns.Add("InventariosActualImporte");
-				settings.Columns.Add("VentasImporte");
+                settings.Columns.Add(c =>
+                {
+                    c.FieldName = "EntradasCantidad";
+                    c.Caption = "Entradas cant.";
+                });
+                settings.Columns.Add(c =>
+                {
+                    c.FieldName = "InventariosAnteriorCantidad";
+                    c.Caption = "Inventario ayer cant.";
+                });
+                settings.Columns.Add(c =>
+                {
+                    c.FieldName = "InventariosActualCantidad";
+                    c.Caption = "Inventario hoy cant.";
+                });
+                settings.Columns.Add(c =>
+                {
+                    c.FieldName = "VentasCantidad";
+                    c.Caption = "Ventas cant.";
+                });
+                settings.Columns.Add(c =>
+                {
+                    c.PropertiesEdit.DisplayFormatString = "c";
+                    c.FieldName = "EntradasImporte";
+                    c.Caption = "Entradas imp.";
+                });
+                settings.Columns.Add(c =>
+                {
+                    c.PropertiesEdit.DisplayFormatString = "c";
+                    c.FieldName = "InventariosAnteriorImporte";
+                    c.Caption = "Inventarios ayer imp.";
+                });
+                settings.Columns.Add(c =>
+                {
+                    c.PropertiesEdit.DisplayFormatString = "c";
+                    c.FieldName = "InventariosActualImporte";
+                    c.Caption = "Inventarios hoy imp.";
+                });
+                settings.Columns.Add(c =>
+                {
+                    c.PropertiesEdit.DisplayFormatString = "c";
+                    c.FieldName = "VentasImporte";
+                    c.Caption = "Ventas imp.";
+                });
+                settings.Columns.Add(c =>
+                {
+                    c.FieldName = "InventarioCantidad";
+                    c.Caption = "Inventario cant.";
+                });
+                settings.Columns.Add(c =>
+                {
+                    c.FieldName = "SobranteCantidad";
+                    c.Caption = "Sobrante cant.";
+                });
+                settings.Columns.Add(c =>
+                {
+                    c.PropertiesEdit.DisplayFormatString = "c";
+                    c.FieldName = "InventarioCosto";
+                });
+                settings.Columns.Add(c =>
+                {
+                    c.PropertiesEdit.DisplayFormatString = "c";
+                    c.FieldName = "UtilidadReal";
+                });
 			});
 }
 @grid.Bind(Model).GetHtml()

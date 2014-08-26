@@ -98,5 +98,9 @@ namespace AIPos.Domain
         public decimal InventariosAnteriorImporte { get; set;}
         public decimal InventariosActualImporte { get; set;}
         public decimal VentasImporte { get; set; }
+        public decimal SobranteCantidad { get; set; }
+        public decimal InventarioCosto { get; set; }
+        public decimal InventarioCantidad { get; set; }
+        public decimal UtilidadReal { get; set; }
     }
 }
