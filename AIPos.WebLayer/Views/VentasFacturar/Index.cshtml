@@ -40,12 +40,12 @@
         PopupControlDetalles.SetHeaderText("Detalles Fecha: " + values[0].toLocaleDateString()+" Folio:"+values[1]+" Folio cancelado:"+values[2]);
     }
 </script>
+<div style="width:1480px; margin:0px auto;">
+    <h5>Ventas para facturar</h5>
 
-<h5>Ventas para facturar</h5>
+    @Html.Action("GridViewPartialVentas")
 
-@Html.Action("GridViewPartialVentas")
-
-@Html.DevExpress().PopupControl(settings =>
+    @Html.DevExpress().PopupControl(settings =>
 {
     settings.Name = "PopupControlDetalles";
     settings.ShowHeader = true;
@@ -61,8 +61,9 @@
         Html.RenderPartial("~/Views/VentasFacturar/_GridViewPartialVentaDetalle.cshtml");
     });
 }).GetHtml()
-@Html.DevExpress().TextBox(settings =>
+    @Html.DevExpress().TextBox(settings =>
 {
     settings.Name = "txtVentaId";
     settings.ClientVisible = false;
 }).GetHtml()
+</div>

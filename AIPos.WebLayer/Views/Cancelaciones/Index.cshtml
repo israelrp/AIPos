@@ -58,15 +58,15 @@
         }
     }
 </script>
+<div style="width:920px; margin:0px auto;">
+    <h5>Cancelaciones</h5>
 
-<h5>Cancelaciones</h5>
 
-
-<table>
-    <tr>
-        <td>
-            <span>Sucursal:</span>
-            @Html.DevExpress().ComboBox(s =>
+    <table>
+        <tr>
+            <td>
+                <span>Sucursal:</span>
+                @Html.DevExpress().ComboBox(s =>
             {
                 s.Name = "ComboBoxSucursales";
                 s.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
@@ -75,104 +75,104 @@
                 s.Properties.ValueField = "Id";
                 s.Properties.NullText = "Sucursal que realizo entradas";
             }).BindList(ViewData["Sucursales"]).GetHtml()
-        </td>
-        <td>
-            <span>Tipo venta:</span>
-            @Html.DevExpress().ComboBox(settings =>
+            </td>
+            <td>
+                <span>Tipo venta:</span>
+                @Html.DevExpress().ComboBox(settings =>
             {
                 settings.Name = "ComboBoxTipoVenta";
                 settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
                 settings.Properties.DropDownStyle = DropDownStyle.DropDown;
-                settings.Properties.Items.Add("Venta",1);
-                settings.Properties.Items.Add("Orden",2);
-                settings.Properties.Items.Add("Domicilio",3);
-                settings.Properties.Items.Add("Servicio",4);
-                settings.Properties.Items.Add("Apartado",5);
+                settings.Properties.Items.Add("Venta", 1);
+                settings.Properties.Items.Add("Orden", 2);
+                settings.Properties.Items.Add("Domicilio", 3);
+                settings.Properties.Items.Add("Servicio", 4);
+                settings.Properties.Items.Add("Apartado", 5);
             }).GetHtml()
-        </td>
-        <td>
-            <span>Fecha venta:</span>
-            @Html.DevExpress().DateEdit(settings =>
+            </td>
+            <td>
+                <span>Fecha venta:</span>
+                @Html.DevExpress().DateEdit(settings =>
             {
                 settings.Name = "DateEditVenta";
                 settings.Properties.NullText = "Fecha del ticket";
             }).GetHtml()
-        </td>
-        <td>
-            <span>Folio ticket:</span>
-            @Html.DevExpress().TextBox(settings =>
+            </td>
+            <td>
+                <span>Folio ticket:</span>
+                @Html.DevExpress().TextBox(settings =>
             {
                 settings.Name = "TextBoxFolio";
                 settings.Properties.NullText = "Folio de la ticket";
             }).GetHtml()
-        </td>
-        <td>
-            @Html.DevExpress().Button(settings =>
+            </td>
+            <td>
+                @Html.DevExpress().Button(settings =>
             {
                 settings.Name = "ButtonBuscar";
                 settings.Text = "Buscar ticket";
                 settings.UseSubmitBehavior = false;
                 settings.ClientSideEvents.Click = "function (s,e) { RecuperarVenta(); } ";
             }).GetHtml()
-        </td>
-    </tr>
-</table>
+            </td>
+        </tr>
+    </table>
 
-<div id="divDetalles" style="border-top:1px solid; margin-top:20px; width:980px; display:none;">
-    <br/>
-    <span><b>Detalles del ticket</b></span>
-    <table>
-        <tr>
-            <td>
-                <span>Cliente:</span>
-                @Html.DevExpress().TextBox(settings =>
+    <div id="divDetalles" style="border-top:1px solid; margin-top:20px; width:980px; display:none;">
+        <br />
+        <span><b>Detalles del ticket</b></span>
+        <table>
+            <tr>
+                <td>
+                    <span>Cliente:</span>
+                    @Html.DevExpress().TextBox(settings =>
         {
             settings.Name = "txtCliente";
             settings.ReadOnly = true;
         }).GetHtml()
-            </td>
-            <td>
-                <span>Cajero:</span>
-                @Html.DevExpress().TextBox(settings =>
+                </td>
+                <td>
+                    <span>Cajero:</span>
+                    @Html.DevExpress().TextBox(settings =>
         {
             settings.Name = "txtUsuario";
             settings.ReadOnly = true;
         }).GetHtml()
-            </td>
-            <td>
-                <span>Total:</span>
-                @Html.DevExpress().TextBox(settings =>
+                </td>
+                <td>
+                    <span>Total:</span>
+                    @Html.DevExpress().TextBox(settings =>
         {
             settings.Name = "txtTotal";
             settings.ReadOnly = true;
         }).GetHtml()
-            </td>
-            <td>
-                <span>Recibio:</span>
-                @Html.DevExpress().TextBox(settings =>
+                </td>
+                <td>
+                    <span>Recibio:</span>
+                    @Html.DevExpress().TextBox(settings =>
         {
             settings.Name = "txtRecibio";
             settings.ReadOnly = true;
         }).GetHtml()
-            </td>
-            <td>
-                <span>Cambio:</span>
-                @Html.DevExpress().TextBox(settings =>
+                </td>
+                <td>
+                    <span>Cambio:</span>
+                    @Html.DevExpress().TextBox(settings =>
         {
             settings.Name = "txtCambio";
             settings.ReadOnly = true;
         }).GetHtml()
-            </td>
-        </tr>
-    </table>
-    <div id="divLeyenda" style="color:red; display:none;">
-        <b>
-            Este ticket ha sido cancelado
-        </b>
-    </div>
-    
-    <br />
-    @Html.DevExpress().Button(settings =>
+                </td>
+            </tr>
+        </table>
+        <div id="divLeyenda" style="color:red; display:none;">
+            <b>
+                Este ticket ha sido cancelado
+            </b>
+        </div>
+
+        <br />
+        @Html.DevExpress().Button(settings =>
     {
         settings.Name = "ButtonCancelar";
         settings.Text = "Cancelar ticket";
@@ -180,16 +180,16 @@
         settings.ClientSideEvents.Click = "function (s,e) { CancelarVenta(); } ";
         settings.ClientVisible = false;
     }).GetHtml()
-</div>
-@Html.DevExpress().TextBox(settings =>
+    </div>
+    @Html.DevExpress().TextBox(settings =>
 {
     settings.Name = "TextBoxVentaId";
     settings.ClientVisible = false;
 }).GetHtml()
 
-@Html.Action("GridViewPartialVentaDetalle")
+    @Html.Action("GridViewPartialVentaDetalle")
 
-
+    </div>
 
 
 

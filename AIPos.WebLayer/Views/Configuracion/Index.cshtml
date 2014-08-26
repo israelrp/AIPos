@@ -27,37 +27,37 @@
         border-top-right-radius: 8px;
     }
 </style>
-<h5>Configuración</h5>
-<br /><br />
-@using (Ajax.BeginForm("GuardarConfiguracionPOS", new AjaxOptions { OnSuccess = "alert('Configuración POS guardada')" }))
-{
-    <div class="content-config">
-        <label class="titulo">Configuración del POS</label>
-        <div class="content-data">
-            @{ Html.RenderPartial("_ConfiguracionPOS", Model); }
+<div style="width:1200px; margin:0px auto;">
+    <h5>Configuración</h5>
+    <br /><br />
+    @using (Ajax.BeginForm("GuardarConfiguracionPOS", new AjaxOptions { OnSuccess = "alert('Configuración POS guardada')" }))
+    {
+        <div class="content-config">
+            <label class="titulo">Configuración del POS</label>
+            <div class="content-data">
+                @{ Html.RenderPartial("_ConfiguracionPOS", Model); }
+            </div>
         </div>
-    </div>
-}
-<br />
-@using (Ajax.BeginForm("GuardarConfiguracionRedondeo", new AjaxOptions { OnSuccess = "alert('Configuración redondeo guardada')" }))
-{
-    <div class="content-config">
-        <label class="titulo">Configuración redondeo decimales</label>
-        <div class="content-data">
-            @{ Html.RenderPartial("_ConfiguracionRedondeo", Model); }
+    }
+    <br />
+    @using (Ajax.BeginForm("GuardarConfiguracionRedondeo", new AjaxOptions { OnSuccess = "alert('Configuración redondeo guardada')" }))
+    {
+        <div class="content-config">
+            <label class="titulo">Configuración redondeo decimales</label>
+            <div class="content-data">
+                @{ Html.RenderPartial("_ConfiguracionRedondeo", Model); }
+            </div>
         </div>
-    </div>
-}
-<br />
-@using (Ajax.BeginForm("GuardarConfiguracionTicket", new AjaxOptions { OnSuccess = "alert('Configuración ticket guardada')" }))
-{
-    <div class="content-config">
-        <label class="titulo">Configración ticket</label>
-        <div class="content-data">
-            @{ Html.RenderPartial("_ConfiguracionTicket", Model); }
+    }
+    <br />
+    @using (Ajax.BeginForm("GuardarConfiguracionTicket", new AjaxOptions { OnSuccess = "alert('Configuración ticket guardada')" }))
+    {
+        <div class="content-config">
+            <label class="titulo">Configración ticket</label>
+            <div class="content-data">
+                @{ Html.RenderPartial("_ConfiguracionTicket", Model); }
+            </div>
         </div>
-    </div>
-}
-        
-    
+    }
 
+    </div>

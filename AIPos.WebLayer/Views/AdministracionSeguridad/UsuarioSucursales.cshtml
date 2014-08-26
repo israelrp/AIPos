@@ -1,14 +1,14 @@
 ﻿@{
     ViewBag.Title = "UsuarioSucursales";
 }
+<div style="width:460px; margin:0px auto;">
+    <h5>Asignar sucursales a usuarios</h5>
 
-<h5>Asignar sucursales a usuarios</h5>
 
 
+    @Html.Action("ComboBoxPartialUsuarios")
 
-@Html.Action("ComboBoxPartialUsuarios")
-
-@Html.DevExpress().Button(settings =>
+    @Html.DevExpress().Button(settings =>
 {
     settings.Name = "btnConsultar";
     settings.UseSubmitBehavior = false;
@@ -16,4 +16,5 @@
     settings.ClientSideEvents.Click = "function(s,e) { GridViewUsuarioSucursales.PerformCallback(); }";
 }).GetHtml()
 
-@Html.Action("GridViewPartialUsuarioSucursales")
+    @Html.Action("GridViewPartialUsuarioSucursales")
+</div>

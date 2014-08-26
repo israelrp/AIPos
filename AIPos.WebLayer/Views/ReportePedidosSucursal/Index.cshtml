@@ -1,15 +1,15 @@
 ﻿@{
     ViewBag.Title = "Reporte de pedidos sucursal";
 }
+<div style="width:1050px; margin:0px auto;">
+    <h2>Pedidos de sucursales</h2>
 
-<h2>Pedidos de sucursales</h2>
-
-@using (Html.BeginForm("ExportTo", "ReportePedidosSucursal"))
-{
-    <table>
-        <tr>
-            <td>
-                @Html.DevExpress().ComboBox(s =>
+    @using (Html.BeginForm("ExportTo", "ReportePedidosSucursal"))
+    {
+        <table>
+            <tr>
+                <td>
+                    @Html.DevExpress().ComboBox(s =>
                 {
                     s.Name = "ComboBoxSucursales";
                     s.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
@@ -18,37 +18,37 @@
                     s.Properties.ValueField = "Id";
                     s.Properties.NullText = "Sucursal que realizo los pedidos";
                 }).BindList(ViewData["Sucursales"]).GetHtml()
-            </td>
-            <td>
-                @Html.DevExpress().DateEdit(settings =>
+                </td>
+                <td>
+                    @Html.DevExpress().DateEdit(settings =>
                 {
                     settings.Name = "DateEditFecha";
                     settings.Properties.NullText = "Fecha pedidos";
                     settings.Properties.AllowNull = false;
                 }).GetHtml()
-            </td>
-            <td>
-                @Html.DevExpress().Button(settings =>
+                </td>
+                <td>
+                    @Html.DevExpress().Button(settings =>
                 {
                     settings.Name = "btnConsultar";
                     settings.UseSubmitBehavior = false;
                     settings.Text = "Consultar";
                     settings.ClientSideEvents.Click = " function(s,e){ GridViewPedidosSucursal.PerformCallback(); } ";
                 }).GetHtml()
-            </td>
-        </tr>
-    </table>
-    <div style="margin-top:15px; margin-bottom:15px;">
-        @foreach (string typeName in AIPos.WebLayer.Helpers.GridViewExportHelper.ExportTypes.Keys)
-        {
-            <button class="btn btn-sm btn-success" type="submit" name="@typeName">@AIPos.WebLayer.Helpers.GridViewExportHelper.ExportTypes[typeName].Title</button>
-            <text>&nbsp;</text>
-        }
+                </td>
+            </tr>
+        </table>
+        <div style="margin-top:15px; margin-bottom:15px;">
+            @foreach (string typeName in AIPos.WebLayer.Helpers.GridViewExportHelper.ExportTypes.Keys)
+            {
+                <button class="btn btn-sm btn-success" type="submit" name="@typeName">@AIPos.WebLayer.Helpers.GridViewExportHelper.ExportTypes[typeName].Title</button>
+                <text>&nbsp;</text>
+            }
+        </div>
+    }
+
+    @Html.Action("GridViewPartialPedidosSucursal")
     </div>
-}
-
-@Html.Action("GridViewPartialPedidosSucursal")
-
 
 
 
