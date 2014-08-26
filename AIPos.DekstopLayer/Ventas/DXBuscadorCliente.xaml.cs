@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
 using AIPos.Domain;
+using System.ServiceModel;
 
 
 namespace AIPos.DekstopLayer.Ventas
@@ -27,8 +28,23 @@ namespace AIPos.DekstopLayer.Ventas
         {
             InitializeComponent();
             gridClientes.View.SearchControl = scClientes;
-            ServiceCliente.SClienteClient sClienteClient = new ServiceCliente.SClienteClient();
-            gridClientes.ItemsSource = sClienteClient.SelectAll();
+            try
+            {
+                ServiceCliente.SClienteClient sClienteClient = new ServiceCliente.SClienteClient();
+                gridClientes.ItemsSource = sClienteClient.SelectAll();
+            }
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void gridClientes_MouseDoubleClick(object sender, MouseButtonEventArgs e)

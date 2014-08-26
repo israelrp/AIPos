@@ -60,6 +60,10 @@ namespace AIPos.DekstopLayer.Ventas
             {
                 MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
@@ -214,75 +218,90 @@ namespace AIPos.DekstopLayer.Ventas
         private void txtCantidad_KeyUp(object sender, KeyEventArgs e)
         {
             decimal cantidad = 0;
-            if (e.Key == Key.Enter && decimal.TryParse(txtCantidad.Text,out cantidad))
+            try
             {
-                if (cmbProductos.SelectedIndex >= 0)
+                if (e.Key == Key.Enter && decimal.TryParse(txtCantidad.Text, out cantidad))
                 {
-                    Producto producto = (Producto)cmbProductos.SelectedItem;
-                    VentaDetalle ventaDetalle = new VentaDetalle();
-                    ventaDetalle.Id = 0;
-                    ventaDetalle.VentaId = 0;
-                    ventaDetalle.ProductoId = producto.Id;
-                    ventaDetalle.Cantidad = Math.Round(cantidad,General.ConfiguracionWeb.DecimalesCantidad);
-                    ventaDetalle.PrecioUnitario = decimal.Parse(txtPrecioUnitario.Text);
-                    ventaDetalle.Codigo = producto.Codigo;
-                    ventaDetalle.Nombre = producto.Nombre;
-                    ventaDetalle.Fecha = DateTime.Now;
-                    ventaDetalle.Descuento = descuento;
-                    ventaDetalle.Importe =Math.Round( ventaDetalle.Cantidad * ventaDetalle.PrecioUnitario,General.ConfiguracionWeb.DecimalesPrecioProducto);
-                    
-                    if (ventaDetalle.Descuento > 0)
+                    if (cmbProductos.SelectedIndex >= 0)
                     {
-                        ventaDetalle.Importe = Math.Round(ventaDetalle.Importe - ((ventaDetalle.Descuento / 100) * ventaDetalle.Importe), General.ConfiguracionWeb.DecimalesPrecioProducto);
-                    }
-                    List<VentaDetalle> ventasDetalle = (List<VentaDetalle>)gridVenta.ItemsSource;
-                    ventasDetalle.Add(ventaDetalle);
-                    gridVenta.ItemsSource = ventasDetalle;
-                    gridVenta.RefreshData();
-                    LimpiarAgregarProducto();
-                    CalcularTotal();
-                    txtRecibi.Focus();
-                    if (producto.SePesa && General.ConfiguracionWeb.ActivarTicketPesaje)
-                    {
-                        try
+                        Producto producto = (Producto)cmbProductos.SelectedItem;
+                        VentaDetalle ventaDetalle = new VentaDetalle();
+                        ventaDetalle.Id = 0;
+                        ventaDetalle.VentaId = 0;
+                        ventaDetalle.ProductoId = producto.Id;
+                        ventaDetalle.Cantidad = Math.Round(cantidad, General.ConfiguracionWeb.DecimalesCantidad);
+                        ventaDetalle.PrecioUnitario = decimal.Parse(txtPrecioUnitario.Text);
+                        ventaDetalle.Codigo = producto.Codigo;
+                        ventaDetalle.Nombre = producto.Nombre;
+                        ventaDetalle.Fecha = DateTime.Now;
+                        ventaDetalle.Descuento = descuento;
+                        ventaDetalle.Importe = Math.Round(ventaDetalle.Cantidad * ventaDetalle.PrecioUnitario, General.ConfiguracionWeb.DecimalesPrecioProducto);
+
+                        if (ventaDetalle.Descuento > 0)
                         {
-                            Unidad unidad = new ServiceUnidad.SUnidadClient().SelectById(producto.UnidadId);
-                            Documentos.TicketPesaje ticketPesaje = new Documentos.TicketPesaje();
-                            ticketPesaje.SetParameterValue("Producto", producto.Nombre);
-                            ticketPesaje.SetParameterValue("PrecioUnitario", ventaDetalle.PrecioUnitario.ToString("c"));
-                            decimal precioDescuento = Math.Round(ventaDetalle.PrecioUnitario - (ventaDetalle.PrecioUnitario * (ventaDetalle.Descuento / 100)), General.ConfiguracionWeb.DecimalesPrecioProducto);
-                            ticketPesaje.SetParameterValue("PrecioDescuento", precioDescuento.ToString("c"));
-                            ticketPesaje.SetParameterValue("Cantidad", ventaDetalle.Cantidad.ToString() + " " + unidad.Nombre);
-                            ticketPesaje.SetParameterValue("Importe", ventaDetalle.Importe.ToString("c"));
-                            ticketPesaje.SetParameterValue("Usuario", General.UsuarioLogueado.Nombre + " " + General.UsuarioLogueado.Paterno + " " + General.UsuarioLogueado.Materno);
-                            ticketPesaje.SetParameterValue("LogoUrl", System.AppDomain.CurrentDomain.BaseDirectory + @"\logoTicket.png");
-                            //----------------------------------------------------------------------
-                            CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
-                            PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
-                            System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
-                            printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
-                            printerSettings.Copies = 2;
-                            var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
-                            //pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
-                            //report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
-                            //report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
-                            if (!General.ConfiguracionApp.ImpresoraVirtual)
-                                ticketPesaje.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
-                            else
+                            ventaDetalle.Importe = Math.Round(ventaDetalle.Importe - ((ventaDetalle.Descuento / 100) * ventaDetalle.Importe), General.ConfiguracionWeb.DecimalesPrecioProducto);
+                        }
+                        List<VentaDetalle> ventasDetalle = (List<VentaDetalle>)gridVenta.ItemsSource;
+                        ventasDetalle.Add(ventaDetalle);
+                        gridVenta.ItemsSource = ventasDetalle;
+                        gridVenta.RefreshData();
+                        LimpiarAgregarProducto();
+                        CalcularTotal();
+                        txtRecibi.Focus();
+                        if (producto.SePesa && General.ConfiguracionWeb.ActivarTicketPesaje)
+                        {
+                            try
                             {
-                                ReportViewer reportViewer = new ReportViewer();
-                                reportViewer.Show();
-                                ReportDocument reportDocument = (ReportDocument)ticketPesaje;
-                                reportViewer.viewer.ViewerCore.ReportSource = reportDocument;
+                                Unidad unidad = new ServiceUnidad.SUnidadClient().SelectById(producto.UnidadId);
+                                Documentos.TicketPesaje ticketPesaje = new Documentos.TicketPesaje();
+                                ticketPesaje.SetParameterValue("Producto", producto.Nombre);
+                                ticketPesaje.SetParameterValue("PrecioUnitario", ventaDetalle.PrecioUnitario.ToString("c"));
+                                decimal precioDescuento = Math.Round(ventaDetalle.PrecioUnitario - (ventaDetalle.PrecioUnitario * (ventaDetalle.Descuento / 100)), General.ConfiguracionWeb.DecimalesPrecioProducto);
+                                ticketPesaje.SetParameterValue("PrecioDescuento", precioDescuento.ToString("c"));
+                                ticketPesaje.SetParameterValue("Cantidad", ventaDetalle.Cantidad.ToString() + " " + unidad.Nombre);
+                                ticketPesaje.SetParameterValue("Importe", ventaDetalle.Importe.ToString("c"));
+                                ticketPesaje.SetParameterValue("Usuario", General.UsuarioLogueado.Nombre + " " + General.UsuarioLogueado.Paterno + " " + General.UsuarioLogueado.Materno);
+                                ticketPesaje.SetParameterValue("LogoUrl", System.AppDomain.CurrentDomain.BaseDirectory + @"\logoTicket.png");
+                                //----------------------------------------------------------------------
+                                CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
+                                PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
+                                System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
+                                printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
+                                printerSettings.Copies = 2;
+                                var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
+                                //pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
+                                //report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
+                                //report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
+                                if (!General.ConfiguracionApp.ImpresoraVirtual)
+                                    ticketPesaje.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+                                else
+                                {
+                                    ReportViewer reportViewer = new ReportViewer();
+                                    reportViewer.Show();
+                                    ReportDocument reportDocument = (ReportDocument)ticketPesaje;
+                                    reportViewer.viewer.ViewerCore.ReportSource = reportDocument;
+                                }
                             }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message + " - " + ex.StackTrace + " - " + ex.Source);
+                            }
+                            //----------------------------------------------------------------------
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message+" - " + ex.StackTrace +" - " + ex.Source );
-                        }
-                        //----------------------------------------------------------------------
                     }
                 }
+            }
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -364,38 +383,54 @@ namespace AIPos.DekstopLayer.Ventas
                 {
                     if (gridVenta.VisibleRowCount > 0)
                     {
-                        Venta venta = new Venta();
-                        venta.Cambio = cambio;
-                        venta.Cancelado = false;
-                        venta.ClienteId = ((Cliente)cmbClientes.SelectedItem).Id;
-                        venta.Cliente = (Cliente)cmbClientes.SelectedItem;
-                        venta.Fecha = DateTime.Now;
-                        venta.Folio = 0;
-                        venta.FolioCancelado = 0;
-                        venta.Id = 0;
-                        venta.Recibio = recibio;
-                        venta.Facturado = false;
-                        venta.Estatus = 0;
-                        venta.SucursalId = General.ConfiguracionApp.SucursalId;
-                        ServiceSucursal.SSucursalClient sucursalClient = new ServiceSucursal.SSucursalClient();
-                        Sucursal sucursal = sucursalClient.SelectById(venta.SucursalId);
-                        venta.Sucursal = new Sucursal();
-                        venta.Sucursal.Id = sucursal.Id;
-                        venta.Sucursal.Nombre = sucursal.Nombre;
-                        venta.Sucursal.DireccionId = sucursal.DireccionId;
-                        venta.Sucursal.FraseTicket = sucursal.FraseTicket;
-                        venta.Total = total;
-                        venta.UsuarioId = General.UsuarioLogueado.Id;
-                        venta.Usuario = new Usuario();
-                        venta.Usuario.Nombre = General.UsuarioLogueado.Nombre;
-                        venta.Usuario.Id = General.UsuarioLogueado.Id;
-                        venta.Usuario.Paterno = General.UsuarioLogueado.Paterno;
-                        venta.Usuario.Materno = General.UsuarioLogueado.Materno;
-                        venta.VentasDetalle = (List<VentaDetalle>)gridVenta.ItemsSource;
-                        ServiceVenta.ISVentaClient ventaClient = new ServiceVenta.ISVentaClient();
-                        Venta ventaInsertada = ventaClient.Insert(venta);
-                        //ImprimirTicket(venta);
-                        MessageBox.Show("¡EL ID DE LA VENTA FUE EL " + ventaInsertada.Id.ToString() + "!");
+                        try
+                        {
+                            Venta venta = new Venta();
+                            venta.Cambio = cambio;
+                            venta.Cancelado = false;
+                            venta.ClienteId = ((Cliente)cmbClientes.SelectedItem).Id;
+                            venta.Cliente = (Cliente)cmbClientes.SelectedItem;
+                            venta.Fecha = DateTime.Now;
+                            venta.Folio = 0;
+                            venta.FolioCancelado = 0;
+                            venta.Id = 0;
+                            venta.Recibio = recibio;
+                            venta.Facturado = false;
+                            venta.Estatus = 0;
+                            venta.SucursalId = General.ConfiguracionApp.SucursalId;
+                            ServiceSucursal.SSucursalClient sucursalClient = new ServiceSucursal.SSucursalClient();
+                            Sucursal sucursal = sucursalClient.SelectById(venta.SucursalId);
+                            venta.Sucursal = new Sucursal();
+                            venta.Sucursal.Id = sucursal.Id;
+                            venta.Sucursal.Nombre = sucursal.Nombre;
+                            venta.Sucursal.DireccionId = sucursal.DireccionId;
+                            venta.Sucursal.FraseTicket = sucursal.FraseTicket;
+                            venta.Total = total;
+                            venta.UsuarioId = General.UsuarioLogueado.Id;
+                            venta.Usuario = new Usuario();
+                            venta.Usuario.Nombre = General.UsuarioLogueado.Nombre;
+                            venta.Usuario.Id = General.UsuarioLogueado.Id;
+                            venta.Usuario.Paterno = General.UsuarioLogueado.Paterno;
+                            venta.Usuario.Materno = General.UsuarioLogueado.Materno;
+                            venta.VentasDetalle = (List<VentaDetalle>)gridVenta.ItemsSource;
+                            ServiceVenta.ISVentaClient ventaClient = new ServiceVenta.ISVentaClient();
+                            Venta ventaInsertada = ventaClient.Insert(venta);
+                            //ImprimirTicket(venta);
+                            MessageBox.Show("¡EL ID DE LA VENTA FUE EL " + ventaInsertada.Id.ToString() + "!");
+
+                        }
+                        catch (FaultException ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        catch (CommunicationException ex)
+                        {
+                            MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                         ReiniciarVenta();
                     }
 
@@ -432,69 +467,83 @@ namespace AIPos.DekstopLayer.Ventas
                             {
                                 if (decimal.TryParse(lblTotal.Content.ToString().Replace("$", "").Replace(",", ""), out total))
                                 {
-
-                                    ventaActual.Cambio = cambio;
-                                    ventaActual.Cancelado = false;
-                                    ventaActual.ClienteId = ((Cliente)cmbClientes.SelectedItem).Id;
-                                    ventaActual.Cliente = (Cliente)cmbClientes.SelectedItem;
-                                    ventaActual.Fecha = DateTime.Now;
-                                    ventaActual.Folio = 0;
-                                    ventaActual.FolioCancelado = 0;
-                                    ventaActual.Recibio = recibio;
-                                    ventaActual.Facturado = false;
-                                    ventaActual.Estatus = 1;
-                                    ventaActual.SucursalId = General.ConfiguracionApp.SucursalId;
-                                    ServiceSucursal.SSucursalClient sucursalClient = new ServiceSucursal.SSucursalClient();
-                                    Sucursal sucursal = sucursalClient.SelectById(ventaActual.SucursalId);
-                                    ventaActual.Sucursal = new Sucursal();
-                                    ventaActual.Sucursal.Id = sucursal.Id;
-                                    ventaActual.Sucursal.Nombre = sucursal.Nombre;
-                                    ventaActual.Sucursal.DireccionId = sucursal.DireccionId;
-                                    ventaActual.Sucursal.FraseTicket = sucursal.FraseTicket;
-                                    ventaActual.Total = total;
-                                    ventaActual.UsuarioId = General.UsuarioLogueado.Id;
-                                    ventaActual.Usuario = new Usuario();
-                                    ventaActual.Usuario.Nombre = General.UsuarioLogueado.Nombre;
-                                    ventaActual.Usuario.Id = General.UsuarioLogueado.Id;
-                                    ventaActual.Usuario.Paterno = General.UsuarioLogueado.Paterno;
-                                    ventaActual.Usuario.Materno = General.UsuarioLogueado.Materno;
-                                    ventaActual.VentasDetalle = (List<VentaDetalle>)gridVenta.ItemsSource;
-                                    ServiceVenta.ISVentaClient ventaClient = new ServiceVenta.ISVentaClient();
-                                    if (EsOrden)
-                                        ventaActual.FolioCancelado = ventaClient.GenerarFolioCancelado(ventaActual.SucursalId, DateTime.Now.ToFileTimeUtc());
-                                    else
-                                        ventaActual.Folio = ventaClient.GenerarFolioVenta(ventaActual.SucursalId);
-                                    if (ServicioApartadoVenta != null)
+                                    try
                                     {
-                                        switch (ServicioApartadoVenta.Tipo)
+                                        ventaActual.Cambio = cambio;
+                                        ventaActual.Cancelado = false;
+                                        ventaActual.ClienteId = ((Cliente)cmbClientes.SelectedItem).Id;
+                                        ventaActual.Cliente = (Cliente)cmbClientes.SelectedItem;
+                                        ventaActual.Fecha = DateTime.Now;
+                                        ventaActual.Folio = 0;
+                                        ventaActual.FolioCancelado = 0;
+                                        ventaActual.Recibio = recibio;
+                                        ventaActual.Facturado = false;
+                                        ventaActual.Estatus = 1;
+                                        ventaActual.SucursalId = General.ConfiguracionApp.SucursalId;
+                                        ServiceSucursal.SSucursalClient sucursalClient = new ServiceSucursal.SSucursalClient();
+                                        Sucursal sucursal = sucursalClient.SelectById(ventaActual.SucursalId);
+                                        ventaActual.Sucursal = new Sucursal();
+                                        ventaActual.Sucursal.Id = sucursal.Id;
+                                        ventaActual.Sucursal.Nombre = sucursal.Nombre;
+                                        ventaActual.Sucursal.DireccionId = sucursal.DireccionId;
+                                        ventaActual.Sucursal.FraseTicket = sucursal.FraseTicket;
+                                        ventaActual.Total = total;
+                                        ventaActual.UsuarioId = General.UsuarioLogueado.Id;
+                                        ventaActual.Usuario = new Usuario();
+                                        ventaActual.Usuario.Nombre = General.UsuarioLogueado.Nombre;
+                                        ventaActual.Usuario.Id = General.UsuarioLogueado.Id;
+                                        ventaActual.Usuario.Paterno = General.UsuarioLogueado.Paterno;
+                                        ventaActual.Usuario.Materno = General.UsuarioLogueado.Materno;
+                                        ventaActual.VentasDetalle = (List<VentaDetalle>)gridVenta.ItemsSource;
+                                        ServiceVenta.ISVentaClient ventaClient = new ServiceVenta.ISVentaClient();
+                                        if (EsOrden)
+                                            ventaActual.FolioCancelado = ventaClient.GenerarFolioCancelado(ventaActual.SucursalId, DateTime.Now.ToFileTimeUtc());
+                                        else
+                                            ventaActual.Folio = ventaClient.GenerarFolioVenta(ventaActual.SucursalId);
+                                        if (ServicioApartadoVenta != null)
                                         {
-                                            case 0:
-                                                ventaActual.FolioCancelado = ventaClient.GenerarFolioCanceladoDomicilio(ventaActual.SucursalId, DateTime.Now.ToFileTimeUtc());
-                                                break;
-                                            case 1:
-                                                ventaActual.FolioCancelado = ventaClient.GenerarFolioCanceladoApartado(ventaActual.SucursalId, DateTime.Now.ToFileTimeUtc());
-                                                break;
-                                            case 2:
-                                                ventaActual.FolioCancelado = ventaClient.GenerarFolioCanceladoServicio(ventaActual.SucursalId, DateTime.Now.ToFileTimeUtc());
-                                                break;
+                                            switch (ServicioApartadoVenta.Tipo)
+                                            {
+                                                case 0:
+                                                    ventaActual.FolioCancelado = ventaClient.GenerarFolioCanceladoDomicilio(ventaActual.SucursalId, DateTime.Now.ToFileTimeUtc());
+                                                    break;
+                                                case 1:
+                                                    ventaActual.FolioCancelado = ventaClient.GenerarFolioCanceladoApartado(ventaActual.SucursalId, DateTime.Now.ToFileTimeUtc());
+                                                    break;
+                                                case 2:
+                                                    ventaActual.FolioCancelado = ventaClient.GenerarFolioCanceladoServicio(ventaActual.SucursalId, DateTime.Now.ToFileTimeUtc());
+                                                    break;
+                                            }
+                                        }
+                                        if (chkFacturar.IsChecked.HasValue)
+                                            ventaActual.RequiereFactura = chkFacturar.IsChecked.Value;
+                                        else
+                                            ventaActual.RequiereFactura = false;
+                                        Venta ventaInsertada = ventaClient.Update(ventaActual);
+                                        if (ServicioApartadoVenta != null)
+                                        {
+                                            ServicioApartadoVenta.VentaId = ventaInsertada.Id;
+                                            ServiceServicioApartado.SServicioApartadoClient servicioApartadoClient = new ServiceServicioApartado.SServicioApartadoClient();
+                                            ServicioApartadoVenta = servicioApartadoClient.Insert(ServicioApartadoVenta);
+                                            ServicioApartadoVenta.DireccionEnvio = new ServiceDireccion.SDireccionClient().SelectById(ServicioApartadoVenta.DireccionEnvioId);
+                                            ImprimirApartadosServicio(ventaActual, ServicioApartadoVenta);
+                                        }
+                                        else
+                                        {
+                                            ImprimirTicket(ventaActual);
                                         }
                                     }
-                                    if (chkFacturar.IsChecked.HasValue)
-                                        ventaActual.RequiereFactura = chkFacturar.IsChecked.Value;
-                                    else
-                                        ventaActual.RequiereFactura = false;
-                                    Venta ventaInsertada = ventaClient.Update(ventaActual);
-                                    if (ServicioApartadoVenta != null)
+                                    catch (FaultException ex)
                                     {
-                                        ServicioApartadoVenta.VentaId = ventaInsertada.Id;
-                                        ServiceServicioApartado.SServicioApartadoClient servicioApartadoClient = new ServiceServicioApartado.SServicioApartadoClient();
-                                        ServicioApartadoVenta = servicioApartadoClient.Insert(ServicioApartadoVenta);
-                                        ServicioApartadoVenta.DireccionEnvio = new ServiceDireccion.SDireccionClient().SelectById(ServicioApartadoVenta.DireccionEnvioId);
-                                        ImprimirApartadosServicio(ventaActual, ServicioApartadoVenta);
+                                        MessageBox.Show(ex.Message);
                                     }
-                                    else
+                                    catch (CommunicationException ex)
                                     {
-                                        ImprimirTicket(ventaActual);
+                                        MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show(ex.Message);
                                     }
                                     MessageBox.Show("¡GRACIAS POR SU COMPRA!");
                                     ventaActual = null;
@@ -542,70 +591,85 @@ namespace AIPos.DekstopLayer.Ventas
                             {
                                 if (decimal.TryParse(lblTotal.Content.ToString().Replace("$", "").Replace(",", ""), out total))
                                 {
-                                    Venta venta = new Venta();
-                                    venta.Cambio = cambio;
-                                    venta.Cancelado = false;
-                                    venta.ClienteId = ((Cliente)cmbClientes.SelectedItem).Id;
-                                    venta.Cliente = (Cliente)cmbClientes.SelectedItem;
-                                    venta.Fecha = DateTime.Now;
-                                    venta.Folio = 0;
-                                    venta.FolioCancelado = 0;
-                                    venta.Id = 0;
-                                    venta.Recibio = recibio;
-                                    venta.Facturado = false;
-                                    venta.Estatus = 1;
-                                    venta.SucursalId = General.ConfiguracionApp.SucursalId;
-                                    ServiceSucursal.SSucursalClient sucursalClient = new ServiceSucursal.SSucursalClient();
-                                    Sucursal sucursal = sucursalClient.SelectById(venta.SucursalId);
-                                    venta.Sucursal = new Sucursal();
-                                    venta.Sucursal.Id = sucursal.Id;
-                                    venta.Sucursal.Nombre = sucursal.Nombre;
-                                    venta.Sucursal.DireccionId = sucursal.DireccionId;
-                                    venta.Sucursal.FraseTicket = sucursal.FraseTicket;
-                                    venta.Total = total;
-                                    venta.UsuarioId = General.UsuarioLogueado.Id;
-                                    venta.Usuario = new Usuario();
-                                    venta.Usuario.Nombre = General.UsuarioLogueado.Nombre;
-                                    venta.Usuario.Id = General.UsuarioLogueado.Id;
-                                    venta.Usuario.Paterno = General.UsuarioLogueado.Paterno;
-                                    venta.Usuario.Materno = General.UsuarioLogueado.Materno;
-                                    venta.VentasDetalle = (List<VentaDetalle>)gridVenta.ItemsSource;
-                                    ServiceVenta.ISVentaClient ventaClient = new ServiceVenta.ISVentaClient();
-                                    if (EsOrden)
-                                        venta.FolioCancelado = ventaClient.GenerarFolioCancelado(venta.SucursalId, DateTime.Now.ToFileTimeUtc());
-                                    else
-                                        venta.Folio = ventaClient.GenerarFolioVenta(venta.SucursalId);
-                                    if (ServicioApartadoVenta != null)
+                                    try
                                     {
-                                        switch (ServicioApartadoVenta.Tipo)
+                                        Venta venta = new Venta();
+                                        venta.Cambio = cambio;
+                                        venta.Cancelado = false;
+                                        venta.ClienteId = ((Cliente)cmbClientes.SelectedItem).Id;
+                                        venta.Cliente = (Cliente)cmbClientes.SelectedItem;
+                                        venta.Fecha = DateTime.Now;
+                                        venta.Folio = 0;
+                                        venta.FolioCancelado = 0;
+                                        venta.Id = 0;
+                                        venta.Recibio = recibio;
+                                        venta.Facturado = false;
+                                        venta.Estatus = 1;
+                                        venta.SucursalId = General.ConfiguracionApp.SucursalId;
+                                        ServiceSucursal.SSucursalClient sucursalClient = new ServiceSucursal.SSucursalClient();
+                                        Sucursal sucursal = sucursalClient.SelectById(venta.SucursalId);
+                                        venta.Sucursal = new Sucursal();
+                                        venta.Sucursal.Id = sucursal.Id;
+                                        venta.Sucursal.Nombre = sucursal.Nombre;
+                                        venta.Sucursal.DireccionId = sucursal.DireccionId;
+                                        venta.Sucursal.FraseTicket = sucursal.FraseTicket;
+                                        venta.Total = total;
+                                        venta.UsuarioId = General.UsuarioLogueado.Id;
+                                        venta.Usuario = new Usuario();
+                                        venta.Usuario.Nombre = General.UsuarioLogueado.Nombre;
+                                        venta.Usuario.Id = General.UsuarioLogueado.Id;
+                                        venta.Usuario.Paterno = General.UsuarioLogueado.Paterno;
+                                        venta.Usuario.Materno = General.UsuarioLogueado.Materno;
+                                        venta.VentasDetalle = (List<VentaDetalle>)gridVenta.ItemsSource;
+                                        ServiceVenta.ISVentaClient ventaClient = new ServiceVenta.ISVentaClient();
+                                        if (EsOrden)
+                                            venta.FolioCancelado = ventaClient.GenerarFolioCancelado(venta.SucursalId, DateTime.Now.ToFileTimeUtc());
+                                        else
+                                            venta.Folio = ventaClient.GenerarFolioVenta(venta.SucursalId);
+                                        if (ServicioApartadoVenta != null)
                                         {
-                                            case 0:
-                                                venta.FolioCancelado = ventaClient.GenerarFolioCanceladoDomicilio(venta.SucursalId, DateTime.Now.ToFileTimeUtc());
-                                                break;
-                                            case 1:
-                                                venta.FolioCancelado = ventaClient.GenerarFolioCanceladoApartado(venta.SucursalId, DateTime.Now.ToFileTimeUtc());
-                                                break;
-                                            case 2:
-                                                venta.FolioCancelado = ventaClient.GenerarFolioCanceladoServicio(venta.SucursalId, DateTime.Now.ToFileTimeUtc());
-                                                break;
+                                            switch (ServicioApartadoVenta.Tipo)
+                                            {
+                                                case 0:
+                                                    venta.FolioCancelado = ventaClient.GenerarFolioCanceladoDomicilio(venta.SucursalId, DateTime.Now.ToFileTimeUtc());
+                                                    break;
+                                                case 1:
+                                                    venta.FolioCancelado = ventaClient.GenerarFolioCanceladoApartado(venta.SucursalId, DateTime.Now.ToFileTimeUtc());
+                                                    break;
+                                                case 2:
+                                                    venta.FolioCancelado = ventaClient.GenerarFolioCanceladoServicio(venta.SucursalId, DateTime.Now.ToFileTimeUtc());
+                                                    break;
+                                            }
+                                        }
+                                        if (chkFacturar.IsChecked.HasValue)
+                                            venta.RequiereFactura = chkFacturar.IsChecked.Value;
+                                        else
+                                            venta.RequiereFactura = false;
+                                        Venta ventaInsertada = ventaClient.Insert(venta);
+                                        if (ServicioApartadoVenta != null)
+                                        {
+                                            ServicioApartadoVenta.VentaId = ventaInsertada.Id;
+                                            ServiceServicioApartado.SServicioApartadoClient servicioApartadoClient = new ServiceServicioApartado.SServicioApartadoClient();
+                                            ServicioApartadoVenta = servicioApartadoClient.Insert(ServicioApartadoVenta);
+                                            ServicioApartadoVenta.DireccionEnvio = new ServiceDireccion.SDireccionClient().SelectById(ServicioApartadoVenta.DireccionEnvioId);
+                                            ImprimirApartadosServicio(venta, ServicioApartadoVenta);
+                                        }
+                                        else
+                                        {
+                                            ImprimirTicket(venta);
                                         }
                                     }
-                                    if (chkFacturar.IsChecked.HasValue)
-                                        venta.RequiereFactura = chkFacturar.IsChecked.Value;
-                                    else
-                                        venta.RequiereFactura = false;
-                                    Venta ventaInsertada = ventaClient.Insert(venta);
-                                    if (ServicioApartadoVenta != null)
+                                    catch (FaultException ex)
                                     {
-                                        ServicioApartadoVenta.VentaId = ventaInsertada.Id;
-                                        ServiceServicioApartado.SServicioApartadoClient servicioApartadoClient = new ServiceServicioApartado.SServicioApartadoClient();
-                                        ServicioApartadoVenta = servicioApartadoClient.Insert(ServicioApartadoVenta);
-                                        ServicioApartadoVenta.DireccionEnvio = new ServiceDireccion.SDireccionClient().SelectById(ServicioApartadoVenta.DireccionEnvioId);
-                                        ImprimirApartadosServicio(venta, ServicioApartadoVenta);
+                                        MessageBox.Show(ex.Message);
                                     }
-                                    else
+                                    catch (CommunicationException ex)
                                     {
-                                        ImprimirTicket(venta);
+                                        MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show(ex.Message);
                                     }
                                     MessageBox.Show("¡GRACIAS POR SU COMPRA!");
                                     ventaActual = null;
@@ -646,80 +710,110 @@ namespace AIPos.DekstopLayer.Ventas
         private void ImprimirTicket(Venta venta)
         {
             Documentos.Ticket report = new Documentos.Ticket();
-            venta.Sucursal.Direccion = new ServiceDireccion.SDireccionClient().SelectById(venta.Sucursal.DireccionId);
-            report.Database.Tables[0].SetDataSource(new List<Cliente>() { venta.Cliente });
-            report.Database.Tables[1].SetDataSource(new List<Sucursal>() { venta.Sucursal });
-            report.Database.Tables[2].SetDataSource(new List<Usuario>() { venta.Usuario });
-            report.Database.Tables[3].SetDataSource(venta.VentasDetalle);
-            report.Database.Tables[4].SetDataSource(new List<Venta>() {venta});
-            report.Database.Tables[5].SetDataSource(new List<Direccion>() { venta.Sucursal.Direccion });
-            report.SetParameterValue("LogoUrl", System.AppDomain.CurrentDomain.BaseDirectory + @"\logoTicket.png");
-            report.SetParameterValue("TituloTicket",General.ConfiguracionWeb.TituloTicket);
-            report.SetParameterValue("AgradecimientoTicket", General.ConfiguracionWeb.AgradecimientoTicket);
-            report.SetParameterValue("LeyendaFiscalTciket", General.ConfiguracionWeb.LeyendaFisalTicket);
-            report.SetParameterValue("FechaHoraTicket", DateTime.Now.ToString());
-            report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
-            //----------------------------------------------------------------------
-            CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
-            PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
-            System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
-            printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
-            printerSettings.Copies = General.ConfiguracionWeb.NumeroCopiasTicketVenta;
-            var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
-            //pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
-            //report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
-            //report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
-            if(!General.ConfiguracionApp.ImpresoraVirtual)
-                report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
-            else
+            try
             {
-                ReportViewer reportViewer = new ReportViewer();
-                reportViewer.Show();
-                ReportDocument reportDocument=(ReportDocument)report;
-                reportViewer.viewer.ViewerCore.ReportSource = reportDocument;
+                venta.Sucursal.Direccion = new ServiceDireccion.SDireccionClient().SelectById(venta.Sucursal.DireccionId);
+                report.Database.Tables[0].SetDataSource(new List<Cliente>() { venta.Cliente });
+                report.Database.Tables[1].SetDataSource(new List<Sucursal>() { venta.Sucursal });
+                report.Database.Tables[2].SetDataSource(new List<Usuario>() { venta.Usuario });
+                report.Database.Tables[3].SetDataSource(venta.VentasDetalle);
+                report.Database.Tables[4].SetDataSource(new List<Venta>() { venta });
+                report.Database.Tables[5].SetDataSource(new List<Direccion>() { venta.Sucursal.Direccion });
+                report.SetParameterValue("LogoUrl", System.AppDomain.CurrentDomain.BaseDirectory + @"\logoTicket.png");
+                report.SetParameterValue("TituloTicket", General.ConfiguracionWeb.TituloTicket);
+                report.SetParameterValue("AgradecimientoTicket", General.ConfiguracionWeb.AgradecimientoTicket);
+                report.SetParameterValue("LeyendaFiscalTciket", General.ConfiguracionWeb.LeyendaFisalTicket);
+                report.SetParameterValue("FechaHoraTicket", DateTime.Now.ToString());
+                report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
+                //----------------------------------------------------------------------
+                CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
+                PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
+                System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
+                printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
+                printerSettings.Copies = General.ConfiguracionWeb.NumeroCopiasTicketVenta;
+                var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
+                //pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
+                //report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
+                //report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
+                if (!General.ConfiguracionApp.ImpresoraVirtual)
+                    report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+                else
+                {
+                    ReportViewer reportViewer = new ReportViewer();
+                    reportViewer.Show();
+                    ReportDocument reportDocument = (ReportDocument)report;
+                    reportViewer.viewer.ViewerCore.ReportSource = reportDocument;
+                }
+            }
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             //----------------------------------------------------------------------
         }
 
         private void ImprimirApartadosServicio(Venta venta, ServicioApartado servicioApartado)
         {
-            Documentos.TicketServicioApartado report = new Documentos.TicketServicioApartado();
-            venta.Sucursal.Direccion = new ServiceDireccion.SDireccionClient().SelectById(venta.Sucursal.DireccionId);
-            string direccionSucursal=venta.Sucursal.Direccion.Calle+" "+venta.Sucursal.Direccion.NoExterior+" "+
-                venta.Sucursal.Direccion.NoInterior+" "+venta.Sucursal.Direccion.Colonia+" "+
-                venta.Sucursal.Direccion.Ciudad+" "+venta.Sucursal.Direccion.CodigoPostal;
-            report.Database.Tables[0].SetDataSource(new List<Cliente>() { venta.Cliente });
-            report.Database.Tables[1].SetDataSource(new List<Direccion> { servicioApartado.DireccionEnvio });
-            report.Database.Tables[2].SetDataSource(new List<ServicioApartado> { servicioApartado });
-            report.Database.Tables[3].SetDataSource(new List<Sucursal>() { venta.Sucursal });
-            report.Database.Tables[4].SetDataSource(new List<Usuario>() { venta.Usuario });
-            report.Database.Tables[5].SetDataSource(venta.VentasDetalle);
-            report.Database.Tables[6].SetDataSource(new List<Venta>() { venta });
-            report.SetParameterValue("LogoUrl", System.AppDomain.CurrentDomain.BaseDirectory + @"\logoTicket.png");
-            report.SetParameterValue("TituloTicket", General.ConfiguracionWeb.TituloTicket);
-            report.SetParameterValue("AgradecimientoTicket", General.ConfiguracionWeb.AgradecimientoTicket);
-            report.SetParameterValue("LeyendaFiscalTciket", General.ConfiguracionWeb.LeyendaFisalTicket);
-            report.SetParameterValue("FechaHoraTicket", DateTime.Now.ToString());
-            report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
-            report.SetParameterValue(0, direccionSucursal);
-            //----------------------------------------------------------------------
-            CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
-            PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
-            System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
-            printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
-            printerSettings.Copies = General.ConfiguracionWeb.NumeroCopiasTicketVenta;
-            var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
-            //pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
-            //report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
-            //report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
-            if (!General.ConfiguracionApp.ImpresoraVirtual)
-                report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
-            else
+            try
             {
-                ReportViewer reportViewer = new ReportViewer();
-                reportViewer.Show();
-                ReportDocument reportDocument = (ReportDocument)report;
-                reportViewer.viewer.ViewerCore.ReportSource = reportDocument;
+                Documentos.TicketServicioApartado report = new Documentos.TicketServicioApartado();
+                venta.Sucursal.Direccion = new ServiceDireccion.SDireccionClient().SelectById(venta.Sucursal.DireccionId);
+                string direccionSucursal = venta.Sucursal.Direccion.Calle + " " + venta.Sucursal.Direccion.NoExterior + " " +
+                    venta.Sucursal.Direccion.NoInterior + " " + venta.Sucursal.Direccion.Colonia + " " +
+                    venta.Sucursal.Direccion.Ciudad + " " + venta.Sucursal.Direccion.CodigoPostal;
+                report.Database.Tables[0].SetDataSource(new List<Cliente>() { venta.Cliente });
+                report.Database.Tables[1].SetDataSource(new List<Direccion> { servicioApartado.DireccionEnvio });
+                report.Database.Tables[2].SetDataSource(new List<ServicioApartado> { servicioApartado });
+                report.Database.Tables[3].SetDataSource(new List<Sucursal>() { venta.Sucursal });
+                report.Database.Tables[4].SetDataSource(new List<Usuario>() { venta.Usuario });
+                report.Database.Tables[5].SetDataSource(venta.VentasDetalle);
+                report.Database.Tables[6].SetDataSource(new List<Venta>() { venta });
+                report.SetParameterValue("LogoUrl", System.AppDomain.CurrentDomain.BaseDirectory + @"\logoTicket.png");
+                report.SetParameterValue("TituloTicket", General.ConfiguracionWeb.TituloTicket);
+                report.SetParameterValue("AgradecimientoTicket", General.ConfiguracionWeb.AgradecimientoTicket);
+                report.SetParameterValue("LeyendaFiscalTciket", General.ConfiguracionWeb.LeyendaFisalTicket);
+                report.SetParameterValue("FechaHoraTicket", DateTime.Now.ToString());
+                report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
+                report.SetParameterValue(0, direccionSucursal);
+                //----------------------------------------------------------------------
+                CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
+                PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
+                System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
+                printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
+                printerSettings.Copies = General.ConfiguracionWeb.NumeroCopiasTicketVenta;
+                var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
+                //pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
+                //report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
+                //report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
+                if (!General.ConfiguracionApp.ImpresoraVirtual)
+                    report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+                else
+                {
+                    ReportViewer reportViewer = new ReportViewer();
+                    reportViewer.Show();
+                    ReportDocument reportDocument = (ReportDocument)report;
+                    reportViewer.viewer.ViewerCore.ReportSource = reportDocument;
+                }
+            }
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             //----------------------------------------------------------------------
         }
@@ -815,9 +909,24 @@ namespace AIPos.DekstopLayer.Ventas
             registrarCliente.ShowDialog();
             if (registrarCliente.ClienteNuevo != null)
             {
-                ServiceCliente.SClienteClient sClienteClient = new ServiceCliente.SClienteClient();
-                cmbClientes.ItemsSource = sClienteClient.SelectAll();
-                cmbClientes.SelectedItem = registrarCliente.ClienteNuevo;
+                try
+                {
+                    ServiceCliente.SClienteClient sClienteClient = new ServiceCliente.SClienteClient();
+                    cmbClientes.ItemsSource = sClienteClient.SelectAll();
+                    cmbClientes.SelectedItem = registrarCliente.ClienteNuevo;
+                }
+                catch (FaultException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -972,23 +1081,38 @@ namespace AIPos.DekstopLayer.Ventas
             {
                 if (cmbProductos.SelectedIndex >= 0)
                 {
-                    Producto producto = (Producto)cmbProductos.SelectedItem;
-                    txtPrecioUnitario.Text = producto.Precio.ToString();
-                    txtDescuento.Text = "0";
-                    descuento = 0;
-                    ServiceListaPrecioProducto.ISListaPrecioProductoClient isListaPrecioProductoClient = new ServiceListaPrecioProducto.ISListaPrecioProductoClient();
-                    ListaPrecioProducto listaPrecioProducto = null;
-                    listaPrecioProducto = isListaPrecioProductoClient.SelectByProductoLista(General.ConfiguracionApp.ListaPrecioMayoreoId, producto.Id);
-                    if (listaPrecioProducto != null)
+                    try
                     {
-                        txtPrecioUnitario.Text = listaPrecioProducto.Precio.ToString();
-                        txtDescuento.Text = CalcularDescuentoEnPesos(listaPrecioProducto.Precio,listaPrecioProducto.Descuento).ToString("c");
-                        descuento = listaPrecioProducto.Descuento;
+                        Producto producto = (Producto)cmbProductos.SelectedItem;
+                        txtPrecioUnitario.Text = producto.Precio.ToString();
+                        txtDescuento.Text = "0";
+                        descuento = 0;
+                        ServiceListaPrecioProducto.ISListaPrecioProductoClient isListaPrecioProductoClient = new ServiceListaPrecioProducto.ISListaPrecioProductoClient();
+                        ListaPrecioProducto listaPrecioProducto = null;
+                        listaPrecioProducto = isListaPrecioProductoClient.SelectByProductoLista(General.ConfiguracionApp.ListaPrecioMayoreoId, producto.Id);
+                        if (listaPrecioProducto != null)
+                        {
+                            txtPrecioUnitario.Text = listaPrecioProducto.Precio.ToString();
+                            txtDescuento.Text = CalcularDescuentoEnPesos(listaPrecioProducto.Precio, listaPrecioProducto.Descuento).ToString("c");
+                            descuento = listaPrecioProducto.Descuento;
+                        }
+                        else
+                        {
+                            MessageBox.Show("No existe un precio de mayoreo asignado a este producto, consulte al administrador del sistema");
+                            chkPrecioMayoreo.IsChecked = false;
+                        }
                     }
-                    else
+                    catch (FaultException ex)
                     {
-                        MessageBox.Show("No existe un precio de mayoreo asignado a este producto, consulte al administrador del sistema");
-                        chkPrecioMayoreo.IsChecked = false;
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (CommunicationException ex)
+                    {
+                        MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }
@@ -1000,25 +1124,40 @@ namespace AIPos.DekstopLayer.Ventas
                     txtPrecioUnitario.Text = producto.Precio.ToString();
                     txtDescuento.Text = "0";
                     descuento = 0;
-                    ServiceListaPrecioProducto.ISListaPrecioProductoClient isListaPrecioProductoClient = new ServiceListaPrecioProducto.ISListaPrecioProductoClient();
-                    ListaPrecioProducto listaPrecioProducto = null;
-
-                    if (cmbClientes.SelectedItem != null)
+                    try
                     {
-                        Cliente cliente = (Cliente)cmbClientes.SelectedItem;
-                        listaPrecioProducto = isListaPrecioProductoClient.SelectByProductoCliente(cliente.Id, producto.Id);
+                        ServiceListaPrecioProducto.ISListaPrecioProductoClient isListaPrecioProductoClient = new ServiceListaPrecioProducto.ISListaPrecioProductoClient();
+                        ListaPrecioProducto listaPrecioProducto = null;
+
+                        if (cmbClientes.SelectedItem != null)
+                        {
+                            Cliente cliente = (Cliente)cmbClientes.SelectedItem;
+                            listaPrecioProducto = isListaPrecioProductoClient.SelectByProductoCliente(cliente.Id, producto.Id);
+                        }
+
+                        if (listaPrecioProducto == null)
+                        {
+                            listaPrecioProducto = isListaPrecioProductoClient.SelectByProductoSucursal(General.ConfiguracionApp.SucursalId, producto.Id);
+                        }
+
+                        if (listaPrecioProducto != null)
+                        {
+                            txtPrecioUnitario.Text = listaPrecioProducto.Precio.ToString();
+                            txtDescuento.Text = CalcularDescuentoEnPesos(listaPrecioProducto.Precio, listaPrecioProducto.Descuento).ToString("c");
+                            descuento = listaPrecioProducto.Descuento;
+                        }
                     }
-
-                    if (listaPrecioProducto == null)
+                    catch (FaultException ex)
                     {
-                        listaPrecioProducto = isListaPrecioProductoClient.SelectByProductoSucursal(General.ConfiguracionApp.SucursalId, producto.Id);
+                        MessageBox.Show(ex.Message);
                     }
-
-                    if (listaPrecioProducto != null)
+                    catch (CommunicationException ex)
                     {
-                        txtPrecioUnitario.Text = listaPrecioProducto.Precio.ToString();
-                        txtDescuento.Text = CalcularDescuentoEnPesos(listaPrecioProducto.Precio, listaPrecioProducto.Descuento).ToString("c");
-                        descuento = listaPrecioProducto.Descuento;
+                        MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }
@@ -1042,9 +1181,24 @@ namespace AIPos.DekstopLayer.Ventas
             if (dxVentaId.VentaRecuperada != null)
             {
                 ventaActual = dxVentaId.VentaRecuperada;
-                Cliente cliente = new ServiceCliente.SClienteClient().SelectById(ventaActual.ClienteId);
-                cmbClientes.SelectedItem = cliente;
-                gridVenta.ItemsSource = ventaActual.VentasDetalle;
+                try
+                {
+                    Cliente cliente = new ServiceCliente.SClienteClient().SelectById(ventaActual.ClienteId);
+                    cmbClientes.SelectedItem = cliente;
+                    gridVenta.ItemsSource = ventaActual.VentasDetalle;
+                }
+                catch (FaultException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 CalcularTotal();
             }
 

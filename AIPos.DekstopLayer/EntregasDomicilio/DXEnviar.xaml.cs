@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
 using AIPos.Domain;
+using System.ServiceModel;
 
 namespace AIPos.DekstopLayer.EntregasDomicilio
 {
@@ -45,38 +46,53 @@ namespace AIPos.DekstopLayer.EntregasDomicilio
         {
             if (txtRepartidor.Text.Trim().Length > 0)
             {
-                ServiceServicioApartado.SServicioApartadoClient servicioApartadoClient = new ServiceServicioApartado.SServicioApartadoClient();
-                ServiceSeguimientoServicioApartado.SSeguimientoServicioApartadoClient seguimientoClient = new ServiceSeguimientoServicioApartado.SSeguimientoServicioApartadoClient();
-                int folio = seguimientoClient.GenerarNuevoFolioEnvio();
-                foreach(int ventaId in VentaIds)
+                try
                 {
-                    SeguimientoServicioApartado seguimiento = seguimientoClient.SelectById(ventaId);
-                    ServicioApartado servicioApartado = servicioApartadoClient.SelectById(ventaId);
-                    if (servicioApartado != null)
+                    ServiceServicioApartado.SServicioApartadoClient servicioApartadoClient = new ServiceServicioApartado.SServicioApartadoClient();
+                    ServiceSeguimientoServicioApartado.SSeguimientoServicioApartadoClient seguimientoClient = new ServiceSeguimientoServicioApartado.SSeguimientoServicioApartadoClient();
+                    int folio = seguimientoClient.GenerarNuevoFolioEnvio();
+                    foreach (int ventaId in VentaIds)
                     {
-                        if (seguimiento == null)
+                        SeguimientoServicioApartado seguimiento = seguimientoClient.SelectById(ventaId);
+                        ServicioApartado servicioApartado = servicioApartadoClient.SelectById(ventaId);
+                        if (servicioApartado != null)
                         {
-                            seguimiento = new SeguimientoServicioApartado();
-                            seguimiento.FechaSalidaRepartidor = deFechaSalida.DateTime;
-                            seguimiento.Repartidor = txtRepartidor.Text;
-                            seguimiento.VentaId = ventaId;
-                            seguimiento.FechaSolicitud = DateTime.Now;
-                            seguimiento.Folio = folio;
-                            seguimientoClient.Insert(seguimiento);
+                            if (seguimiento == null)
+                            {
+                                seguimiento = new SeguimientoServicioApartado();
+                                seguimiento.FechaSalidaRepartidor = deFechaSalida.DateTime;
+                                seguimiento.Repartidor = txtRepartidor.Text;
+                                seguimiento.VentaId = ventaId;
+                                seguimiento.FechaSolicitud = DateTime.Now;
+                                seguimiento.Folio = folio;
+                                seguimientoClient.Insert(seguimiento);
+                            }
+                            else
+                            {
+                                seguimiento.FechaSalidaRepartidor = deFechaSalida.DateTime;
+                                seguimiento.Repartidor = txtRepartidor.Text;
+                                seguimiento.VentaId = ventaId;
+                                seguimiento.FechaSolicitud = DateTime.Now;
+                                seguimiento.Folio = folio;
+                                seguimientoClient.Update(seguimiento);
+                            }
+                            servicioApartado.EstatusId = 5;
+                            servicioApartadoClient.Update(servicioApartado);
                         }
-                        else
-                        {
-                            seguimiento.FechaSalidaRepartidor = deFechaSalida.DateTime;
-                            seguimiento.Repartidor = txtRepartidor.Text;
-                            seguimiento.VentaId = ventaId;
-                            seguimiento.FechaSolicitud = DateTime.Now;
-                            seguimiento.Folio = folio;
-                            seguimientoClient.Update(seguimiento);
-                        }
-                        servicioApartado.EstatusId = 5;
-                        servicioApartadoClient.Update(servicioApartado);
                     }
-                }                
+                }
+                catch (FaultException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
             {

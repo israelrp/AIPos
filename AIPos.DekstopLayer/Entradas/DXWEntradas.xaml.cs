@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
 using AIPos.Domain;
+using System.ServiceModel;
 
 
 namespace AIPos.DekstopLayer.Entradas
@@ -31,15 +32,29 @@ namespace AIPos.DekstopLayer.Entradas
 
         private void RecuperarInformacion()
         {
-            ServiceProveedor.SProveedorClient sProveedorClient = new ServiceProveedor.SProveedorClient();
-            cmbProveedores.ItemsSource = sProveedorClient.SelectAll().ToList();
-            ServiceProducto.SProductoClient sProductoClient = new ServiceProducto.SProductoClient();
-            cmbProductos.ItemsSource = sProductoClient.SelectAllProductos().ToList();
-            ServiceTipoProducto.STipoProductoClient sTipoProductoClient = new ServiceTipoProducto.STipoProductoClient();
-            cmbTipoProducto.ItemsSource = sTipoProductoClient.SelectAll();
-            ServiceEntrada.SEntradaClient sEntradaClient = new ServiceEntrada.SEntradaClient();
-            gridEntradas.ItemsSource = sEntradaClient.SelectByDay(General.ConfiguracionApp.SucursalId, dateEditEntradas.DateTime.ToFileTimeUtc());
-            
+            try
+            {
+                ServiceProveedor.SProveedorClient sProveedorClient = new ServiceProveedor.SProveedorClient();
+                cmbProveedores.ItemsSource = sProveedorClient.SelectAll().ToList();
+                ServiceProducto.SProductoClient sProductoClient = new ServiceProducto.SProductoClient();
+                cmbProductos.ItemsSource = sProductoClient.SelectAllProductos().ToList();
+                ServiceTipoProducto.STipoProductoClient sTipoProductoClient = new ServiceTipoProducto.STipoProductoClient();
+                cmbTipoProducto.ItemsSource = sTipoProductoClient.SelectAll();
+                ServiceEntrada.SEntradaClient sEntradaClient = new ServiceEntrada.SEntradaClient();
+                gridEntradas.ItemsSource = sEntradaClient.SelectByDay(General.ConfiguracionApp.SucursalId, dateEditEntradas.DateTime.ToFileTimeUtc());
+            }
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void cmbProveedores_SelectedIndexChanged(object sender, RoutedEventArgs e)
@@ -55,14 +70,29 @@ namespace AIPos.DekstopLayer.Entradas
                 Producto producto = (Producto)cmbProductos.SelectedItem;
                 txtCodigoProducto.Text = producto.Codigo;
                 txtPrecioUnitario.Text = producto.Precio.ToString();
-                ServiceListaPrecioProducto.ISListaPrecioProductoClient isListaPrecioProductoClient = new ServiceListaPrecioProducto.ISListaPrecioProductoClient();
-                ListaPrecioProducto listaPrecioProducto = null;
-                if (listaPrecioProducto == null)
+                try
                 {
-                    listaPrecioProducto = isListaPrecioProductoClient.SelectByProductoSucursal(General.ConfiguracionApp.SucursalId, producto.Id);
-                    if(listaPrecioProducto!=null)
-                        txtPrecioUnitario.Text = listaPrecioProducto.Precio.ToString();
+                    ServiceListaPrecioProducto.ISListaPrecioProductoClient isListaPrecioProductoClient = new ServiceListaPrecioProducto.ISListaPrecioProductoClient();
+                    ListaPrecioProducto listaPrecioProducto = null;
+                    if (listaPrecioProducto == null)
+                    {
+                        listaPrecioProducto = isListaPrecioProductoClient.SelectByProductoSucursal(General.ConfiguracionApp.SucursalId, producto.Id);
+                        if (listaPrecioProducto != null)
+                            txtPrecioUnitario.Text = listaPrecioProducto.Precio.ToString();
 
+                    }
+                }
+                catch (FaultException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
@@ -71,15 +101,30 @@ namespace AIPos.DekstopLayer.Entradas
         {
             if (e.Key == Key.Enter && txtCodigoProveedor.Text.Trim()!="")
             {
-                Proveedor proveedor = new ServiceProveedor.SProveedorClient().SelectByCodigo(txtCodigoProveedor.Text);
-                if (proveedor != null)
+                try
                 {
-                    cmbProveedores.SelectedItem = proveedor;
-                    txtCodigoProducto.Focus();
+                    Proveedor proveedor = new ServiceProveedor.SProveedorClient().SelectByCodigo(txtCodigoProveedor.Text);
+                    if (proveedor != null)
+                    {
+                        cmbProveedores.SelectedItem = proveedor;
+                        txtCodigoProducto.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El código de proveedor no existe");
+                    }
                 }
-                else
+                catch (FaultException ex)
                 {
-                    MessageBox.Show("El código de proveedor no existe");
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
@@ -88,15 +133,30 @@ namespace AIPos.DekstopLayer.Entradas
         {
             if (e.Key == Key.Enter && txtCodigoProducto.Text.Trim()!="")
             {
-                Producto producto = new ServiceProducto.SProductoClient().SelectByCodigo(txtCodigoProducto.Text);
-                if (producto != null)
+                try
                 {
-                    cmbProductos.SelectedItem = producto;
-                    txtPrecioUnitario.Focus();
+                    Producto producto = new ServiceProducto.SProductoClient().SelectByCodigo(txtCodigoProducto.Text);
+                    if (producto != null)
+                    {
+                        cmbProductos.SelectedItem = producto;
+                        txtPrecioUnitario.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El código de producto no existe");
+                    }
                 }
-                else
+                catch (FaultException ex)
                 {
-                    MessageBox.Show("El código de producto no existe");
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
@@ -121,8 +181,23 @@ namespace AIPos.DekstopLayer.Entradas
                     entrada.Importe = entrada.CantidadReal * entrada.PrecioUnitario;
                     entrada.Diferencia = entrada.CantidadProveedor - entrada.CantidadReal;
                     ServiceEntrada.SEntradaClient sEntradaClient = new ServiceEntrada.SEntradaClient();
-                    sEntradaClient.Insert(entrada);
-                    gridEntradas.ItemsSource = sEntradaClient.SelectByDay(General.ConfiguracionApp.SucursalId, dateEditEntradas.DateTime.ToFileTimeUtc());
+                    try
+                    {
+                        sEntradaClient.Insert(entrada);
+                        gridEntradas.ItemsSource = sEntradaClient.SelectByDay(General.ConfiguracionApp.SucursalId, dateEditEntradas.DateTime.ToFileTimeUtc());
+                    }
+                    catch (FaultException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (CommunicationException ex)
+                    {
+                        MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                     LimpiarControles();
                 }
                 else
@@ -170,29 +245,73 @@ namespace AIPos.DekstopLayer.Entradas
 
         private void dateEditEntradas_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
         {
-            ServiceEntrada.SEntradaClient sEntradaClient = new ServiceEntrada.SEntradaClient();
-            gridEntradas.ItemsSource = sEntradaClient.SelectByDay(General.ConfiguracionApp.SucursalId, dateEditEntradas.DateTime.ToFileTimeUtc());
+            try
+            {
+                ServiceEntrada.SEntradaClient sEntradaClient = new ServiceEntrada.SEntradaClient();
+                gridEntradas.ItemsSource = sEntradaClient.SelectByDay(General.ConfiguracionApp.SucursalId, dateEditEntradas.DateTime.ToFileTimeUtc());
+            }
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
             Entrada entrada = (Entrada)gridEntradas.SelectedItem;
-            ServiceEntrada.SEntradaClient sEntradaClient = new ServiceEntrada.SEntradaClient();
-            sEntradaClient.Delete(entrada.Id);
-            gridEntradas.ItemsSource = sEntradaClient.SelectByDay(General.ConfiguracionApp.SucursalId, dateEditEntradas.DateTime.ToFileTimeUtc());
+            try
+            {
+                ServiceEntrada.SEntradaClient sEntradaClient = new ServiceEntrada.SEntradaClient();
+                sEntradaClient.Delete(entrada.Id);
+                gridEntradas.ItemsSource = sEntradaClient.SelectByDay(General.ConfiguracionApp.SucursalId, dateEditEntradas.DateTime.ToFileTimeUtc());
+            }
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnImprimir_Click(object sender, RoutedEventArgs e)
         {
             Documentos.Entradas report = new Documentos.Entradas();
-            ServiceEntrada.SEntradaClient sEntradaClient = new ServiceEntrada.SEntradaClient();
-            List<Entrada> entradas = sEntradaClient.SelectByDay(General.ConfiguracionApp.SucursalId, dateEditEntradas.DateTime.ToFileTimeUtc()).ToList();
-            //List<ServiceEntrada.Producto> productos = new ServiceProducto.SProductoClient().SelectAllProductos().ToList();
-            report.Database.Tables[0].SetDataSource(entradas);
-            List<Producto> productos = new ServiceProducto.SProductoClient().SelectAllProductos().ToList();
-            report.Database.Tables[1].SetDataSource(productos);
-            List<TipoProducto> tipos = new ServiceTipoProducto.STipoProductoClient().SelectAll().ToList();
-            report.Database.Tables[2].SetDataSource(tipos);
+            try
+            {
+                ServiceEntrada.SEntradaClient sEntradaClient = new ServiceEntrada.SEntradaClient();
+                List<Entrada> entradas = sEntradaClient.SelectByDay(General.ConfiguracionApp.SucursalId, dateEditEntradas.DateTime.ToFileTimeUtc()).ToList();
+                report.Database.Tables[0].SetDataSource(entradas);
+                List<Producto> productos = new ServiceProducto.SProductoClient().SelectAllProductos().ToList();
+                report.Database.Tables[1].SetDataSource(productos);
+                List<TipoProducto> tipos = new ServiceTipoProducto.STipoProductoClient().SelectAll().ToList();
+                report.Database.Tables[2].SetDataSource(tipos);
+            }
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
             //----------------------------------------------------------------------
             CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();

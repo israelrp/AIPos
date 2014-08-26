@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AIPos.Domain;
+using System.ServiceModel;
 
 namespace AIPos.DekstopLayer.Ventas
 {
@@ -35,44 +36,59 @@ namespace AIPos.DekstopLayer.Ventas
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            if (txtNombre.Text.Trim().Length > 0)
+            try
             {
-                Cliente cliente = new Cliente();
-                cliente.Celular = txtCelular.Text;
-                cliente.Codigo = 0;
-                cliente.Descuento = 0;
-                cliente.Eliminado = false;
-                cliente.Nombre = txtNombre.Text;
-                cliente.Telefono = txtTelefono.Text;
-                cliente.Rfc = "";
-                cliente.RazonSocial = "";
-                cliente.SucursalRegistroId = General.ConfiguracionApp.SucursalId;
-                this.ClienteNuevo = new ServiceCliente.SClienteClient().Insert(cliente);
-                if (expander.IsExpanded)
+                if (txtNombre.Text.Trim().Length > 0)
                 {
-                    ClienteNuevo.Rfc = txtRfc.Text;
-                    ClienteNuevo.RazonSocial = txtRazonSocial.Text;
-                    this.ClienteNuevo = new ServiceCliente.SClienteClient().Update(ClienteNuevo);
-                    Direccion direccion = new Direccion();
-                    direccion.Calle = txtCalle.Text;
-                    direccion.Ciudad = txtCiudad.Text;
-                    direccion.CodigoPostal = txtCp.Text;
-                    direccion.Colonia = txtColonia.Text;
-                    direccion.Estado = txtEstado.Text;
-                    direccion.NoExterior = txtNoExt.Text;
-                    direccion.NoInterior = txtNoInt.Text;
-                    direccion.Referencia = txtReferencia.Text;
-                    direccion = new ServiceDireccion.SDireccionClient().Insert(direccion);
-                    DireccionFacturacion direccionFacturacion = new DireccionFacturacion();
-                    direccionFacturacion.ClienteId = ClienteNuevo.Id;
-                    direccionFacturacion.DireccionId = direccion.Id;
-                    direccionFacturacion = new ServiceDireccionFacturacion.SDireccionFacturacionClient().Insert(direccionFacturacion);
+                    Cliente cliente = new Cliente();
+                    cliente.Celular = txtCelular.Text;
+                    cliente.Codigo = 0;
+                    cliente.Descuento = 0;
+                    cliente.Eliminado = false;
+                    cliente.Nombre = txtNombre.Text;
+                    cliente.Telefono = txtTelefono.Text;
+                    cliente.Rfc = "";
+                    cliente.RazonSocial = "";
+                    cliente.SucursalRegistroId = General.ConfiguracionApp.SucursalId;
+                    this.ClienteNuevo = new ServiceCliente.SClienteClient().Insert(cliente);
+                    if (expander.IsExpanded)
+                    {
+                        ClienteNuevo.Rfc = txtRfc.Text;
+                        ClienteNuevo.RazonSocial = txtRazonSocial.Text;
+                        this.ClienteNuevo = new ServiceCliente.SClienteClient().Update(ClienteNuevo);
+                        Direccion direccion = new Direccion();
+                        direccion.Calle = txtCalle.Text;
+                        direccion.Ciudad = txtCiudad.Text;
+                        direccion.CodigoPostal = txtCp.Text;
+                        direccion.Colonia = txtColonia.Text;
+                        direccion.Estado = txtEstado.Text;
+                        direccion.NoExterior = txtNoExt.Text;
+                        direccion.NoInterior = txtNoInt.Text;
+                        direccion.Referencia = txtReferencia.Text;
+                        direccion = new ServiceDireccion.SDireccionClient().Insert(direccion);
+                        DireccionFacturacion direccionFacturacion = new DireccionFacturacion();
+                        direccionFacturacion.ClienteId = ClienteNuevo.Id;
+                        direccionFacturacion.DireccionId = direccion.Id;
+                        direccionFacturacion = new ServiceDireccionFacturacion.SDireccionFacturacionClient().Insert(direccionFacturacion);
+                    }
+                    this.Close();
                 }
-                this.Close();
+                else
+                {
+                    MessageBox.Show("El nombre del cliente es obligatorio");
+                }
             }
-            else
+            catch (FaultException ex)
             {
-                MessageBox.Show("El nombre del cliente es obligatorio");
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
         }

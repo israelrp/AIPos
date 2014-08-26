@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AIPos.Domain;
+using System.ServiceModel;
 
 namespace AIPos.DekstopLayer.Ventas
 {
@@ -32,12 +33,27 @@ namespace AIPos.DekstopLayer.Ventas
             }
             set{
                 clienteId = value;
-                List<Direccion> direcciones = new ServiceDireccion.SDireccionClient().SelectByCliente(this.clienteId).ToList();
-                cmbDireccionEntrega.ItemsSource = direcciones;
-                if (direcciones.Count > 0)
+                try
                 {
-                    cmbDireccionEntrega.SelectedIndex = 0;
-                    MostrarDatosDireccion(direcciones.FirstOrDefault());
+                    List<Direccion> direcciones = new ServiceDireccion.SDireccionClient().SelectByCliente(this.clienteId).ToList();
+                    cmbDireccionEntrega.ItemsSource = direcciones;
+                    if (direcciones.Count > 0)
+                    {
+                        cmbDireccionEntrega.SelectedIndex = 0;
+                        MostrarDatosDireccion(direcciones.FirstOrDefault());
+                    }
+                }
+                catch (FaultException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
             
@@ -107,8 +123,23 @@ namespace AIPos.DekstopLayer.Ventas
             registrarDireccion.ShowDialog();
             if (registrarDireccion.DireccionNueva != null)
             {
-                cmbDireccionEntrega.ItemsSource = new ServiceDireccion.SDireccionClient().SelectByCliente(this.ClienteId);
-                cmbDireccionEntrega.SelectedItem = registrarDireccion.DireccionNueva;
+                try
+                {
+                    cmbDireccionEntrega.ItemsSource = new ServiceDireccion.SDireccionClient().SelectByCliente(this.ClienteId);
+                    cmbDireccionEntrega.SelectedItem = registrarDireccion.DireccionNueva;
+                }
+                catch (FaultException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -142,7 +173,22 @@ namespace AIPos.DekstopLayer.Ventas
                 RegistrarDireccion registrarDireccion = new RegistrarDireccion();
                 registrarDireccion.DireccionNueva = (Direccion)cmbDireccionEntrega.SelectedItem;
                 registrarDireccion.ShowDialog();
-                cmbDireccionEntrega.ItemsSource = new ServiceDireccion.SDireccionClient().SelectByCliente(this.clienteId);
+                try
+                {
+                    cmbDireccionEntrega.ItemsSource = new ServiceDireccion.SDireccionClient().SelectByCliente(this.clienteId);
+                }
+                catch (FaultException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 Direccion direccion = registrarDireccion.DireccionNueva;
                 cmbDireccionEntrega.SelectedItem = direccion;
                 txtDireccionEnvio.Text = direccion.Calle + " " + direccion.Colonia + " " + direccion.NoExterior + " " +

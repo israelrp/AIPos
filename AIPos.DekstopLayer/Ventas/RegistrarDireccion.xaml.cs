@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AIPos.Domain;
+using System.ServiceModel;
 
 namespace AIPos.DekstopLayer.Ventas
 {
@@ -75,20 +76,34 @@ namespace AIPos.DekstopLayer.Ventas
             direccion.NoExterior = txtNoExt.Text;
             direccion.NoInterior = txtNoInt.Text;
             direccion.Referencia = txtReferencia.Text;
-            
-            if (Editar == false)
+            try
             {
-                this.DireccionNueva = new ServiceDireccion.SDireccionClient().Insert(direccion);
-                DireccionEnvio direccionEnvio = new DireccionEnvio();
-                direccionEnvio.ClienteId = this.ClienteId;
-                direccionEnvio.DireccionId = this.DireccionNueva.Id;
-                ServiceDireccionEnvio.SDireccionEnvioClient direcccionEnvioClient = new ServiceDireccionEnvio.SDireccionEnvioClient();
-                direcccionEnvioClient.Insert(direccionEnvio);
+                if (Editar == false)
+                {
+                    this.DireccionNueva = new ServiceDireccion.SDireccionClient().Insert(direccion);
+                    DireccionEnvio direccionEnvio = new DireccionEnvio();
+                    direccionEnvio.ClienteId = this.ClienteId;
+                    direccionEnvio.DireccionId = this.DireccionNueva.Id;
+                    ServiceDireccionEnvio.SDireccionEnvioClient direcccionEnvioClient = new ServiceDireccionEnvio.SDireccionEnvioClient();
+                    direcccionEnvioClient.Insert(direccionEnvio);
+                }
+                else
+                {
+                    direccion.Id = this.DireccionNueva.Id;
+                    this.DireccionNueva = new ServiceDireccion.SDireccionClient().Update(direccion);
+                }
             }
-            else
+            catch (FaultException ex)
             {
-                direccion.Id = this.DireccionNueva.Id;
-                this.DireccionNueva = new ServiceDireccion.SDireccionClient().Update(direccion);
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             this.Close();
         }

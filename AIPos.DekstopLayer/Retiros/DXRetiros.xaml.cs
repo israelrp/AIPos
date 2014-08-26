@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
 using AIPos.Domain;
+using System.ServiceModel;
 
 namespace AIPos.DekstopLayer.Retiros
 {
@@ -25,8 +26,23 @@ namespace AIPos.DekstopLayer.Retiros
             InitializeComponent();
             deFechaConsulta.DateTime = DateTime.Now.Date;
             deFechaConsulta.EditValue = DateTime.Now.Date;
-            ServiceRetiroDinero.ISRetiroDineroClient retiroClient = new ServiceRetiroDinero.ISRetiroDineroClient();
-            gridRetiros.ItemsSource = retiroClient.SelectAllByFechaSucursal(deFechaConsulta.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId);
+            try
+            {
+                ServiceRetiroDinero.ISRetiroDineroClient retiroClient = new ServiceRetiroDinero.ISRetiroDineroClient();
+                gridRetiros.ItemsSource = retiroClient.SelectAllByFechaSucursal(deFechaConsulta.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId);
+            }
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
 
@@ -43,11 +59,26 @@ namespace AIPos.DekstopLayer.Retiros
                 retiroDinero.SucursalId = General.ConfiguracionApp.SucursalId;
                 retiroDinero.UsuarioId = General.UsuarioLogueado.Id;
                 retiroDinero.Fecha = DateTime.Now;
-                ServiceRetiroDinero.ISRetiroDineroClient retiroClient = new ServiceRetiroDinero.ISRetiroDineroClient();
-                retiroClient.Insert(retiroDinero);
-                txtDescripcion.Text = "";
-                txtMonto.Text = "";
-                gridRetiros.ItemsSource = retiroClient.SelectAllByFechaSucursal(deFechaConsulta.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId);
+                try
+                {
+                    ServiceRetiroDinero.ISRetiroDineroClient retiroClient = new ServiceRetiroDinero.ISRetiroDineroClient();
+                    retiroClient.Insert(retiroDinero);
+                    txtDescripcion.Text = "";
+                    txtMonto.Text = "";
+                    gridRetiros.ItemsSource = retiroClient.SelectAllByFechaSucursal(deFechaConsulta.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId);
+                }
+                catch (FaultException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
             {
@@ -57,8 +88,23 @@ namespace AIPos.DekstopLayer.Retiros
 
         private void deFechaConsulta_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
         {
-            ServiceRetiroDinero.ISRetiroDineroClient retiroClient = new ServiceRetiroDinero.ISRetiroDineroClient();
-            gridRetiros.ItemsSource = retiroClient.SelectAllByFechaSucursal(deFechaConsulta.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId);
+            try
+            {
+                ServiceRetiroDinero.ISRetiroDineroClient retiroClient = new ServiceRetiroDinero.ISRetiroDineroClient();
+                gridRetiros.ItemsSource = retiroClient.SelectAllByFechaSucursal(deFechaConsulta.DateTime.ToFileTimeUtc(), General.ConfiguracionApp.SucursalId);
+            }
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void txtDescripcion_KeyUp(object sender, KeyEventArgs e)

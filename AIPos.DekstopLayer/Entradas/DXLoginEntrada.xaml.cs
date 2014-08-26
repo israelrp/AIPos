@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
 using AIPos.Domain;
+using System.ServiceModel;
 
 
 namespace AIPos.DekstopLayer.Entradas
@@ -33,14 +34,29 @@ namespace AIPos.DekstopLayer.Entradas
 
         private void btnEntrar_Click(object sender, RoutedEventArgs e)
         {
-            ServiceUsuario.SUsuarioClient sUsuarioClient = new ServiceUsuario.SUsuarioClient();
-            int SucursalId = General.ConfiguracionApp.SucursalId;
-            Usuario usuario = sUsuarioClient.Login(txtUserName.Text, txtPassword.Password, SucursalId);
-            if (usuario != null)
+            try
             {
-                this.UsuarioValido = true;
+                ServiceUsuario.SUsuarioClient sUsuarioClient = new ServiceUsuario.SUsuarioClient();
+                int SucursalId = General.ConfiguracionApp.SucursalId;
+                Usuario usuario = sUsuarioClient.Login(txtUserName.Text, txtPassword.Password, SucursalId);
+                if (usuario != null)
+                {
+                    this.UsuarioValido = true;
+                }
+                this.Close();
             }
-            this.Close();
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void txtUserName_KeyUp(object sender, KeyEventArgs e)

@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
 using AIPos.Domain;
 using AIPos.DekstopLayer.Helpers;
+using System.ServiceModel;
 
 namespace AIPos.DekstopLayer.EntregasDomicilio
 {
@@ -32,13 +33,28 @@ namespace AIPos.DekstopLayer.EntregasDomicilio
         }
 
         private void RecuperarInformacion()
-        {            
-            List<EstatusServicioApartado> estatus = new ServiceEstatusServicioApartado.SEstatusServicioApartadoClient().SelectAll().ToList();
-            if (estatus.Count > 0)
+        {
+            try
             {
-                cmbEstatus.ItemsSource = estatus;
-                cmbEstatus.SelectedIndex = 0;
-                list = new ServiceServicioApartado.SServicioApartadoClient().RecuperarReporteServicioApartado(General.ConfiguracionApp.SucursalId, estatus[0].Id).ToList();
+                List<EstatusServicioApartado> estatus = new ServiceEstatusServicioApartado.SEstatusServicioApartadoClient().SelectAll().ToList();
+                if (estatus.Count > 0)
+                {
+                    cmbEstatus.ItemsSource = estatus;
+                    cmbEstatus.SelectedIndex = 0;
+                    list = new ServiceServicioApartado.SServicioApartadoClient().RecuperarReporteServicioApartado(General.ConfiguracionApp.SucursalId, estatus[0].Id).ToList();
+                }
+            }
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -60,22 +76,37 @@ namespace AIPos.DekstopLayer.EntregasDomicilio
 
         private void btnConfirmar_Click_1(object sender, RoutedEventArgs e)
         {
-            ServiceServicioApartado.SServicioApartadoClient servicioApartadoClient = new ServiceServicioApartado.SServicioApartadoClient();
-            ServiceSeguimientoServicioApartado.SSeguimientoServicioApartadoClient seguimientoClient = new ServiceSeguimientoServicioApartado.SSeguimientoServicioApartadoClient();
-            foreach (int ventaId in selectionHelper.GetSelectedKeys())
+            try
             {
-                SeguimientoServicioApartado seguimiento = seguimientoClient.SelectById(ventaId);
-                ServicioApartado servicioApartado = servicioApartadoClient.SelectById(ventaId);
-                if (servicioApartado != null)
+                ServiceServicioApartado.SServicioApartadoClient servicioApartadoClient = new ServiceServicioApartado.SServicioApartadoClient();
+                ServiceSeguimientoServicioApartado.SSeguimientoServicioApartadoClient seguimientoClient = new ServiceSeguimientoServicioApartado.SSeguimientoServicioApartadoClient();
+                foreach (int ventaId in selectionHelper.GetSelectedKeys())
                 {
-                    if (seguimiento != null)
+                    SeguimientoServicioApartado seguimiento = seguimientoClient.SelectById(ventaId);
+                    ServicioApartado servicioApartado = servicioApartadoClient.SelectById(ventaId);
+                    if (servicioApartado != null)
                     {
-                        seguimiento.FechaLlegadaRepartidor = DateTime.Now;
-                        seguimientoClient.Update(seguimiento);
+                        if (seguimiento != null)
+                        {
+                            seguimiento.FechaLlegadaRepartidor = DateTime.Now;
+                            seguimientoClient.Update(seguimiento);
+                        }
+                        servicioApartado.EstatusId = 6;
+                        servicioApartadoClient.Update(servicioApartado);
                     }
-                    servicioApartado.EstatusId = 6;
-                    servicioApartadoClient.Update(servicioApartado);
                 }
+            }
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             RecuperarInformacion();
             gridVentas.ItemsSource = list;
@@ -86,23 +117,38 @@ namespace AIPos.DekstopLayer.EntregasDomicilio
             Domain.ReporteServicioApartado venta = (Domain.ReporteServicioApartado)gridVentas.SelectedItem;
             if (venta != null)
             {
-                ServiceServicioApartado.SServicioApartadoClient servicioApartadoClient = new ServiceServicioApartado.SServicioApartadoClient();
-                ServicioApartado servicioApartado = servicioApartadoClient.SelectById(venta.VentaId);
-                btnConfirmar.IsEnabled = false;
-                btnEnviar.IsEnabled = false;
-                if (servicioApartado != null)
+                try
                 {
-                    if (servicioApartado.EstatusId == 5)
+                    ServiceServicioApartado.SServicioApartadoClient servicioApartadoClient = new ServiceServicioApartado.SServicioApartadoClient();
+                    ServicioApartado servicioApartado = servicioApartadoClient.SelectById(venta.VentaId);
+                    btnConfirmar.IsEnabled = false;
+                    btnEnviar.IsEnabled = false;
+                    if (servicioApartado != null)
                     {
-                        btnConfirmar.IsEnabled = true;
-                        btnEnviar.IsEnabled = false;
-                    }
-                    if (servicioApartado.EstatusId == 4)
-                    {
-                        btnConfirmar.IsEnabled = false;
-                        btnEnviar.IsEnabled = true;
-                    }
+                        if (servicioApartado.EstatusId == 5)
+                        {
+                            btnConfirmar.IsEnabled = true;
+                            btnEnviar.IsEnabled = false;
+                        }
+                        if (servicioApartado.EstatusId == 4)
+                        {
+                            btnConfirmar.IsEnabled = false;
+                            btnEnviar.IsEnabled = true;
+                        }
 
+                    }
+                }
+                catch (FaultException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
             else
@@ -126,13 +172,28 @@ namespace AIPos.DekstopLayer.EntregasDomicilio
         {
             if (cmbEstatus.SelectedIndex > -1)
             {
-                EstatusServicioApartado estatus = (EstatusServicioApartado)cmbEstatus.SelectedItem;
-                list = new ServiceServicioApartado.SServicioApartadoClient().RecuperarReporteServicioApartado(General.ConfiguracionApp.SucursalId, estatus.Id).ToList();
-                foreach(int key in selectionHelper.GetSelectedKeys())
+                try
                 {
-                    selectionHelper.SetIsSelected(key, false);
+                    EstatusServicioApartado estatus = (EstatusServicioApartado)cmbEstatus.SelectedItem;
+                    list = new ServiceServicioApartado.SServicioApartadoClient().RecuperarReporteServicioApartado(General.ConfiguracionApp.SucursalId, estatus.Id).ToList();
+                    foreach (int key in selectionHelper.GetSelectedKeys())
+                    {
+                        selectionHelper.SetIsSelected(key, false);
+                    }
+                    gridVentas.ItemsSource = list;
                 }
-                gridVentas.ItemsSource = list;
+                catch (FaultException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

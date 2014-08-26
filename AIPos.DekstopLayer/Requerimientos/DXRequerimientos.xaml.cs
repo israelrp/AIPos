@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
 using AIPos.Domain;
+using System.ServiceModel;
 
 namespace AIPos.DekstopLayer.Requerimientos
 {
@@ -33,19 +34,49 @@ namespace AIPos.DekstopLayer.Requerimientos
         {
             if (deFecha.DateTime != null)
             {
-                ServicePedidoSucursal.SPedidoSucursalClient sPedidoSucursalClient = new ServicePedidoSucursal.SPedidoSucursalClient();
-                List<Domain.PedidoSucursal> pedidos=sPedidoSucursalClient.SelectBySucursalFechaEntrega(General.ConfiguracionApp.SucursalId,deFecha.DateTime.ToFileTimeUtc()).ToList();
-                gridDatos.ItemsSource = pedidos;
+                try
+                {
+                    ServicePedidoSucursal.SPedidoSucursalClient sPedidoSucursalClient = new ServicePedidoSucursal.SPedidoSucursalClient();
+                    List<Domain.PedidoSucursal> pedidos = sPedidoSucursalClient.SelectBySucursalFechaEntrega(General.ConfiguracionApp.SucursalId, deFecha.DateTime.ToFileTimeUtc()).ToList();
+                    gridDatos.ItemsSource = pedidos;
+                }
+                catch (FaultException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
         private void RecuperarInformacion()
         {
-            ServiceProducto.SProductoClient sProductoClient = new ServiceProducto.SProductoClient();
-            cmbProductos.ItemsSource = sProductoClient.SelectAllProductos().ToList();
-            ServiceUnidad.SUnidadClient sUnidadClient = new ServiceUnidad.SUnidadClient();
-            cmbUnidades.ItemsSource = sUnidadClient.SelectAll().ToList();
-            cmbUnidades.SelectedItem = sUnidadClient.SelectById(4);
+            try
+            {
+                ServiceProducto.SProductoClient sProductoClient = new ServiceProducto.SProductoClient();
+                cmbProductos.ItemsSource = sProductoClient.SelectAllProductos().ToList();
+                ServiceUnidad.SUnidadClient sUnidadClient = new ServiceUnidad.SUnidadClient();
+                cmbUnidades.ItemsSource = sUnidadClient.SelectAll().ToList();
+                cmbUnidades.SelectedItem = sUnidadClient.SelectById(4);
+            }
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         bool ValidarDatos()
@@ -67,16 +98,31 @@ namespace AIPos.DekstopLayer.Requerimientos
         {
             if (ValidarDatos())
             {
-                ServicePedidoSucursal.SPedidoSucursalClient sPedidoSucursalClient = new ServicePedidoSucursal.SPedidoSucursalClient();
-                PedidoSucursal pedido = new PedidoSucursal();
-                pedido.Cantidad = decimal.Parse(txtCantidad.Text);
-                pedido.FechaEntrega = deFecha.DateTime;
-                pedido.FechaRegistro = DateTime.Now;
-                pedido.Producto = txtPedido.Text;
-                pedido.SucursalId = General.ConfiguracionApp.SucursalId;
-                pedido.UnidadId = ((Unidad)cmbUnidades.SelectedItem).Id;
-                pedido.UsuarioId = General.UsuarioLogueado.Id;
-                sPedidoSucursalClient.Insert(pedido,pedido.FechaRegistro.ToFileTimeUtc(),pedido.FechaEntrega.ToFileTimeUtc());
+                try
+                {
+                    ServicePedidoSucursal.SPedidoSucursalClient sPedidoSucursalClient = new ServicePedidoSucursal.SPedidoSucursalClient();
+                    PedidoSucursal pedido = new PedidoSucursal();
+                    pedido.Cantidad = decimal.Parse(txtCantidad.Text);
+                    pedido.FechaEntrega = deFecha.DateTime;
+                    pedido.FechaRegistro = DateTime.Now;
+                    pedido.Producto = txtPedido.Text;
+                    pedido.SucursalId = General.ConfiguracionApp.SucursalId;
+                    pedido.UnidadId = ((Unidad)cmbUnidades.SelectedItem).Id;
+                    pedido.UsuarioId = General.UsuarioLogueado.Id;
+                    sPedidoSucursalClient.Insert(pedido, pedido.FechaRegistro.ToFileTimeUtc(), pedido.FechaEntrega.ToFileTimeUtc());
+                }
+                catch (FaultException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 LimpiarDatos();
                 RecuperarDatos();
             }
@@ -106,9 +152,24 @@ namespace AIPos.DekstopLayer.Requerimientos
             {
                 if (MessageBox.Show("¿Deseas eliminar el registro seleccionado?", "Eliminando...", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    ServicePedidoSucursal.SPedidoSucursalClient sPedidoSucursalClient = new ServicePedidoSucursal.SPedidoSucursalClient();
-                    PedidoSucursal pedido = ((PedidoSucursal)gridDatos.SelectedItem);
-                    sPedidoSucursalClient.Delete(pedido.Id);
+                    try
+                    {
+                        ServicePedidoSucursal.SPedidoSucursalClient sPedidoSucursalClient = new ServicePedidoSucursal.SPedidoSucursalClient();
+                        PedidoSucursal pedido = ((PedidoSucursal)gridDatos.SelectedItem);
+                        sPedidoSucursalClient.Delete(pedido.Id);
+                    }
+                    catch (FaultException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (CommunicationException ex)
+                    {
+                        MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                     RecuperarDatos();
                 }
             }
@@ -122,15 +183,30 @@ namespace AIPos.DekstopLayer.Requerimientos
         {
             if (e.Key == Key.Enter && txtCodigoProducto.Text.Trim() != "")
             {
-                Producto producto = new ServiceProducto.SProductoClient().SelectByCodigo(txtCodigoProducto.Text);
-                if (producto != null)
+                try
                 {
-                    cmbProductos.SelectedItem = producto;
-                    txtPedido.Focus();
+                    Producto producto = new ServiceProducto.SProductoClient().SelectByCodigo(txtCodigoProducto.Text);
+                    if (producto != null)
+                    {
+                        cmbProductos.SelectedItem = producto;
+                        txtPedido.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El código de producto no existe");
+                    }
                 }
-                else
+                catch (FaultException ex)
                 {
-                    MessageBox.Show("El código de producto no existe");
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
         }

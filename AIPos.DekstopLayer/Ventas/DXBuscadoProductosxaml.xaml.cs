@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
 using AIPos.Domain;
 using DevExpress.Xpf.Editors.Settings;
+using System.ServiceModel;
 
 
 namespace AIPos.DekstopLayer.Ventas
@@ -28,10 +29,25 @@ namespace AIPos.DekstopLayer.Ventas
         {
             InitializeComponent();
             gridProductos.View.SearchControl = scProductos;
-            ServiceProducto.SProductoClient sProductoClient = new ServiceProducto.SProductoClient();
-            ((ComboBoxEditSettings)gridProductos.Columns["UnidadId"].EditSettings).ItemsSource = new ServiceUnidad.SUnidadClient().SelectAll();
-            ((ComboBoxEditSettings)gridProductos.Columns["TipoId"].EditSettings).ItemsSource = new ServiceTipo.STipoClient().SelectAll();
-            gridProductos.ItemsSource = sProductoClient.SelectAllProductos();
+            try
+            {
+                ServiceProducto.SProductoClient sProductoClient = new ServiceProducto.SProductoClient();
+                ((ComboBoxEditSettings)gridProductos.Columns["UnidadId"].EditSettings).ItemsSource = new ServiceUnidad.SUnidadClient().SelectAll();
+                ((ComboBoxEditSettings)gridProductos.Columns["TipoId"].EditSettings).ItemsSource = new ServiceTipo.STipoClient().SelectAll();
+                gridProductos.ItemsSource = sProductoClient.SelectAllProductos();
+            }
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void gridProductos_MouseDoubleClick(object sender, MouseButtonEventArgs e)

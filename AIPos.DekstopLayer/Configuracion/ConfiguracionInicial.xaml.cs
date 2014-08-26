@@ -15,6 +15,7 @@ using AIPos.Domain;
 using System.Configuration;
 using System.Xml.Serialization;
 using System.IO;
+using System.ServiceModel;
 
 
 namespace AIPos.DekstopLayer.Configuracion
@@ -45,12 +46,27 @@ namespace AIPos.DekstopLayer.Configuracion
             RecuperarListaDePreciosBase();
             if (reconfigurar)
             {
-                ServiceSucursal.SSucursalClient sucursalClient = new ServiceSucursal.SSucursalClient();
-                ServiceListaPrecio.SListaPrecioClient listaPrecioClient = new ServiceListaPrecio.SListaPrecioClient();
-                cmbBasculas.SelectedItem = General.ConfiguracionApp.PuertoBascula;
-                cmbImpresoras.SelectedItem = General.ConfiguracionApp.MiniPrinter;
-                cmbSucursales.SelectedItem = sucursalClient.SelectById(General.ConfiguracionApp.SucursalId);
-                cmbListaPrecioMayoreo.SelectedItem = listaPrecioClient.SelectAll().Where(x=>x.Id== General.ConfiguracionApp.ListaPrecioMayoreoId).FirstOrDefault();
+                try
+                {
+                    ServiceSucursal.SSucursalClient sucursalClient = new ServiceSucursal.SSucursalClient();
+                    ServiceListaPrecio.SListaPrecioClient listaPrecioClient = new ServiceListaPrecio.SListaPrecioClient();
+                    cmbBasculas.SelectedItem = General.ConfiguracionApp.PuertoBascula;
+                    cmbImpresoras.SelectedItem = General.ConfiguracionApp.MiniPrinter;
+                    cmbSucursales.SelectedItem = sucursalClient.SelectById(General.ConfiguracionApp.SucursalId);
+                    cmbListaPrecioMayoreo.SelectedItem = listaPrecioClient.SelectAll().Where(x => x.Id == General.ConfiguracionApp.ListaPrecioMayoreoId).FirstOrDefault();
+                }
+                catch (FaultException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (CommunicationException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 chkViewer.IsChecked = General.ConfiguracionApp.ImpresoraVirtual;
             }
         }
@@ -101,12 +117,27 @@ namespace AIPos.DekstopLayer.Configuracion
 
         private void RecuperarSucursales()
         {
-            ServiceSucursal.SSucursalClient sSucursalCliente = new ServiceSucursal.SSucursalClient();
-            List<Sucursal> sucursales = sSucursalCliente.SelectAll().ToList();
-            cmbSucursales.ItemsSource = sucursales;
-            ServiceListaPrecio.SListaPrecioClient sListaPrecioClient = new ServiceListaPrecio.SListaPrecioClient();
-            List<ListaPrecio> listaPrecio=sListaPrecioClient.SelectAll().ToList();
-            cmbListaPrecioMayoreo.ItemsSource = listaPrecio;
+            try
+            {
+                ServiceSucursal.SSucursalClient sSucursalCliente = new ServiceSucursal.SSucursalClient();
+                List<Sucursal> sucursales = sSucursalCliente.SelectAll().ToList();
+                cmbSucursales.ItemsSource = sucursales;
+                ServiceListaPrecio.SListaPrecioClient sListaPrecioClient = new ServiceListaPrecio.SListaPrecioClient();
+                List<ListaPrecio> listaPrecio = sListaPrecioClient.SelectAll().ToList();
+                cmbListaPrecioMayoreo.ItemsSource = listaPrecio;
+            }
+            catch (FaultException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnAceptar_Click(object sender, RoutedEventArgs e)

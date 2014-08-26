@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
 using AIPos.Domain;
+using System.ServiceModel;
 
 
 namespace AIPos.DekstopLayer.Login
@@ -46,19 +47,34 @@ namespace AIPos.DekstopLayer.Login
             {
                 if (txtPassword.Text.Trim() != "")
                 {
-                    ServiceUsuario.SUsuarioClient sUsuarioClient = new ServiceUsuario.SUsuarioClient();
-                    int SucursalId = General.ConfiguracionApp.SucursalId;
-                    Usuario usuario = sUsuarioClient.Login(txtUserName.Text, txtPassword.Password, SucursalId);
-                    if (usuario != null)
+                    try
                     {
-                        General.UsuarioLogueado = usuario;
-                        var principal = new Principal();
-                        principal.Show();
-                        this.Close();
+                        ServiceUsuario.SUsuarioClient sUsuarioClient = new ServiceUsuario.SUsuarioClient();
+                        int SucursalId = General.ConfiguracionApp.SucursalId;
+                        Usuario usuario = sUsuarioClient.Login(txtUserName.Text, txtPassword.Password, SucursalId);
+                        if (usuario != null)
+                        {
+                            General.UsuarioLogueado = usuario;
+                            var principal = new Principal();
+                            principal.Show();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Los datos de accesos son incorrectos");
+                        }
                     }
-                    else
+                    catch (FaultException ex)
                     {
-                        MessageBox.Show("Los datos de accesos son incorrectos");
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (CommunicationException ex)
+                    {
+                        MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }

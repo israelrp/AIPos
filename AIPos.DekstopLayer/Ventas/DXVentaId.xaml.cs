@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
 using AIPos.Domain;
+using System.ServiceModel;
 
 namespace AIPos.DekstopLayer.Ventas
 {
@@ -32,31 +33,46 @@ namespace AIPos.DekstopLayer.Ventas
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             int VentaId = 0;
-            if (int.TryParse(txtVentaId.Text, out VentaId))
+            try
             {
-                ServiceVenta.ISVentaClient ventaClient = new ServiceVenta.ISVentaClient();
-                Venta venta = ventaClient.RecuperarVenta(VentaId);
-                if (venta != null)
+                if (int.TryParse(txtVentaId.Text, out VentaId))
                 {
-                    if (venta.Estatus == 0)
+                    ServiceVenta.ISVentaClient ventaClient = new ServiceVenta.ISVentaClient();
+                    Venta venta = ventaClient.RecuperarVenta(VentaId);
+                    if (venta != null)
                     {
-                        venta.VentasDetalle = ventaClient.RecuperarVentaDetalle(VentaId).ToList();
-                        this.VentaRecuperada = venta;
-                        this.Close();
+                        if (venta.Estatus == 0)
+                        {
+                            venta.VentasDetalle = ventaClient.RecuperarVentaDetalle(VentaId).ToList();
+                            this.VentaRecuperada = venta;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Esta venta ya fue cerrada, para volver a cobrarla necesitas cancelar y volver a hacerla.");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Esta venta ya fue cerrada, para volver a cobrarla necesitas cancelar y volver a hacerla.");
+                        MessageBox.Show("La venta con el Id " + VentaId.ToString() + " no fue enontrado.");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("La venta con el Id " + VentaId.ToString() + " no fue enontrado.");
+                    MessageBox.Show("El Id de la venta debe ser números enteros.");
                 }
             }
-            else
+            catch (FaultException ex)
             {
-                MessageBox.Show("El Id de la venta debe ser números enteros.");
+                MessageBox.Show(ex.Message);
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show("Ha ocurrido un problema con la conexión al servicio de principal del sistema. Detalles: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
