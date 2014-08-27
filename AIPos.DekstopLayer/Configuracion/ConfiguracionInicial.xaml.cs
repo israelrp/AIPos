@@ -164,8 +164,8 @@ namespace AIPos.DekstopLayer.Configuracion
                             if (!Reconfigurar)
                             {
                                 this.Close();
-                                var login = new Login.Login();
-                                login.Show();
+                                var splash = new SplashAIPos();
+                                splash.Show();
                             }
                             else { MessageBox.Show("Configuración guardada"); }
                         }
@@ -186,8 +186,8 @@ namespace AIPos.DekstopLayer.Configuracion
                                 if (!Reconfigurar)
                                 {
                                     this.Close();
-                                    var login = new Login.Login();
-                                    login.Show();
+                                    var splash = new SplashAIPos();
+                                    splash.Show();
                                 }
                                 else { MessageBox.Show("Configuración guardada"); }
                             }

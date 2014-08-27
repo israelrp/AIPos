@@ -264,10 +264,10 @@ namespace AIPos.DekstopLayer.Ventas
                                 ticketPesaje.SetParameterValue("LogoUrl", System.AppDomain.CurrentDomain.BaseDirectory + @"\logoTicket.png");
                                 //----------------------------------------------------------------------
                                 CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
-                                PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
+                                PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.DoNotScale;
                                 System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
                                 printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
-                                printerSettings.Copies = 2;
+                                printerSettings.Copies = 1;
                                 var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
                                 //pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
                                 //report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
@@ -727,7 +727,7 @@ namespace AIPos.DekstopLayer.Ventas
                 report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
                 //----------------------------------------------------------------------
                 CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
-                PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
+                PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.DoNotScale;
                 System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
                 printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
                 printerSettings.Copies = General.ConfiguracionWeb.NumeroCopiasTicketVenta;
@@ -785,7 +785,7 @@ namespace AIPos.DekstopLayer.Ventas
                 report.SetParameterValue(0, direccionSucursal);
                 //----------------------------------------------------------------------
                 CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
-                PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
+                PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.DoNotScale;
                 System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
                 printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
                 printerSettings.Copies = General.ConfiguracionWeb.NumeroCopiasTicketVenta;

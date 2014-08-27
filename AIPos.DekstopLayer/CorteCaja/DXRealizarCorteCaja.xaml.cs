@@ -58,7 +58,7 @@ namespace AIPos.DekstopLayer.CorteCaja
                         report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
                         //----------------------------------------------------------------------
                         CrystalDecisions.Shared.PrintLayoutSettings PrintLayout = new CrystalDecisions.Shared.PrintLayoutSettings();
-                        PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.Scale;
+                        PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.DoNotScale;
                         System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
                         printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
                         printerSettings.Copies = 2;
