@@ -24,7 +24,7 @@ namespace AIPos.WebLayer.Controllers
 
 
         [ValidateInput(false)]
-        public ActionResult GridViewPartialInventarios(int? SucursalId, DateTime? Fecha)
+        public ActionResult GridViewPartialInventarios(int? SucursalId,  DateTime? Fecha)
         {
             List<ReporteInventarioUtilidad> model = new List<ReporteInventarioUtilidad>();
             if (SucursalId.HasValue && Fecha.HasValue)

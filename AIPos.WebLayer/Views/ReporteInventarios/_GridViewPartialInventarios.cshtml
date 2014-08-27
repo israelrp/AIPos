@@ -14,12 +14,16 @@
         settings.KeyFieldName = "Id";
 				settings.Columns.Add("Usuario");
 				settings.Columns.Add("Producto");
-				settings.Columns.Add("CantidadReal");
-				settings.Columns.Add("CantidadSistema");
+                settings.Columns.Add(c =>
+                {
+                    c.FieldName = "CantidadReal";
+                    c.Caption = "Cantidad";
+                });
+                //settings.Columns.Add("CantidadSistema");
                 settings.Columns.Add(c =>
                 {
                     c.FieldName = "PrecioUnitario";
-                    c.Caption = "Precio unitario";
+                    c.Caption = "Precio costo";
                     c.PropertiesEdit.DisplayFormatString = "c";
                 });
                 settings.Columns.Add(c =>
@@ -46,7 +50,11 @@
                     c.Caption = "Utilidad estimada";
                     c.PropertiesEdit.DisplayFormatString = "c";
                 });
-				settings.Columns.Add("FechaRegistro");
+                settings.Columns.Add(c =>
+                {
+                    c.FieldName = "FechaRegistro";
+                    c.PropertiesEdit.DisplayFormatString = "dd/MM/yy HH:mm";
+                });
                 settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "Monto").DisplayFormat = "c";
                 settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "ImporteVenta").DisplayFormat = "c";
                 settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "UtilidadEstimada").DisplayFormat = "c";

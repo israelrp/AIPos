@@ -26,6 +26,14 @@ a {
         color: #333;
     }
 
+    .dxb-hb{
+        width:0px !important;
+        padding-right: 0px !important; 
+        padding-left: 0px !important; 
+        margin-right: 0px !important; 
+        border-right-width: 0px !important; 
+        border-left-width: 0px !important;
+    }
 
 
 header, footer, hgroup,
