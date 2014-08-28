@@ -54,10 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbonoCuentaPorCobrarDaoImpl.cs" />
     <Compile Include="ClienteDaoImpl.cs" />
     <Compile Include="ClienteListaPrecioDaoImpl.cs" />
     <Compile Include="ConfiguracionGeneralDaoImpl.cs" />
     <Compile Include="CorteCajaDaoImpl.cs" />
+    <Compile Include="CuentasPorCobrarDaoImpl.cs" />
     <Compile Include="DireccionDaoImpl.cs" />
     <Compile Include="DireccionEnvioDaoImpl.cs" />
     <Compile Include="DireccionFacturacionDaoImpl.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="InventarioDaoImpl.cs" />
     <Compile Include="ListaPrecioDaoImpl.cs" />
     <Compile Include="ListaPrecioProductoDaoImpl.cs" />
+    <Compile Include="MetodoPagoDaoImpl.cs" />
     <Compile Include="NivelDaoImpl.cs" />
     <Compile Include="PedidoSucursalDaoImpl.cs" />
     <Compile Include="ProductoDaoImpl.cs" />

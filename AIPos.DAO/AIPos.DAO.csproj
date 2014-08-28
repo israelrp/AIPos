@@ -49,10 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbonoCuentaPorCobrarDao.cs" />
     <Compile Include="ClienteDao.cs" />
     <Compile Include="ClienteListaPrecioDao.cs" />
     <Compile Include="ConfiguracionGeneralDao.cs" />
     <Compile Include="CorteCajaDao.cs" />
+    <Compile Include="CuentaPorCobrarDao.cs" />
     <Compile Include="DireccionDao.cs" />
     <Compile Include="DireccionEnvioDao.cs" />
     <Compile Include="DireccionFacturacionDao.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="InventarioDao.cs" />
     <Compile Include="ListaPrecioDao.cs" />
     <Compile Include="ListaPrecioProductoDao.cs" />
+    <Compile Include="MetodoPagoDao.cs" />
     <Compile Include="NivelDao.cs" />
     <Compile Include="PedidoSucursalDao.cs" />
     <Compile Include="ProductoDao.cs" />

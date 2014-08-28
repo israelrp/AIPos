@@ -11,7 +11,11 @@
 		settings.Settings.ShowGroupPanel = true;
 		settings.Settings.ShowFilterRow = true;
 		settings.SettingsBehavior.AllowSelectByRowClick = true;
-        settings.Columns.Add("Fecha");
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "Fecha";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yy HH:mm";
+        });
         settings.Columns.Add("Usuario");
 		settings.Columns.Add("Proveedor");
 		settings.Columns.Add("Producto");

@@ -20,6 +20,9 @@ namespace AIPos.Domain
         public bool Eliminado { get; set; }
         public decimal Descuento { get; set; }
         public string RazonSocial { get; set; }
+        public bool CreditoActivo { get; set; }
+        public decimal LimiteCredito { get; set; }
+        public int DiaPago { get; set; }
 
         public Sucursal SucursalRegistro { get; set; }
         public Direccion DireccionFacturaion { get; set; }

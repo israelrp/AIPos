@@ -15,7 +15,11 @@
             settings.Columns.Add("Producto");
             settings.Columns.Add("Cantidad");
             settings.Columns.Add("Unidad");
-            settings.Columns.Add("FechaRegistro");
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "FechaRegistro";
+                c.PropertiesEdit.DisplayFormatString = "dd/MM/yy HH:mm";
+            });
             settings.Columns.Add(x =>
             {
                 x.FieldName = "FechaEntrega";

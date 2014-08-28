@@ -51,10 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbonoCuentaPorCobrar.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="ClienteListaPrecio.cs" />
     <Compile Include="ConfiguracionGeneral.cs" />
     <Compile Include="CorteCaja.cs" />
+    <Compile Include="CuentaPorCobrar.cs" />
     <Compile Include="Direccion.cs" />
     <Compile Include="DireccionEnvio.cs" />
     <Compile Include="DireccionFacturacion.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="Inventario.cs" />
     <Compile Include="ListaPrecio.cs" />
     <Compile Include="ListaPrecioProducto.cs" />
+    <Compile Include="MetodoPago.cs" />
     <Compile Include="Nivel.cs" />
     <Compile Include="PedidoSucursal.cs" />
     <Compile Include="Producto.cs" />
