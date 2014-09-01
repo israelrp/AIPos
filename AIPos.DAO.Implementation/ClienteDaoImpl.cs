@@ -17,9 +17,10 @@ namespace AIPos.DAO.Implementation
         public Cliente Insert(Cliente entity)
         {  
  	        object[] parameters = new object[] { entity.SucursalRegistroId, entity.Nombre, entity.Rfc, entity.Telefono, 
-                entity.Celular, entity.Codigo, entity.Eliminado, entity.Descuento, entity.RazonSocial };
+                entity.Celular, entity.Codigo, entity.Eliminado, entity.Descuento, entity.RazonSocial, entity.CreditoActivo, entity.LimiteCredito, entity.DiaPago };
             return cm.Database.SqlQuery<Cliente>("dbo.usp_ClientesInsert @SucursalRegistroId={0}, @Nombre={1}, @Rfc={2}, "+
-                "@Telefono={3}, @Celular={4}, @Codigo={5}, @Eliminado={6}, @Descuento={7}, @RazonSocial={8}", parameters).FirstOrDefault();
+                "@Telefono={3}, @Celular={4}, @Codigo={5}, @Eliminado={6}, @Descuento={7}, @RazonSocial={8}, @CreditoActivo={9}, "+
+                "@LimiteCredito={10}, @DiaPago={11}", parameters).FirstOrDefault();
         }
 
         public bool Delete(int key)
@@ -37,9 +38,10 @@ namespace AIPos.DAO.Implementation
         public Cliente Update(Cliente entity)
         {
             object[] parameters = new object[] { entity.Id, entity.SucursalRegistroId, entity.Nombre, entity.Rfc, entity.Telefono, 
-                entity.Celular, entity.Codigo, entity.Eliminado, entity.Descuento, entity.RazonSocial };
+                entity.Celular, entity.Codigo, entity.Eliminado, entity.Descuento, entity.RazonSocial, entity.CreditoActivo, entity.LimiteCredito, entity.DiaPago };
             return cm.Database.SqlQuery<Cliente>("dbo.usp_ClientesUpdate @Id={0}, @SucursalRegistroId={1}, @Nombre={2}, @Rfc={3}, " +
-                "@Telefono={4}, @Celular={5}, @Codigo={6}, @Eliminado={7}, @Descuento={8}, @RazonSocial={9}", parameters).FirstOrDefault();
+                "@Telefono={4}, @Celular={5}, @Codigo={6}, @Eliminado={7}, @Descuento={8}, @RazonSocial={9}, @CreditoActivo={10}, "+
+                "@LimiteCredito={11}, @DiaPago={12}", parameters).FirstOrDefault();
         }
 
         public List<Cliente> SelectAll()

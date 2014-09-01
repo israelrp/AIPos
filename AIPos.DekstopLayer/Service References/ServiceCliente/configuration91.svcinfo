@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="grwtKQesicjmLN11AbWMkTvodto=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="5U4qHeyrXLhVkE1LrXaaCkmyqM4=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_ISCliente1">
       <properties>
@@ -221,7 +221,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_ISCliente1" contract="ServiceCliente.ISCliente" bindingType="basicHttpBinding" address="http://sanagustinservices.azurewebsites.net/SCliente.svc" bindingConfiguration="BasicHttpBinding_ISCliente1">
+    <endpoint name="BasicHttpBinding_ISCliente" contract="ServiceCliente.ISCliente" bindingType="basicHttpBinding" address="http://sanagustinservices.azurewebsites.net/SCliente.svc" bindingConfiguration="BasicHttpBinding_ISCliente1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://sanagustinservices.azurewebsites.net/SCliente.svc</serializedValue>
@@ -296,7 +296,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_ISCliente1</serializedValue>
+          <serializedValue>BasicHttpBinding_ISCliente</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
