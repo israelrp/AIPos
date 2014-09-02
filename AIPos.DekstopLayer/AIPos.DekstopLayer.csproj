@@ -205,6 +205,9 @@
     <Compile Include="CorteCaja\DXVentaDetalle.xaml.cs">
       <DependentUpon>DXVentaDetalle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CuentasPorCobrar\NuevaCuentaPorCobrar.xaml.cs">
+      <DependentUpon>NuevaCuentaPorCobrar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Documentos\CorteCaja.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -279,6 +282,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\ServiceCorteCaja\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceCuentaPorCobrar\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -469,6 +477,7 @@
     <None Include="Properties\DataSources\AIPos.Domain.Cliente.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.ConfiguracionGeneral.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.CorteCaja.datasource" />
+    <None Include="Properties\DataSources\AIPos.Domain.CuentaPorCobrar.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.Direccion.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.DireccionEnvio.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.DireccionFacturacion.datasource" />
@@ -525,6 +534,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceCorteCaja\SCorteCaja2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceCuentaPorCobrar\SCuentaPorCobrar.wsdl" />
+    <None Include="Service References\ServiceCuentaPorCobrar\SCuentaPorCobrar.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceCuentaPorCobrar\SCuentaPorCobrar1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceCuentaPorCobrar\SCuentaPorCobrar2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceDireccionEnvio\SDireccionEnvio.wsdl" />
@@ -745,6 +764,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CuentasPorCobrar\NuevaCuentaPorCobrar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DXSplashScreen\SplashAIPos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -844,6 +867,7 @@
     <WCFMetadataStorage Include="Service References\ServiceCliente\" />
     <WCFMetadataStorage Include="Service References\ServiceConfiguracion\" />
     <WCFMetadataStorage Include="Service References\ServiceCorteCaja\" />
+    <WCFMetadataStorage Include="Service References\ServiceCuentaPorCobrar\" />
     <WCFMetadataStorage Include="Service References\ServiceDireccionEnvio\" />
     <WCFMetadataStorage Include="Service References\ServiceDireccionFacturacion\" />
     <WCFMetadataStorage Include="Service References\ServiceDireccion\" />
@@ -1610,6 +1634,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceConfiguracion\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceCuentaPorCobrar\SCuentaPorCobrar.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceCuentaPorCobrar\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceCuentaPorCobrar\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceCuentaPorCobrar\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

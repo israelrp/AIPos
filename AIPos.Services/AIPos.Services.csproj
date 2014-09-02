@@ -86,6 +86,7 @@
     <Content Include="SCliente.svc" />
     <Content Include="SConfiguracionGeneral.svc" />
     <Content Include="SCorteCaja.svc" />
+    <Content Include="SCuentaPorCobrar.svc" />
     <Content Include="SDireccion.svc" />
     <Content Include="SDireccionEnvio.svc" />
     <Content Include="SDireccionFacturacion.svc" />
@@ -112,6 +113,7 @@
     <Compile Include="ISCliente.cs" />
     <Compile Include="ISConfiguracionGeneral.cs" />
     <Compile Include="ISCorteCaja.cs" />
+    <Compile Include="ISCuentaPorCobrar.cs" />
     <Compile Include="ISDireccion.cs" />
     <Compile Include="ISDireccionEnvio.cs" />
     <Compile Include="ISDireccionFacturacion.cs" />
@@ -146,6 +148,9 @@
     </Compile>
     <Compile Include="SCorteCaja.svc.cs">
       <DependentUpon>SCorteCaja.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SCuentaPorCobrar.svc.cs">
+      <DependentUpon>SCuentaPorCobrar.svc</DependentUpon>
     </Compile>
     <Compile Include="SDireccion.svc.cs">
       <DependentUpon>SDireccion.svc</DependentUpon>

@@ -53,6 +53,7 @@
     <Compile Include="BOClienteListaPrecio.cs" />
     <Compile Include="BOConfiguracionGeneral.cs" />
     <Compile Include="BOCorteCaja.cs" />
+    <Compile Include="BOCuentaPorCobrar.cs" />
     <Compile Include="BODireccion.cs" />
     <Compile Include="BODireccionEnvio.cs" />
     <Compile Include="BODireccionFacturacion.cs" />
