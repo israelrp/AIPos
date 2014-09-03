@@ -27,6 +27,12 @@ namespace AIPos.DekstopLayer.CuentasPorCobrar
             InitializeComponent();
         }
 
+        public NuevaCuentaPorCobrar(CuentaPorCobrar cuentaPorCobrar)
+        {
+            InitializeComponent();
+
+        }
+
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             CuentaPorCobrar cxc = new CuentaPorCobrar();

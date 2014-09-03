@@ -653,6 +653,26 @@ namespace AIPos.DekstopLayer.Ventas
                                             ServicioApartadoVenta = servicioApartadoClient.Insert(ServicioApartadoVenta);
                                             ServicioApartadoVenta.DireccionEnvio = new ServiceDireccion.SDireccionClient().SelectById(ServicioApartadoVenta.DireccionEnvioId);
                                             ImprimirApartadosServicio(venta, ServicioApartadoVenta);
+                                            if (ServicioApartadoVenta.Anticipo < venta.Total)
+                                            {
+                                                decimal importeCxC = venta.Total - ServicioApartadoVenta.Anticipo;
+                                                //Se genera una cuenta por cobrar
+                                                CuentaPorCobrar cuentaPorCobrar = new CuentaPorCobrar();
+                                                cuentaPorCobrar.ClienteId = venta.ClienteId;
+                                                cuentaPorCobrar.Descripcion = "Cuenta por cobrar por "+importeCxC.ToString("c")+" del día "+venta.Fecha.ToShortDateString()+
+                                                    " por una venta de "+Tipo(ServicioApartadoVenta.Tipo)+" con folio "+venta.FolioCancelado.ToString();
+                                                cuentaPorCobrar.Estatus = 0;
+                                                cuentaPorCobrar.Fecha = DateTime.Now;
+                                                cuentaPorCobrar.FechaLimite = DateTime.Now.AddDays(30);
+                                                cuentaPorCobrar.Importe = importeCxC;
+                                                cuentaPorCobrar.UsuarioId = General.UsuarioLogueado.Id;
+                                                cuentaPorCobrar.VentaId = venta.Id;
+                                                CuentasPorCobrar.NuevaCuentaPorCobrar nuevaCuentaPorCobrar = new CuentasPorCobrar.NuevaCuentaPorCobrar();
+                                                nuevaCuentaPorCobrar.CuentaPorCobrar = cuentaPorCobrar;
+                                                nuevaCuentaPorCobrar.ShowDialog();
+                                                ServiceCuentaPorCobrar.SCuentaPorCobrarClient cxcClient = new ServiceCuentaPorCobrar.SCuentaPorCobrarClient();
+                                                cxcClient.NuevaCuentaPorCobrar(cuentaPorCobrar);
+                                            }
                                         }
                                         else
                                         {
@@ -697,6 +717,24 @@ namespace AIPos.DekstopLayer.Ventas
             {
                 MessageBox.Show("Error: " + ex.Message + " " + ex.Source);
             }
+        }
+
+        private string Tipo(byte tipo)
+        {
+            string tipoNombre = "";
+            switch (tipo)
+            {
+                case 0:
+                    tipoNombre = "domicilio";
+                    break;
+                case 1:
+                    tipoNombre = "apartado";
+                    break;
+                case 2:
+                    tipoNombre = "servicio";
+                    break;
+            }
+            return tipoNombre;
         }
 
         private void btnOrden_Click(object sender, RoutedEventArgs e)
