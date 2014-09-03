@@ -61,13 +61,17 @@ namespace AIPos.DekstopLayer.CorteCaja
                         PrintLayout.Scaling = CrystalDecisions.Shared.PrintLayoutSettings.PrintScaling.DoNotScale;
                         System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
                         printerSettings.PrinterName = General.ConfiguracionApp.MiniPrinter;
-                        printerSettings.Copies = 2;
+                        printerSettings.Copies = 1;
                         var pageSettings = new System.Drawing.Printing.PageSettings(printerSettings);
                         //pageSettings.PaperSize = new System.Drawing.Printing.PaperSize("CUSTOM", 1000, 3362);
                         //report.PrintOptions.PrinterName = General.ConfiguracionApp.MiniPrinter;
                         //report.PrintOptions.DissociatePageSizeAndPrinterPaperSize = true;
                         if (!General.ConfiguracionApp.ImpresoraVirtual)
-                            report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+                        {
+                            int i = General.ConfiguracionWeb.NumeroCopiasTicketVenta;
+                            for (int x = 1; x <= i; x++)
+                                report.PrintToPrinter(printerSettings, pageSettings, false, PrintLayout);
+                        }
                         else
                         {
                             ReportViewer reportViewer = new ReportViewer();
