@@ -278,6 +278,8 @@ namespace AIPos.DekstopLayer.Ventas
                                 {
                                     ReportViewer reportViewer = new ReportViewer();
                                     reportViewer.Show();
+                                    ticketPesaje.PrintOptions.PaperSize = CrystalDecisions.Shared.PaperSize.PaperLetter;
+                                    ticketPesaje.PrintOptions.ApplyPageMargins(new CrystalDecisions.Shared.PageMargins(0, 0, 0, 0));
                                     ReportDocument reportDocument = (ReportDocument)ticketPesaje;
                                     reportViewer.viewer.ViewerCore.ReportSource = reportDocument;
                                 }
@@ -782,9 +784,10 @@ namespace AIPos.DekstopLayer.Ventas
                 else
                 {
                     ReportViewer reportViewer = new ReportViewer();
-                    reportViewer.Show();
                     ReportDocument reportDocument = (ReportDocument)report;
                     reportViewer.viewer.ViewerCore.ReportSource = reportDocument;
+                    reportViewer.Show();
+                    
                 }
             }
             catch (FaultException ex)

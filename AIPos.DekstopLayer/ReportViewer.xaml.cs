@@ -22,6 +22,7 @@ namespace AIPos.DekstopLayer
         public ReportViewer()
         {
             InitializeComponent();
+            viewer.Owner = this;
         }
     }
 }
