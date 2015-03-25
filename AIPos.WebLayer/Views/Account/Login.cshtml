@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Acceso sistema administrativo";
 }
-<div style="margin-top:50px; width:1200px; margin:0px auto; padding-top:50px;">
+<div class="login-content">
     <hgroup class="title">
         <h1>@ViewBag.Title.</h1>
     </hgroup>
@@ -18,19 +18,17 @@
                 <li>
                     @Html.LabelFor(m => m.UserName)
                     @Html.TextBoxFor(m => m.UserName)
+                    <br/>
                     @Html.ValidationMessageFor(m => m.UserName)
                 </li>
                 <li>
                     @Html.LabelFor(m => m.Password)
                     @Html.PasswordFor(m => m.Password)
+                    <br />
                     @Html.ValidationMessageFor(m => m.Password)
-                </li>
-                <li>
-                    @Html.CheckBoxFor(m => m.RememberMe)
-                    @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
-                </li>
+                </li>                
             </ol>
-            <input type="submit" value="Log in" />
+            <button type="submit">Acceder</button>            
         </fieldset>
 
     }

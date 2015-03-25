@@ -5,7 +5,7 @@
         <title>@ViewBag.Title - My ASP.NET MVC Application</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
-
+        <link href="~/Content/PrincipalStyle.css" rel="stylesheet" />
     @Html.DevExpress().GetStyleSheets(
         new StyleSheet { ExtensionSuite = ExtensionSuite.All, Theme="SoftOrange" }
     )
@@ -33,7 +33,7 @@
 
     </head>
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-inverse navbar-fixed-top menu-personal">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -116,7 +116,7 @@
             <hr />
             <footer>
                 <div class="content-wrapper">
-                    <div class="float-left">
+                    <div>
                         <p>&copy; @DateTime.Now.Year - Distribuidora San Agustin</p>
                     </div>
                 </div>

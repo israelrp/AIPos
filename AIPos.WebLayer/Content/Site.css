@@ -133,17 +133,7 @@ header .content-wrapper {
     padding-top: 20px; 
 }
 
-footer {
-    clear: both;
-    background-color: #a6dbed;
-    font-size: 1em;
-    height: 50px;
-    width:100%;
-    position:fixed;
-    bottom:0;
-    left:0;
 
-}
 
 
 /* site title

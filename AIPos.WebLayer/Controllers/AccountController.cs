@@ -35,16 +35,18 @@ namespace AIPos.WebLayer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            BOUsuario boUsuario = new BOUsuario();
-            Usuario usuario = boUsuario.Login(model.UserName, model.Password);
-            if (ModelState.IsValid && usuario!=null && usuario.NivelId>1)
+            if (ModelState.IsValid)
             {
-                FormsAuthentication.SetAuthCookie(model.UserName, false);
-                return RedirectToAction("Index", "Home");
+                BOUsuario boUsuario = new BOUsuario();
+                Usuario usuario = boUsuario.Login(model.UserName, model.Password);
+                if (usuario != null && usuario.NivelId > 1)
+                {
+                    FormsAuthentication.SetAuthCookie(model.UserName, false);
+                    return RedirectToAction("Index", "Home");
+                }
             }
-
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
+            ModelState.AddModelError("", "El usuario o contraseña son incorrectos.");
             return View(model);
         }
 
