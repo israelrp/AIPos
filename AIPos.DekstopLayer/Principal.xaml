@@ -23,9 +23,9 @@
                 <dxb:BarButtonItem x:Name="barButtonItem4" Content="Corte de caja" Glyph="Images/IconosMenu/corteCaja.png" RibbonStyle="Large" />
                 <dxb:BarButtonItem x:Name="barButtonCorteCaja" Content="Corte de caja" Glyph="Images/IconosMenu/corteCaja.png" RibbonStyle="Large" ItemClick="barButtonCorteCaja_ItemClick_1" />
                 <dxb:BarButtonItem x:Name="barButtonConfiguracion" Content="Configuración" Glyph="Images/IconosMenu/datosGenerales.png" RibbonStyle="Large" ItemClick="barButtonConfiguracion_ItemClick_1" />
-                <dxb:BarButtonItem x:Name="barButtonItem1" Content="Cancelaciones" Glyph="pack://application:,,,/DevExpress.Images.v13.2;component/Images/Actions/Cancel_32x32.png" RibbonStyle="Large" />
-                <dxb:BarButtonItem x:Name="barButtonInventarios" Content="Inventarios" Glyph="pack://application:,,,/DevExpress.Images.v13.2;component/Images/Data/Database_32x32.png" RibbonStyle="Large" ItemClick="barButtonInventarios_ItemClick" />
-                <dxb:BarButtonItem x:Name="barButtonRequerimientos" Content="Requerimientos" Glyph="pack://application:,,,/DevExpress.Images.v13.2;component/Images/Programming/ShowTestReport_32x32.png" RibbonStyle="Large" ItemClick="barButtonRequerimientos_ItemClick" />
+                <dxb:BarButtonItem x:Name="barButtonItem1" Content="Cancelaciones" Glyph="pack://application:,,,/DevExpress.Images.v14.2;component/Images/Actions/Cancel_32x32.png" RibbonStyle="Large" />
+                <dxb:BarButtonItem x:Name="barButtonInventarios" Content="Inventarios" Glyph="pack://application:,,,/DevExpress.Images.v14.2;component/Images/Data/Database_32x32.png" RibbonStyle="Large" ItemClick="barButtonInventarios_ItemClick" />
+                <dxb:BarButtonItem x:Name="barButtonRequerimientos" Content="Requerimientos" Glyph="pack://application:,,,/DevExpress.Images.v14.2;component/Images/Programming/ShowTestReport_32x32.png" RibbonStyle="Large" ItemClick="barButtonRequerimientos_ItemClick" />
                 <dxb:BarButtonItem x:Name="barButtonConteo" Content="Conteo rápido" Glyph="Images/IconosMenu/conteo.png" RibbonStyle="Large" ItemClick="barButtonConteo_ItemClick" />
                 <dxb:BarButtonItem x:Name="barButtonEntregas" Content="Entregas domicilio" Glyph="Images/IconosMenu/conteo.png" RibbonStyle="Large" ItemClick="barButtonEntragas_ItemClick_1" />
             </dxb:BarManager.Items>
@@ -38,7 +38,7 @@
                 <dxr:RibbonControl Grid.Row="0" RibbonStyle="Office2010" MinimizationButtonVisibility="Collapsed">
                     <dxr:RibbonDefaultPageCategory>
                         <dxr:RibbonPage Caption="Movimientos">
-                            <dxr:RibbonPageGroup CaptionButtonCommandParameter="Entradas" Caption="Inventario" ShowCaptionButton="True" Glyph="pack://application:,,,/DevExpress.Images.v13.2;component/Images/Data/Database_32x32.png">
+                            <dxr:RibbonPageGroup CaptionButtonCommandParameter="Entradas" Caption="Inventario" ShowCaptionButton="True" Glyph="pack://application:,,,/DevExpress.Images.v14.2;component/Images/Data/Database_32x32.png">
                                 <dxb:BarButtonItemLink BarItemName="barButtonEntradas" />
                                 <dxb:BarButtonItemLink BarItemName="barButtonVentas" />
                                 <dxb:BarButtonItemLink BarItemName="barButtonRetiros" />

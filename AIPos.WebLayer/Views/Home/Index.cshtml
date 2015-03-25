@@ -57,67 +57,80 @@
     // ]]>
 </script>
 
-<div style="margin:0px auto;">
-    <div style="width:760px; margin:0px auto;">
-        @Html.DevExpress().DockZone(settings =>
-        {
-            settings.Name = "DockZone1";
-            settings.ZoneUID = "Zone1";
-            settings.AllowGrowing = true;
-            settings.Width = 780;
-        }).GetHtml()
-    </div>
-    <div class="contenedor-dockzone">
-        @Html.DevExpress().DockZone(settings =>
+
+<div id="content-dashboard">
+    <table style="width:100%;">
+        <tr>
+            <td colspan="2">
+                <div style="width:730px; margin:0px auto;">
+                    @Html.DevExpress().DockZone(settings =>
+                    {
+                        settings.Name = "DockZone1";
+                        settings.ZoneUID = "Zone1";
+                        settings.AllowGrowing = true;
+                        settings.ControlStyle.CssClass = "dockZone-dashboard";
+                        settings.Width = 730;
+                    }).GetHtml()
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DevExpress().DockZone(settings =>
                 {
                     settings.Name = "DockZone4";
                     settings.ZoneUID = "Zone4";
                     settings.AllowGrowing = true;
-                    settings.Width = 1200;
+                    settings.ControlStyle.CssClass = "dockZone-dashboard";
+                    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
                 }).GetHtml()
-    </div>
-
-    <div class="contenedor-dockzone">
-        @Html.DevExpress().DockZone(settings =>
+            </td>
+            <td>
+                @Html.DevExpress().DockZone(settings =>
                 {
                     settings.Name = "DockZone2";
                     settings.ZoneUID = "Zone2";
                     settings.AllowGrowing = true;
-                    settings.Width = 535;
+                    settings.ControlStyle.CssClass = "dockZone-dashboard";
+                    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
                 }).GetHtml()
-    </div>
-
-    <div class="contenedor-dockzone">
-        @Html.DevExpress().DockZone(settings =>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DevExpress().DockZone(settings =>
                 {
                     settings.Name = "DockZone3";
                     settings.ZoneUID = "Zone3";
                     settings.AllowGrowing = true;
-                    settings.Width = 570;
+                    settings.ControlStyle.CssClass = "dockZone-dashboard";
+                    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
                 }).GetHtml()
-    </div>
-
-
-
-    <div class="contenedor-dockzone">
-        @Html.DevExpress().DockZone(settings =>
+            </td>
+            <td>
+                @Html.DevExpress().DockZone(settings =>
                 {
                     settings.Name = "DockZone5";
                     settings.ZoneUID = "Zone5";
                     settings.AllowGrowing = true;
-                    settings.Width = 1200;
+                    settings.ControlStyle.CssClass = "dockZone-dashboard";
+                    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
                 }).GetHtml()
-    </div>
-
-    <div class="contenedor-dockzone">
-        @Html.DevExpress().DockZone(settings =>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @Html.DevExpress().DockZone(settings =>
                 {
                     settings.Name = "DockZone6";
                     settings.ZoneUID = "Zone6";
                     settings.AllowGrowing = true;
-                    settings.Width = 680;
+                    settings.ControlStyle.CssClass = "dockZone-dashboard";
+                    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
                 }).GetHtml()
-    </div>
+            </td>
+        </tr>
+    </table>
 </div>
 
 @{
@@ -156,9 +169,7 @@
     {
         Html.DevExpress().ComboBox(cbFormatSettings).Render();
     });
-    DevExpress.Web.ASPxMenu.MenuItemStyle itemStyle = new DevExpress.Web.ASPxMenu.MenuItemStyle();
-    itemStyle.Assign(mnuFormat.ItemStyle);
-    mnuFormat.ItemStyle.Assign(itemStyle);
+    
     menusettings.Items.Add(mnuFormat);
 
     menusettings.ClientSideEvents.ItemClick = "function(s, e) { if (e.item.name == 'mnuPrint') chart.Print(); if (e.item.name == 'mnuSaveToDisk') chart.SaveToDisk(cbFormat.GetText()); if (e.item.name == 'mnuSaveToWindow') chart.SaveToWindow(cbFormat.GetText()); }";

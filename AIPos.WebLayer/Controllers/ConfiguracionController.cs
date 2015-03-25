@@ -81,12 +81,12 @@ namespace AIPos.WebLayer.Controllers
     {
         public const string UploadDirectory = "~/Content/UploadControl/UploadFolder/";
 
-        public static DevExpress.Web.ASPxUploadControl.ValidationSettings ValidationSettings = new DevExpress.Web.ASPxUploadControl.ValidationSettings()
+        public static DevExpress.Web.UploadControlValidationSettings ValidationSettings = new DevExpress.Web.UploadControlValidationSettings()
         {
             AllowedFileExtensions = new string[] { ".jpg", ".jpeg" },
             MaxFileSize = 20971520
         };
-        public static void FileUploadComplete(object sender, DevExpress.Web.ASPxUploadControl.FileUploadCompleteEventArgs e)
+        public static void FileUploadComplete(object sender, DevExpress.Web.FileUploadCompleteEventArgs e)
         {
             if (e.UploadedFile.IsValid)
             {

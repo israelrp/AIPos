@@ -7,7 +7,7 @@ using AIPos.Domain;
 using AIPos.BusinessLayer;
 using DevExpress.Web.Mvc;
 using AIPos.WebLayer.Helpers;
-using DevExpress.Web.ASPxEditors;
+using DevExpress.Web;
 
 namespace AIPos.WebLayer.Controllers
 {

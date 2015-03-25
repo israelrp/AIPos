@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
 using AIPos.WebLayer.Helpers;
-using DevExpress.Web.ASPxEditors;
+using DevExpress.Web;
 
 namespace AIPos.WebLayer.Controllers
 {

@@ -3900,7 +3900,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   text-align: center;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 968px) {
   .nav-tabs.nav-justified > li {
     display: table-cell;
     width: 1%;

@@ -14,7 +14,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>C:\Users\developerApps\Desktop\iNSTALADOR\</PublishUrl>
+    <PublishUrl>ftp://waws-prod-blu-011.ftp.azurewebsites.windows.net/site/wwwroot/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -24,10 +24,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://serveraplicaciones.cloudapp.net:65/Instalador/</InstallUrl>
+    <InstallUrl>http://sanagustinupdates.azurewebsites.net/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>29</ApplicationRevision>
+    <ApplicationRevision>46</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -62,7 +62,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>PUNTOVENTA.ico</ApplicationIcon>
@@ -77,82 +77,82 @@
     <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Charts.v13.1.Core, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Charts.v13.2.Core, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Data.v13.1, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Data.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Images.v13.1, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Images.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Office.v13.1.Core, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Office.v13.2.Core, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.PivotGrid.v13.1.Core, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.PivotGrid.v13.2.Core, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Printing.v13.1.Core, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Printing.v13.2.Core, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v13.1.Core, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.RichEdit.v13.2.Core, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Sparkline.v13.1.Core, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Sparkline.v13.2.Core, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Utils.v13.1, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Utils.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Utils.v13.1.UI, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Utils.v13.2.UI, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="devexpress.xpf.controls.v13.1, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="devexpress.xpf.controls.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="devexpress.xpf.layoutcontrol.v13.1, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="devexpress.xpf.layoutcontrol.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Mvvm.v13.1, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Xpf.Mvvm.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v13.1, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Xpf.Core.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Docking.v13.1, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Xpf.Docking.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Printing.v13.1, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Xpf.Printing.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v13.1, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Xpf.Grid.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v13.1.Core, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Xpf.Grid.v13.2.Core, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Layout.v13.1.Core, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Xpf.Layout.v13.2.Core, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.NavBar.v13.1, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Xpf.NavBar.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Ribbon.v13.1, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Ribbon.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v13.1, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraCharts.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v13.1, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraEditors.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraPrinting.v13.1, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraPrinting.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v13.1, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraReports.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v13.1.Extensions, Version=13.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraReports.v13.2.Extensions, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="ReachFramework" />
@@ -202,6 +202,12 @@
     <Compile Include="CorteCaja\DXRealizarCorteCaja.xaml.cs">
       <DependentUpon>DXRealizarCorteCaja.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CorteCaja\DXVentaDetalle.xaml.cs">
+      <DependentUpon>DXVentaDetalle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CuentasPorCobrar\NuevaCuentaPorCobrar.xaml.cs">
+      <DependentUpon>NuevaCuentaPorCobrar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Documentos\CorteCaja.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -220,6 +226,12 @@
       <DependentUpon>Ticket.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Documentos\TicketPesaje.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TicketPesaje.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Documentos\TicketServicioApartado.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -228,6 +240,9 @@
     </Compile>
     <Compile Include="DXSplashScreen\SplashAIPos.xaml.cs">
       <DependentUpon>SplashAIPos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\DXLoginEntrada.xaml.cs">
+      <DependentUpon>DXLoginEntrada.xaml</DependentUpon>
     </Compile>
     <Compile Include="Entradas\DXWEntradas.xaml.cs">
       <DependentUpon>DXWEntradas.xaml</DependentUpon>
@@ -239,6 +254,7 @@
       <DependentUpon>DXEnviar.xaml</DependentUpon>
     </Compile>
     <Compile Include="General.cs" />
+    <Compile Include="Helpers\SelectionHelper.cs" />
     <Compile Include="Inventario\DXInventarios.xaml.cs">
       <DependentUpon>DXInventarios.xaml</DependentUpon>
     </Compile>
@@ -246,6 +262,9 @@
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\VentaDetalle.cs" />
+    <Compile Include="ReportViewer.xaml.cs">
+      <DependentUpon>ReportViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Requerimientos\DXRequerimientos.xaml.cs">
       <DependentUpon>DXRequerimientos.xaml</DependentUpon>
     </Compile>
@@ -257,7 +276,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ServiceConfiguracion\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ServiceCorteCaja\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceCuentaPorCobrar\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -278,6 +307,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\ServiceEntrada\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceEstatusServicioApartado\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -366,8 +400,14 @@
     <Compile Include="Ventas\DXCancelaciones.xaml.cs">
       <DependentUpon>DXCancelaciones.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventas\DXVentaId.xaml.cs">
+      <DependentUpon>DXVentaId.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventas\DXVentas.xaml.cs">
       <DependentUpon>DXVentas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\DXVentaSeparada.xaml.cs">
+      <DependentUpon>DXVentaSeparada.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventas\RegistrarCliente.xaml.cs">
       <DependentUpon>RegistrarCliente.xaml</DependentUpon>
@@ -420,6 +460,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Ticket.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Documentos\TicketPesaje.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TicketPesaje.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Documentos\TicketServicioApartado.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>TicketServicioApartado.cs</LastGenOutput>
@@ -431,11 +475,14 @@
     </EmbeddedResource>
     <None Include="AIPos.DekstopLayer_TemporaryKey.pfx" />
     <None Include="Properties\DataSources\AIPos.Domain.Cliente.datasource" />
+    <None Include="Properties\DataSources\AIPos.Domain.ConfiguracionGeneral.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.CorteCaja.datasource" />
+    <None Include="Properties\DataSources\AIPos.Domain.CuentaPorCobrar.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.Direccion.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.DireccionEnvio.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.DireccionFacturacion.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.Entrada.datasource" />
+    <None Include="Properties\DataSources\AIPos.Domain.EstatusServicioApartado.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.Inventario.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.ListaPrecio.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.ListaPrecioProducto.datasource" />
@@ -453,6 +500,7 @@
     <None Include="Properties\DataSources\AIPos.Domain.Unidad.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.Usuario.datasource" />
     <None Include="Properties\DataSources\AIPos.Domain.Venta.datasource" />
+    <None Include="Properties\DataSources\AIPos.Domain.VentaDetalle.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -468,6 +516,16 @@
     <None Include="Service References\ServiceCliente\SCliente32.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceConfiguracion\SConfiguracionGeneral.wsdl" />
+    <None Include="Service References\ServiceConfiguracion\SConfiguracionGeneral.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConfiguracion\SConfiguracionGeneral1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConfiguracion\SConfiguracionGeneral2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceCorteCaja\SCorteCaja.wsdl" />
     <None Include="Service References\ServiceCorteCaja\SCorteCaja.xsd">
       <SubType>Designer</SubType>
@@ -476,6 +534,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceCorteCaja\SCorteCaja2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceCuentaPorCobrar\SCuentaPorCobrar.wsdl" />
+    <None Include="Service References\ServiceCuentaPorCobrar\SCuentaPorCobrar.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceCuentaPorCobrar\SCuentaPorCobrar1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceCuentaPorCobrar\SCuentaPorCobrar2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceDireccionEnvio\SDireccionEnvio.wsdl" />
@@ -518,6 +586,16 @@
     <None Include="Service References\ServiceEntrada\SEntrada32.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceEstatusServicioApartado\SEstatusServicioApartado.wsdl" />
+    <None Include="Service References\ServiceEstatusServicioApartado\SEstatusServicioApartado.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceEstatusServicioApartado\SEstatusServicioApartado1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceEstatusServicioApartado\SEstatusServicioApartado2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceInventario\SInventario.wsdl" />
     <None Include="Service References\ServiceInventario\SInventario.xsd">
       <SubType>Designer</SubType>
@@ -548,14 +626,14 @@
     <None Include="Service References\ServiceListaPrecio\SListaPrecio2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal.wsdl" />
-    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal.xsd">
+    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal1.wsdl" />
+    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal1.xsd">
+    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal2.xsd">
+    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal32.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceProducto\SProducto1.wsdl" />
@@ -588,14 +666,14 @@
     <None Include="Service References\ServiceRetiroDinero\ISRetiroDinero2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado.wsdl" />
-    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado.xsd">
+    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado1.wsdl" />
+    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado1.xsd">
+    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado2.xsd">
+    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado32.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceServicioApartado\SServicioApartado.wsdl" />
@@ -682,7 +760,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CorteCaja\DXVentaDetalle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CuentasPorCobrar\NuevaCuentaPorCobrar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DXSplashScreen\SplashAIPos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\DXLoginEntrada.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -710,6 +800,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ReportViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Requerimientos\DXRequerimientos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -730,7 +824,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Ventas\DXVentaId.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ventas\DXVentas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventas\DXVentaSeparada.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -763,11 +865,14 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceCliente\" />
+    <WCFMetadataStorage Include="Service References\ServiceConfiguracion\" />
     <WCFMetadataStorage Include="Service References\ServiceCorteCaja\" />
+    <WCFMetadataStorage Include="Service References\ServiceCuentaPorCobrar\" />
     <WCFMetadataStorage Include="Service References\ServiceDireccionEnvio\" />
     <WCFMetadataStorage Include="Service References\ServiceDireccionFacturacion\" />
     <WCFMetadataStorage Include="Service References\ServiceDireccion\" />
     <WCFMetadataStorage Include="Service References\ServiceEntrada\" />
+    <WCFMetadataStorage Include="Service References\ServiceEstatusServicioApartado\" />
     <WCFMetadataStorage Include="Service References\ServiceInventario\" />
     <WCFMetadataStorage Include="Service References\ServiceListaPrecioProducto\" />
     <WCFMetadataStorage Include="Service References\ServiceListaPrecio\" />
@@ -917,14 +1022,14 @@
     <None Include="Service References\ServiceVenta\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceVenta\ISVenta.wsdl" />
-    <None Include="Service References\ServiceVenta\ISVenta.xsd">
+    <None Include="Service References\ServiceVenta\ISVenta1.wsdl" />
+    <None Include="Service References\ServiceVenta\ISVenta3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceVenta\ISVenta1.xsd">
+    <None Include="Service References\ServiceVenta\ISVenta31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceVenta\ISVenta2.xsd">
+    <None Include="Service References\ServiceVenta\ISVenta32.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceVenta\Reference.svcmap">
@@ -989,7 +1094,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 y x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -1124,7 +1229,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.CodeParser.v13.1">
+    <PublishFile Include="DevExpress.CodeParser.v13.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -1134,7 +1239,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraBars.v13.1">
+    <PublishFile Include="DevExpress.DataAccess.v13.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -1144,7 +1249,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraCharts.v13.1.Extensions">
+    <PublishFile Include="DevExpress.DataAccess.v13.2.UI">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -1154,7 +1259,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraCharts.v13.1.Wizard">
+    <PublishFile Include="DevExpress.Xpo.v13.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -1164,7 +1269,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraNavBar.v13.1">
+    <PublishFile Include="DevExpress.XtraBars.v13.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -1174,7 +1279,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraPivotGrid.v13.1">
+    <PublishFile Include="DevExpress.XtraCharts.v13.2.Extensions">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -1184,7 +1289,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraRichEdit.v13.1">
+    <PublishFile Include="DevExpress.XtraCharts.v13.2.Wizard">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -1194,7 +1299,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraTreeList.v13.1">
+    <PublishFile Include="DevExpress.XtraGrid.v13.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -1204,7 +1309,67 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraVerticalGrid.v13.1">
+    <PublishFile Include="DevExpress.XtraLayout.v13.2">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraNavBar.v13.2">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraPivotGrid.v13.2">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraRichEdit.v13.2">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraTreeList.v13.2">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraVerticalGrid.v13.2">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraWizard.v13.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -1277,9 +1442,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Configuracion\Config.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceVenta\ISVenta.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceRetiroDinero\configuration91.svcinfo" />
@@ -1360,9 +1522,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\ServicePedidoSucursal\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -1405,9 +1564,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\ServiceSeguimientoServicioApartado\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -1430,6 +1586,69 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceDireccionFacturacion\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceEstatusServicioApartado\SEstatusServicioApartado.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceEstatusServicioApartado\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceEstatusServicioApartado\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceEstatusServicioApartado\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceSeguimientoServicioApartado\SSeguimientoServicioApartado1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceVenta\ISVenta1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\apartado.png" />
+    <Resource Include="Images\cancelar.png" />
+    <Resource Include="Images\domicilio.png" />
+    <Resource Include="Images\ticket-mini.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\order.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicePedidoSucursal\SPedidoSucursal1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceConfiguracion\SConfiguracionGeneral.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceConfiguracion\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceConfiguracion\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceConfiguracion\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceCuentaPorCobrar\SCuentaPorCobrar.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceCuentaPorCobrar\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceCuentaPorCobrar\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceCuentaPorCobrar\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
