@@ -16,7 +16,7 @@ namespace AIPos.Services
         public Venta Insert(Venta venta)
         {
             BOVenta boVenta = new BOVenta();
-            venta.Fecha = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(venta.Fecha);
+            venta.Fecha = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(venta.Fecha.ToUniversalTime());
             return boVenta.Insert(venta);
         }
 
@@ -81,7 +81,7 @@ namespace AIPos.Services
 
         public Venta Update(Venta venta)
         {
-            venta.Fecha = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(venta.Fecha);
+            venta.Fecha = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(venta.Fecha.ToUniversalTime());
             return new BOVenta().Update(venta);
         }
     }

@@ -35,7 +35,7 @@ namespace AIPos.Services
         public Domain.Entrada Insert(Domain.Entrada entrada)
         {
             BOEntrada boEntrada = new BOEntrada();
-            entrada.Fecha = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(entrada.Fecha);
+            entrada.Fecha = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(entrada.Fecha.ToUniversalTime());
             return boEntrada.Insert(entrada);
         }
 

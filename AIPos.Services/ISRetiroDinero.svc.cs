@@ -23,14 +23,14 @@ namespace AIPos.Services
         public Domain.RetiroDinero Insert(Domain.RetiroDinero retiroDinero)
         {
             BORetiroDinero boRetiroDinero = new BORetiroDinero();
-            retiroDinero.Fecha = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(retiroDinero.Fecha);
+            retiroDinero.Fecha = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(retiroDinero.Fecha.ToUniversalTime());
             return boRetiroDinero.Insert(retiroDinero);
         }
 
         public Domain.RetiroDinero Update(Domain.RetiroDinero retiroDinero)
         {
             BORetiroDinero boRetiroDinero = new BORetiroDinero();
-            retiroDinero.Fecha = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(retiroDinero.Fecha);
+            retiroDinero.Fecha = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(retiroDinero.Fecha.ToUniversalTime());
             return boRetiroDinero.Update(retiroDinero);
         }
 

@@ -18,14 +18,14 @@ namespace AIPos.Services
         public Inventario Insert(Inventario entity)
         {
             BOInventario boInventario = new BOInventario();
-            entity.FechaRegistro = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(entity.FechaRegistro);
+            entity.FechaRegistro = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(entity.FechaRegistro.ToUniversalTime());
             return boInventario.Insert(entity);
         }
 
         public Inventario Update(Inventario entity)
         {
             BOInventario boInventario = new BOInventario();
-            entity.FechaRegistro = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(entity.FechaRegistro);
+            entity.FechaRegistro = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(entity.FechaRegistro.ToUniversalTime());
             return boInventario.Update(entity);
         }
 

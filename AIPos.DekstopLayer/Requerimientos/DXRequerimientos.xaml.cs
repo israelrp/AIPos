@@ -103,7 +103,7 @@ namespace AIPos.DekstopLayer.Requerimientos
                     ServicePedidoSucursal.SPedidoSucursalClient sPedidoSucursalClient = new ServicePedidoSucursal.SPedidoSucursalClient();
                     PedidoSucursal pedido = new PedidoSucursal();
                     pedido.Cantidad = decimal.Parse(txtCantidad.Text);
-                    pedido.FechaEntrega = deFecha.DateTime;
+                    pedido.FechaEntrega = deFechaEntregar.DateTime;
                     pedido.FechaRegistro = DateTime.Now;
                     pedido.Producto = txtPedido.Text;
                     pedido.SucursalId = General.ConfiguracionApp.SucursalId;
