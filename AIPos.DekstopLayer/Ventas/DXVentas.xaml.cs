@@ -45,8 +45,8 @@ namespace AIPos.DekstopLayer.Ventas
             {
                 ServiceCliente.SClienteClient sClienteClient = new ServiceCliente.SClienteClient();
                 cmbClientes.ItemsSource = sClienteClient.SelectAll();
-                Cliente cliente = sClienteClient.SelectByCodigo(0);
-                cmbClientes.SelectedItem = cliente;
+                //Cliente cliente = sClienteClient.SelectByCodigo(0);
+                cmbClientes.SelectedIndex = 0;
                 ServiceProducto.SProductoClient sProductoClient = new ServiceProducto.SProductoClient();
                 cmbProductos.ItemsSource = sProductoClient.SelectAllProductos();
                 List<VentaDetalle> inicio = new List<VentaDetalle>();
@@ -581,6 +581,7 @@ namespace AIPos.DekstopLayer.Ventas
             decimal cambio = 0;
             decimal recibio = 0;
             decimal total = 0;
+            string TipoVenta = "";
             try
             {
                 if (cmbClientes.SelectedItem != null)
@@ -625,21 +626,30 @@ namespace AIPos.DekstopLayer.Ventas
                                         venta.VentasDetalle = (List<VentaDetalle>)gridVenta.ItemsSource;
                                         ServiceVenta.ISVentaClient ventaClient = new ServiceVenta.ISVentaClient();
                                         if (EsOrden)
+                                        {
                                             venta.FolioCancelado = ventaClient.GenerarFolioCancelado(venta.SucursalId, DateTime.Now.ToFileTimeUtc());
+                                            TipoVenta = "orden";
+                                        }
                                         else
+                                        {
                                             venta.Folio = ventaClient.GenerarFolioVenta(venta.SucursalId);
+                                            TipoVenta = "venta";
+                                        }
                                         if (ServicioApartadoVenta != null)
                                         {
                                             switch (ServicioApartadoVenta.Tipo)
                                             {
                                                 case 0:
                                                     venta.FolioCancelado = ventaClient.GenerarFolioCanceladoDomicilio(venta.SucursalId, DateTime.Now.ToFileTimeUtc());
+                                                    TipoVenta = "venta a domicilio";
                                                     break;
                                                 case 1:
                                                     venta.FolioCancelado = ventaClient.GenerarFolioCanceladoApartado(venta.SucursalId, DateTime.Now.ToFileTimeUtc());
+                                                    TipoVenta = "apartado";
                                                     break;
                                                 case 2:
                                                     venta.FolioCancelado = ventaClient.GenerarFolioCanceladoServicio(venta.SucursalId, DateTime.Now.ToFileTimeUtc());
+                                                    TipoVenta = "servicio";
                                                     break;
                                             }
                                         }
@@ -668,12 +678,18 @@ namespace AIPos.DekstopLayer.Ventas
                                                 cuentaPorCobrar.FechaLimite = DateTime.Now.AddDays(30);
                                                 cuentaPorCobrar.Importe = importeCxC;
                                                 cuentaPorCobrar.UsuarioId = General.UsuarioLogueado.Id;
-                                                cuentaPorCobrar.VentaId = venta.Id;
-                                                CuentasPorCobrar.NuevaCuentaPorCobrar nuevaCuentaPorCobrar = new CuentasPorCobrar.NuevaCuentaPorCobrar();
-                                                nuevaCuentaPorCobrar.CuentaPorCobrar = cuentaPorCobrar;
+                                                cuentaPorCobrar.VentaId = ventaInsertada.Id;
+                                                CuentasPorCobrar.NuevaCuentaPorCobrar nuevaCuentaPorCobrar = new CuentasPorCobrar.NuevaCuentaPorCobrar(cuentaPorCobrar);
+                                                nuevaCuentaPorCobrar.Cliente = cmbClientes.SelectedText;
+                                                if(ventaInsertada.Folio>0)
+                                                    nuevaCuentaPorCobrar.FolioVenta = ventaInsertada.Folio;
+                                                else
+                                                    nuevaCuentaPorCobrar.FolioVenta = ventaInsertada.FolioCancelado;
+                                                nuevaCuentaPorCobrar.FechaVenta = ventaInsertada.Fecha;
+                                                nuevaCuentaPorCobrar.Tipo = TipoVenta;
                                                 nuevaCuentaPorCobrar.ShowDialog();
                                                 ServiceCuentaPorCobrar.SCuentaPorCobrarClient cxcClient = new ServiceCuentaPorCobrar.SCuentaPorCobrarClient();
-                                                cxcClient.NuevaCuentaPorCobrar(cuentaPorCobrar);
+                                                cxcClient.NuevaCuentaPorCobrar(nuevaCuentaPorCobrar.CuentaPorCobrar);
                                             }
                                         }
                                         else
@@ -703,6 +719,10 @@ namespace AIPos.DekstopLayer.Ventas
                             {
                                 MessageBox.Show("Debe escribir con números la cantidad recibida de dinero");
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Debe escribir con números la cantidad recibida de dinero");
                         }
                     }
                     else

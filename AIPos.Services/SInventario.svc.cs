@@ -18,12 +18,14 @@ namespace AIPos.Services
         public Inventario Insert(Inventario entity)
         {
             BOInventario boInventario = new BOInventario();
+            entity.FechaRegistro = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(entity.FechaRegistro);
             return boInventario.Insert(entity);
         }
 
         public Inventario Update(Inventario entity)
         {
             BOInventario boInventario = new BOInventario();
+            entity.FechaRegistro = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(entity.FechaRegistro);
             return boInventario.Update(entity);
         }
 
@@ -37,6 +39,7 @@ namespace AIPos.Services
         {
             BOInventario boInventario = new BOInventario();
             DateTime fecha = DateTime.FromFileTimeUtc(Day);
+            fecha = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(fecha);
             return boInventario.SelectBySucursalFecha(SucursalId, fecha);
         }
     }

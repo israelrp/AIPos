@@ -22,6 +22,11 @@ namespace AIPos.DekstopLayer.CuentasPorCobrar
     {
         public Venta venta { get; set; }
         public CuentaPorCobrar CuentaPorCobrar { get; set; }
+        public string Cliente { get; set; }
+        public int FolioVenta { get; set; }
+        public DateTime FechaVenta { get; set; }
+        public string Tipo { get; set; }
+
         public NuevaCuentaPorCobrar()
         {
             InitializeComponent();
@@ -30,20 +35,20 @@ namespace AIPos.DekstopLayer.CuentasPorCobrar
         public NuevaCuentaPorCobrar(CuentaPorCobrar cuentaPorCobrar)
         {
             InitializeComponent();
-
+            this.CuentaPorCobrar = cuentaPorCobrar;
         }
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             CuentaPorCobrar cxc = new CuentaPorCobrar();
-            cxc.ClienteId = venta.ClienteId;
-            cxc.VentaId = venta.Id;
+            cxc.ClienteId = CuentaPorCobrar.ClienteId;
+            cxc.VentaId = CuentaPorCobrar.VentaId;
             cxc.UsuarioId = General.UsuarioLogueado.Id;
             cxc.Descripcion = txtDescripcion.Text;
             cxc.Estatus = 0;
-            cxc.Fecha = DateTime.Now;
+            cxc.Fecha = CuentaPorCobrar.Fecha;
             cxc.FechaLimite = deFechaLimite.DateTime;
-            cxc.Importe = venta.Total;
+            cxc.Importe = CuentaPorCobrar.Importe;
             ServiceCuentaPorCobrar.SCuentaPorCobrarClient cxcClient = new ServiceCuentaPorCobrar.SCuentaPorCobrarClient();
             cxcClient.NuevaCuentaPorCobrar(cxc);
             this.Close();
@@ -52,6 +57,19 @@ namespace AIPos.DekstopLayer.CuentasPorCobrar
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Grid_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (CuentaPorCobrar != null)
+            {
+                this.txtCliente.Text = Cliente;
+                this.txtFolioVenta.Text = FolioVenta.ToString();
+                this.txtImporte.Text = CuentaPorCobrar.Importe.ToString();
+                this.deFechaVenta.DateTime = FechaVenta;
+                this.txtDescripcion.Text = "Cuenta por cobrar por "+ Tipo +" con folio " + FolioVenta.ToString();
+                this.deFechaLimite.DateTime = CuentaPorCobrar.FechaLimite;
+            }
         }
     }
 }

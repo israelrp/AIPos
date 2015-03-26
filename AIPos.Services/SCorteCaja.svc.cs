@@ -16,6 +16,7 @@ namespace AIPos.Services
         public CorteCaja Insert(CorteCaja entity)
         {
             BOCorteCaja boCorteCaja = new BOCorteCaja();
+            entity.Fecha = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(entity.Fecha);
             return boCorteCaja.Insert(entity);
         }
     }

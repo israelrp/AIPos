@@ -15,6 +15,7 @@ namespace AIPos.Services
     {
         public ServicioApartado Insert(ServicioApartado servicioApartado)
         {
+            servicioApartado.FechaEntrega = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(servicioApartado.FechaEntrega);
             return new BOServicioApartado().Insert(servicioApartado);
         }
 

@@ -15,11 +15,21 @@ namespace AIPos.Services
     {
         public SeguimientoServicioApartado Insert(SeguimientoServicioApartado entity)
         {
+            if (entity.FechaLlegadaRepartidor.HasValue)
+                entity.FechaLlegadaRepartidor = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(entity.FechaLlegadaRepartidor.Value);
+            if (entity.FechaSalidaRepartidor.HasValue)
+                entity.FechaSalidaRepartidor = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(entity.FechaSalidaRepartidor.Value);
+            entity.FechaSolicitud = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(entity.FechaSolicitud);
             return new BOSeguimientoServicioApartado().Insert(entity);
         }
 
         public SeguimientoServicioApartado Update(SeguimientoServicioApartado entity)
         {
+            if (entity.FechaLlegadaRepartidor.HasValue)
+                entity.FechaLlegadaRepartidor = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(entity.FechaLlegadaRepartidor.Value);
+            if (entity.FechaSalidaRepartidor.HasValue)
+                entity.FechaSalidaRepartidor = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(entity.FechaSalidaRepartidor.Value);
+            entity.FechaSolicitud = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(entity.FechaSolicitud);
             return new BOSeguimientoServicioApartado().Update(entity);
         }
 

@@ -30,6 +30,8 @@ namespace AIPos.Services
             BOPedidoSucursal boPedidoSucursal = new BOPedidoSucursal();
             entity.FechaRegistro = DateTime.FromFileTimeUtc(FechaRegistro);
             entity.FechaEntrega = DateTime.FromFileTimeUtc(FechaEntrega);
+            entity.FechaRegistro = TimeConverter.GetDateTimeMexico(entity.FechaRegistro);
+            entity.FechaEntrega = TimeConverter.GetDateTimeMexico(entity.FechaEntrega);
             return boPedidoSucursal.Update(entity);
         }
 
@@ -43,6 +45,7 @@ namespace AIPos.Services
         {
             BOPedidoSucursal boPedidoSucursal = new BOPedidoSucursal();
             DateTime fecha = DateTime.FromFileTimeUtc(Day);
+            fecha = TimeConverter.GetDateTimeMexico(fecha);
             return boPedidoSucursal.SelectBySucursalFecha(SucursalId,fecha);
         }
 
@@ -50,6 +53,7 @@ namespace AIPos.Services
         {
             BOPedidoSucursal boPedidoSucursal = new BOPedidoSucursal();
             DateTime fecha = DateTime.FromFileTimeUtc(Day);
+            fecha = TimeConverter.GetDateTimeMexico(fecha);
             List<PedidoSucursal> pedidos=boPedidoSucursal.SelectBySucursalFechaEntrega(SucursalId, fecha);
             foreach (PedidoSucursal pedido in pedidos)
             {

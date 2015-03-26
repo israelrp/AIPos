@@ -7,14 +7,14 @@
     Title="NuevaCuentaPorCobrar" Height="350" Width="525"
     >
 
-    <Grid>
+    <Grid IsVisibleChanged="Grid_IsVisibleChanged">
         <Line X1="10" X2="515" Y1="80" Y2="80" Stroke="Red" StrokeThickness="1"></Line>
         <Label Content="Cliente:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <dxe:TextEdit Name="txtCliente" HorizontalAlignment="Left" IsReadOnly="True" Margin="67,10,0,0" VerticalAlignment="Top" Width="440"/>
         <Label Content="Folio de la venta:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-        <dxe:TextEdit HorizontalAlignment="Left" Margin="121,45,0,0" VerticalAlignment="Top" Width="103" IsReadOnly="True"/>
+        <dxe:TextEdit Name="txtFolioVenta" HorizontalAlignment="Left" Margin="121,45,0,0" VerticalAlignment="Top" Width="103" IsReadOnly="True"/>
         <Label Content="Fecha venta:" FontWeight="Bold" HorizontalAlignment="Left" Margin="229,41,0,0" VerticalAlignment="Top"/>
-        <dxe:DateEdit HorizontalAlignment="Left" Margin="314,45,0,0" VerticalAlignment="Top" Width="193" IsReadOnly="True"/>
+        <dxe:DateEdit Name="deFechaVenta" HorizontalAlignment="Left" Margin="314,45,0,0" VerticalAlignment="Top" Width="193" IsReadOnly="True"/>
         <Label Content="Importe por cobrar: $" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
         <dxe:TextEdit Name="txtImporte" HorizontalAlignment="Left" Margin="147,94,0,0" VerticalAlignment="Top" Width="150"/>
         <Label Content="Descripción" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top"/>

@@ -16,6 +16,7 @@ namespace AIPos.Services
         public Venta Insert(Venta venta)
         {
             BOVenta boVenta = new BOVenta();
+            venta.Fecha = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(venta.Fecha);
             return boVenta.Insert(venta);
         }
 
@@ -30,6 +31,7 @@ namespace AIPos.Services
         {
             BOVenta boVenta = new BOVenta();
             DateTime fechaActual = DateTime.FromFileTimeUtc(Fecha);
+            fechaActual = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(fechaActual);
             return boVenta.GenerarFolioCancelado(SucursalId, fechaActual);
         }
 
@@ -38,6 +40,7 @@ namespace AIPos.Services
         {
             BOVenta boVenta = new BOVenta();
             DateTime fechaActual = DateTime.FromFileTimeUtc(Fecha);
+            fechaActual = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(fechaActual);
             return boVenta.GenerarFolioCanceladoApartado(SucursalId, fechaActual);
         }
 
@@ -45,6 +48,7 @@ namespace AIPos.Services
         {
             BOVenta boVenta = new BOVenta();
             DateTime fechaActual = DateTime.FromFileTimeUtc(Fecha);
+            fechaActual = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(fechaActual);
             return boVenta.GenerarFolioCanceladoDomicilio(SucursalId, fechaActual);
         }
 
@@ -52,6 +56,7 @@ namespace AIPos.Services
         {
             BOVenta boVenta = new BOVenta();
             DateTime fechaActual = DateTime.FromFileTimeUtc(Fecha);
+            fechaActual = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(fechaActual);
             return boVenta.GenerarFolioCanceladoServicio(SucursalId, fechaActual);
         }
 
@@ -76,6 +81,7 @@ namespace AIPos.Services
 
         public Venta Update(Venta venta)
         {
+            venta.Fecha = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(venta.Fecha);
             return new BOVenta().Update(venta);
         }
     }

@@ -15,6 +15,8 @@ namespace AIPos.Services
     {
         public Domain.CuentaPorCobrar NuevaCuentaPorCobrar(Domain.CuentaPorCobrar cuentaPorCobrar)
         {
+            cuentaPorCobrar.Fecha = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(cuentaPorCobrar.Fecha);
+            cuentaPorCobrar.FechaLimite = BusinessLayer.Tools.TimeConverter.GetDateTimeMexico(cuentaPorCobrar.FechaLimite);
             return new BOCuentaPorCobrar().Insert(cuentaPorCobrar);
         }
 
